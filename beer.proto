@@ -1,0 +1,1206 @@
+syntax = "proto3";
+
+message Beer {
+  // A collection of steps providing process information for common mashing procedures
+  repeated MashProcedureType mashes = 1;
+  // Records containing a minimal collection of the description of ingredients, procedures and other required parameters necessary to recreate a batch of beer
+  repeated RecipeType tecipes = 2;
+  // Records for adjuncts which do not contribute to the gravity of the beer
+  repeated MiscellaneousType miscellaneous_ingredients = 3;
+  // Records detailing the characteristics of the beer styles for which judging guidelines have been established
+  repeated StyleType styles = 4;
+  // A collection of steps providing process information for common fermentation procedures
+  repeated FermentationProcedureType fermentations = 5;
+  // A collection of steps providing process information for common boil procedures
+  repeated BoilProcedureType boil = 6;
+  // Explicitly encode version within list of records
+  double version = 7;
+  // Records for any ingredient that contributes to the gravity of the beer
+  repeated FermentableType fermentables = 8;
+  // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step
+  TimingType timing_object = 9;
+  // Records detailing the wide array of unique cultures
+  repeated CultureInformation cultures = 10;
+  // Provides necessary information for brewing equipment
+  repeated EquipmentType equipments = 11;
+  // A collection of steps providing process information for common packaging procedures
+  repeated PackagingProcedureType packaging = 12;
+  // Records detailing the many properties of unique hop varieties
+  repeated VarietyInformation hop_varieties = 13;
+  // Records for water profiles used in brewing
+  repeated WaterBase profiles = 14;
+}
+
+// This defines the procedure for performing unique mashing processes
+message MashProcedureType {
+  // Initial grain temperature prior to the start of the mash
+  TemperatureType grain_temperature = 1;
+  string notes = 2;
+  repeated MashStepType mash_steps = 3;
+  string name = 4;
+}
+
+// MashStepType - a per step representation occurring during the mash
+message MashStepType{
+  TimeType step_time = 1;
+  // The amount of time  that passes before this step begins. eg moving from a mash step (step 1) of 148F, to a new temperature step of 156F (step 2) may take 8 minutes to heat the mash. Step 2 would have a ramp time of 8 minutes
+  TimeType ramp_time = 2;
+  TemperatureType end_temperature = 3;
+  string description = 4;
+  // Temperature of the water for an infusion step
+  TemperatureType infuse_temperature = 5;
+  AcidityType start_pH = 6;
+  AcidityType end_pH = 7;
+  string name = 8;
+  MashStepTypeType type = 9;
+  VolumeType amount = 10;
+  TemperatureType step_temperature = 11;
+  // Also known as the mash thickness. eg 1.75 qt/lb or 3.65 L/kg
+  SpecificVolumeType water_grain_ratio = 12;
+
+  enum MashStepTypeType{
+
+    INFUSION = 0;
+    TEMPERATURE = 1;
+    DECOCTION = 2;
+    SOURING_MASH = 3;
+    SOURING_WORT = 4;
+    DRAIN_MASH_TUN = 5;
+    SPARGE = 6;
+  }
+}
+message TimeType{
+  double value = 1;
+  TimeUnitType unit = 2;
+
+  enum TimeUnitType {
+    // sec
+    SEC = 0;
+    // min
+    MIN = 1;
+    // hr
+    HR = 2;
+    // day
+    DAY = 3;
+    // week
+    WEEK = 4;
+    // month
+    MONTH = 5;
+    // year
+    YEAR = 6;
+  }
+}
+
+message AcidityType{
+  double value = 1;
+  AcidityUnitType unit = 2;
+
+  enum AcidityUnitType{
+    PH = 0;
+  }
+}
+message VolumeType{
+  double value = 1;
+  VolumeUnitType unit = 2;
+
+  enum VolumeUnitType{
+    // ml
+    ML = 0;
+    // l
+    L = 1;
+    // tsp
+    TSP = 2;
+    // tbsp
+    TBSP = 3;
+    // floz
+    FLOZ = 4;
+    // cup
+    CUP = 5;
+    // pt
+    PT = 6;
+    // qt
+    QT = 7;
+    // gal
+    GAL = 8;
+    // bbl
+    BBL = 9;
+    // ifloz
+    IFLOZ = 10;
+    // ipt
+    IPT = 11;
+    // iqt
+    IQT = 12;
+    // igal
+    IGAL = 13;
+    // ibbl
+    IBBL = 14;
+  }
+}
+
+message SpecificVolumeType{
+  double value = 1;
+  SpecificVolumeUnitType unit = 2;
+
+  enum SpecificVolumeUnitType{
+    // qt/lb
+    QTLB = 0;
+    // gal/lb
+    GALLB = 1;
+    // gal/oz
+    GALOZ = 2;
+    // l/g
+    LG = 3;
+    // l/kg
+    LKG = 4;
+    // floz/oz
+    FLOZOZ = 5;
+    // m^3/kg
+    M3KG = 6;
+    // ft^3/lb
+    FT3LB = 7;
+  }
+}
+
+// RecipeType composes the information stored in a recipe
+message RecipeType {
+  // Used to store each efficiency component, including conversion, and brewhouse
+  EfficiencyType efficiency = 1;
+  RecipeStyleType style = 2;
+  // Used to differentiate which IBU formula is being used in a recipe. If formula is modified in any way, eg to support whirlpool/flameout additions etc etc, please use `Other` for transparency
+  IBUEstimateType ibu_estimate = 3;
+  // The color of the finished beer, using SRM or EBC
+  ColorType color_estimate = 4;
+  // The final beer pH at the end of fermentation
+  AcidityType beer_pH = 5;
+  string name = 6;
+  RecipeTypeType type = 7;
+  string coauthor = 8;
+  // The gravity of wort when transffered to the fermenter
+  GravityType original_gravity = 9;
+  // The gravity of beer at the end of fermentation
+  GravityType final_gravity = 10;
+  // The final carbonation of the beer when packaged or served
+  double  carbonation = 11;
+  // FermentationProcedureType defines the procedure for performing fermentation
+  FermentationProcedureType fermentation = 12;
+  string author = 13;
+  // A collection of all ingredients used for the recipe
+  IngredientsType ingredients = 14;
+  // This defines the procedure for performing unique mashing processes
+  MashProcedureType mash = 15;
+  // Describes the procedure for packaging your beverage
+  PackagingProcedureType packaging = 16;
+  // Defines the procedure for performing a boil. A boil procedure with no steps is the same as a standard single step boil
+  BoilProcedureType boil = 17;
+  // Used to store subjective tasting notes, and rating
+  TasteType taste = 18;
+  double calories_per_pint = 19;
+  string created = 20;
+  // The volume into the fermenter
+  VolumeType batch_size = 21;
+  string notes = 22;
+  PercentType alcohol_by_volume = 23;
+  // The total apparent attenuation of the finished beer after fermentation
+  PercentType apparent_attenuation = 24;
+
+  enum RecipeTypeType {
+    // cider
+    CIDER = 0;
+    // kombucha
+    KOMBUCHA = 1;
+    // soda
+    SODA = 2;
+    // other
+    OTHER = 3;
+    // mead
+    MEAD = 4;
+    // wine
+    WINE = 5;
+    // extract
+    EXTRACT = 6;
+    // partial mash
+    PARTIAL_MASH = 7;
+    // all grain
+    ALL_GRAIN = 8;
+  }
+}
+
+// The efficiencyType stores each efficiency component
+message EfficiencyType{
+  // The percentage of sugar from the grain yield that is extracted and converted during the mash
+  PercentType conversion = 1;
+  // The percentage of sugar that makes it from the mash tun to the kettle
+  PercentType lauter = 2;
+  // The percentage of sugar that makes it from the grain to the kettle
+  PercentType mash = 3;
+  // The percentage of sugar that makes it from the grain to the fermenter
+  PercentType brewhouse = 4;
+}
+
+// RecipeStyleType defines style information stored in a recipe record
+message RecipeStyleType{
+  StyleCategories type = 1;
+  string name = 2;
+  string category = 3;
+  int32 category_number = 4;
+  string style_letter = 5;
+  string style_guide = 6;
+
+  enum StyleCategories {
+    // beer
+    BEER = 0;
+    // cider
+    cider = 1;
+    // kombucha
+    OMBUCHA = 2;
+    // mead
+    MEAD = 3;
+    // soda
+    SODA = 4;
+    // wine
+    WINE = 5;
+    // other
+    OTHER = 6;
+  }
+}
+
+// Used to differentiate which IBU formula is being used in a recipe. If formula is modified in any way, eg to support whirlpool/flameout additions etc etc, please use `Other` for transparency
+message IBUEstimateType{
+  IBUMethodType method = 1;
+
+  enum IBUMethodType {
+    // Rager
+    Rager = 0;
+    // Tinseth
+    Tinseth = 1;
+    // Garetz
+    Garetz = 2;
+    // Other
+    Other = 3;
+  }
+}
+
+message IngredientsType{
+  // miscellaneous_additions collects all the miscellaneous items for use in a recipe
+  repeated MiscellaneousAdditionType miscellaneous_additions = 1;
+  // culture_additions collects all the culture items for use in a recipe
+  repeated CultureAdditionType culture_additions = 2;
+  // water_additions collects all the water items for use in a recipe
+  repeated WaterAdditionType water_additions = 3;
+  // fermentable_additions collects all the fermentable ingredients for use in a recipe
+  repeated FermentableAdditionType fermentable_additions = 4;
+  // hop_additions collects all the hops for use in a recipe
+  repeated HopAdditionType hop_additions = 5;
+}
+
+// MiscellaneousAdditionType collects the attributes of each miscellaneous ingredient for use in a recipe
+message MiscellaneousAdditionType{
+  string name = 1;
+  string producer = 2;
+  // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step.
+  TimingType timing = 3;
+  string product_id = 4;
+  MiscellaneousBaseType type = 5;
+
+  enum MiscellaneousBaseType {
+    // spice
+    SPICE = 0;
+    // fining
+    FINING = 1;
+    // water agent
+    WATER_AGENT = 2;
+    // herb
+    HERB = 3;
+    // flavor
+    FLAVOR = 4;
+    // wood
+    WOOD = 5;
+    // other
+    OTHER = 6;
+  }
+
+  oneof amount  {
+    MassType mass = 6;
+    UnitType unit = 7;
+    VolumeType volume = 8;
+  }
+}
+message MassType{
+  double value = 1;
+  MassUnitType unit = 2;
+
+  enum MassUnitType{
+    // mg
+    MG = 0;
+    // g
+    G = 1;
+    // kg
+    KG = 2;
+    // lb
+    LB = 3;
+    // oz
+    OZ = 4;
+  }
+}
+
+// UnitType is used where unitless amounts are required, such as 1 apple, or 1 yeast packet
+message UnitType {
+  double value = 1;
+  UnitUnitType unit = 2;
+
+  enum UnitUnitType {
+    // 1
+    ONE = 0;
+    // unit
+    UNIT = 1;
+    // each
+    EACH = 2;
+    // dimensionless
+    DIMENSIONLESS = 3;
+    // pkg
+    PKG = 4;
+  }
+}
+
+// CultureAdditionType collects the attributes of each culture ingredient for use in a recipe
+message CultureAdditionType{
+  CultureBaseForm form = 1;
+  string product_id = 2;
+  string name = 3;
+  int32 cell_count_billions = 4;
+  int32 times_cultured = 5;
+  string producer = 6;
+  CultureBaseType type = 7;
+  // The expected, or measured apparent attenuation for a given culture in a given recipe. In comparison to attenuation range, this is a single value.
+  PercentType attenuation = 8;
+  // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step.
+  TimingType timing = 9;
+
+  oneof amount  {
+    MassType mass = 10;
+    UnitType unit = 11;
+    VolumeType volume = 12;
+  }
+
+  enum CultureBaseForm{
+    // liquid
+    LIQUID = 0;
+    // dry
+    DRY = 1;
+    // slant
+    SLANT = 2;
+    // culture
+    CULTURE = 3;
+    // dregs
+    DREGS = 4;
+  }
+
+  enum CultureBaseType{
+    // ale
+    ALE = 0;
+    // bacteria
+    BACTERIA = 1;
+    // brett
+    BRETT = 2;
+    // champagne
+    CHAMPAGNE = 3;
+    // kveik
+    KVEIK = 4;
+    // lacto
+    LACTO = 5;
+    // lager
+    LAGER = 6;
+    // malolactic
+    MALOLACTIC = 7;
+    // mixed-culture
+    MIXED_CULTURE = 8;
+    // other
+    OTHER = 9;
+    // pedio
+    PEDIO = 10;
+    // spontaneous
+    SPONTANEOUS = 11;
+    // wine
+    WINE = 12;
+  }
+}
+
+// The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step
+message TimingType{
+  // What time during a process step is added, eg a value of 2 days for a dry hop addition would be added 2 days into the fermentation step.
+  TimeType time = 1;
+  // How long an ingredient addition remains, this was referred to as time in the BeerXML standard. E.G. A 40 minute hop boil additions means to boil for 40 minutes, and a 2 day duration for a dry hop means to remove it after 2 days.
+  TimeType duration = 2;
+  // A continuous addition is spread out evenly and added during the entire process step, eg 60 minute IPA by dogfish head takes all ofthe hop additions and adds them throughout the entire boil.
+  bool continuous = 3;
+  // Used to indicate when an addition is added based on a desired specific gravity. E.G. Add dry hop at when SG is 1.018.
+  GravityType specific_gravity = 4;
+  // Used to indicate when an addition is added based on a desired specific gravity. eg Add brett when pH is 3.4.
+  AcidityType ph = 5;
+  // Used to indicate what step this ingredient timing addition is referencing. EG A value of 2 for add_to_fermentation would mean to add during the second fermentation step.
+  int32 step = 6;
+  UseType use = 7;
+
+  enum UseType{
+    // add to mash
+    ADD_TO_MASH = 0;
+    // add to boil
+    ADD_TO_BOIL = 1;
+    // add to fermentation
+    ADD_TO_FERMENTATION = 2;
+    // add to package
+    ADD_TO_PACKAGE = 3;
+  }
+}
+
+// WaterAdditionType collects the attributes of each water addition for use in a recipe
+message WaterAdditionType{
+  ConcentrationType flouride = 1;
+  ConcentrationType sulfate = 2;
+  string producer = 3;
+  ConcentrationType nitrate = 4;
+  ConcentrationType nitrite = 5;
+  ConcentrationType chloride = 6;
+  VolumeType amount = 7;
+  string name = 8;
+  ConcentrationType potassium = 9;
+  ConcentrationType magnesium = 10;
+  ConcentrationType iron = 11;
+  ConcentrationType bicarbonate = 12;
+  ConcentrationType calcium = 13;
+  ConcentrationType carbonate = 14;
+  ConcentrationType sodium = 15;
+}
+
+message ConcentrationType{
+  double value = 1;
+  ConcentrationUnitType unit = 2;
+
+  enum ConcentrationUnitType{
+    // ppm
+    PPM = 0;
+    // ppb
+    PPB = 1;
+    // mg/l
+    MGL = 2;
+  }
+}
+
+// FermentableAdditionType collects the attributes of each fermentable ingredient for use in a recipe fermentable bill
+message FermentableAdditionType{
+  FermentableBaseType type = 1;
+  string Origin = 2;
+  FermentableBaseGrainGroup grain_group = 3;
+  YieldType yield = 4;
+  ColorType color = 5;
+  string name = 6;
+  string producer = 7;
+  string product_id = 8;
+  // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step.
+  TimingType timing = 9;
+
+  oneof amount  {
+    MassType mass = 10;
+    VolumeType volume = 11;
+  }
+
+  enum FermentableBaseType{
+    //dry extract
+    DRY_EXTRACT = 0;
+    // extract
+    EXTRACT = 1;
+    // grain
+    GRAIN = 2;
+    // sugar
+    SUGAR = 3;
+    // fruit
+    FRUIT = 4;
+    // juice
+    JUICE = 5;
+    // honey
+    HONEY = 6;
+    // other
+    OTHER = 7;
+  }
+
+  enum FermentableBaseGrainGroup{
+    // base
+    BASE = 0;
+    // caramel
+    CARAMEL = 1;
+    // flaked
+    FLAKED = 2;
+    // roasted
+    ROASTED = 3;
+    // specialty
+    SPECIALTY = 4;
+    // smoked
+    SMOKED = 5;
+    // adjunct
+    ADJUNCT = 6;
+
+  }
+}
+
+// The potential yield of the fermentable ingredient, supporting SG, or percentage. eg 1.037 or 80% are valid yield types
+message YieldType{
+  // Percentage yield compared to succrose of a fine grind. eg 80%
+  PercentType fine_grind = 1;
+  // Percentage yield compared to succrose of a coarse grind. eg 78%
+  PercentType coarse_grind = 2;
+  // The difference between fine and coarse grind, a difference more than 2 percent can indicate a protein or step mash may be desirable. eg 2%
+  PercentType fine_coarse_difference = 3;
+  // The potential yield of the fermentable ingredient for 1 lb of grain mashed in 1 gallon of water. eg 1.037
+  GravityType potential = 4;
+}
+
+// HopAdditionType collects the attributes of each hop ingredient for use in a recipe hop bil
+message HopAdditionType{
+  PercentType beta_acid = 1;
+  string producer = 2;
+  string origin = 3;
+  string year = 4;
+  HopVarietyBaseForm form = 5;
+  // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step
+  TimingType timing = 6;
+  string name = 7;
+  string product_id = 8;
+  PercentType alpha_acid = 9;
+  oneof amount  {
+    MassType mass = 10;
+    VolumeType volume = 11;
+  }
+
+  enum HopVarietyBaseForm{
+    // extract
+    EXTRACT = 0;
+    // leaf
+    LEAF = 1;
+    // leaf (wet)
+    LEAF_WET = 2;
+    // pellet
+    PELLET = 3;
+    // powder
+    POWDER = 4;
+    // plug
+    PLUG = 5;
+  }
+}
+
+message TasteType{
+  string notes = 1;
+  double rating = 2;
+}
+
+// MiscellaneousType collects the attributes of an ingredient to store as record information
+message MiscellaneousType {
+  // Used to describe the purpose of the miscellaneous ingredient, e.g. whirlfloc is used for clarity.
+  string use_for = 1;
+  string notes = 2;
+  string name = 3;
+  string producer = 4;
+  string product_id = 5;
+  MiscellaneousBaseType type = 6;
+  MiscellaneousInventoryType inventory = 7;
+
+  enum MiscellaneousBaseType{
+    // spice
+    SPICE = 0;
+    // fining
+    FINING = 1;
+    // water agent
+    WATER_AGENT = 2;
+    // herb
+    HERB = 3;
+    // flavor
+    FLAVOR = 4;
+    // wood
+    WOOD = 5;
+    // other
+    OTHER = 6;
+  }
+}
+
+message MiscellaneousInventoryType{
+  oneof amount  {
+    MassType mass = 1;
+    UnitType unit = 2;
+    VolumeType volume = 3;
+  }
+}
+
+// StyleType provide information for Style categorization
+message StyleType{
+  string aroma = 1;
+  string ingredients = 2;
+  int32 category_number = 3;
+  string notes = 4;
+  string flavor = 5;
+  string mouthfeel = 6;
+  GravityRangeType final_gravity = 7;
+  string style_guide = 8;
+  ColorRangeType color = 9;
+  ColorRangeType original_gravity = 10;
+  string examples = 11;
+  string name = 12;
+  CarbonationRangeType carbonation = 13;
+  PercentRangeType alcohol_by_volume = 14;
+  BitternessRangeType international_bitterness_units = 15;
+  string appearance = 16;
+  string category = 17;
+  string style_letter = 18;
+  StyleCategories type = 19;
+  string overall_impression = 20;
+
+  enum StyleCategories{
+    // beer
+    BEER = 0;
+    // cider
+    CIDER = 1;
+    // kombucha
+    KOMBUCHA = 2;
+    // mead
+    MEAD = 3;
+    // other
+    OTHER = 4;
+    // soda
+    SODA = 5;
+    // wine
+    WINE = 6;
+  }
+}
+message BitternessRangeType{
+  BitternessType minimum = 1;
+  BitternessType maximum = 2;
+}
+
+message BitternessType{
+  double value = 1;
+  BitternessUnitType unit = 2;
+
+  enum BitternessUnitType{
+    // IBUs
+    IBUs = 0;
+  }
+}
+message PercentRangeType{
+  PercentType minimum = 1;
+  PercentType maximum = 2;
+}
+
+message PercentType{
+  double value = 1;
+  PercentUnitType unit = 2;
+
+  enum PercentUnitType{
+    // %
+    PERCENT_SIGN = 0;
+  }
+}
+
+message GravityRangeType{
+  GravityType minimum = 1;
+  GravityType maximum = 2;
+}
+
+// Gravity refers to the both the measurements of percent of sugar content, ie plato and brix, as well as relative density ie specific gravity
+message GravityType{
+  double value = 1;
+  GravityUnitType unit = 2;
+
+  enum GravityUnitType{
+    // sg
+    SG = 0;
+    // plato
+    PLATO = 1;
+    // brix
+    BRIX = 2;
+  }
+}
+
+message ColorRangeType{
+  ColorType minimum = 1;
+  ColorType maximum = 2;
+}
+
+// ColorType supports both grain color properties, such as Lovibond, and wort color properties such as SRM and EBC
+message ColorType{
+  double value = 1;
+  ColorUnitType unit = 2;
+
+  enum ColorUnitType {
+    // EBC
+    EBC = 0;
+    // Lovi
+    LOVI = 1;
+    // SRM
+    SRM = 2;
+  }
+}
+
+message CarbonationRangeType{
+  CarbonationType minimum = 1;
+  CarbonationType maximum = 2;
+}
+
+message CarbonationType {
+  double value = 1;
+  CarbonationUnitType unit = 2;
+
+  enum CarbonationUnitType {
+    // vols
+    VOLS = 0;
+  }
+}
+
+// FermentationProcedureType defines the procedure for performing fermentation
+message FermentationProcedureType{
+  string description = 1;
+  string notes = 2;
+  repeated FermentationStepType fermentation_steps = 3;
+  string name = 4;
+}
+
+// FermentationStepType - a per step representation of a fermentation action
+message FermentationStepType{
+  string Name = 1;
+  TemperatureType end_temperature = 2;
+  TimeType step_time = 3;
+  // Free rise is used to indicate a fermentation step where the exothermic fermentation is allowed to raise the temperature without restriction This is either True or false.
+  bool free_rise = 4;
+  GravityType start_gravity = 5;
+  GravityType end_gravity = 6;
+  AcidityType start_ph = 7;
+  string description = 8;
+  TemperatureType start_temperature = 9;
+  AcidityType  end_ph = 10;
+  string vessel = 11;
+}
+
+// BoilProcedureType defines the procedure for performing a boil. A boil procedure with no steps is the same as a standard single step boil
+message BoilProcedureType{
+  VolumeType pre_boil_size = 1;
+  TimeType boil_time = 2;
+  repeated BoilStepType boil_steps = 3;
+  string name = 4;
+  string description = 5;
+  string notes = 6;
+}
+
+// BoilStepType - a per step representation of a boil process, can be used to support preboil steps, non-boiling pasteurization steps, boiling, whirlpool steps, and chilling
+message BoilStepType{
+  GravityType end_gravity = 1;
+  BoilStepTypeChillingType chilling_type = 2;
+  string description = 3;
+  TemperatureType end_temperature = 4;
+  // The amount of time that passes before this step begins. eg moving from a boiling step (step 1) to a whirlpool step (step 2) may take 5 minutes. Step 2 would have a ramp time of 5 minutes, hop isomerization and bitterness calculations will need to account for this accordingly.
+  TimeType ramp_time = 5;
+  TimeType step_time = 6;
+  GravityType start_gravity = 7;
+  AcidityType start_ph = 8;
+  AcidityType end_ph = 9;
+  string name = 10;
+  TemperatureType start_temperature = 11;
+
+  enum BoilStepTypeChillingType{
+    // batch
+    BATCH = 0;
+    // inline
+    INLINE = 1;
+  }
+}
+
+// FermentableType collects the attributes of a fermentable ingredient to store as record information
+message FermentableType{
+  // The recommended maximum percentage to use in a grain bill.
+  PercentType max_in_batch = 1;
+  // True if the fermentable must be mashed, false if it can be steeped.
+  bool recommend_mash = 2;
+  // The percentage of protein. Higher values may indicate a possibility of haze, or lautering issues.
+  PercentType protein = 3;
+  string product_id = 4;
+  FermentableBaseGrainGroup grain_group = 5;
+  YieldType yield = 6;
+  FermentableBaseType type = 7;
+  string producer = 8;
+  // Where diastatic power gives the total amount of all enzymes, alpha amylase, also known as dextrinizing units, refers to only the total amount of alpa amylase in the malted grain. A value of 25-50 is desirable for base malt.
+  double alpha_amylase = 9;
+  ColorType color = 10;
+  string name = 11;
+  // Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable.
+  DiastaticPowerType diastatic_power = 12;
+  PercentType moisture = 13;
+  string origin = 14;
+  FermentableInventoryType inventory = 15;
+  // The Kolbach Index, also known as soluble to total ratio of nitrogen or protein, is used to indcate the degree of malt modification. A value above 35% is desired for simple single infusion mashing, undermodified malt may require multiple step mashes or decoction.
+  double kolbach_index = 16;
+  string notes = 17;
+
+  enum FermentableBaseType{
+    // dry extract
+    DRY_EXTRACT = 0;
+    // extract
+    EXTRACT = 1;
+    // grain
+    GRAIN = 2;
+    // sugar
+    SUGAR = 3;
+    // fruit
+    FRUIT = 4;
+    // juice
+    JUICE = 5;
+    // honey
+    HONEY = 6;
+    // other
+    OTHER = 7;
+  }
+
+  enum FermentableBaseGrainGroup{
+    // base
+    BASE = 0;
+    // caramel
+    CARAMEL = 1;
+    // flaked
+    FLAKED = 2;
+    // roasted
+    ROASTED = 3;
+    // specialty
+    SPECIALTY = 4;
+    // smoked
+    SMOKED = 5;
+    // adjunct
+    ADJUNCT = 6;
+  }
+}
+
+message FermentableInventoryType{
+  oneof amount  {
+    MassType mass = 1;
+    VolumeType volume = 2;
+  }
+}
+
+// Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable for base malts
+message DiastaticPowerType{
+  double value = 1;
+  DiastaticPowerUnitType unit = 2;
+
+  enum DiastaticPowerUnitType{
+    // Lintner
+    lintner = 0;
+    // WK
+    WK = 1;
+  }
+}
+
+// CultureInformation collects the attributes of a microbial culture
+message CultureInformation{
+  CultureBaseForm form = 1;
+  string producer = 2;
+  // The recommended temperature range of fermentation by the culture producer.
+  TemperatureRangeType temperature_range = 3;
+  string notes = 4;
+  // Recommended styles for a particular culture.
+  string best_for = 5;
+  CultureInventoryType inventory = 6;
+  string product_id = 7;
+  string name = 8;
+  // The recommended limit of abv by the culture producer before attenuation stops.
+  PercentType alcohol_tolerance = 9;
+  // A glucoamylase positive culture is capable of producing glucoamylase, the enzyme produced through expression of the diastatic gene, which allows yeast to attenuate dextrins and starches leading to a very low FG. This is positive in some saison/brett yeasts as well as the new gulo hybrid by Omega yeast labs.
+  bool glucoamylase = 10;
+  CultureBaseType type = 11;
+  // Floculation refers to the ability of yeast to aggregate to form large flocs which drop out of suspension.
+  QualitativeRangeType flocculation = 12;
+  PercentRangeType attenuation_range = 13;
+  // Maximum number of times to reuse a culture before a new lab source is recommended.
+  int32 max_reuse = 14;
+  // A POF+ culture is capable of producing phenols, which is a common distinctive property of saison, and brett yeasts.
+  bool pof = 15;
+  Zymocide zymocide = 16;
+
+  enum QualitativeRangeType{
+    // very low
+    VERY_LOW = 0;
+    // low
+    LOW = 1;
+    // medium low
+    MEDIUM_LOW = 2;
+    // medium
+    MEDIUM = 3;
+    // medium high
+    MEDIUM_HIGH = 4;
+    // high
+    HIGH = 5;
+    // very high
+    VERY_HIGH = 6;
+  }
+
+  enum CultureBaseType{
+    // ale
+    ALE = 0;
+    // bacteria
+    BACTERIA = 1;
+    // brett
+    BRETT = 2;
+    // champagne
+    CHAMPAGNE = 3;
+    // kveik
+    KVEIK = 4;
+    // lacto
+    LACTO = 5;
+    // lager
+    LAGER = 6;
+    // malolactic
+    MALOLACTIC = 7;
+    // mixed-culture
+    MIXED_CULTURE = 8;
+    // other
+    OTHER = 9;
+    // pedio
+    PEDIO = 10;
+    // spontaneous
+    SPONTANEOUS = 11;
+    // wine
+    WINE = 12;
+  }
+
+  enum CultureBaseForm {
+    // liquid
+    LIQUID = 0;
+    // dry
+    DRY = 1;
+    // slant
+    SLANT = 2;
+    // culture
+    CULTURE = 3;
+    // dregs
+    DREGS = 4;
+  }
+}
+
+message TemperatureRangeType{
+  TemperatureType minimum = 1;
+  TemperatureType maximum = 2;
+}
+
+message TemperatureType{
+  double value = 1;
+  TemperatureUnitType unit = 2;
+
+  enum TemperatureUnitType {
+    C = 0;
+    F = 1;
+  }
+}
+
+// Zymocide, also known as killer yeast properties, is common among wine yeast. There are also some ale and brett yeasts that are immune to some zymocidic properties, these are known as killer neutral
+message Zymocide{
+  bool no1 = 1;
+  bool no2 = 2;
+  bool no28 = 3;
+  bool klus = 4;
+  bool neutral = 5;
+}
+
+message CultureInventoryType{
+  VolumeType liquid = 1;
+  MassType dry = 2;
+  VolumeType slant = 3;
+  VolumeType culture = 4;
+}
+
+// Provides necessary information for brewing equipment set
+message EquipmentType{
+  string name = 1;
+  repeated EquipmentItemType equipment_items = 2;
+}
+
+// EquipmentType provides necessary information for individual brewing equipment
+message EquipmentItemType{
+  string notes = 1;
+  // The volume boiled off during 1 hour, measured before and after at room temperature.
+  VolumeType boil_rate_per_hour = 2;
+  string type = 3;
+  EquipmentBaseForm form = 4;
+  // The volume that leaves the kettle, especially important for non-immersion chillers that cool the wort as it leaves the kettle.
+  VolumeType drain_rate_per_minute = 5;
+  // The specific heat of the piece of equipment, expressed in Cal/(g*C), especially important for when the mashtun is not preheated.
+  SpecificHeatType specific_heat = 6;
+  // The apparent volume absorbed by grain, typical values are 0.125 qt/lb (1.04 L/kg) for a mashtun, 0.08 gal/lb (0.66 L/kg) for BIAB.
+  SpecificVolumeType grain_absorption_rate = 7;
+  string name = 8;
+  VolumeType maximum_volume = 9;
+  // The weight of the piece of equipment, especially important for when the mashtun is not preheated.
+  MassType weight = 10;
+  VolumeType loss = 11;
+
+  enum EquipmentBaseForm{
+    // HLT
+    HLT = 0;
+    // Mash Tun
+    MASH_TUN = 1;
+    // Lauter Tun
+    LAUTER_TUN = 2;
+    // Brew Kettle
+    BREW_KETTLE = 3;
+    // Fermenter
+    FERMENTER = 4;
+    // Aging Vessel
+    AGING_VESSEL = 5;
+    // Packaging Vessel
+    PACKAGING_VESSEL = 6;
+  }
+}
+
+message SpecificHeatType{
+  double value = 1;
+  SpecificHeatUnitType unit = 2;
+
+  enum SpecificHeatUnitType{
+    // Cal/(g C)
+    CALGC = 0;
+    // J/(kg K)
+    JKGK = 1;
+    // BTU/(lb F)
+    BTULBF = 2;
+  }
+}
+
+// Describes the procedure for packaging your beverage
+message PackagingProcedureType{
+  string name = 1;
+  VolumeType packaged_volume = 2;
+  string description = 3;
+  string notes = 4;
+  repeated PackagingVesselType packaging_vessels = 5;
+}
+
+// PackagingVesselType - a per vessel representation of a packaging process
+message PackagingVesselType{
+  PackagingVesselTypeType type = 1;
+  GravityType start_gravity = 2;
+  string name = 3;
+  string package_date = 4;
+  TimeType step_time = 5;
+  GravityType end_gravity = 6;
+  VolumeType vessel_volume = 7;
+  double vessel_quantity = 8;
+  string description = 9;
+  AcidityType start_ph = 10;
+  double carbonation = 11;
+  TemperatureType start_temperature = 12;
+  AcidityType end_ph = 13;
+  TemperatureType end_temperature = 14;
+
+  enum PackagingVesselTypeType{
+    // keg
+    KEG = 0;
+    // bottle
+    BOTTLE = 1;
+    // cask
+    CASK = 2;
+    // tank
+    TANK = 3;
+    // firkin
+    FIRKIN = 4;
+    // other
+    OTHER = 5;
+  }
+}
+
+// VarietyInformation collects the attributes of a hop variety to store as record information
+message VarietyInformation{
+  HopInventoryType inventory = 1;
+  VarietyInformationType type = 2;
+  // Oil Content information object.
+  OilContentType oil_content = 3;
+  //  Defined as the percentage of hop alpha lost in 6 months of storage.
+  PercentType  percent_lost = 4;
+  string product_id = 5;
+  PercentType alpha_acid = 6;
+  PercentType beta_acid = 7;
+  string name = 8;
+  string origin = 9;
+  string substitutes = 10;
+  string year = 11;
+  HopVarietyBaseForm form = 12;
+  string producer = 13;
+  string notes = 14;
+
+  enum HopVarietyBaseForm{
+    // extract
+    EXTRACT = 0;
+    // leaf
+    LEAF = 1;
+    // leaf (wet)
+    LEAFWET = 2;
+    // pellet
+    PELLET = 3;
+    // powder
+    POWDER = 4;
+    // plug
+    PLUG = 5;
+  }
+
+  enum VarietyInformationType{
+    // aroma
+    AROMA = 0;
+    // bittering
+    BITTERING = 1;
+    // flavor
+    FLAVOR = 2;
+    // aroma/bittering
+    AROMA_BITTERING = 3;
+    // bittering/flavor
+    BITTERING_FLAVOR = 4;
+    // aroma/flavor
+    AROMA_FLAVOR = 5;
+    // aroma/bittering/flavor
+    AROMA_BITTERING_FLAVOR = 6;
+  }
+}
+
+message HopInventoryType{
+  oneof amount  {
+    MassType mass = 1;
+    VolumeType volume = 2;
+  }
+}
+
+// oil_content collects all information of a hop variety pertaining to oil content, polyphenols, and thiols. Each individual compound is expressed as a percent of the total oil measurement
+message OilContentType{
+  PercentType polyphenols = 1;
+  // The total amount of oil, including hydrocarbons, esters, and terpene alcohols in units of ml of oil per 100g of hop mass.
+  double total_oil_ml_per_100g = 2;
+  PercentType farnesene = 3;
+  PercentType limonene = 4;
+  PercentType nerol = 5;
+  PercentType geraniol = 6;
+  PercentType b_pinene = 7;
+  PercentType linalool = 8;
+  PercentType caryophyllene = 9;
+  PercentType cohumulone = 10;
+  PercentType xanthohumol = 11;
+  PercentType humulene = 12;
+  PercentType myrcene = 13;
+  PercentType pinene = 14;
+}
+
+// WaterBase provides unique properties to identify individual records of  brewing water
+message WaterBase{
+  ConcentrationType calcium = 1;
+  ConcentrationType nitrite = 2;
+  ConcentrationType chloride = 3;
+  string name = 4;
+  ConcentrationType potassium = 5;
+  ConcentrationType carbonate = 6;
+  ConcentrationType iron = 7;
+  ConcentrationType flouride = 8;
+  ConcentrationType sulfate = 9;
+  ConcentrationType magnesium = 10;
+  string producer = 11;
+  ConcentrationType bicarbonate = 12;
+  ConcentrationType nitrate = 13;
+  ConcentrationType sodium = 14;
+}
