@@ -103,7 +103,7 @@ func TestSchemas_Generate(t *testing.T) {
 				t.Error(err)
 			}
 
-			beerJSON := &beerproto.Beerjson{
+			beerJSON := &beerproto.Recipe{
 
 			}
 

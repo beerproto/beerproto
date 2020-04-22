@@ -8,10 +8,9 @@ import (
 	beerproto "github.com/RossMerr/beerprotobuf/src"
 	"github.com/RossMerr/beerprotobuf/src/mapping"
 	"google.golang.org/protobuf/encoding/protojson"
-	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
-func JSON(r io.Reader, beer *beerproto.Beerjson) error {
+func JSON(r io.Reader, beer *beerproto.Recipe) error {
 
 	m := make(map[string]json.RawMessage)
 	err := json.NewDecoder(r).Decode(&m)
@@ -27,13 +26,5 @@ func JSON(r io.Reader, beer *beerproto.Beerjson) error {
 		return fmt.Errorf("json: %w", err)
 	}
 
-	return nil
-}
-
-type beerJSON struct {
-	Beer *beerproto.Beerjson `json:"beerjson"`
-}
-
-func (s *beerJSON) ProtoReflect() protoreflect.Message {
 	return nil
 }

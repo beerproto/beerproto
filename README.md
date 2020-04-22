@@ -7,10 +7,10 @@ Written as a pure computer interchange format for language-neutral, platform-neu
 #### Protocol Buffer
 BeerProto follows the structure of BeerJSON and can take advantages of the official code generating plugins for protocol buffers given support for C++, C#, Dart, Go, Java, Python, Ruby, Objective C, PHP and JavaScript as well as third part plugins such as Swift.
 
-You can also use the Proto3 supports for canonical encoding in JSON, making it easier to share data between systems.
+You can also use the Proto3 supports for canonical encoding in JSON, making it easier to share data in a human readable way.
 
 #### Why
-The exchange of recipes is still very defective as the most supported format is still BeerXML, this however has may defects as it favours human readability over interoperability. this results in software not being able to convert weights, measurements ad timings automatically. 
+The exchange of recipes is still very defective as the most supported format is still BeerXML, this however has may defects as it favours human readability over interoperability. this results in software not being able to convert weights, measurements and timings automatically. 
 
 A proposed update to BeerXML was made with the draft BeerXML 2.0 spec which would resolve many of those issues however this became abandoned.
 A second replacement attempt has been made with BeerJSON which took a lot of inspiration from the 2.0 spec but has yet to see much adoption.   
