@@ -69,14 +69,14 @@ message MashStepType{
   SpecificVolumeType water_grain_ratio = 12;
 
   enum MashStepTypeType{
-
-    INFUSION = 0;
-    TEMPERATURE = 1;
-    DECOCTION = 2;
-    SOURING_MASH = 3;
-    SOURING_WORT = 4;
-    DRAIN_MASH_TUN = 5;
-    SPARGE = 6;
+    NULL = 0;
+    INFUSION = 1;
+    TEMPERATURE = 2;
+    DECOCTION = 3;
+    SOURING_MASH = 4;
+    SOURING_WORT = 5;
+    DRAIN_MASH_TUN = 6;
+    SPARGE = 7;
   }
 }
 message TimeType{
@@ -84,20 +84,21 @@ message TimeType{
   TimeUnitType unit = 2;
 
   enum TimeUnitType {
+    NULL = 0;
     // sec
-    SEC = 0;
+    SEC = 1;
     // min
-    MIN = 1;
+    MIN = 2;
     // hr
-    HR = 2;
+    HR = 3;
     // day
-    DAY = 3;
+    DAY = 4;
     // week
-    WEEK = 4;
+    WEEK = 5;
     // month
-    MONTH = 5;
+    MONTH = 6;
     // year
-    YEAR = 6;
+    YEAR = 7;
   }
 }
 
@@ -106,7 +107,8 @@ message AcidityType{
   AcidityUnitType unit = 2;
 
   enum AcidityUnitType{
-    PH = 0;
+    NULL = 0;
+    PH = 1;
   }
 }
 message VolumeType{
@@ -114,36 +116,37 @@ message VolumeType{
   VolumeUnitType unit = 2;
 
   enum VolumeUnitType{
+    NULL = 0;
     // ml
-    ML = 0;
+    ML = 1;
     // l
-    L = 1;
+    L = 2;
     // tsp
-    TSP = 2;
+    TSP = 3;
     // tbsp
-    TBSP = 3;
+    TBSP = 4;
     // floz
-    FLOZ = 4;
+    FLOZ = 5;
     // cup
-    CUP = 5;
+    CUP = 6;
     // pt
-    PT = 6;
+    PT = 7;
     // qt
-    QT = 7;
+    QT = 8;
     // gal
-    GAL = 8;
+    GAL = 9;
     // bbl
-    BBL = 9;
+    BBL = 10;
     // ifloz
-    IFOZ = 10;
+    IFOZ = 11;
     // ipt
-    IPT = 11;
+    IPT = 12;
     // iqt
-    IQT = 12;
+    IQT = 13;
     // igal
-    IGAL = 13;
+    IGAL = 14;
     // ibbl
-    IBBL = 14;
+    IBBL = 15;
   }
 }
 
@@ -152,22 +155,23 @@ message SpecificVolumeType{
   SpecificVolumeUnitType unit = 2;
 
   enum SpecificVolumeUnitType{
+    NULL = 0;
     // qt/lb
-    QTLB = 0;
+    QTLB = 1;
     // gal/lb
-    GALLB = 1;
+    GALLB = 2;
     // gal/oz
-    GALOZ = 2;
+    GALOZ = 3;
     // l/g
-    LG = 3;
+    LG = 4;
     // l/kg
-    LKG = 4;
+    LKG = 5;
     // floz/oz
-    FLOZOZ = 5;
+    FLOZOZ = 6;
     // m^3/kg
-    M3KG = 6;
+    M3KG = 7;
     // ft^3/lb
-    FT3LB = 7;
+    FT3LB = 8;
   }
 }
 
@@ -214,24 +218,25 @@ message RecipeType {
   PercentType apparent_attenuation = 24;
 
   enum RecipeTypeType {
+    NULL = 0;
     // cider
-    CIDER = 0;
+    CIDER = 1;
     // kombucha
-    KOMBUCHA = 1;
+    KOMBUCHA = 2;
     // soda
-    SODA = 2;
+    SODA = 3;
     // other
-    OTHER = 3;
+    OTHER = 4;
     // mead
-    MEAD = 4;
+    MEAD = 5;
     // wine
-    WINE = 5;
+    WINE = 6;
     // extract
-    EXTRACT = 6;
+    EXTRACT = 7;
     // partial mash
-    PARTIAL_MASH = 7;
+    PARTIAL_MASH = 8;
     // all grain
-    ALL_GRAIN = 8;
+    ALL_GRAIN = 9;
   }
 }
 
@@ -257,20 +262,21 @@ message RecipeStyleType{
   string style_guide = 6;
 
   enum StyleCategories {
+    NULL = 0;
     // beer
-    BEER = 0;
+    BEER = 1;
     // cider
-    cider = 1;
+    cider = 2;
     // kombucha
-    OMBUCHA = 2;
+    OMBUCHA = 3;
     // mead
-    MEAD = 3;
+    MEAD = 4;
     // soda
-    SODA = 4;
+    SODA = 5;
     // wine
-    WINE = 5;
+    WINE = 6;
     // other
-    OTHER = 6;
+    OTHER = 7;
   }
 }
 
@@ -279,14 +285,15 @@ message IBUEstimateType{
   IBUMethodType method = 1;
 
   enum IBUMethodType {
+    NULL = 0;
     // Rager
-    Rager = 0;
+    Rager = 1;
     // Tinseth
-    Tinseth = 1;
+    Tinseth = 2;
     // Garetz
-    Garetz = 2;
+    Garetz = 3;
     // Other
-    Other = 3;
+    Other = 4;
   }
 }
 
@@ -313,20 +320,21 @@ message MiscellaneousAdditionType{
   MiscellaneousBaseType type = 5;
 
   enum MiscellaneousBaseType {
+    NULL = 0;
     // spice
-    SPICE = 0;
+    SPICE = 1;
     // fining
-    FINING = 1;
+    FINING = 2;
     // water agent
-    WATER_AGENT = 2;
+    WATER_AGENT = 3;
     // herb
-    HERB = 3;
+    HERB = 4;
     // flavor
-    FLAVOR = 4;
+    FLAVOR = 5;
     // wood
-    WOOD = 5;
+    WOOD = 6;
     // other
-    OTHER = 6;
+    OTHER = 7;
   }
 
   oneof amount  {
@@ -340,16 +348,17 @@ message MassType{
   MassUnitType unit = 2;
 
   enum MassUnitType{
+    NULL = 0;
     // mg
-    MG = 0;
+    MG = 1;
     // g
-    G = 1;
+    G = 2;
     // kg
-    KG = 2;
+    KG = 3;
     // lb
-    LB = 3;
+    LB = 4;
     // oz
-    OZ = 4;
+    OZ = 5;
   }
 }
 
@@ -359,16 +368,17 @@ message UnitType {
   UnitUnitType unit = 2;
 
   enum UnitUnitType {
+    NULL = 0;
     // 1
-    ONE = 0;
+    ONE = 1;
     // unit
-    UNIT = 1;
+    UNIT = 2;
     // each
-    EACH = 2;
+    EACH = 3;
     // dimensionless
-    DIMENSIONLESS = 3;
+    DIMENSIONLESS = 4;
     // pkg
-    PKG = 4;
+    PKG = 5;
   }
 }
 
@@ -393,45 +403,47 @@ message CultureAdditionType{
   }
 
   enum CultureBaseForm{
+    NULL_CultureBaseForm = 0;
     // liquid
-    LIQUID = 0;
+    LIQUID = 1;
     // dry
-    DRY = 1;
+    DRY = 2;
     // slant
-    SLANT = 2;
+    SLANT = 3;
     // culture
-    CULTURE = 3;
+    CULTURE = 4;
     // dregs
-    DREGS = 4;
+    DREGS = 5;
   }
 
   enum CultureBaseType{
+    NULL_CultureBaseType = 0;
     // ale
-    ALE = 0;
+    ALE = 1;
     // bacteria
-    BACTERIA = 1;
+    BACTERIA = 2;
     // brett
-    BRETT = 2;
+    BRETT = 3;
     // champagne
-    CHAMPAGNE = 3;
+    CHAMPAGNE = 4;
     // kveik
-    KVEIK = 4;
+    KVEIK = 5;
     // lacto
-    LACTO = 5;
+    LACTO = 6;
     // lager
-    LAGER = 6;
+    LAGER = 7;
     // malolactic
-    MALOLACTIC = 7;
+    MALOLACTIC = 8;
     // mixed-culture
-    MIXED_CULTURE = 8;
+    MIXED_CULTURE = 9;
     // other
-    OTHER = 9;
+    OTHER = 10;
     // pedio
-    PEDIO = 10;
+    PEDIO = 11;
     // spontaneous
-    SPONTANEOUS = 11;
+    SPONTANEOUS = 12;
     // wine
-    WINE = 12;
+    WINE = 13;
   }
 }
 
@@ -452,14 +464,15 @@ message TimingType{
   UseType use = 7;
 
   enum UseType{
+    NULL = 0;
     // add to mash
-    ADD_TO_MASH = 0;
+    ADD_TO_MASH = 1;
     // add to boil
-    ADD_TO_BOIL = 1;
+    ADD_TO_BOIL = 2;
     // add to fermentation
-    ADD_TO_FERMENTATION = 2;
+    ADD_TO_FERMENTATION = 3;
     // add to package
-    ADD_TO_PACKAGE = 3;
+    ADD_TO_PACKAGE = 4;
   }
 }
 
@@ -487,12 +500,13 @@ message ConcentrationType{
   ConcentrationUnitType unit = 2;
 
   enum ConcentrationUnitType{
+    NULL = 0;
     // ppm
-    PPM = 0;
+    PPM = 1;
     // ppb
-    PPB = 1;
+    PPB = 2;
     // mg/l
-    MGL = 2;
+    MGL = 3;
   }
 }
 
@@ -515,39 +529,41 @@ message FermentableAdditionType{
   }
 
   enum FermentableBaseType{
+    NULL_FermentableBaseType = 0;
     //dry extract
-    DRY_EXTRACT = 0;
+    DRY_EXTRACT = 1;
     // extract
-    EXTRACT = 1;
+    EXTRACT = 2;
     // grain
-    GRAIN = 2;
+    GRAIN = 3;
     // sugar
-    SUGAR = 3;
+    SUGAR = 4;
     // fruit
-    FRUIT = 4;
+    FRUIT = 5;
     // juice
-    JUICE = 5;
+    JUICE = 6;
     // honey
-    HONEY = 6;
+    HONEY = 7;
     // other
-    OTHER = 7;
+    OTHER = 8;
   }
 
   enum FermentableBaseGrainGroup{
+    NULL_FermentableBaseGrainGroup = 0;
     // base
-    BASE = 0;
+    BASE = 1;
     // caramel
-    CARAMEL = 1;
+    CARAMEL = 2;
     // flaked
-    FLAKED = 2;
+    FLAKED = 3;
     // roasted
-    ROASTED = 3;
+    ROASTED = 4;
     // specialty
-    SPECIALTY = 4;
+    SPECIALTY = 5;
     // smoked
-    SMOKED = 5;
+    SMOKED = 6;
     // adjunct
-    ADJUNCT = 6;
+    ADJUNCT = 7;
 
   }
 }
@@ -582,18 +598,19 @@ message HopAdditionType{
   }
 
   enum HopVarietyBaseForm{
+    NULL = 0;
     // extract
-    EXTRACT = 0;
+    EXTRACT = 1;
     // leaf
-    LEAF = 1;
+    LEAF = 2;
     // leaf (wet)
-    LEAF_WET = 2;
+    LEAF_WET = 3;
     // pellet
-    PELLET = 3;
+    PELLET = 4;
     // powder
-    POWDER = 4;
+    POWDER = 5;
     // plug
-    PLUG = 5;
+    PLUG = 6;
   }
 }
 
@@ -614,20 +631,21 @@ message MiscellaneousType {
   MiscellaneousInventoryType inventory = 7;
 
   enum MiscellaneousBaseType{
+    NULL = 0;
     // spice
-    SPICE = 0;
+    SPICE = 1;
     // fining
-    FINING = 1;
+    FINING = 2;
     // water agent
-    WATER_AGENT = 2;
+    WATER_AGENT = 3;
     // herb
-    HERB = 3;
+    HERB = 4;
     // flavor
-    FLAVOR = 4;
+    FLAVOR = 5;
     // wood
-    WOOD = 5;
+    WOOD = 6;
     // other
-    OTHER = 6;
+    OTHER = 7;
   }
 }
 
@@ -663,20 +681,21 @@ message StyleType{
   string overall_impression = 20;
 
   enum StyleCategories{
+    NULL = 0;
     // beer
-    BEER = 0;
+    BEER = 1;
     // cider
-    CIDER = 1;
+    CIDER = 2;
     // kombucha
-    KOMBUCHA = 2;
+    KOMBUCHA = 3;
     // mead
-    MEAD = 3;
+    MEAD = 4;
     // other
-    OTHER = 4;
+    OTHER = 5;
     // soda
-    SODA = 5;
+    SODA = 6;
     // wine
-    WINE = 6;
+    WINE = 7;
   }
 }
 message BitternessRangeType{
@@ -689,8 +708,9 @@ message BitternessType{
   BitternessUnitType unit = 2;
 
   enum BitternessUnitType{
+    NULL = 0;
     // IBUs
-    IBUs = 0;
+    IBUs = 1;
   }
 }
 message PercentRangeType{
@@ -703,8 +723,9 @@ message PercentType{
   PercentUnitType unit = 2;
 
   enum PercentUnitType{
+    NULL = 0;
     // %
-    PERCENT_SIGN = 0;
+    PERCENT_SIGN = 1;
   }
 }
 
@@ -719,12 +740,13 @@ message GravityType{
   GravityUnitType unit = 2;
 
   enum GravityUnitType{
+    NULL = 0;
     // sg
-    SG = 0;
+    SG = 1;
     // plato
-    PLATO = 1;
+    PLATO = 2;
     // brix
-    BRIX = 2;
+    BRIX = 3;
   }
 }
 
@@ -739,12 +761,13 @@ message ColorType{
   ColorUnitType unit = 2;
 
   enum ColorUnitType {
+    NULL = 0;
     // EBC
-    EBC = 0;
+    EBC = 1;
     // Lovi
-    LOVI = 1;
+    LOVI = 2;
     // SRM
-    SRM = 2;
+    SRM = 3;
   }
 }
 
@@ -758,8 +781,9 @@ message CarbonationType {
   CarbonationUnitType unit = 2;
 
   enum CarbonationUnitType {
+    NULL = 0;
     // vols
-    VOLS = 0;
+    VOLS = 1;
   }
 }
 
@@ -813,10 +837,11 @@ message BoilStepType{
   TemperatureType start_temperature = 11;
 
   enum BoilStepTypeChillingType{
+    NULL = 0;
     // batch
-    BATCH = 0;
+    BATCH = 1;
     // inline
-    INLINE = 1;
+    INLINE = 2;
   }
 }
 
@@ -847,39 +872,41 @@ message FermentableType{
   string notes = 17;
 
   enum FermentableBaseType{
+    NULL_FermentableBaseType = 0;
     // dry extract
-    DRY_EXTRACT = 0;
+    DRY_EXTRACT = 1;
     // extract
-    EXTRACT = 1;
+    EXTRACT = 2;
     // grain
-    GRAIN = 2;
+    GRAIN = 3;
     // sugar
-    SUGAR = 3;
+    SUGAR = 4;
     // fruit
-    FRUIT = 4;
+    FRUIT = 5;
     // juice
-    JUICE = 5;
+    JUICE = 6;
     // honey
-    HONEY = 6;
+    HONEY = 7;
     // other
-    OTHER = 7;
+    OTHER = 8;
   }
 
   enum FermentableBaseGrainGroup{
+    NULL_FermentableBaseGrainGroup = 0;
     // base
-    BASE = 0;
+    BASE = 1;
     // caramel
-    CARAMEL = 1;
+    CARAMEL = 2;
     // flaked
-    FLAKED = 2;
+    FLAKED = 3;
     // roasted
-    ROASTED = 3;
+    ROASTED = 4;
     // specialty
-    SPECIALTY = 4;
+    SPECIALTY = 5;
     // smoked
-    SMOKED = 5;
+    SMOKED = 6;
     // adjunct
-    ADJUNCT = 6;
+    ADJUNCT = 7;
   }
 }
 
@@ -896,10 +923,11 @@ message DiastaticPowerType{
   DiastaticPowerUnitType unit = 2;
 
   enum DiastaticPowerUnitType{
+    NULL = 0;
     // Lintner
-    lintner = 0;
+    lintner = 1;
     // WK
-    WK = 1;
+    WK = 2;
   }
 }
 
@@ -930,62 +958,65 @@ message CultureInformation{
   Zymocide zymocide = 16;
 
   enum QualitativeRangeType{
+    NULL_QualitativeRangeType = 0;
     // very low
-    VERY_LOW = 0;
+    VERY_LOW = 1;
     // low
-    LOW = 1;
+    LOW = 2;
     // medium low
-    MEDIUM_LOW = 2;
+    MEDIUM_LOW = 3;
     // medium
-    MEDIUM = 3;
+    MEDIUM = 4;
     // medium high
-    MEDIUM_HIGH = 4;
+    MEDIUM_HIGH = 5;
     // high
-    HIGH = 5;
+    HIGH = 6;
     // very high
-    VERY_HIGH = 6;
+    VERY_HIGH = 7;
   }
 
   enum CultureBaseType{
+    NULL_CultureBaseType = 0;
     // ale
-    ALE = 0;
+    ALE = 1;
     // bacteria
-    BACTERIA = 1;
+    BACTERIA = 2;
     // brett
-    BRETT = 2;
+    BRETT = 3;
     // champagne
-    CHAMPAGNE = 3;
+    CHAMPAGNE = 4;
     // kveik
-    KVEIK = 4;
+    KVEIK = 5;
     // lacto
-    LACTO = 5;
+    LACTO = 6;
     // lager
-    LAGER = 6;
+    LAGER = 7;
     // malolactic
-    MALOLACTIC = 7;
+    MALOLACTIC = 8;
     // mixed-culture
-    MIXED_CULTURE = 8;
+    MIXED_CULTURE = 9;
     // other
-    OTHER = 9;
+    OTHER = 10;
     // pedio
-    PEDIO = 10;
+    PEDIO = 11;
     // spontaneous
-    SPONTANEOUS = 11;
+    SPONTANEOUS = 12;
     // wine
-    WINE = 12;
+    WINE = 13;
   }
 
   enum CultureBaseForm {
+    NULL_CultureBaseForm = 0;
     // liquid
-    LIQUID = 0;
+    LIQUID = 1;
     // dry
-    DRY = 1;
+    DRY = 2;
     // slant
-    SLANT = 2;
+    SLANT = 3;
     // culture
-    CULTURE = 3;
+    CULTURE = 4;
     // dregs
-    DREGS = 4;
+    DREGS = 5;
   }
 }
 
@@ -999,8 +1030,9 @@ message TemperatureType{
   TemperatureUnitType unit = 2;
 
   enum TemperatureUnitType {
-    C = 0;
-    F = 1;
+    NULL = 0;
+    C = 1;
+    F = 2;
   }
 }
 
@@ -1046,20 +1078,21 @@ message EquipmentItemType{
   VolumeType loss = 11;
 
   enum EquipmentBaseForm{
+    NULL = 0;
     // HLT
-    HLT = 0;
+    HLT = 1;
     // Mash Tun
-    MASH_TUN = 1;
+    MASH_TUN = 2;
     // Lauter Tun
-    LAUTER_TUN = 2;
+    LAUTER_TUN = 3;
     // Brew Kettle
-    BREW_KETTLE = 3;
+    BREW_KETTLE = 4;
     // Fermenter
-    FERMENTER = 4;
+    FERMENTER = 5;
     // Aging Vessel
-    AGING_VESSEL = 5;
+    AGING_VESSEL = 6;
     // Packaging Vessel
-    PACKAGING_VESSEL = 6;
+    PACKAGING_VESSEL = 7;
   }
 }
 
@@ -1068,12 +1101,13 @@ message SpecificHeatType{
   SpecificHeatUnitType unit = 2;
 
   enum SpecificHeatUnitType{
+    NULL = 0;
     // Cal/(g C)
-    CALGC = 0;
+    CALGC = 1;
     // J/(kg K)
-    JKGK = 1;
+    JKGK = 2;
     // BTU/(lb F)
-    BTULBF = 2;
+    BTULBF = 3;
   }
 }
 
@@ -1104,18 +1138,19 @@ message PackagingVesselType{
   TemperatureType end_temperature = 14;
 
   enum PackagingVesselTypeType{
+    NULL = 0;
     // keg
-    KEG = 0;
+    KEG = 1;
     // bottle
-    BOTTLE = 1;
+    BOTTLE = 2;
     // cask
-    CASK = 2;
+    CASK = 3;
     // tank
-    TANK = 3;
+    TANK = 4;
     // firkin
-    FIRKIN = 4;
+    FIRKIN = 5;
     // other
-    OTHER = 5;
+    OTHER = 6;
   }
 }
 
@@ -1139,35 +1174,37 @@ message VarietyInformation{
   string notes = 14;
 
   enum HopVarietyBaseForm{
+    NULL_HopVarietyBaseForm = 0;
     // extract
-    EXTRACT = 0;
+    EXTRACT = 1;
     // leaf
-    LEAF = 1;
+    LEAF = 2;
     // leaf (wet)
-    LEAFWET = 2;
+    LEAFWET = 3;
     // pellet
-    PELLET = 3;
+    PELLET = 4;
     // powder
-    POWDER = 4;
+    POWDER = 5;
     // plug
-    PLUG = 5;
+    PLUG = 6;
   }
 
   enum VarietyInformationType{
+    NULL_VarietyInformationType = 0;
     // aroma
-    AROMA = 0;
+    AROMA = 1;
     // bittering
-    BITTERING = 1;
+    BITTERING = 2;
     // flavor
-    FLAVOR = 2;
+    FLAVOR = 3;
     // aroma/bittering
-    AROMA_BITTERING = 3;
+    AROMA_BITTERING = 4;
     // bittering/flavor
-    BITTERING_FLAVOR = 4;
+    BITTERING_FLAVOR = 5;
     // aroma/flavor
-    AROMA_FLAVOR = 5;
+    AROMA_FLAVOR = 6;
     // aroma/bittering/flavor
-    AROMA_BITTERING_FLAVOR = 6;
+    AROMA_BITTERING_FLAVOR = 7;
   }
 }
 
