@@ -1,10 +1,15 @@
 syntax = "proto3";
 
-message Beer {
+package beerproto;
+
+option go_package = ".;beerproto";
+
+
+message Recipe {
   // A collection of steps providing process information for common mashing procedures
   repeated MashProcedureType mashes = 1;
   // Records containing a minimal collection of the description of ingredients, procedures and other required parameters necessary to recreate a batch of beer
-  repeated RecipeType tecipes = 2;
+  repeated RecipeType recipes = 2;
   // Records for adjuncts which do not contribute to the gravity of the beer
   repeated MiscellaneousType miscellaneous_ingredients = 3;
   // Records detailing the characteristics of the beer styles for which judging guidelines have been established
@@ -125,7 +130,7 @@ message VolumeType{
     // bbl
     BBL = 9;
     // ifloz
-    IFLOZ = 10;
+    IFOZ = 10;
     // ipt
     IPT = 11;
     // iqt
