@@ -319,24 +319,6 @@ message MiscellaneousAdditionType{
   string product_id = 4;
   MiscellaneousBaseType type = 5;
 
-  enum MiscellaneousBaseType {
-    NULL = 0;
-    // spice
-    SPICE = 1;
-    // fining
-    FINING = 2;
-    // water agent
-    WATER_AGENT = 3;
-    // herb
-    HERB = 4;
-    // flavor
-    FLAVOR = 5;
-    // wood
-    WOOD = 6;
-    // other
-    OTHER = 7;
-  }
-
   oneof amount  {
     MassType mass = 6;
     UnitType unit = 7;
@@ -629,24 +611,24 @@ message MiscellaneousType {
   string product_id = 5;
   MiscellaneousBaseType type = 6;
   MiscellaneousInventoryType inventory = 7;
+}
 
-  enum MiscellaneousBaseType{
-    NULL = 0;
-    // spice
-    SPICE = 1;
-    // fining
-    FINING = 2;
-    // water agent
-    WATER_AGENT = 3;
-    // herb
-    HERB = 4;
-    // flavor
-    FLAVOR = 5;
-    // wood
-    WOOD = 6;
-    // other
-    OTHER = 7;
-  }
+enum MiscellaneousBaseType{
+  NULL = 0;
+  // spice
+  SPICE = 1;
+  // fining
+  FINING = 2;
+  // water agent
+  WATER_AGENT = 3;
+  // herb
+  HERB = 4;
+  // flavor
+  FLAVOR = 5;
+  // wood
+  WOOD = 6;
+  // other
+  OTHER = 7;
 }
 
 message MiscellaneousInventoryType{
