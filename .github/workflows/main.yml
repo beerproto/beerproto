@@ -26,5 +26,5 @@ jobs:
 #         - ${{ jobs.checkout.env.github.workspace }}beer.proto:/protos        
     steps:  
       - name: protoc-gen-doc 
-        run: echo ${{needs.checkout.env}}       
+        run: echo ${{needs.checkout.env.github.workspace}}       
 
