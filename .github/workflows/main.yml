@@ -17,8 +17,8 @@ jobs:
       - name: test
         uses: ./.github/actions/protoc-gen-doc
         with:
-          out: ${{GITHUB_WORKSPACE}}/docs
-          protos: ${{GITHUB_WORKSPACE}}beer.proto
+          out: ${{ GITHUB_WORKSPACE }}/docs
+          protos: ${{ GITHUB_WORKSPACE }}beer.proto
         
   docs:
     needs: checkout
