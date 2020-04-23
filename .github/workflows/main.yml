@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: printenv
+        run: printenv  
   docs:
     runs-on: ubuntu-latest
     container:
