@@ -21,3 +21,4 @@ jobs:
         uses: matheusalbino/git-commit@v1.0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          message: Updating Protocol Documentation 
