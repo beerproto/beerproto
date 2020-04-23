@@ -16,6 +16,9 @@ jobs:
       
     - name: protoc-gen-doc
       uses: ./.github/actions/protoc-gen-doc
+      with:
+        out: 'docs'
+        protos: 'beer.proto'
       
     # Runs a single command using the runners shell
     - name: Run a one-line script
