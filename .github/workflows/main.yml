@@ -7,14 +7,16 @@ on:
     branches: [ master ]
 
 jobs:
-  job_id:
+  checkout:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
       - name: printenv
         run: printenv  
+        
   docs:
+    needs: checkout
     runs-on: ubuntu-latest
     container:
       image: pseudomuto/protoc-gen-doc
@@ -23,4 +25,5 @@ jobs:
 #         - ${{GITHUB_WORKSPACE}}beer.proto:/protos        
     steps:  
       - name: protoc-gen-doc 
-        run: printenv
+        run: printenv       
+
