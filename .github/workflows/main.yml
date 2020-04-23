@@ -13,21 +13,17 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: printenv
-        run: printenv  
-      - name: test
-        uses: ./.github/actions/protoc-gen-doc
-        with:
-          out: ${{ github.workspace }}/docs
-          protos: ${{ github.workspace }}beer.proto
+        run: printenv          
+
         
   docs:
     needs: checkout
     runs-on: ubuntu-latest
     container:
       image: pseudomuto/protoc-gen-doc
-#       volumes:
-#         - ${{GITHUB_WORKSPACE}}/docs/:/out
-#         - ${{GITHUB_WORKSPACE}}beer.proto:/protos        
+      volumes:
+        - ${{ jobs.checkout.github.workspace }}/docs/:/out
+        - ${{ jobs.checkout.github.workspace }}beer.proto:/protos        
     steps:  
       - name: protoc-gen-doc 
         run: printenv       
