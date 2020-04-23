@@ -16,6 +16,8 @@ jobs:
         - protos:beer.proto
     steps:
       - name: protoc-gen-doc 
+        run: echo build docs.
+        
        
 #     - name: protoc-gen-doc
 #       uses: ./.github/actions/protoc-gen-doc
