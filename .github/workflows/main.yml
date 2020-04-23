@@ -7,25 +7,17 @@ on:
     branches: [ master ]
 
 jobs:
+  job_id:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
   docs:
     runs-on: ubuntu-latest
     container:
       image: pseudomuto/protoc-gen-doc
       volumes:
         - ${{GITHUB_WORKSPACE}}/docs/:/out
-        - ${{GITHUB_WORKSPACE}}beer.proto:/protos
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-        
-      - name: protoc-gen-doc 
-        run: echo build docs.
-        
-       
-#     - name: protoc-gen-doc
-#       uses: ./.github/actions/protoc-gen-doc
-#       with:
-#         out: 'docs'
-#         protos: 'beer.proto'
-      
-
+        - ${{GITHUB_WORKSPACE}}beer.proto:/protos        
+        - name: protoc-gen-doc 
+          run: echo build docs.
