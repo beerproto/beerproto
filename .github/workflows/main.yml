@@ -19,5 +19,6 @@ jobs:
       volumes:
         - ${{GITHUB_WORKSPACE}}/docs/:/out
         - ${{GITHUB_WORKSPACE}}beer.proto:/protos        
-        - name: protoc-gen-doc 
-          run: echo build docs.
+    steps:  
+      - name: protoc-gen-doc 
+        run: echo build docs.
