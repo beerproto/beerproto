@@ -12,8 +12,8 @@ jobs:
     container:
       image: pseudomuto/protoc-gen-doc
       volumes:
-        - out:docs/
-        - protos:beer.proto
+        - docs/:out
+        - beer.proto:protos
     steps:
       - name: protoc-gen-doc 
         run: echo build docs.
