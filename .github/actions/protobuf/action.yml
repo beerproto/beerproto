@@ -1,0 +1,21 @@
+name: 'protoc-gen-doc'
+description: 'This is a documentation generator plugin for the Google Protocol Buffers compiler (protoc). The plugin can generate HTML, JSON, DocBook and Markdown documentation from comments in your .proto files'
+branding:
+  color: blue
+  icon: book
+inputs:
+  doc_opt:
+    description: 'By default HTML documentation is generated in /out/index.html for all .proto files in the /protos volume. This can be changed by passing the --doc_opt parameter to the container'
+    required: false
+  out:
+    description: 'Directory to write the documentation to'
+    required: true
+  protos:
+    description: 'Directory containing your proto files'
+    required: true    
+runs:
+  using: 'docker'
+  image: 'docker://pseudomuto/protoc-gen-doc'
+  args:
+    - -v ${{ inputs.out}}:/out 
+    - -v ${{ inputs.protos}}:/protos
