@@ -9,15 +9,14 @@ on:
 jobs:
   docs:
     runs-on: ubuntu-latest
-    container:
-      image: pseudomuto/protoc-gen-doc
-      volumes:
-        - ${{ github.workspace }}/docs/:/out
-        - ${{ github.workspace }}beer.proto:/protos        
+#     container:
+#       image: pseudomuto/protoc-gen-doc
+#       volumes:
+#         - ${{ github.workspace }}/docs/:/out
+#         - ${{ github.workspace }}beer.proto:/protos        
     steps:  
       - name: checkout
         uses: actions/checkout@v2
-      - name: pwd
-        run: echo $PWD          
       - name: protoc-gen-doc 
-        run: entrypoint.sh --doc_opt=html,index.html
+        uses: docker:/pseudomuto/protoc-gen-doc
+
