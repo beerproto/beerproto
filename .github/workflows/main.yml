@@ -19,12 +19,12 @@ jobs:
   docs:
     needs: checkout
     runs-on: ubuntu-latest
-    container:
-      image: pseudomuto/protoc-gen-doc
-      volumes:
-        - ${{ jobs.checkout.env.github.workspace }}/docs/:/out
-        - ${{ jobs.checkout.env.github.workspace }}beer.proto:/protos        
+#     container:
+#       image: pseudomuto/protoc-gen-doc
+#       volumes:
+#         - ${{ jobs.checkout.env.github.workspace }}/docs/:/out
+#         - ${{ jobs.checkout.env.github.workspace }}beer.proto:/protos        
     steps:  
       - name: protoc-gen-doc 
-        run: printenv       
+        run: echo ${{needs.checkout.env}}       
 
