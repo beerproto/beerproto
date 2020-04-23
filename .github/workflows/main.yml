@@ -19,3 +19,5 @@ jobs:
           args: -I /github/workspace/ --doc_opt=markdown,spec.md --doc_out=/github/workspace/docs beer.proto
       - name: Git Commit on Workflow
         uses: matheusalbino/git-commit@v1.0.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
