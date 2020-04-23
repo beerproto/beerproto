@@ -8,12 +8,7 @@ on:
 
 jobs:
   docs:
-    runs-on: ubuntu-latest
-#     container:
-#       image: pseudomuto/protoc-gen-doc
-#       volumes:
-#         - ${{ github.workspace }}/docs/:/out
-#         - ${{ github.workspace }}beer.proto:/protos        
+    runs-on: ubuntu-latest   
     steps:  
       - name: checkout
         uses: actions/checkout@v2
@@ -21,5 +16,4 @@ jobs:
         uses: docker://pseudomuto/protoc-gen-doc
         with:
           entrypoint: protoc
-#       - name: protoc-gen-doc
-#         uses: ./.github/actions/protoc-gen-doc
+          args: -I /github/workspace/ --doc_opt=markdown,spec.md --doc_out=/github/workspace/docs beer.proto
