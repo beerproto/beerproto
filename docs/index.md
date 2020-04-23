@@ -84,8 +84,7 @@
     - [IBUEstimateType.IBUMethodType](#beerproto.IBUEstimateType.IBUMethodType)
     - [MashStepType.MashStepTypeType](#beerproto.MashStepType.MashStepTypeType)
     - [MassType.MassUnitType](#beerproto.MassType.MassUnitType)
-    - [MiscellaneousAdditionType.MiscellaneousBaseType](#beerproto.MiscellaneousAdditionType.MiscellaneousBaseType)
-    - [MiscellaneousType.MiscellaneousBaseType](#beerproto.MiscellaneousType.MiscellaneousBaseType)
+    - [MiscellaneousBaseType](#beerproto.MiscellaneousBaseType)
     - [PackagingVesselType.PackagingVesselTypeType](#beerproto.PackagingVesselType.PackagingVesselTypeType)
     - [PercentType.PercentUnitType](#beerproto.PercentType.PercentUnitType)
     - [RecipeStyleType.StyleCategories](#beerproto.RecipeStyleType.StyleCategories)
@@ -101,6 +100,9 @@
     - [VarietyInformation.VarietyInformationType](#beerproto.VarietyInformation.VarietyInformationType)
     - [VolumeType.VolumeUnitType](#beerproto.VolumeType.VolumeUnitType)
   
+  
+  
+
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -730,7 +732,7 @@ MiscellaneousAdditionType collects the attributes of each miscellaneous ingredie
 | producer | [string](#string) |  |  |
 | timing | [TimingType](#beerproto.TimingType) |  | The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step. |
 | product_id | [string](#string) |  |  |
-| type | [MiscellaneousAdditionType.MiscellaneousBaseType](#beerproto.MiscellaneousAdditionType.MiscellaneousBaseType) |  |  |
+| type | [MiscellaneousBaseType](#beerproto.MiscellaneousBaseType) |  |  |
 | mass | [MassType](#beerproto.MassType) |  |  |
 | unit | [UnitType](#beerproto.UnitType) |  |  |
 | volume | [VolumeType](#beerproto.VolumeType) |  |  |
@@ -770,7 +772,7 @@ MiscellaneousType collects the attributes of an ingredient to store as record in
 | name | [string](#string) |  |  |
 | producer | [string](#string) |  |  |
 | product_id | [string](#string) |  |  |
-| type | [MiscellaneousType.MiscellaneousBaseType](#beerproto.MiscellaneousType.MiscellaneousBaseType) |  |  |
+| type | [MiscellaneousBaseType](#beerproto.MiscellaneousBaseType) |  |  |
 | inventory | [MiscellaneousInventoryType](#beerproto.MiscellaneousInventoryType) |  |  |
 
 
@@ -1285,7 +1287,8 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| PH | 0 |  |
+| NULL | 0 |  |
+| PH | 1 |  |
 
 
 
@@ -1296,7 +1299,8 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| IBUs | 0 | IBUs |
+| NULL | 0 |  |
+| IBUs | 1 | IBUs |
 
 
 
@@ -1307,8 +1311,9 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| BATCH | 0 | batch |
-| INLINE | 1 | inline |
+| NULL | 0 |  |
+| BATCH | 1 | batch |
+| INLINE | 2 | inline |
 
 
 
@@ -1319,7 +1324,8 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| VOLS | 0 | vols |
+| NULL | 0 |  |
+| VOLS | 1 | vols |
 
 
 
@@ -1330,9 +1336,10 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| EBC | 0 | EBC |
-| LOVI | 1 | Lovi |
-| SRM | 2 | SRM |
+| NULL | 0 |  |
+| EBC | 1 | EBC |
+| LOVI | 2 | Lovi |
+| SRM | 3 | SRM |
 
 
 
@@ -1343,9 +1350,10 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| PPM | 0 | ppm |
-| PPB | 1 | ppb |
-| MGL | 2 | mg/l |
+| NULL | 0 |  |
+| PPM | 1 | ppm |
+| PPB | 2 | ppb |
+| MGL | 3 | mg/l |
 
 
 
@@ -1356,11 +1364,12 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| LIQUID | 0 | liquid |
-| DRY | 1 | dry |
-| SLANT | 2 | slant |
-| CULTURE | 3 | culture |
-| DREGS | 4 | dregs |
+| NULL_CultureBaseForm | 0 |  |
+| LIQUID | 1 | liquid |
+| DRY | 2 | dry |
+| SLANT | 3 | slant |
+| CULTURE | 4 | culture |
+| DREGS | 5 | dregs |
 
 
 
@@ -1371,19 +1380,20 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ALE | 0 | ale |
-| BACTERIA | 1 | bacteria |
-| BRETT | 2 | brett |
-| CHAMPAGNE | 3 | champagne |
-| KVEIK | 4 | kveik |
-| LACTO | 5 | lacto |
-| LAGER | 6 | lager |
-| MALOLACTIC | 7 | malolactic |
-| MIXED_CULTURE | 8 | mixed-culture |
-| OTHER | 9 | other |
-| PEDIO | 10 | pedio |
-| SPONTANEOUS | 11 | spontaneous |
-| WINE | 12 | wine |
+| NULL_CultureBaseType | 0 |  |
+| ALE | 1 | ale |
+| BACTERIA | 2 | bacteria |
+| BRETT | 3 | brett |
+| CHAMPAGNE | 4 | champagne |
+| KVEIK | 5 | kveik |
+| LACTO | 6 | lacto |
+| LAGER | 7 | lager |
+| MALOLACTIC | 8 | malolactic |
+| MIXED_CULTURE | 9 | mixed-culture |
+| OTHER | 10 | other |
+| PEDIO | 11 | pedio |
+| SPONTANEOUS | 12 | spontaneous |
+| WINE | 13 | wine |
 
 
 
@@ -1394,11 +1404,12 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| LIQUID | 0 | liquid |
-| DRY | 1 | dry |
-| SLANT | 2 | slant |
-| CULTURE | 3 | culture |
-| DREGS | 4 | dregs |
+| NULL_CultureBaseForm | 0 |  |
+| LIQUID | 1 | liquid |
+| DRY | 2 | dry |
+| SLANT | 3 | slant |
+| CULTURE | 4 | culture |
+| DREGS | 5 | dregs |
 
 
 
@@ -1409,19 +1420,20 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ALE | 0 | ale |
-| BACTERIA | 1 | bacteria |
-| BRETT | 2 | brett |
-| CHAMPAGNE | 3 | champagne |
-| KVEIK | 4 | kveik |
-| LACTO | 5 | lacto |
-| LAGER | 6 | lager |
-| MALOLACTIC | 7 | malolactic |
-| MIXED_CULTURE | 8 | mixed-culture |
-| OTHER | 9 | other |
-| PEDIO | 10 | pedio |
-| SPONTANEOUS | 11 | spontaneous |
-| WINE | 12 | wine |
+| NULL_CultureBaseType | 0 |  |
+| ALE | 1 | ale |
+| BACTERIA | 2 | bacteria |
+| BRETT | 3 | brett |
+| CHAMPAGNE | 4 | champagne |
+| KVEIK | 5 | kveik |
+| LACTO | 6 | lacto |
+| LAGER | 7 | lager |
+| MALOLACTIC | 8 | malolactic |
+| MIXED_CULTURE | 9 | mixed-culture |
+| OTHER | 10 | other |
+| PEDIO | 11 | pedio |
+| SPONTANEOUS | 12 | spontaneous |
+| WINE | 13 | wine |
 
 
 
@@ -1432,13 +1444,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| VERY_LOW | 0 | very low |
-| LOW | 1 | low |
-| MEDIUM_LOW | 2 | medium low |
-| MEDIUM | 3 | medium |
-| MEDIUM_HIGH | 4 | medium high |
-| HIGH | 5 | high |
-| VERY_HIGH | 6 | very high |
+| NULL_QualitativeRangeType | 0 |  |
+| VERY_LOW | 1 | very low |
+| LOW | 2 | low |
+| MEDIUM_LOW | 3 | medium low |
+| MEDIUM | 4 | medium |
+| MEDIUM_HIGH | 5 | medium high |
+| HIGH | 6 | high |
+| VERY_HIGH | 7 | very high |
 
 
 
@@ -1449,8 +1462,9 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| lintner | 0 | Lintner |
-| WK | 1 | WK |
+| NULL | 0 |  |
+| lintner | 1 | Lintner |
+| WK | 2 | WK |
 
 
 
@@ -1461,13 +1475,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| HLT | 0 | HLT |
-| MASH_TUN | 1 | Mash Tun |
-| LAUTER_TUN | 2 | Lauter Tun |
-| BREW_KETTLE | 3 | Brew Kettle |
-| FERMENTER | 4 | Fermenter |
-| AGING_VESSEL | 5 | Aging Vessel |
-| PACKAGING_VESSEL | 6 | Packaging Vessel |
+| NULL | 0 |  |
+| HLT | 1 | HLT |
+| MASH_TUN | 2 | Mash Tun |
+| LAUTER_TUN | 3 | Lauter Tun |
+| BREW_KETTLE | 4 | Brew Kettle |
+| FERMENTER | 5 | Fermenter |
+| AGING_VESSEL | 6 | Aging Vessel |
+| PACKAGING_VESSEL | 7 | Packaging Vessel |
 
 
 
@@ -1478,13 +1493,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| BASE | 0 | base |
-| CARAMEL | 1 | caramel |
-| FLAKED | 2 | flaked |
-| ROASTED | 3 | roasted |
-| SPECIALTY | 4 | specialty |
-| SMOKED | 5 | smoked |
-| ADJUNCT | 6 | adjunct |
+| NULL_FermentableBaseGrainGroup | 0 |  |
+| BASE | 1 | base |
+| CARAMEL | 2 | caramel |
+| FLAKED | 3 | flaked |
+| ROASTED | 4 | roasted |
+| SPECIALTY | 5 | specialty |
+| SMOKED | 6 | smoked |
+| ADJUNCT | 7 | adjunct |
 
 
 
@@ -1495,14 +1511,15 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| DRY_EXTRACT | 0 | dry extract |
-| EXTRACT | 1 | extract |
-| GRAIN | 2 | grain |
-| SUGAR | 3 | sugar |
-| FRUIT | 4 | fruit |
-| JUICE | 5 | juice |
-| HONEY | 6 | honey |
-| OTHER | 7 | other |
+| NULL_FermentableBaseType | 0 |  |
+| DRY_EXTRACT | 1 | dry extract |
+| EXTRACT | 2 | extract |
+| GRAIN | 3 | grain |
+| SUGAR | 4 | sugar |
+| FRUIT | 5 | fruit |
+| JUICE | 6 | juice |
+| HONEY | 7 | honey |
+| OTHER | 8 | other |
 
 
 
@@ -1513,13 +1530,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| BASE | 0 | base |
-| CARAMEL | 1 | caramel |
-| FLAKED | 2 | flaked |
-| ROASTED | 3 | roasted |
-| SPECIALTY | 4 | specialty |
-| SMOKED | 5 | smoked |
-| ADJUNCT | 6 | adjunct |
+| NULL_FermentableBaseGrainGroup | 0 |  |
+| BASE | 1 | base |
+| CARAMEL | 2 | caramel |
+| FLAKED | 3 | flaked |
+| ROASTED | 4 | roasted |
+| SPECIALTY | 5 | specialty |
+| SMOKED | 6 | smoked |
+| ADJUNCT | 7 | adjunct |
 
 
 
@@ -1530,14 +1548,15 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| DRY_EXTRACT | 0 | dry extract |
-| EXTRACT | 1 | extract |
-| GRAIN | 2 | grain |
-| SUGAR | 3 | sugar |
-| FRUIT | 4 | fruit |
-| JUICE | 5 | juice |
-| HONEY | 6 | honey |
-| OTHER | 7 | other |
+| NULL_FermentableBaseType | 0 |  |
+| DRY_EXTRACT | 1 | dry extract |
+| EXTRACT | 2 | extract |
+| GRAIN | 3 | grain |
+| SUGAR | 4 | sugar |
+| FRUIT | 5 | fruit |
+| JUICE | 6 | juice |
+| HONEY | 7 | honey |
+| OTHER | 8 | other |
 
 
 
@@ -1548,9 +1567,10 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| SG | 0 | sg |
-| PLATO | 1 | plato |
-| BRIX | 2 | brix |
+| NULL | 0 |  |
+| SG | 1 | sg |
+| PLATO | 2 | plato |
+| BRIX | 3 | brix |
 
 
 
@@ -1561,12 +1581,13 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| EXTRACT | 0 | extract |
-| LEAF | 1 | leaf |
-| LEAF_WET | 2 | leaf (wet) |
-| PELLET | 3 | pellet |
-| POWDER | 4 | powder |
-| PLUG | 5 | plug |
+| NULL | 0 |  |
+| EXTRACT | 1 | extract |
+| LEAF | 2 | leaf |
+| LEAF_WET | 3 | leaf (wet) |
+| PELLET | 4 | pellet |
+| POWDER | 5 | powder |
+| PLUG | 6 | plug |
 
 
 
@@ -1577,10 +1598,11 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| Rager | 0 | Rager |
-| Tinseth | 1 | Tinseth |
-| Garetz | 2 | Garetz |
-| Other | 3 | Other |
+| NULL | 0 |  |
+| Rager | 1 | Rager |
+| Tinseth | 2 | Tinseth |
+| Garetz | 3 | Garetz |
+| Other | 4 | Other |
 
 
 
@@ -1591,13 +1613,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| INFUSION | 0 |  |
-| TEMPERATURE | 1 |  |
-| DECOCTION | 2 |  |
-| SOURING_MASH | 3 |  |
-| SOURING_WORT | 4 |  |
-| DRAIN_MASH_TUN | 5 |  |
-| SPARGE | 6 |  |
+| NULL | 0 |  |
+| INFUSION | 1 |  |
+| TEMPERATURE | 2 |  |
+| DECOCTION | 3 |  |
+| SOURING_MASH | 4 |  |
+| SOURING_WORT | 5 |  |
+| DRAIN_MASH_TUN | 6 |  |
+| SPARGE | 7 |  |
 
 
 
@@ -1608,45 +1631,30 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| MG | 0 | mg |
-| G | 1 | g |
-| KG | 2 | kg |
-| LB | 3 | lb |
-| OZ | 4 | oz |
+| NULL | 0 |  |
+| MG | 1 | mg |
+| G | 2 | g |
+| KG | 3 | kg |
+| LB | 4 | lb |
+| OZ | 5 | oz |
 
 
 
-<a name="beerproto.MiscellaneousAdditionType.MiscellaneousBaseType"></a>
+<a name="beerproto.MiscellaneousBaseType"></a>
 
-### MiscellaneousAdditionType.MiscellaneousBaseType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| SPICE | 0 | spice |
-| FINING | 1 | fining |
-| WATER_AGENT | 2 | water agent |
-| HERB | 3 | herb |
-| FLAVOR | 4 | flavor |
-| WOOD | 5 | wood |
-| OTHER | 6 | other |
-
-
-
-<a name="beerproto.MiscellaneousType.MiscellaneousBaseType"></a>
-
-### MiscellaneousType.MiscellaneousBaseType
+### MiscellaneousBaseType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| SPICE | 0 | spice |
-| FINING | 1 | fining |
-| WATER_AGENT | 2 | water agent |
-| HERB | 3 | herb |
-| FLAVOR | 4 | flavor |
-| WOOD | 5 | wood |
-| OTHER | 6 | other |
+| NULL | 0 |  |
+| SPICE | 1 | spice |
+| FINING | 2 | fining |
+| WATER_AGENT | 3 | water agent |
+| HERB | 4 | herb |
+| FLAVOR | 5 | flavor |
+| WOOD | 6 | wood |
+| OTHER | 7 | other |
 
 
 
@@ -1657,12 +1665,13 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| KEG | 0 | keg |
-| BOTTLE | 1 | bottle |
-| CASK | 2 | cask |
-| TANK | 3 | tank |
-| FIRKIN | 4 | firkin |
-| OTHER | 5 | other |
+| NULL | 0 |  |
+| KEG | 1 | keg |
+| BOTTLE | 2 | bottle |
+| CASK | 3 | cask |
+| TANK | 4 | tank |
+| FIRKIN | 5 | firkin |
+| OTHER | 6 | other |
 
 
 
@@ -1673,7 +1682,8 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| PERCENT_SIGN | 0 | % |
+| NULL | 0 |  |
+| PERCENT_SIGN | 1 | % |
 
 
 
@@ -1684,13 +1694,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| BEER | 0 | beer |
-| cider | 1 | cider |
-| OMBUCHA | 2 | kombucha |
-| MEAD | 3 | mead |
-| SODA | 4 | soda |
-| WINE | 5 | wine |
-| OTHER | 6 | other |
+| NULL | 0 |  |
+| BEER | 1 | beer |
+| cider | 2 | cider |
+| OMBUCHA | 3 | kombucha |
+| MEAD | 4 | mead |
+| SODA | 5 | soda |
+| WINE | 6 | wine |
+| OTHER | 7 | other |
 
 
 
@@ -1701,15 +1712,16 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CIDER | 0 | cider |
-| KOMBUCHA | 1 | kombucha |
-| SODA | 2 | soda |
-| OTHER | 3 | other |
-| MEAD | 4 | mead |
-| WINE | 5 | wine |
-| EXTRACT | 6 | extract |
-| PARTIAL_MASH | 7 | partial mash |
-| ALL_GRAIN | 8 | all grain |
+| NULL | 0 |  |
+| CIDER | 1 | cider |
+| KOMBUCHA | 2 | kombucha |
+| SODA | 3 | soda |
+| OTHER | 4 | other |
+| MEAD | 5 | mead |
+| WINE | 6 | wine |
+| EXTRACT | 7 | extract |
+| PARTIAL_MASH | 8 | partial mash |
+| ALL_GRAIN | 9 | all grain |
 
 
 
@@ -1720,9 +1732,10 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CALGC | 0 | Cal/(g C) |
-| JKGK | 1 | J/(kg K) |
-| BTULBF | 2 | BTU/(lb F) |
+| NULL | 0 |  |
+| CALGC | 1 | Cal/(g C) |
+| JKGK | 2 | J/(kg K) |
+| BTULBF | 3 | BTU/(lb F) |
 
 
 
@@ -1733,14 +1746,15 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| QTLB | 0 | qt/lb |
-| GALLB | 1 | gal/lb |
-| GALOZ | 2 | gal/oz |
-| LG | 3 | l/g |
-| LKG | 4 | l/kg |
-| FLOZOZ | 5 | floz/oz |
-| M3KG | 6 | m^3/kg |
-| FT3LB | 7 | ft^3/lb |
+| NULL | 0 |  |
+| QTLB | 1 | qt/lb |
+| GALLB | 2 | gal/lb |
+| GALOZ | 3 | gal/oz |
+| LG | 4 | l/g |
+| LKG | 5 | l/kg |
+| FLOZOZ | 6 | floz/oz |
+| M3KG | 7 | m^3/kg |
+| FT3LB | 8 | ft^3/lb |
 
 
 
@@ -1751,13 +1765,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| BEER | 0 | beer |
-| CIDER | 1 | cider |
-| KOMBUCHA | 2 | kombucha |
-| MEAD | 3 | mead |
-| OTHER | 4 | other |
-| SODA | 5 | soda |
-| WINE | 6 | wine |
+| NULL | 0 |  |
+| BEER | 1 | beer |
+| CIDER | 2 | cider |
+| KOMBUCHA | 3 | kombucha |
+| MEAD | 4 | mead |
+| OTHER | 5 | other |
+| SODA | 6 | soda |
+| WINE | 7 | wine |
 
 
 
@@ -1768,8 +1783,9 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| C | 0 |  |
-| F | 1 |  |
+| NULL | 0 |  |
+| C | 1 |  |
+| F | 2 |  |
 
 
 
@@ -1780,13 +1796,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| SEC | 0 | sec |
-| MIN | 1 | min |
-| HR | 2 | hr |
-| DAY | 3 | day |
-| WEEK | 4 | week |
-| MONTH | 5 | month |
-| YEAR | 6 | year |
+| NULL | 0 |  |
+| SEC | 1 | sec |
+| MIN | 2 | min |
+| HR | 3 | hr |
+| DAY | 4 | day |
+| WEEK | 5 | week |
+| MONTH | 6 | month |
+| YEAR | 7 | year |
 
 
 
@@ -1797,10 +1814,11 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ADD_TO_MASH | 0 | add to mash |
-| ADD_TO_BOIL | 1 | add to boil |
-| ADD_TO_FERMENTATION | 2 | add to fermentation |
-| ADD_TO_PACKAGE | 3 | add to package |
+| NULL | 0 |  |
+| ADD_TO_MASH | 1 | add to mash |
+| ADD_TO_BOIL | 2 | add to boil |
+| ADD_TO_FERMENTATION | 3 | add to fermentation |
+| ADD_TO_PACKAGE | 4 | add to package |
 
 
 
@@ -1811,11 +1829,12 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ONE | 0 | 1 |
-| UNIT | 1 | unit |
-| EACH | 2 | each |
-| DIMENSIONLESS | 3 | dimensionless |
-| PKG | 4 | pkg |
+| NULL | 0 |  |
+| ONE | 1 | 1 |
+| UNIT | 2 | unit |
+| EACH | 3 | each |
+| DIMENSIONLESS | 4 | dimensionless |
+| PKG | 5 | pkg |
 
 
 
@@ -1826,12 +1845,13 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| EXTRACT | 0 | extract |
-| LEAF | 1 | leaf |
-| LEAFWET | 2 | leaf (wet) |
-| PELLET | 3 | pellet |
-| POWDER | 4 | powder |
-| PLUG | 5 | plug |
+| NULL_HopVarietyBaseForm | 0 |  |
+| EXTRACT | 1 | extract |
+| LEAF | 2 | leaf |
+| LEAFWET | 3 | leaf (wet) |
+| PELLET | 4 | pellet |
+| POWDER | 5 | powder |
+| PLUG | 6 | plug |
 
 
 
@@ -1842,13 +1862,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| AROMA | 0 | aroma |
-| BITTERING | 1 | bittering |
-| FLAVOR | 2 | flavor |
-| AROMA_BITTERING | 3 | aroma/bittering |
-| BITTERING_FLAVOR | 4 | bittering/flavor |
-| AROMA_FLAVOR | 5 | aroma/flavor |
-| AROMA_BITTERING_FLAVOR | 6 | aroma/bittering/flavor |
+| NULL_VarietyInformationType | 0 |  |
+| AROMA | 1 | aroma |
+| BITTERING | 2 | bittering |
+| FLAVOR | 3 | flavor |
+| AROMA_BITTERING | 4 | aroma/bittering |
+| BITTERING_FLAVOR | 5 | bittering/flavor |
+| AROMA_FLAVOR | 6 | aroma/flavor |
+| AROMA_BITTERING_FLAVOR | 7 | aroma/bittering/flavor |
 
 
 
@@ -1859,21 +1880,22 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ML | 0 | ml |
-| L | 1 | l |
-| TSP | 2 | tsp |
-| TBSP | 3 | tbsp |
-| FLOZ | 4 | floz |
-| CUP | 5 | cup |
-| PT | 6 | pt |
-| QT | 7 | qt |
-| GAL | 8 | gal |
-| BBL | 9 | bbl |
-| IFOZ | 10 | ifloz |
-| IPT | 11 | ipt |
-| IQT | 12 | iqt |
-| IGAL | 13 | igal |
-| IBBL | 14 | ibbl |
+| NULL | 0 |  |
+| ML | 1 | ml |
+| L | 2 | l |
+| TSP | 3 | tsp |
+| TBSP | 4 | tbsp |
+| FLOZ | 5 | floz |
+| CUP | 6 | cup |
+| PT | 7 | pt |
+| QT | 8 | qt |
+| GAL | 9 | gal |
+| BBL | 10 | bbl |
+| IFOZ | 11 | ifloz |
+| IPT | 12 | ipt |
+| IQT | 13 | iqt |
+| IGAL | 14 | igal |
+| IBBL | 15 | ibbl |
 
 
  
