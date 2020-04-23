@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: pseudomuto/protoc-gen-doc
-      volumes:
-        - ${{GITHUB_WORKSPACE}}/docs/:/out
-        - ${{GITHUB_WORKSPACE}}beer.proto:/protos        
+#       volumes:
+#         - ${{GITHUB_WORKSPACE}}/docs/:/out
+#         - ${{GITHUB_WORKSPACE}}beer.proto:/protos        
     steps:  
       - name: protoc-gen-doc 
-        run: echo build docs.
+        run: printenv
