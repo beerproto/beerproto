@@ -12,9 +12,12 @@ jobs:
     container:
       image: pseudomuto/protoc-gen-doc
       volumes:
-        - docs/:out
-        - beer.proto:protos
+        - ${{GITHUB_WORKSPACE}}/docs/:/out
+        - ${{GITHUB_WORKSPACE}}beer.proto:/protos
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        
       - name: protoc-gen-doc 
         run: echo build docs.
         
