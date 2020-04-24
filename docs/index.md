@@ -69,18 +69,15 @@
     - [ColorType.ColorUnitType](#beerproto.ColorType.ColorUnitType)
     - [ConcentrationType.ConcentrationUnitType](#beerproto.ConcentrationType.ConcentrationUnitType)
     - [CultureAdditionType.CultureBaseForm](#beerproto.CultureAdditionType.CultureBaseForm)
-    - [CultureAdditionType.CultureBaseType](#beerproto.CultureAdditionType.CultureBaseType)
+    - [CultureBaseType](#beerproto.CultureBaseType)
     - [CultureInformation.CultureBaseForm](#beerproto.CultureInformation.CultureBaseForm)
-    - [CultureInformation.CultureBaseType](#beerproto.CultureInformation.CultureBaseType)
     - [CultureInformation.QualitativeRangeType](#beerproto.CultureInformation.QualitativeRangeType)
     - [DiastaticPowerType.DiastaticPowerUnitType](#beerproto.DiastaticPowerType.DiastaticPowerUnitType)
     - [EquipmentItemType.EquipmentBaseForm](#beerproto.EquipmentItemType.EquipmentBaseForm)
-    - [FermentableAdditionType.FermentableBaseGrainGroup](#beerproto.FermentableAdditionType.FermentableBaseGrainGroup)
-    - [FermentableAdditionType.FermentableBaseType](#beerproto.FermentableAdditionType.FermentableBaseType)
-    - [FermentableType.FermentableBaseGrainGroup](#beerproto.FermentableType.FermentableBaseGrainGroup)
-    - [FermentableType.FermentableBaseType](#beerproto.FermentableType.FermentableBaseType)
+    - [FermentableBaseType](#beerproto.FermentableBaseType)
+    - [GrainGroup](#beerproto.GrainGroup)
     - [GravityType.GravityUnitType](#beerproto.GravityType.GravityUnitType)
-    - [HopAdditionType.HopVarietyBaseForm](#beerproto.HopAdditionType.HopVarietyBaseForm)
+    - [HopVarietyBaseForm](#beerproto.HopVarietyBaseForm)
     - [IBUEstimateType.IBUMethodType](#beerproto.IBUEstimateType.IBUMethodType)
     - [MashStepType.MashStepTypeType](#beerproto.MashStepType.MashStepTypeType)
     - [MassType.MassUnitType](#beerproto.MassType.MassUnitType)
@@ -96,7 +93,6 @@
     - [TimeType.TimeUnitType](#beerproto.TimeType.TimeUnitType)
     - [TimingType.UseType](#beerproto.TimingType.UseType)
     - [UnitType.UnitUnitType](#beerproto.UnitType.UnitUnitType)
-    - [VarietyInformation.HopVarietyBaseForm](#beerproto.VarietyInformation.HopVarietyBaseForm)
     - [VarietyInformation.VarietyInformationType](#beerproto.VarietyInformation.VarietyInformationType)
     - [VolumeType.VolumeUnitType](#beerproto.VolumeType.VolumeUnitType)
   
@@ -303,7 +299,7 @@ CultureAdditionType collects the attributes of each culture ingredient for use i
 | cell_count_billions | [int32](#int32) |  |  |
 | times_cultured | [int32](#int32) |  |  |
 | producer | [string](#string) |  |  |
-| type | [CultureAdditionType.CultureBaseType](#beerproto.CultureAdditionType.CultureBaseType) |  |  |
+| type | [CultureBaseType](#beerproto.CultureBaseType) |  |  |
 | attenuation | [PercentType](#beerproto.PercentType) |  | The expected, or measured apparent attenuation for a given culture in a given recipe. In comparison to attenuation range, this is a single value. |
 | timing | [TimingType](#beerproto.TimingType) |  | The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step. |
 | mass | [MassType](#beerproto.MassType) |  |  |
@@ -333,7 +329,7 @@ CultureInformation collects the attributes of a microbial culture
 | name | [string](#string) |  |  |
 | alcohol_tolerance | [PercentType](#beerproto.PercentType) |  | The recommended limit of abv by the culture producer before attenuation stops. |
 | glucoamylase | [bool](#bool) |  | A glucoamylase positive culture is capable of producing glucoamylase, the enzyme produced through expression of the diastatic gene, which allows yeast to attenuate dextrins and starches leading to a very low FG. This is positive in some saison/brett yeasts as well as the new gulo hybrid by Omega yeast labs. |
-| type | [CultureInformation.CultureBaseType](#beerproto.CultureInformation.CultureBaseType) |  |  |
+| type | [CultureBaseType](#beerproto.CultureBaseType) |  |  |
 | flocculation | [CultureInformation.QualitativeRangeType](#beerproto.CultureInformation.QualitativeRangeType) |  | Floculation refers to the ability of yeast to aggregate to form large flocs which drop out of suspension. |
 | attenuation_range | [PercentRangeType](#beerproto.PercentRangeType) |  |  |
 | max_reuse | [int32](#int32) |  | Maximum number of times to reuse a culture before a new lab source is recommended. |
@@ -446,9 +442,9 @@ FermentableAdditionType collects the attributes of each fermentable ingredient f
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [FermentableAdditionType.FermentableBaseType](#beerproto.FermentableAdditionType.FermentableBaseType) |  |  |
+| type | [FermentableBaseType](#beerproto.FermentableBaseType) |  |  |
 | Origin | [string](#string) |  |  |
-| grain_group | [FermentableAdditionType.FermentableBaseGrainGroup](#beerproto.FermentableAdditionType.FermentableBaseGrainGroup) |  |  |
+| grain_group | [GrainGroup](#beerproto.GrainGroup) |  |  |
 | yield | [YieldType](#beerproto.YieldType) |  |  |
 | color | [ColorType](#beerproto.ColorType) |  |  |
 | name | [string](#string) |  |  |
@@ -491,9 +487,9 @@ FermentableType collects the attributes of a fermentable ingredient to store as 
 | recommend_mash | [bool](#bool) |  | True if the fermentable must be mashed, false if it can be steeped. |
 | protein | [PercentType](#beerproto.PercentType) |  | The percentage of protein. Higher values may indicate a possibility of haze, or lautering issues. |
 | product_id | [string](#string) |  |  |
-| grain_group | [FermentableType.FermentableBaseGrainGroup](#beerproto.FermentableType.FermentableBaseGrainGroup) |  |  |
+| grain_group | [GrainGroup](#beerproto.GrainGroup) |  |  |
 | yield | [YieldType](#beerproto.YieldType) |  |  |
-| type | [FermentableType.FermentableBaseType](#beerproto.FermentableType.FermentableBaseType) |  |  |
+| type | [FermentableBaseType](#beerproto.FermentableBaseType) |  |  |
 | producer | [string](#string) |  |  |
 | alpha_amylase | [double](#double) |  | Where diastatic power gives the total amount of all enzymes, alpha amylase, also known as dextrinizing units, refers to only the total amount of alpa amylase in the malted grain. A value of 25-50 is desirable for base malt. |
 | color | [ColorType](#beerproto.ColorType) |  |  |
@@ -597,7 +593,7 @@ HopAdditionType collects the attributes of each hop ingredient for use in a reci
 | producer | [string](#string) |  |  |
 | origin | [string](#string) |  |  |
 | year | [string](#string) |  |  |
-| form | [HopAdditionType.HopVarietyBaseForm](#beerproto.HopAdditionType.HopVarietyBaseForm) |  |  |
+| form | [HopVarietyBaseForm](#beerproto.HopVarietyBaseForm) |  |  |
 | timing | [TimingType](#beerproto.TimingType) |  | The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step |
 | name | [string](#string) |  |  |
 | product_id | [string](#string) |  |  |
@@ -1159,7 +1155,7 @@ VarietyInformation collects the attributes of a hop variety to store as record i
 | origin | [string](#string) |  |  |
 | substitutes | [string](#string) |  |  |
 | year | [string](#string) |  |  |
-| form | [VarietyInformation.HopVarietyBaseForm](#beerproto.VarietyInformation.HopVarietyBaseForm) |  |  |
+| form | [HopVarietyBaseForm](#beerproto.HopVarietyBaseForm) |  |  |
 | producer | [string](#string) |  |  |
 | notes | [string](#string) |  |  |
 
@@ -1373,9 +1369,9 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.CultureAdditionType.CultureBaseType"></a>
+<a name="beerproto.CultureBaseType"></a>
 
-### CultureAdditionType.CultureBaseType
+### CultureBaseType
 
 
 | Name | Number | Description |
@@ -1390,7 +1386,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | LAGER | 7 | lager |
 | MALOLACTIC | 8 | malolactic |
 | MIXED_CULTURE | 9 | mixed-culture |
-| OTHER | 10 | other |
+| OTHER_CultureBaseType | 10 | other |
 | PEDIO | 11 | pedio |
 | SPONTANEOUS | 12 | spontaneous |
 | WINE | 13 | wine |
@@ -1410,30 +1406,6 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | SLANT | 3 | slant |
 | CULTURE | 4 | culture |
 | DREGS | 5 | dregs |
-
-
-
-<a name="beerproto.CultureInformation.CultureBaseType"></a>
-
-### CultureInformation.CultureBaseType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| NULL_CultureBaseType | 0 |  |
-| ALE | 1 | ale |
-| BACTERIA | 2 | bacteria |
-| BRETT | 3 | brett |
-| CHAMPAGNE | 4 | champagne |
-| KVEIK | 5 | kveik |
-| LACTO | 6 | lacto |
-| LAGER | 7 | lager |
-| MALOLACTIC | 8 | malolactic |
-| MIXED_CULTURE | 9 | mixed-culture |
-| OTHER | 10 | other |
-| PEDIO | 11 | pedio |
-| SPONTANEOUS | 12 | spontaneous |
-| WINE | 13 | wine |
 
 
 
@@ -1486,27 +1458,9 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.FermentableAdditionType.FermentableBaseGrainGroup"></a>
+<a name="beerproto.FermentableBaseType"></a>
 
-### FermentableAdditionType.FermentableBaseGrainGroup
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| NULL_FermentableBaseGrainGroup | 0 |  |
-| BASE | 1 | base |
-| CARAMEL | 2 | caramel |
-| FLAKED | 3 | flaked |
-| ROASTED | 4 | roasted |
-| SPECIALTY | 5 | specialty |
-| SMOKED | 6 | smoked |
-| ADJUNCT | 7 | adjunct |
-
-
-
-<a name="beerproto.FermentableAdditionType.FermentableBaseType"></a>
-
-### FermentableAdditionType.FermentableBaseType
+### FermentableBaseType
 
 
 | Name | Number | Description |
@@ -1519,18 +1473,18 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | FRUIT | 5 | fruit |
 | JUICE | 6 | juice |
 | HONEY | 7 | honey |
-| OTHER | 8 | other |
+| OTHER_FermentableBaseType | 8 | other |
 
 
 
-<a name="beerproto.FermentableType.FermentableBaseGrainGroup"></a>
+<a name="beerproto.GrainGroup"></a>
 
-### FermentableType.FermentableBaseGrainGroup
+### GrainGroup
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL_FermentableBaseGrainGroup | 0 |  |
+| NULL_GrainGroup | 0 |  |
 | BASE | 1 | base |
 | CARAMEL | 2 | caramel |
 | FLAKED | 3 | flaked |
@@ -1538,25 +1492,6 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | SPECIALTY | 5 | specialty |
 | SMOKED | 6 | smoked |
 | ADJUNCT | 7 | adjunct |
-
-
-
-<a name="beerproto.FermentableType.FermentableBaseType"></a>
-
-### FermentableType.FermentableBaseType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| NULL_FermentableBaseType | 0 |  |
-| DRY_EXTRACT | 1 | dry extract |
-| EXTRACT | 2 | extract |
-| GRAIN | 3 | grain |
-| SUGAR | 4 | sugar |
-| FRUIT | 5 | fruit |
-| JUICE | 6 | juice |
-| HONEY | 7 | honey |
-| OTHER | 8 | other |
 
 
 
@@ -1574,17 +1509,17 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.HopAdditionType.HopVarietyBaseForm"></a>
+<a name="beerproto.HopVarietyBaseForm"></a>
 
-### HopAdditionType.HopVarietyBaseForm
+### HopVarietyBaseForm
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
-| EXTRACT | 1 | extract |
+| NULL_HopVarietyBaseForm | 0 |  |
+| EXTRACT_HopVarietyBaseForm | 1 | extract |
 | LEAF | 2 | leaf |
-| LEAF_WET | 3 | leaf (wet) |
+| LEAFWET | 3 | leaf (wet) |
 | PELLET | 4 | pellet |
 | POWDER | 5 | powder |
 | PLUG | 6 | plug |
@@ -1835,23 +1770,6 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | EACH | 3 | each |
 | DIMENSIONLESS | 4 | dimensionless |
 | PKG | 5 | pkg |
-
-
-
-<a name="beerproto.VarietyInformation.HopVarietyBaseForm"></a>
-
-### VarietyInformation.HopVarietyBaseForm
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| NULL_HopVarietyBaseForm | 0 |  |
-| EXTRACT | 1 | extract |
-| LEAF | 2 | leaf |
-| LEAFWET | 3 | leaf (wet) |
-| PELLET | 4 | pellet |
-| POWDER | 5 | powder |
-| PLUG | 6 | plug |
 
 
 
