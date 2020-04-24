@@ -650,7 +650,7 @@ message StyleType{
   GravityRangeType final_gravity = 7;
   string style_guide = 8;
   ColorRangeType color = 9;
-  ColorRangeType original_gravity = 10;
+  GravityRangeType original_gravity = 10;
   string examples = 11;
   string name = 12;
   CarbonationRangeType carbonation = 13;
