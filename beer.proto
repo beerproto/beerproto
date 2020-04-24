@@ -496,7 +496,7 @@ message ConcentrationType{
 message FermentableAdditionType{
   FermentableBaseType type = 1;
   string Origin = 2;
-  FermentableBaseGrainGroup grain_group = 3;
+  GrainGroup grain_group = 3;
   YieldType yield = 4;
   ColorType color = 5;
   string name = 6;
@@ -508,45 +508,6 @@ message FermentableAdditionType{
   oneof amount  {
     MassType mass = 10;
     VolumeType volume = 11;
-  }
-
-  enum FermentableBaseType{
-    NULL_FermentableBaseType = 0;
-    //dry extract
-    DRY_EXTRACT = 1;
-    // extract
-    EXTRACT = 2;
-    // grain
-    GRAIN = 3;
-    // sugar
-    SUGAR = 4;
-    // fruit
-    FRUIT = 5;
-    // juice
-    JUICE = 6;
-    // honey
-    HONEY = 7;
-    // other
-    OTHER = 8;
-  }
-
-  enum FermentableBaseGrainGroup{
-    NULL_FermentableBaseGrainGroup = 0;
-    // base
-    BASE = 1;
-    // caramel
-    CARAMEL = 2;
-    // flaked
-    FLAKED = 3;
-    // roasted
-    ROASTED = 4;
-    // specialty
-    SPECIALTY = 5;
-    // smoked
-    SMOKED = 6;
-    // adjunct
-    ADJUNCT = 7;
-
   }
 }
 
@@ -836,7 +797,7 @@ message FermentableType{
   // The percentage of protein. Higher values may indicate a possibility of haze, or lautering issues.
   PercentType protein = 3;
   string product_id = 4;
-  FermentableBaseGrainGroup grain_group = 5;
+  GrainGroup grain_group = 5;
   YieldType yield = 6;
   FermentableBaseType type = 7;
   string producer = 8;
@@ -852,44 +813,44 @@ message FermentableType{
   // The Kolbach Index, also known as soluble to total ratio of nitrogen or protein, is used to indcate the degree of malt modification. A value above 35% is desired for simple single infusion mashing, undermodified malt may require multiple step mashes or decoction.
   double kolbach_index = 16;
   string notes = 17;
+}
 
-  enum FermentableBaseType{
-    NULL_FermentableBaseType = 0;
-    // dry extract
-    DRY_EXTRACT = 1;
-    // extract
-    EXTRACT = 2;
-    // grain
-    GRAIN = 3;
-    // sugar
-    SUGAR = 4;
-    // fruit
-    FRUIT = 5;
-    // juice
-    JUICE = 6;
-    // honey
-    HONEY = 7;
-    // other
-    OTHER = 8;
-  }
+enum FermentableBaseType{
+  NULL_FermentableBaseType = 0;
+  // dry extract
+  DRY_EXTRACT = 1;
+  // extract
+  EXTRACT = 2;
+  // grain
+  GRAIN = 3;
+  // sugar
+  SUGAR = 4;
+  // fruit
+  FRUIT = 5;
+  // juice
+  JUICE = 6;
+  // honey
+  HONEY = 7;
+  // other
+  OTHER_FermentableBaseType = 8;
+}
 
-  enum FermentableBaseGrainGroup{
-    NULL_FermentableBaseGrainGroup = 0;
-    // base
-    BASE = 1;
-    // caramel
-    CARAMEL = 2;
-    // flaked
-    FLAKED = 3;
-    // roasted
-    ROASTED = 4;
-    // specialty
-    SPECIALTY = 5;
-    // smoked
-    SMOKED = 6;
-    // adjunct
-    ADJUNCT = 7;
-  }
+enum GrainGroup{
+  NULL_GrainGroup = 0;
+  // base
+  BASE = 1;
+  // caramel
+  CARAMEL = 2;
+  // flaked
+  FLAKED = 3;
+  // roasted
+  ROASTED = 4;
+  // specialty
+  SPECIALTY = 5;
+  // smoked
+  SMOKED = 6;
+  // adjunct
+  ADJUNCT = 7;
 }
 
 message FermentableInventoryType{
