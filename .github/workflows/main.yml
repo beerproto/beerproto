@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest   
+    steps:  
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: protoc-gen-doc 
+        uses: docker://pseudomuto/protoc-gen-doc
+        with:
+          entrypoint: protoc
+          args: -I /github/workspace/ --doc_opt=markdown,index.md --doc_out=/github/workspace/docs beer.proto
+      - name: Git Commit on Workflow
+        uses: matheusalbino/git-commit@v1.0.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          message: Updating Protocol Documentation 
