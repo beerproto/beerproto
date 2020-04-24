@@ -1022,7 +1022,7 @@ StyleType provide information for Style categorization
 | final_gravity | [GravityRangeType](#beerproto.GravityRangeType) |  |  |
 | style_guide | [string](#string) |  |  |
 | color | [ColorRangeType](#beerproto.ColorRangeType) |  |  |
-| original_gravity | [ColorRangeType](#beerproto.ColorRangeType) |  |  |
+| original_gravity | [GravityRangeType](#beerproto.GravityRangeType) |  |  |
 | examples | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | carbonation | [CarbonationRangeType](#beerproto.CarbonationRangeType) |  |  |
