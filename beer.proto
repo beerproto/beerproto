@@ -539,22 +539,6 @@ message HopAdditionType{
     MassType mass = 10;
     VolumeType volume = 11;
   }
-
-  enum HopVarietyBaseForm{
-    NULL = 0;
-    // extract
-    EXTRACT = 1;
-    // leaf
-    LEAF = 2;
-    // leaf (wet)
-    LEAF_WET = 3;
-    // pellet
-    PELLET = 4;
-    // powder
-    POWDER = 5;
-    // plug
-    PLUG = 6;
-  }
 }
 
 message TasteType{
@@ -1086,21 +1070,6 @@ message VarietyInformation{
   string producer = 13;
   string notes = 14;
 
-  enum HopVarietyBaseForm{
-    NULL_HopVarietyBaseForm = 0;
-    // extract
-    EXTRACT = 1;
-    // leaf
-    LEAF = 2;
-    // leaf (wet)
-    LEAFWET = 3;
-    // pellet
-    PELLET = 4;
-    // powder
-    POWDER = 5;
-    // plug
-    PLUG = 6;
-  }
 
   enum VarietyInformationType{
     NULL_VarietyInformationType = 0;
@@ -1120,6 +1089,23 @@ message VarietyInformation{
     AROMA_BITTERING_FLAVOR = 7;
   }
 }
+
+enum HopVarietyBaseForm{
+  NULL_HopVarietyBaseForm = 0;
+  // extract
+  EXTRACT_HopVarietyBaseForm = 1;
+  // leaf
+  LEAF = 2;
+  // leaf (wet)
+  LEAFWET = 3;
+  // pellet
+  PELLET = 4;
+  // powder
+  POWDER = 5;
+  // plug
+  PLUG = 6;
+}
+
 
 message HopInventoryType{
   oneof amount  {
