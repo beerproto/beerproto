@@ -383,20 +383,20 @@ message CultureAdditionType{
     UnitType unit = 11;
     VolumeType volume = 12;
   }
+}
 
-  enum CultureBaseForm{
-    NULL_CultureBaseForm = 0;
-    // liquid
-    LIQUID = 1;
-    // dry
-    DRY = 2;
-    // slant
-    SLANT = 3;
-    // culture
-    CULTURE = 4;
-    // dregs
-    DREGS = 5;
-  }
+enum CultureBaseForm{
+  NULL_CultureBaseForm = 0;
+  // liquid
+  LIQUID = 1;
+  // dry
+  DRY = 2;
+  // slant
+  SLANT = 3;
+  // culture
+  CULTURE = 4;
+  // dregs
+  DREGS = 5;
 }
 
 enum CultureBaseType{
@@ -900,20 +900,6 @@ message CultureInformation{
     HIGH = 6;
     // very high
     VERY_HIGH = 7;
-  }
-
-  enum CultureBaseForm {
-    NULL_CultureBaseForm = 0;
-    // liquid
-    LIQUID = 1;
-    // dry
-    DRY = 2;
-    // slant
-    SLANT = 3;
-    // culture
-    CULTURE = 4;
-    // dregs
-    DREGS = 5;
   }
 }
 
