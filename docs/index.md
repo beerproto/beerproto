@@ -68,9 +68,8 @@
     - [CarbonationType.CarbonationUnitType](#beerproto.CarbonationType.CarbonationUnitType)
     - [ColorType.ColorUnitType](#beerproto.ColorType.ColorUnitType)
     - [ConcentrationType.ConcentrationUnitType](#beerproto.ConcentrationType.ConcentrationUnitType)
-    - [CultureAdditionType.CultureBaseForm](#beerproto.CultureAdditionType.CultureBaseForm)
+    - [CultureBaseForm](#beerproto.CultureBaseForm)
     - [CultureBaseType](#beerproto.CultureBaseType)
-    - [CultureInformation.CultureBaseForm](#beerproto.CultureInformation.CultureBaseForm)
     - [CultureInformation.QualitativeRangeType](#beerproto.CultureInformation.QualitativeRangeType)
     - [DiastaticPowerType.DiastaticPowerUnitType](#beerproto.DiastaticPowerType.DiastaticPowerUnitType)
     - [EquipmentItemType.EquipmentBaseForm](#beerproto.EquipmentItemType.EquipmentBaseForm)
@@ -293,7 +292,7 @@ CultureAdditionType collects the attributes of each culture ingredient for use i
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| form | [CultureAdditionType.CultureBaseForm](#beerproto.CultureAdditionType.CultureBaseForm) |  |  |
+| form | [CultureBaseForm](#beerproto.CultureBaseForm) |  |  |
 | product_id | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | cell_count_billions | [int32](#int32) |  |  |
@@ -319,7 +318,7 @@ CultureInformation collects the attributes of a microbial culture
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| form | [CultureInformation.CultureBaseForm](#beerproto.CultureInformation.CultureBaseForm) |  |  |
+| form | [CultureBaseForm](#beerproto.CultureBaseForm) |  |  |
 | producer | [string](#string) |  |  |
 | temperature_range | [TemperatureRangeType](#beerproto.TemperatureRangeType) |  | The recommended temperature range of fermentation by the culture producer. |
 | notes | [string](#string) |  |  |
@@ -1353,9 +1352,9 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.CultureAdditionType.CultureBaseForm"></a>
+<a name="beerproto.CultureBaseForm"></a>
 
-### CultureAdditionType.CultureBaseForm
+### CultureBaseForm
 
 
 | Name | Number | Description |
@@ -1390,22 +1389,6 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | PEDIO | 11 | pedio |
 | SPONTANEOUS | 12 | spontaneous |
 | WINE | 13 | wine |
-
-
-
-<a name="beerproto.CultureInformation.CultureBaseForm"></a>
-
-### CultureInformation.CultureBaseForm
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| NULL_CultureBaseForm | 0 |  |
-| LIQUID | 1 | liquid |
-| DRY | 2 | dry |
-| SLANT | 3 | slant |
-| CULTURE | 4 | culture |
-| DREGS | 5 | dregs |
 
 
 
