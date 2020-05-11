@@ -43,30 +43,32 @@ message Recipe {
 
 // This defines the procedure for performing unique mashing processes
 message MashProcedureType {
+  string id = 1;
   // Initial grain temperature prior to the start of the mash
-  TemperatureType grain_temperature = 1;
-  string notes = 2;
-  repeated MashStepType mash_steps = 3;
-  string name = 4;
+  TemperatureType grain_temperature = 2;
+  string notes = 3;
+  repeated MashStepType mash_steps = 4;
+  string name = 5;
 }
 
 // MashStepType - a per step representation occurring during the mash
 message MashStepType{
-  TimeType step_time = 1;
+  string id = 1;
+  TimeType step_time = 2;
   // The amount of time  that passes before this step begins. eg moving from a mash step (step 1) of 148F, to a new temperature step of 156F (step 2) may take 8 minutes to heat the mash. Step 2 would have a ramp time of 8 minutes
-  TimeType ramp_time = 2;
-  TemperatureType end_temperature = 3;
-  string description = 4;
+  TimeType ramp_time = 3;
+  TemperatureType end_temperature = 4;
+  string description = 5;
   // Temperature of the water for an infusion step
-  TemperatureType infuse_temperature = 5;
-  AcidityType start_pH = 6;
-  AcidityType end_pH = 7;
-  string name = 8;
-  MashStepTypeType type = 9;
-  VolumeType amount = 10;
-  TemperatureType step_temperature = 11;
+  TemperatureType infuse_temperature = 6;
+  AcidityType start_pH = 7;
+  AcidityType end_pH = 8;
+  string name = 9;
+  MashStepTypeType type = 10;
+  VolumeType amount = 11;
+  TemperatureType step_temperature = 12;
   // Also known as the mash thickness. eg 1.75 qt/lb or 3.65 L/kg
-  SpecificVolumeType water_grain_ratio = 12;
+  SpecificVolumeType water_grain_ratio = 13;
 
   enum MashStepTypeType{
     NULL = 0;
@@ -716,52 +718,56 @@ message CarbonationType {
 
 // FermentationProcedureType defines the procedure for performing fermentation
 message FermentationProcedureType{
-  string description = 1;
-  string notes = 2;
-  repeated FermentationStepType fermentation_steps = 3;
-  string name = 4;
+  string id = 1;
+  string description = 2;
+  string notes = 3;
+  repeated FermentationStepType fermentation_steps = 4;
+  string name = 5;
 }
 
 // FermentationStepType - a per step representation of a fermentation action
 message FermentationStepType{
-  string Name = 1;
-  TemperatureType end_temperature = 2;
-  TimeType step_time = 3;
+  string id = 1;
+  string Name = 2;
+  TemperatureType end_temperature = 3;
+  TimeType step_time = 4;
   // Free rise is used to indicate a fermentation step where the exothermic fermentation is allowed to raise the temperature without restriction This is either True or false.
-  bool free_rise = 4;
-  GravityType start_gravity = 5;
-  GravityType end_gravity = 6;
-  AcidityType start_ph = 7;
-  string description = 8;
-  TemperatureType start_temperature = 9;
-  AcidityType  end_ph = 10;
-  string vessel = 11;
+  bool free_rise = 5;
+  GravityType start_gravity = 6;
+  GravityType end_gravity = 7;
+  AcidityType start_ph = 8;
+  string description = 9;
+  TemperatureType start_temperature = 10;
+  AcidityType  end_ph = 11;
+  string vessel = 12;
 }
 
 // BoilProcedureType defines the procedure for performing a boil. A boil procedure with no steps is the same as a standard single step boil
-message BoilProcedureType{
-  VolumeType pre_boil_size = 1;
-  TimeType boil_time = 2;
-  repeated BoilStepType boil_steps = 3;
-  string name = 4;
-  string description = 5;
-  string notes = 6;
+message BoilProcedureType {
+  string id = 1;
+  VolumeType pre_boil_size = 2;
+  TimeType boil_time = 3;
+  repeated BoilStepType boil_steps = 4;
+  string name = 5;
+  string description = 6;
+  string notes = 7;
 }
 
 // BoilStepType - a per step representation of a boil process, can be used to support preboil steps, non-boiling pasteurization steps, boiling, whirlpool steps, and chilling
 message BoilStepType{
-  GravityType end_gravity = 1;
-  BoilStepTypeChillingType chilling_type = 2;
-  string description = 3;
-  TemperatureType end_temperature = 4;
+  string id = 1;
+  GravityType end_gravity = 2;
+  BoilStepTypeChillingType chilling_type = 3;
+  string description = 4;
+  TemperatureType end_temperature = 5;
   // The amount of time that passes before this step begins. eg moving from a boiling step (step 1) to a whirlpool step (step 2) may take 5 minutes. Step 2 would have a ramp time of 5 minutes, hop isomerization and bitterness calculations will need to account for this accordingly.
-  TimeType ramp_time = 5;
-  TimeType step_time = 6;
-  GravityType start_gravity = 7;
-  AcidityType start_ph = 8;
-  AcidityType end_ph = 9;
-  string name = 10;
-  TemperatureType start_temperature = 11;
+  TimeType ramp_time = 6;
+  TimeType step_time = 7;
+  GravityType start_gravity = 8;
+  AcidityType start_ph = 9;
+  AcidityType end_ph = 10;
+  string name = 11;
+  TemperatureType start_temperature = 12;
 
   enum BoilStepTypeChillingType{
     NULL = 0;
@@ -995,30 +1001,32 @@ message SpecificHeatType{
 }
 
 // Describes the procedure for packaging your beverage
-message PackagingProcedureType{
-  string name = 1;
-  VolumeType packaged_volume = 2;
-  string description = 3;
-  string notes = 4;
-  repeated PackagingVesselType packaging_vessels = 5;
+message PackagingProcedureType {
+  string id = 1;
+  string name = 2;
+  VolumeType packaged_volume = 3;
+  string description = 4;
+  string notes = 5;
+  repeated PackagingVesselType packaging_vessels = 6;
 }
 
 // PackagingVesselType - a per vessel representation of a packaging process
-message PackagingVesselType{
-  PackagingVesselTypeType type = 1;
-  GravityType start_gravity = 2;
-  string name = 3;
-  string package_date = 4;
-  TimeType step_time = 5;
-  GravityType end_gravity = 6;
-  VolumeType vessel_volume = 7;
-  double vessel_quantity = 8;
-  string description = 9;
-  AcidityType start_ph = 10;
-  double carbonation = 11;
-  TemperatureType start_temperature = 12;
-  AcidityType end_ph = 13;
-  TemperatureType end_temperature = 14;
+message PackagingVesselType {
+  string id = 1;
+  PackagingVesselTypeType type = 2;
+  GravityType start_gravity = 3;
+  string name = 4;
+  string package_date = 5;
+  TimeType step_time = 6;
+  GravityType end_gravity = 7;
+  VolumeType vessel_volume = 8;
+  double vessel_quantity = 9;
+  string description = 10;
+  AcidityType start_ph = 11;
+  double carbonation = 12;
+  TemperatureType start_temperature = 13;
+  AcidityType end_ph = 14;
+  TemperatureType end_temperature = 15;
 
   enum PackagingVesselTypeType{
     NULL = 0;
