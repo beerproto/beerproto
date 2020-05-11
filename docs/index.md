@@ -95,9 +95,6 @@
     - [VarietyInformation.VarietyInformationType](#beerproto.VarietyInformation.VarietyInformationType)
     - [VolumeType.VolumeUnitType](#beerproto.VolumeType.VolumeUnitType)
   
-  
-  
-
 - [Scalar Value Types](#scalar-value-types)
 
 
