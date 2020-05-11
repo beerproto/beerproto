@@ -95,9 +95,6 @@
     - [VarietyInformation.VarietyInformationType](#beerproto.VarietyInformation.VarietyInformationType)
     - [VolumeType.VolumeUnitType](#beerproto.VolumeType.VolumeUnitType)
   
-  
-  
-
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -292,6 +289,7 @@ CultureAdditionType collects the attributes of each culture ingredient for use i
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | form | [CultureBaseForm](#beerproto.CultureBaseForm) |  |  |
 | product_id | [string](#string) |  |  |
 | name | [string](#string) |  |  |
@@ -318,6 +316,7 @@ CultureInformation collects the attributes of a microbial culture
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | form | [CultureBaseForm](#beerproto.CultureBaseForm) |  |  |
 | producer | [string](#string) |  |  |
 | temperature_range | [TemperatureRangeType](#beerproto.TemperatureRangeType) |  | The recommended temperature range of fermentation by the culture producer. |
@@ -400,6 +399,7 @@ EquipmentType provides necessary information for individual brewing equipment
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | notes | [string](#string) |  |  |
 | boil_rate_per_hour | [VolumeType](#beerproto.VolumeType) |  | The volume boiled off during 1 hour, measured before and after at room temperature. |
 | type | [string](#string) |  |  |
@@ -441,6 +441,7 @@ FermentableAdditionType collects the attributes of each fermentable ingredient f
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | type | [FermentableBaseType](#beerproto.FermentableBaseType) |  |  |
 | Origin | [string](#string) |  |  |
 | grain_group | [GrainGroup](#beerproto.GrainGroup) |  |  |
@@ -482,6 +483,7 @@ FermentableType collects the attributes of a fermentable ingredient to store as 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | max_in_batch | [PercentType](#beerproto.PercentType) |  | The recommended maximum percentage to use in a grain bill. |
 | recommend_mash | [bool](#bool) |  | True if the fermentable must be mashed, false if it can be steeped. |
 | protein | [PercentType](#beerproto.PercentType) |  | The percentage of protein. Higher values may indicate a possibility of haze, or lautering issues. |
@@ -723,6 +725,7 @@ MiscellaneousAdditionType collects the attributes of each miscellaneous ingredie
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | producer | [string](#string) |  |  |
 | timing | [TimingType](#beerproto.TimingType) |  | The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step. |
@@ -762,6 +765,7 @@ MiscellaneousType collects the attributes of an ingredient to store as record in
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | use_for | [string](#string) |  | Used to describe the purpose of the miscellaneous ingredient, e.g. whirlfloc is used for clarity. |
 | notes | [string](#string) |  |  |
 | name | [string](#string) |  |  |
@@ -830,6 +834,7 @@ PackagingVesselType - a per vessel representation of a packaging process
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | type | [PackagingVesselType.PackagingVesselTypeType](#beerproto.PackagingVesselType.PackagingVesselTypeType) |  |  |
 | start_gravity | [GravityType](#beerproto.GravityType) |  |  |
 | name | [string](#string) |  |  |
@@ -890,6 +895,7 @@ PackagingVesselType - a per vessel representation of a packaging process
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | mashes | [MashProcedureType](#beerproto.MashProcedureType) | repeated | A collection of steps providing process information for common mashing procedures |
 | recipes | [RecipeType](#beerproto.RecipeType) | repeated | Records containing a minimal collection of the description of ingredients, procedures and other required parameters necessary to recreate a batch of beer |
 | miscellaneous_ingredients | [MiscellaneousType](#beerproto.MiscellaneousType) | repeated | Records for adjuncts which do not contribute to the gravity of the beer |
@@ -1143,6 +1149,7 @@ VarietyInformation collects the attributes of a hop variety to store as record i
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | inventory | [HopInventoryType](#beerproto.HopInventoryType) |  |  |
 | type | [VarietyInformation.VarietyInformationType](#beerproto.VarietyInformation.VarietyInformationType) |  |  |
 | oil_content | [OilContentType](#beerproto.OilContentType) |  | Oil Content information object. |
@@ -1187,6 +1194,7 @@ WaterAdditionType collects the attributes of each water addition for use in a re
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | flouride | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
 | sulfate | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
 | producer | [string](#string) |  |  |
@@ -1216,6 +1224,7 @@ WaterBase provides unique properties to identify individual records of  brewing 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | calcium | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
 | nitrite | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
 | chloride | [ConcentrationType](#beerproto.ConcentrationType) |  |  |

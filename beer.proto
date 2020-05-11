@@ -11,34 +11,35 @@ option go_package = ".;beerproto";
 
 
 message Recipe {
+  string id = 1;
   // A collection of steps providing process information for common mashing procedures
-  repeated MashProcedureType mashes = 1;
+  repeated MashProcedureType mashes = 2;
   // Records containing a minimal collection of the description of ingredients, procedures and other required parameters necessary to recreate a batch of beer
-  repeated RecipeType recipes = 2;
+  repeated RecipeType recipes = 3;
   // Records for adjuncts which do not contribute to the gravity of the beer
-  repeated MiscellaneousType miscellaneous_ingredients = 3;
+  repeated MiscellaneousType miscellaneous_ingredients = 4;
   // Records detailing the characteristics of the beer styles for which judging guidelines have been established
-  repeated StyleType styles = 4;
+  repeated StyleType styles = 5;
   // A collection of steps providing process information for common fermentation procedures
-  repeated FermentationProcedureType fermentations = 5;
+  repeated FermentationProcedureType fermentations = 6;
   // A collection of steps providing process information for common boil procedures
-  repeated BoilProcedureType boil = 6;
+  repeated BoilProcedureType boil = 7;
   // Explicitly encode version within list of records
-  double version = 7;
+  double version = 8;
   // Records for any ingredient that contributes to the gravity of the beer
-  repeated FermentableType fermentables = 8;
+  repeated FermentableType fermentables = 9;
   // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step
-  TimingType timing_object = 9;
+  TimingType timing_object = 10;
   // Records detailing the wide array of unique cultures
-  repeated CultureInformation cultures = 10;
+  repeated CultureInformation cultures = 11;
   // Provides necessary information for brewing equipment
-  repeated EquipmentType equipments = 11;
+  repeated EquipmentType equipments = 12;
   // A collection of steps providing process information for common packaging procedures
-  repeated PackagingProcedureType packaging = 12;
+  repeated PackagingProcedureType packaging = 13;
   // Records detailing the many properties of unique hop varieties
-  repeated VarietyInformation hop_varieties = 13;
+  repeated VarietyInformation hop_varieties = 14;
   // Records for water profiles used in brewing
-  repeated WaterBase profiles = 14;
+  repeated WaterBase profiles = 15;
 }
 
 // This defines the procedure for performing unique mashing processes
@@ -314,17 +315,18 @@ message IngredientsType{
 
 // MiscellaneousAdditionType collects the attributes of each miscellaneous ingredient for use in a recipe
 message MiscellaneousAdditionType{
-  string name = 1;
-  string producer = 2;
+  string id =1;
+  string name = 2;
+  string producer = 3;
   // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step.
-  TimingType timing = 3;
-  string product_id = 4;
-  MiscellaneousBaseType type = 5;
+  TimingType timing = 4;
+  string product_id = 5;
+  MiscellaneousBaseType type = 6;
 
   oneof amount  {
-    MassType mass = 6;
-    UnitType unit = 7;
-    VolumeType volume = 8;
+    MassType mass = 7;
+    UnitType unit = 8;
+    VolumeType volume = 9;
   }
 }
 message MassType{
@@ -368,22 +370,23 @@ message UnitType {
 
 // CultureAdditionType collects the attributes of each culture ingredient for use in a recipe
 message CultureAdditionType{
-  CultureBaseForm form = 1;
-  string product_id = 2;
-  string name = 3;
-  int32 cell_count_billions = 4;
-  int32 times_cultured = 5;
-  string producer = 6;
-  CultureBaseType type = 7;
+  string id = 1;
+  CultureBaseForm form = 2;
+  string product_id = 3;
+  string name = 4;
+  int32 cell_count_billions = 5;
+  int32 times_cultured = 6;
+  string producer = 7;
+  CultureBaseType type = 8;
   // The expected, or measured apparent attenuation for a given culture in a given recipe. In comparison to attenuation range, this is a single value.
-  PercentType attenuation = 8;
+  PercentType attenuation = 9;
   // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step.
-  TimingType timing = 9;
+  TimingType timing = 10;
 
   oneof amount  {
-    MassType mass = 10;
-    UnitType unit = 11;
-    VolumeType volume = 12;
+    MassType mass = 11;
+    UnitType unit = 12;
+    VolumeType volume = 13;
   }
 }
 
@@ -462,21 +465,22 @@ message TimingType{
 
 // WaterAdditionType collects the attributes of each water addition for use in a recipe
 message WaterAdditionType{
-  ConcentrationType flouride = 1;
-  ConcentrationType sulfate = 2;
-  string producer = 3;
-  ConcentrationType nitrate = 4;
-  ConcentrationType nitrite = 5;
-  ConcentrationType chloride = 6;
-  VolumeType amount = 7;
-  string name = 8;
-  ConcentrationType potassium = 9;
-  ConcentrationType magnesium = 10;
-  ConcentrationType iron = 11;
-  ConcentrationType bicarbonate = 12;
-  ConcentrationType calcium = 13;
-  ConcentrationType carbonate = 14;
-  ConcentrationType sodium = 15;
+  string id = 1;
+  ConcentrationType flouride = 2;
+  ConcentrationType sulfate = 3;
+  string producer = 4;
+  ConcentrationType nitrate = 5;
+  ConcentrationType nitrite = 6;
+  ConcentrationType chloride = 7;
+  VolumeType amount = 8;
+  string name = 89;
+  ConcentrationType potassium = 10;
+  ConcentrationType magnesium = 11;
+  ConcentrationType iron = 12;
+  ConcentrationType bicarbonate = 13;
+  ConcentrationType calcium = 14;
+  ConcentrationType carbonate = 15;
+  ConcentrationType sodium = 16;
 }
 
 message ConcentrationType{
@@ -496,20 +500,21 @@ message ConcentrationType{
 
 // FermentableAdditionType collects the attributes of each fermentable ingredient for use in a recipe fermentable bill
 message FermentableAdditionType{
-  FermentableBaseType type = 1;
-  string Origin = 2;
-  GrainGroup grain_group = 3;
-  YieldType yield = 4;
-  ColorType color = 5;
-  string name = 6;
-  string producer = 7;
-  string product_id = 8;
+  string id = 1;
+  FermentableBaseType type = 2;
+  string Origin = 3;
+  GrainGroup grain_group = 4;
+  YieldType yield = 5;
+  ColorType color = 6;
+  string name = 7;
+  string producer = 8;
+  string product_id = 9;
   // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step.
-  TimingType timing = 9;
+  TimingType timing = 10;
 
   oneof amount  {
-    MassType mass = 10;
-    VolumeType volume = 11;
+    MassType mass = 11;
+    VolumeType volume = 12;
   }
 }
 
@@ -550,14 +555,15 @@ message TasteType{
 
 // MiscellaneousType collects the attributes of an ingredient to store as record information
 message MiscellaneousType {
+  string id = 1;
   // Used to describe the purpose of the miscellaneous ingredient, e.g. whirlfloc is used for clarity.
-  string use_for = 1;
-  string notes = 2;
-  string name = 3;
-  string producer = 4;
-  string product_id = 5;
-  MiscellaneousBaseType type = 6;
-  MiscellaneousInventoryType inventory = 7;
+  string use_for = 2;
+  string notes = 3;
+  string name = 4;
+  string producer = 5;
+  string product_id = 6;
+  MiscellaneousBaseType type = 7;
+  MiscellaneousInventoryType inventory = 8;
 }
 
 enum MiscellaneousBaseType{
@@ -780,29 +786,30 @@ message BoilStepType{
 
 // FermentableType collects the attributes of a fermentable ingredient to store as record information
 message FermentableType{
+  string id = 1;
   // The recommended maximum percentage to use in a grain bill.
-  PercentType max_in_batch = 1;
+  PercentType max_in_batch = 2;
   // True if the fermentable must be mashed, false if it can be steeped.
-  bool recommend_mash = 2;
+  bool recommend_mash = 3;
   // The percentage of protein. Higher values may indicate a possibility of haze, or lautering issues.
-  PercentType protein = 3;
-  string product_id = 4;
-  GrainGroup grain_group = 5;
-  YieldType yield = 6;
-  FermentableBaseType type = 7;
-  string producer = 8;
+  PercentType protein = 4;
+  string product_id = 5;
+  GrainGroup grain_group = 6;
+  YieldType yield = 7;
+  FermentableBaseType type = 8;
+  string producer = 9;
   // Where diastatic power gives the total amount of all enzymes, alpha amylase, also known as dextrinizing units, refers to only the total amount of alpa amylase in the malted grain. A value of 25-50 is desirable for base malt.
-  double alpha_amylase = 9;
-  ColorType color = 10;
-  string name = 11;
+  double alpha_amylase = 10;
+  ColorType color = 11;
+  string name = 12;
   // Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable.
-  DiastaticPowerType diastatic_power = 12;
-  PercentType moisture = 13;
-  string origin = 14;
-  FermentableInventoryType inventory = 15;
+  DiastaticPowerType diastatic_power = 13;
+  PercentType moisture = 14;
+  string origin = 15;
+  FermentableInventoryType inventory = 16;
   // The Kolbach Index, also known as soluble to total ratio of nitrogen or protein, is used to indcate the degree of malt modification. A value above 35% is desired for simple single infusion mashing, undermodified malt may require multiple step mashes or decoction.
-  double kolbach_index = 16;
-  string notes = 17;
+  double kolbach_index = 17;
+  string notes = 18;
 }
 
 enum FermentableBaseType{
@@ -866,29 +873,30 @@ message DiastaticPowerType{
 
 // CultureInformation collects the attributes of a microbial culture
 message CultureInformation{
-  CultureBaseForm form = 1;
-  string producer = 2;
+  string id = 1;
+  CultureBaseForm form = 2;
+  string producer = 3;
   // The recommended temperature range of fermentation by the culture producer.
-  TemperatureRangeType temperature_range = 3;
-  string notes = 4;
+  TemperatureRangeType temperature_range = 4;
+  string notes = 5;
   // Recommended styles for a particular culture.
-  string best_for = 5;
-  CultureInventoryType inventory = 6;
-  string product_id = 7;
-  string name = 8;
+  string best_for = 6;
+  CultureInventoryType inventory = 7;
+  string product_id = 8;
+  string name = 9;
   // The recommended limit of abv by the culture producer before attenuation stops.
-  PercentType alcohol_tolerance = 9;
+  PercentType alcohol_tolerance = 10;
   // A glucoamylase positive culture is capable of producing glucoamylase, the enzyme produced through expression of the diastatic gene, which allows yeast to attenuate dextrins and starches leading to a very low FG. This is positive in some saison/brett yeasts as well as the new gulo hybrid by Omega yeast labs.
-  bool glucoamylase = 10;
-  CultureBaseType type = 11;
+  bool glucoamylase = 11;
+  CultureBaseType type = 12;
   // Floculation refers to the ability of yeast to aggregate to form large flocs which drop out of suspension.
-  QualitativeRangeType flocculation = 12;
-  PercentRangeType attenuation_range = 13;
+  QualitativeRangeType flocculation = 13;
+  PercentRangeType attenuation_range = 14;
   // Maximum number of times to reuse a culture before a new lab source is recommended.
-  int32 max_reuse = 14;
+  int32 max_reuse = 15;
   // A POF+ culture is capable of producing phenols, which is a common distinctive property of saison, and brett yeasts.
-  bool pof = 15;
-  Zymocide zymocide = 16;
+  bool pof = 16;
+  Zymocide zymocide = 17;
 
   enum QualitativeRangeType{
     NULL_QualitativeRangeType = 0;
@@ -949,22 +957,23 @@ message EquipmentType{
 
 // EquipmentType provides necessary information for individual brewing equipment
 message EquipmentItemType{
-  string notes = 1;
+  string id = 1;
+  string notes = 2;
   // The volume boiled off during 1 hour, measured before and after at room temperature.
-  VolumeType boil_rate_per_hour = 2;
-  string type = 3;
-  EquipmentBaseForm form = 4;
+  VolumeType boil_rate_per_hour = 3;
+  string type = 4;
+  EquipmentBaseForm form = 5;
   // The volume that leaves the kettle, especially important for non-immersion chillers that cool the wort as it leaves the kettle.
-  VolumeType drain_rate_per_minute = 5;
+  VolumeType drain_rate_per_minute = 6;
   // The specific heat of the piece of equipment, expressed in Cal/(g*C), especially important for when the mashtun is not preheated.
-  SpecificHeatType specific_heat = 6;
+  SpecificHeatType specific_heat = 7;
   // The apparent volume absorbed by grain, typical values are 0.125 qt/lb (1.04 L/kg) for a mashtun, 0.08 gal/lb (0.66 L/kg) for BIAB.
-  SpecificVolumeType grain_absorption_rate = 7;
-  string name = 8;
-  VolumeType maximum_volume = 9;
+  SpecificVolumeType grain_absorption_rate = 8;
+  string name = 9;
+  VolumeType maximum_volume = 10;
   // The weight of the piece of equipment, especially important for when the mashtun is not preheated.
-  MassType weight = 10;
-  VolumeType loss = 11;
+  MassType weight = 11;
+  VolumeType loss = 12;
 
   enum EquipmentBaseForm{
     NULL = 0;
@@ -1047,22 +1056,23 @@ message PackagingVesselType {
 
 // VarietyInformation collects the attributes of a hop variety to store as record information
 message VarietyInformation{
-  HopInventoryType inventory = 1;
-  VarietyInformationType type = 2;
+  string id = 1;
+  HopInventoryType inventory = 2;
+  VarietyInformationType type = 3;
   // Oil Content information object.
-  OilContentType oil_content = 3;
+  OilContentType oil_content = 4;
   //  Defined as the percentage of hop alpha lost in 6 months of storage.
-  PercentType  percent_lost = 4;
-  string product_id = 5;
-  PercentType alpha_acid = 6;
-  PercentType beta_acid = 7;
-  string name = 8;
-  string origin = 9;
-  string substitutes = 10;
-  string year = 11;
-  HopVarietyBaseForm form = 12;
-  string producer = 13;
-  string notes = 14;
+  PercentType  percent_lost = 5;
+  string product_id = 6;
+  PercentType alpha_acid = 7;
+  PercentType beta_acid = 8;
+  string name = 9;
+  string origin = 10;
+  string substitutes = 11;
+  string year = 12;
+  HopVarietyBaseForm form = 13;
+  string producer = 14;
+  string notes = 15;
 
 
   enum VarietyInformationType{
@@ -1129,18 +1139,19 @@ message OilContentType{
 
 // WaterBase provides unique properties to identify individual records of  brewing water
 message WaterBase{
-  ConcentrationType calcium = 1;
-  ConcentrationType nitrite = 2;
-  ConcentrationType chloride = 3;
-  string name = 4;
-  ConcentrationType potassium = 5;
-  ConcentrationType carbonate = 6;
-  ConcentrationType iron = 7;
-  ConcentrationType flouride = 8;
-  ConcentrationType sulfate = 9;
-  ConcentrationType magnesium = 10;
-  string producer = 11;
-  ConcentrationType bicarbonate = 12;
-  ConcentrationType nitrate = 13;
-  ConcentrationType sodium = 14;
+  string id = 1;
+  ConcentrationType calcium = 2;
+  ConcentrationType nitrite = 3;
+  ConcentrationType chloride = 4;
+  string name = 5;
+  ConcentrationType potassium = 6;
+  ConcentrationType carbonate = 7;
+  ConcentrationType iron = 8;
+  ConcentrationType flouride = 9;
+  ConcentrationType sulfate = 10;
+  ConcentrationType magnesium = 11;
+  string producer = 12;
+  ConcentrationType bicarbonate = 13;
+  ConcentrationType nitrate = 14;
+  ConcentrationType sodium = 15;
 }
