@@ -22,3 +22,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           message: Updating Protocol Documentation 
+      - name: GH Release
+        uses: softprops/action-gh-release@v0.1.5
+        with:
+          files:
+            beer.proto |
+            LICENSE
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
