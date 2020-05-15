@@ -104,10 +104,6 @@ message TimeType{
     DAY = 4;
     // week
     WEEK = 5;
-    // month
-    MONTH = 6;
-    // year
-    YEAR = 7;
   }
 }
 
