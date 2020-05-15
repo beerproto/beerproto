@@ -89,7 +89,7 @@ message MashStepType{
   }
 }
 message TimeType{
-  double value = 1;
+  int64 value = 1;
   TimeUnitType unit = 2;
 
   enum TimeUnitType {
