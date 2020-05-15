@@ -107,6 +107,8 @@ BeerProto
 
 Another beer format, written in protocol buffer.
 
+Copyright (c) 2020 Ross Merrigan
+
 
 <a name="beerproto.AcidityType"></a>
 
