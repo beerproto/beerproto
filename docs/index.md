@@ -1105,7 +1105,7 @@ StyleType provide information for Style categorization
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [double](#double) |  |  |
+| value | [int64](#int64) |  |  |
 | unit | [TimeType.TimeUnitType](#beerproto.TimeType.TimeUnitType) |  |  |
 
 
@@ -1738,8 +1738,6 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | HR | 3 | hr |
 | DAY | 4 | day |
 | WEEK | 5 | week |
-| MONTH | 6 | month |
-| YEAR | 7 | year |
 
 
 
