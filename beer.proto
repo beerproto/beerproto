@@ -2,13 +2,19 @@
  * BeerProto
  *
  * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
  */
 syntax = "proto3";
 
 package beerproto;
 
-option go_package = ".;beerproto";
-
+option csharp_namespace = "BeerProto.Protobuf";
+option cc_enable_arenas = true;
+option go_package = "github.com/beerproto/beerproto";
+option java_package = "com.beerproto.protobuf";
+option java_multiple_files = true;
+option objc_class_prefix = "BP";
 
 message Recipe {
   string id = 1;
