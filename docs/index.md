@@ -95,9 +95,6 @@
     - [VarietyInformation.VarietyInformationType](#beerproto.VarietyInformation.VarietyInformationType)
     - [VolumeType.VolumeUnitType](#beerproto.VolumeType.VolumeUnitType)
   
-  
-  
-
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -167,6 +164,7 @@ BoilProcedureType defines the procedure for performing a boil. A boil procedure 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | pre_boil_size | [VolumeType](#beerproto.VolumeType) |  |  |
 | boil_time | [TimeType](#beerproto.TimeType) |  |  |
 | boil_steps | [BoilStepType](#beerproto.BoilStepType) | repeated |  |
@@ -187,6 +185,7 @@ BoilStepType - a per step representation of a boil process, can be used to suppo
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | end_gravity | [GravityType](#beerproto.GravityType) |  |  |
 | chilling_type | [BoilStepType.BoilStepTypeChillingType](#beerproto.BoilStepType.BoilStepTypeChillingType) |  |  |
 | description | [string](#string) |  |  |
@@ -518,6 +517,7 @@ FermentationProcedureType defines the procedure for performing fermentation
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | description | [string](#string) |  |  |
 | notes | [string](#string) |  |  |
 | fermentation_steps | [FermentationStepType](#beerproto.FermentationStepType) | repeated |  |
@@ -536,6 +536,7 @@ FermentationStepType - a per step representation of a fermentation action
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | Name | [string](#string) |  |  |
 | end_temperature | [TemperatureType](#beerproto.TemperatureType) |  |  |
 | step_time | [TimeType](#beerproto.TimeType) |  |  |
@@ -668,6 +669,7 @@ This defines the procedure for performing unique mashing processes
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | grain_temperature | [TemperatureType](#beerproto.TemperatureType) |  | Initial grain temperature prior to the start of the mash |
 | notes | [string](#string) |  |  |
 | mash_steps | [MashStepType](#beerproto.MashStepType) | repeated |  |
@@ -686,6 +688,7 @@ MashStepType - a per step representation occurring during the mash
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | step_time | [TimeType](#beerproto.TimeType) |  |  |
 | ramp_time | [TimeType](#beerproto.TimeType) |  | The amount of time that passes before this step begins. eg moving from a mash step (step 1) of 148F, to a new temperature step of 156F (step 2) may take 8 minutes to heat the mash. Step 2 would have a ramp time of 8 minutes |
 | end_temperature | [TemperatureType](#beerproto.TemperatureType) |  |  |
@@ -818,6 +821,7 @@ Describes the procedure for packaging your beverage
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | packaged_volume | [VolumeType](#beerproto.VolumeType) |  |  |
 | description | [string](#string) |  |  |
