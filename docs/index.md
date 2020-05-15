@@ -62,7 +62,7 @@
     - [YieldType](#beerproto.YieldType)
     - [Zymocide](#beerproto.Zymocide)
   
-    - [AcidityType.AcidityUnitType](#beerproto.AcidityType.AcidityUnitType)
+    - [AcidityUnitType](#beerproto.AcidityUnitType)
     - [BitternessType.BitternessUnitType](#beerproto.BitternessType.BitternessUnitType)
     - [BoilStepType.BoilStepTypeChillingType](#beerproto.BoilStepType.BoilStepTypeChillingType)
     - [CarbonationType.CarbonationUnitType](#beerproto.CarbonationType.CarbonationUnitType)
@@ -75,7 +75,7 @@
     - [EquipmentItemType.EquipmentBaseForm](#beerproto.EquipmentItemType.EquipmentBaseForm)
     - [FermentableBaseType](#beerproto.FermentableBaseType)
     - [GrainGroup](#beerproto.GrainGroup)
-    - [GravityType.GravityUnitType](#beerproto.GravityType.GravityUnitType)
+    - [GravityUnitType](#beerproto.GravityUnitType)
     - [HopVarietyBaseForm](#beerproto.HopVarietyBaseForm)
     - [IBUEstimateType.IBUMethodType](#beerproto.IBUEstimateType.IBUMethodType)
     - [MashStepType.MashStepTypeType](#beerproto.MashStepType.MashStepTypeType)
@@ -88,7 +88,7 @@
     - [SpecificHeatType.SpecificHeatUnitType](#beerproto.SpecificHeatType.SpecificHeatUnitType)
     - [SpecificVolumeType.SpecificVolumeUnitType](#beerproto.SpecificVolumeType.SpecificVolumeUnitType)
     - [StyleType.StyleCategories](#beerproto.StyleType.StyleCategories)
-    - [TemperatureType.TemperatureUnitType](#beerproto.TemperatureType.TemperatureUnitType)
+    - [TemperatureUnitType](#beerproto.TemperatureUnitType)
     - [TimeType.TimeUnitType](#beerproto.TimeType.TimeUnitType)
     - [TimingType.UseType](#beerproto.TimingType.UseType)
     - [UnitType.UnitUnitType](#beerproto.UnitType.UnitUnitType)
@@ -119,7 +119,7 @@ Copyright (c) 2020 Ross Merrigan
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
-| unit | [AcidityType.AcidityUnitType](#beerproto.AcidityType.AcidityUnitType) |  |  |
+| unit | [AcidityUnitType](#beerproto.AcidityUnitType) |  |  |
 
 
 
@@ -581,7 +581,7 @@ Gravity refers to the both the measurements of percent of sugar content, ie plat
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
-| unit | [GravityType.GravityUnitType](#beerproto.GravityType.GravityUnitType) |  |  |
+| unit | [GravityUnitType](#beerproto.GravityUnitType) |  |  |
 
 
 
@@ -1090,7 +1090,7 @@ StyleType provide information for Style categorization
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
-| unit | [TemperatureType.TemperatureUnitType](#beerproto.TemperatureType.TemperatureUnitType) |  |  |
+| unit | [TemperatureUnitType](#beerproto.TemperatureUnitType) |  |  |
 
 
 
@@ -1293,14 +1293,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
  
 
 
-<a name="beerproto.AcidityType.AcidityUnitType"></a>
+<a name="beerproto.AcidityUnitType"></a>
 
-### AcidityType.AcidityUnitType
+### AcidityUnitType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_AcidityUnitType | 0 |  |
 | PH | 1 |  |
 
 
@@ -1496,14 +1496,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.GravityType.GravityUnitType"></a>
+<a name="beerproto.GravityUnitType"></a>
 
-### GravityType.GravityUnitType
+### GravityUnitType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_GravityUnitType | 0 |  |
 | SG | 1 | sg |
 | PLATO | 2 | plato |
 | BRIX | 3 | brix |
@@ -1712,14 +1712,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.TemperatureType.TemperatureUnitType"></a>
+<a name="beerproto.TemperatureUnitType"></a>
 
-### TemperatureType.TemperatureUnitType
+### TemperatureUnitType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_TemperatureUnitType | 0 |  |
 | C | 1 |  |
 | F | 2 |  |
 
