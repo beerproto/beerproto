@@ -109,12 +109,13 @@ message TimeType{
 message AcidityType{
   double value = 1;
   AcidityUnitType unit = 2;
-
-  enum AcidityUnitType{
-    NULL = 0;
-    PH = 1;
-  }
 }
+
+enum AcidityUnitType{
+    NULL_AcidityUnitType = 0;
+    PH = 1;
+}
+
 message VolumeType{
   double value = 1;
   VolumeUnitType unit = 2;
@@ -674,9 +675,10 @@ message GravityRangeType{
 message GravityType{
   double value = 1;
   GravityUnitType unit = 2;
+}
 
-  enum GravityUnitType{
-    NULL = 0;
+enum GravityUnitType{
+    NULL_GravityUnitType = 0;
     // sg
     SG = 1;
     // plato
@@ -684,7 +686,6 @@ message GravityType{
     // brix
     BRIX = 3;
   }
-}
 
 message ColorRangeType{
   ColorType minimum = 1;
@@ -927,12 +928,14 @@ message TemperatureType{
   double value = 1;
   TemperatureUnitType unit = 2;
 
-  enum TemperatureUnitType {
-    NULL = 0;
+
+}
+
+enum TemperatureUnitType {
+    NULL_TemperatureUnitType = 0;
     C = 1;
     F = 2;
   }
-}
 
 // Zymocide, also known as killer yeast properties, is common among wine yeast. There are also some ale and brett yeasts that are immune to some zymocidic properties, these are known as killer neutral
 message Zymocide{
