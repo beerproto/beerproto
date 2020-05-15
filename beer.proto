@@ -11,7 +11,6 @@ package beerproto;
 
 option csharp_namespace = "BeerProto.Protobuf";
 option cc_enable_arenas = true;
-option go_package = "github.com/beerproto/beerproto";
 option java_package = "com.beerproto.protobuf";
 option java_multiple_files = true;
 option objc_class_prefix = "BP";
