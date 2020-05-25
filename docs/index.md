@@ -1632,7 +1632,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | ---- | ------ | ----------- |
 | NULL | 0 |  |
 | BEER | 1 | beer |
-| cider | 2 | cider |
+| CIDER | 2 | cider |
 | OMBUCHA | 3 | kombucha |
 | MEAD | 4 | mead |
 | SODA | 5 | soda |
