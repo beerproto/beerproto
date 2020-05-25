@@ -1234,20 +1234,20 @@ WaterBase provides unique properties to identify individual records of  brewing 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
-| calcium | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
-| nitrite | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
-| chloride | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
+| calcium | [ConcentrationType](#beerproto.ConcentrationType) |  | Calcium occurs naturally in most water sources and is the principle cause of hardness. |
+| nitrite | [ConcentrationType](#beerproto.ConcentrationType) |  | Nitrite occurs naturally at low levels in some waters but is removed by treatment. It is sometime produced as a by-product when chloramine is used as a disinfectant. |
+| chloride | [ConcentrationType](#beerproto.ConcentrationType) |  | Occurs naturally in water sources and is derived through contact with rocks |
 | name | [string](#string) |  |  |
 | potassium | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
 | carbonate | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
-| iron | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
-| flouride | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
+| iron | [ConcentrationType](#beerproto.ConcentrationType) |  | Iron occurs naturally in some water. High levels are treated to reduce the iron content. A number of water mains are made of iron. Brown discolouration complaints are associated with corroding iron mains. Iron is not harmful to health. |
+| flouride | [ConcentrationType](#beerproto.ConcentrationType) |  | Fluoride salts typically have distinctive bitter tastes, and are odorless. |
 | sulfate | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
-| magnesium | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
+| magnesium | [ConcentrationType](#beerproto.ConcentrationType) |  | At levels of 10-30mg/l it is an important yeast nutrient, but above 30mg/l it can cause a sour/bitter taste to the beer. |
 | producer | [string](#string) |  |  |
 | bicarbonate | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
-| nitrate | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
-| sodium | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
+| nitrate | [ConcentrationType](#beerproto.ConcentrationType) |  | Nitrate occurs naturally in most source waters but concentrations can be increased as a result of fertiliser use. Where necessary concentrations in drinking water can be reduced by diluting with sources where nitrate levels are low or through specific treatment. |
+| sodium | [ConcentrationType](#beerproto.ConcentrationType) |  | Sodium is naturally present in many water sources. Domestic water softeners can increase the sodium concentration. |
 
 
 
