@@ -271,7 +271,7 @@ message RecipeStyleType{
     // beer
     BEER = 1;
     // cider
-    cider = 2;
+    CIDER = 2;
     // kombucha
     OMBUCHA = 3;
     // mead
