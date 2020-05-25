@@ -64,14 +64,13 @@
   
     - [AcidityUnitType](#beerproto.AcidityUnitType)
     - [BitternessType.BitternessUnitType](#beerproto.BitternessType.BitternessUnitType)
-    - [BoilStepType.BoilStepTypeChillingType](#beerproto.BoilStepType.BoilStepTypeChillingType)
-    - [CarbonationType.CarbonationUnitType](#beerproto.CarbonationType.CarbonationUnitType)
-    - [ColorType.ColorUnitType](#beerproto.ColorType.ColorUnitType)
-    - [ConcentrationType.ConcentrationUnitType](#beerproto.ConcentrationType.ConcentrationUnitType)
+    - [BoilStepTypeChillingType](#beerproto.BoilStepTypeChillingType)
+    - [CarbonationUnitType](#beerproto.CarbonationUnitType)
+    - [ColorUnitType](#beerproto.ColorUnitType)
+    - [ConcentrationUnitType](#beerproto.ConcentrationUnitType)
     - [CultureBaseForm](#beerproto.CultureBaseForm)
     - [CultureBaseType](#beerproto.CultureBaseType)
-    - [CultureInformation.QualitativeRangeType](#beerproto.CultureInformation.QualitativeRangeType)
-    - [DiastaticPowerType.DiastaticPowerUnitType](#beerproto.DiastaticPowerType.DiastaticPowerUnitType)
+    - [DiastaticPowerUnitType](#beerproto.DiastaticPowerUnitType)
     - [EquipmentItemType.EquipmentBaseForm](#beerproto.EquipmentItemType.EquipmentBaseForm)
     - [FermentableBaseType](#beerproto.FermentableBaseType)
     - [GrainGroup](#beerproto.GrainGroup)
@@ -79,19 +78,20 @@
     - [HopVarietyBaseForm](#beerproto.HopVarietyBaseForm)
     - [IBUEstimateType.IBUMethodType](#beerproto.IBUEstimateType.IBUMethodType)
     - [MashStepType.MashStepTypeType](#beerproto.MashStepType.MashStepTypeType)
-    - [MassType.MassUnitType](#beerproto.MassType.MassUnitType)
+    - [MassUnitType](#beerproto.MassUnitType)
     - [MiscellaneousBaseType](#beerproto.MiscellaneousBaseType)
     - [PackagingVesselType.PackagingVesselTypeType](#beerproto.PackagingVesselType.PackagingVesselTypeType)
     - [PercentType.PercentUnitType](#beerproto.PercentType.PercentUnitType)
+    - [QualitativeRangeType](#beerproto.QualitativeRangeType)
     - [RecipeStyleType.StyleCategories](#beerproto.RecipeStyleType.StyleCategories)
     - [RecipeType.RecipeTypeType](#beerproto.RecipeType.RecipeTypeType)
-    - [SpecificHeatType.SpecificHeatUnitType](#beerproto.SpecificHeatType.SpecificHeatUnitType)
+    - [SpecificHeatUnitType](#beerproto.SpecificHeatUnitType)
     - [SpecificVolumeType.SpecificVolumeUnitType](#beerproto.SpecificVolumeType.SpecificVolumeUnitType)
     - [StyleType.StyleCategories](#beerproto.StyleType.StyleCategories)
     - [TemperatureUnitType](#beerproto.TemperatureUnitType)
     - [TimeType.TimeUnitType](#beerproto.TimeType.TimeUnitType)
-    - [TimingType.UseType](#beerproto.TimingType.UseType)
-    - [UnitType.UnitUnitType](#beerproto.UnitType.UnitUnitType)
+    - [UnitUnitType](#beerproto.UnitUnitType)
+    - [UseType](#beerproto.UseType)
     - [VarietyInformation.VarietyInformationType](#beerproto.VarietyInformation.VarietyInformationType)
     - [VolumeType.VolumeUnitType](#beerproto.VolumeType.VolumeUnitType)
   
@@ -189,7 +189,7 @@ BoilStepType - a per step representation of a boil process, can be used to suppo
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
 | end_gravity | [GravityType](#beerproto.GravityType) |  |  |
-| chilling_type | [BoilStepType.BoilStepTypeChillingType](#beerproto.BoilStepType.BoilStepTypeChillingType) |  |  |
+| chilling_type | [BoilStepTypeChillingType](#beerproto.BoilStepTypeChillingType) |  |  |
 | description | [string](#string) |  |  |
 | end_temperature | [TemperatureType](#beerproto.TemperatureType) |  |  |
 | ramp_time | [TimeType](#beerproto.TimeType) |  | The amount of time that passes before this step begins. eg moving from a boiling step (step 1) to a whirlpool step (step 2) may take 5 minutes. Step 2 would have a ramp time of 5 minutes, hop isomerization and bitterness calculations will need to account for this accordingly. |
@@ -230,7 +230,7 @@ BoilStepType - a per step representation of a boil process, can be used to suppo
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
-| unit | [CarbonationType.CarbonationUnitType](#beerproto.CarbonationType.CarbonationUnitType) |  |  |
+| unit | [CarbonationUnitType](#beerproto.CarbonationUnitType) |  |  |
 
 
 
@@ -262,7 +262,7 @@ ColorType supports both grain color properties, such as Lovibond, and wort color
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
-| unit | [ColorType.ColorUnitType](#beerproto.ColorType.ColorUnitType) |  |  |
+| unit | [ColorUnitType](#beerproto.ColorUnitType) |  |  |
 
 
 
@@ -278,7 +278,7 @@ ColorType supports both grain color properties, such as Lovibond, and wort color
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
-| unit | [ConcentrationType.ConcentrationUnitType](#beerproto.ConcentrationType.ConcentrationUnitType) |  |  |
+| unit | [ConcentrationUnitType](#beerproto.ConcentrationUnitType) |  |  |
 
 
 
@@ -332,7 +332,7 @@ CultureInformation collects the attributes of a microbial culture
 | alcohol_tolerance | [PercentType](#beerproto.PercentType) |  | The recommended limit of abv by the culture producer before attenuation stops. |
 | glucoamylase | [bool](#bool) |  | A glucoamylase positive culture is capable of producing glucoamylase, the enzyme produced through expression of the diastatic gene, which allows yeast to attenuate dextrins and starches leading to a very low FG. This is positive in some saison/brett yeasts as well as the new gulo hybrid by Omega yeast labs. |
 | type | [CultureBaseType](#beerproto.CultureBaseType) |  |  |
-| flocculation | [CultureInformation.QualitativeRangeType](#beerproto.CultureInformation.QualitativeRangeType) |  | Floculation refers to the ability of yeast to aggregate to form large flocs which drop out of suspension. |
+| flocculation | [QualitativeRangeType](#beerproto.QualitativeRangeType) |  | Floculation refers to the ability of yeast to aggregate to form large flocs which drop out of suspension. |
 | attenuation_range | [PercentRangeType](#beerproto.PercentRangeType) |  |  |
 | max_reuse | [int32](#int32) |  | Maximum number of times to reuse a culture before a new lab source is recommended. |
 | pof | [bool](#bool) |  | A POF&#43; culture is capable of producing phenols, which is a common distinctive property of saison, and brett yeasts. |
@@ -370,7 +370,7 @@ Diastatic power is a measurement of malted grains enzymatic content. A value of 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
-| unit | [DiastaticPowerType.DiastaticPowerUnitType](#beerproto.DiastaticPowerType.DiastaticPowerUnitType) |  |  |
+| unit | [DiastaticPowerUnitType](#beerproto.DiastaticPowerUnitType) |  |  |
 
 
 
@@ -718,7 +718,7 @@ MashStepType - a per step representation occurring during the mash
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
-| unit | [MassType.MassUnitType](#beerproto.MassType.MassUnitType) |  |  |
+| unit | [MassUnitType](#beerproto.MassUnitType) |  |  |
 
 
 
@@ -953,6 +953,7 @@ RecipeType composes the information stored in a recipe
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | efficiency | [EfficiencyType](#beerproto.EfficiencyType) |  | Used to store each efficiency component, including conversion, and brewhouse |
 | style | [RecipeStyleType](#beerproto.RecipeStyleType) |  |  |
 | ibu_estimate | [IBUEstimateType](#beerproto.IBUEstimateType) |  | Used to differentiate which IBU formula is being used in a recipe. If formula is modified in any way, eg to support whirlpool/flameout additions etc etc, please use `Other` for transparency |
@@ -992,7 +993,7 @@ RecipeType composes the information stored in a recipe
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
-| unit | [SpecificHeatType.SpecificHeatUnitType](#beerproto.SpecificHeatType.SpecificHeatUnitType) |  |  |
+| unit | [SpecificHeatUnitType](#beerproto.SpecificHeatUnitType) |  |  |
 
 
 
@@ -1023,6 +1024,7 @@ StyleType provide information for Style categorization
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | aroma | [string](#string) |  |  |
 | ingredients | [string](#string) |  |  |
 | category_number | [int32](#int32) |  |  |
@@ -1127,7 +1129,7 @@ The timing object fully describes the timing of an addition with options for bas
 | specific_gravity | [GravityType](#beerproto.GravityType) |  | Used to indicate when an addition is added based on a desired specific gravity. E.G. Add dry hop at when SG is 1.018. |
 | ph | [AcidityType](#beerproto.AcidityType) |  | Used to indicate when an addition is added based on a desired specific gravity. eg Add brett when pH is 3.4. |
 | step | [int32](#int32) |  | Used to indicate what step this ingredient timing addition is referencing. EG A value of 2 for add_to_fermentation would mean to add during the second fermentation step. |
-| use | [TimingType.UseType](#beerproto.TimingType.UseType) |  |  |
+| use | [UseType](#beerproto.UseType) |  |  |
 
 
 
@@ -1143,7 +1145,7 @@ UnitType is used where unitless amounts are required, such as 1 apple, or 1 yeas
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
-| unit | [UnitType.UnitUnitType](#beerproto.UnitType.UnitUnitType) |  |  |
+| unit | [UnitUnitType](#beerproto.UnitUnitType) |  |  |
 
 
 
@@ -1317,53 +1319,53 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.BoilStepType.BoilStepTypeChillingType"></a>
+<a name="beerproto.BoilStepTypeChillingType"></a>
 
-### BoilStepType.BoilStepTypeChillingType
+### BoilStepTypeChillingType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_BOILSTEPTYPECHILLINGTYPE | 0 |  |
 | BATCH | 1 | batch |
 | INLINE | 2 | inline |
 
 
 
-<a name="beerproto.CarbonationType.CarbonationUnitType"></a>
+<a name="beerproto.CarbonationUnitType"></a>
 
-### CarbonationType.CarbonationUnitType
+### CarbonationUnitType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_CARBONATIONUNITTYPE | 0 |  |
 | VOLS | 1 | vols |
 
 
 
-<a name="beerproto.ColorType.ColorUnitType"></a>
+<a name="beerproto.ColorUnitType"></a>
 
-### ColorType.ColorUnitType
+### ColorUnitType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_COLORUNITTYPE | 0 |  |
 | EBC | 1 | EBC |
 | LOVI | 2 | Lovi |
 | SRM | 3 | SRM |
 
 
 
-<a name="beerproto.ConcentrationType.ConcentrationUnitType"></a>
+<a name="beerproto.ConcentrationUnitType"></a>
 
-### ConcentrationType.ConcentrationUnitType
+### ConcentrationUnitType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_CONCENTRATIONUNITTYPE | 0 |  |
 | PPM | 1 | ppm |
 | PPB | 2 | ppb |
 | MGL | 3 | mg/l |
@@ -1410,32 +1412,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.CultureInformation.QualitativeRangeType"></a>
+<a name="beerproto.DiastaticPowerUnitType"></a>
 
-### CultureInformation.QualitativeRangeType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| NULL_QualitativeRangeType | 0 |  |
-| VERY_LOW | 1 | very low |
-| LOW | 2 | low |
-| MEDIUM_LOW | 3 | medium low |
-| MEDIUM | 4 | medium |
-| MEDIUM_HIGH | 5 | medium high |
-| HIGH | 6 | high |
-| VERY_HIGH | 7 | very high |
-
-
-
-<a name="beerproto.DiastaticPowerType.DiastaticPowerUnitType"></a>
-
-### DiastaticPowerType.DiastaticPowerUnitType
+### DiastaticPowerUnitType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_DIASTATICPOWERUNITTYPE | 0 |  |
 | lintner | 1 | Lintner |
 | WK | 2 | WK |
 
@@ -1534,11 +1518,11 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
-| Rager | 1 | Rager |
-| Tinseth | 2 | Tinseth |
-| Garetz | 3 | Garetz |
-| Other | 4 | Other |
+| NULL_IBUMETHODTYPE | 0 |  |
+| RAGER | 1 | Rager |
+| TINSETH | 2 | Tinseth |
+| GARETZ | 3 | Garetz |
+| OTHER | 4 | Other |
 
 
 
@@ -1560,14 +1544,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.MassType.MassUnitType"></a>
+<a name="beerproto.MassUnitType"></a>
 
-### MassType.MassUnitType
+### MassUnitType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_MASSUNITTYPE | 0 |  |
 | MG | 1 | mg |
 | G | 2 | g |
 | KG | 3 | kg |
@@ -1601,7 +1585,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_PACKAGINGVESSELTYPETYPE | 0 |  |
 | KEG | 1 | keg |
 | BOTTLE | 2 | bottle |
 | CASK | 3 | cask |
@@ -1623,6 +1607,24 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
+<a name="beerproto.QualitativeRangeType"></a>
+
+### QualitativeRangeType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NULL_QUALITATIVERANGETYPE | 0 |  |
+| VERY_LOW | 1 | very low |
+| LOW | 2 | low |
+| MEDIUM_LOW | 3 | medium low |
+| MEDIUM | 4 | medium |
+| MEDIUM_HIGH | 5 | medium high |
+| HIGH | 6 | high |
+| VERY_HIGH | 7 | very high |
+
+
+
 <a name="beerproto.RecipeStyleType.StyleCategories"></a>
 
 ### RecipeStyleType.StyleCategories
@@ -1630,10 +1632,10 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_STYLECATEGORIES | 0 |  |
 | BEER | 1 | beer |
 | CIDER | 2 | cider |
-| OMBUCHA | 3 | kombucha |
+| KOMBUCHA | 3 | kombucha |
 | MEAD | 4 | mead |
 | SODA | 5 | soda |
 | WINE | 6 | wine |
@@ -1648,7 +1650,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_RECIPETYPETYPE | 0 |  |
 | CIDER | 1 | cider |
 | KOMBUCHA | 2 | kombucha |
 | SODA | 3 | soda |
@@ -1661,14 +1663,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.SpecificHeatType.SpecificHeatUnitType"></a>
+<a name="beerproto.SpecificHeatUnitType"></a>
 
-### SpecificHeatType.SpecificHeatUnitType
+### SpecificHeatUnitType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_SPECIFICHEATUNITTYPE | 0 |  |
 | CALGC | 1 | Cal/(g C) |
 | JKGK | 2 | J/(kg K) |
 | BTULBF | 3 | BTU/(lb F) |
@@ -1701,14 +1703,14 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_STYLECATEGORIES | 0 |  |
 | BEER | 1 | beer |
 | CIDER | 2 | cider |
 | KOMBUCHA | 3 | kombucha |
 | MEAD | 4 | mead |
-| OTHER | 5 | other |
-| SODA | 6 | soda |
-| WINE | 7 | wine |
+| SODA | 5 | soda |
+| WINE | 6 | wine |
+| OTHER | 7 | other |
 
 
 
@@ -1741,34 +1743,34 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
-<a name="beerproto.TimingType.UseType"></a>
+<a name="beerproto.UnitUnitType"></a>
 
-### TimingType.UseType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| NULL | 0 |  |
-| ADD_TO_MASH | 1 | add to mash |
-| ADD_TO_BOIL | 2 | add to boil |
-| ADD_TO_FERMENTATION | 3 | add to fermentation |
-| ADD_TO_PACKAGE | 4 | add to package |
-
-
-
-<a name="beerproto.UnitType.UnitUnitType"></a>
-
-### UnitType.UnitUnitType
+### UnitUnitType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL | 0 |  |
+| NULL_UNITUNITTYPE | 0 |  |
 | ONE | 1 | 1 |
 | UNIT | 2 | unit |
 | EACH | 3 | each |
 | DIMENSIONLESS | 4 | dimensionless |
 | PKG | 5 | pkg |
+
+
+
+<a name="beerproto.UseType"></a>
+
+### UseType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NULL_USETYPE | 0 |  |
+| ADD_TO_MASH | 1 | add to mash |
+| ADD_TO_BOIL | 2 | add to boil |
+| ADD_TO_FERMENTATION | 3 | add to fermentation |
+| ADD_TO_PACKAGE | 4 | add to package |
 
 
 
