@@ -182,48 +182,49 @@ message SpecificVolumeType{
 
 // RecipeType composes the information stored in a recipe
 message RecipeType {
+  string id = 1;
   // Used to store each efficiency component, including conversion, and brewhouse
-  EfficiencyType efficiency = 1;
-  RecipeStyleType style = 2;
+  EfficiencyType efficiency = 2;
+  RecipeStyleType style = 3;
   // Used to differentiate which IBU formula is being used in a recipe. If formula is modified in any way, eg to support whirlpool/flameout additions etc etc, please use `Other` for transparency
-  IBUEstimateType ibu_estimate = 3;
+  IBUEstimateType ibu_estimate = 4;
   // The color of the finished beer, using SRM or EBC
-  ColorType color_estimate = 4;
+  ColorType color_estimate = 5;
   // The final beer pH at the end of fermentation
-  AcidityType beer_pH = 5;
-  string name = 6;
-  RecipeTypeType type = 7;
-  string coauthor = 8;
+  AcidityType beer_pH = 6;
+  string name = 7;
+  RecipeTypeType type = 8;
+  string coauthor = 9;
   // The gravity of wort when transffered to the fermenter
-  GravityType original_gravity = 9;
+  GravityType original_gravity = 10;
   // The gravity of beer at the end of fermentation
-  GravityType final_gravity = 10;
+  GravityType final_gravity = 11;
   // The final carbonation of the beer when packaged or served
-  double  carbonation = 11;
+  double  carbonation = 12;
   // FermentationProcedureType defines the procedure for performing fermentation
-  FermentationProcedureType fermentation = 12;
-  string author = 13;
+  FermentationProcedureType fermentation = 13;
+  string author = 14;
   // A collection of all ingredients used for the recipe
-  IngredientsType ingredients = 14;
+  IngredientsType ingredients = 15;
   // This defines the procedure for performing unique mashing processes
-  MashProcedureType mash = 15;
+  MashProcedureType mash = 16;
   // Describes the procedure for packaging your beverage
-  PackagingProcedureType packaging = 16;
+  PackagingProcedureType packaging = 17;
   // Defines the procedure for performing a boil. A boil procedure with no steps is the same as a standard single step boil
-  BoilProcedureType boil = 17;
+  BoilProcedureType boil = 18;
   // Used to store subjective tasting notes, and rating
-  TasteType taste = 18;
-  double calories_per_pint = 19;
-  string created = 20;
+  TasteType taste = 19;
+  double calories_per_pint = 20;
+  string created = 21;
   // The volume into the fermenter
-  VolumeType batch_size = 21;
-  string notes = 22;
-  PercentType alcohol_by_volume = 23;
+  VolumeType batch_size = 22;
+  string notes = 23;
+  PercentType alcohol_by_volume = 24;
   // The total apparent attenuation of the finished beer after fermentation
-  PercentType apparent_attenuation = 24;
+  PercentType apparent_attenuation = 25;
 
   enum RecipeTypeType {
-    NULL = 0;
+    NULL_RECIPETYPETYPE = 0;
     // cider
     CIDER = 1;
     // kombucha
@@ -244,6 +245,7 @@ message RecipeType {
     ALL_GRAIN = 9;
   }
 }
+
 
 // The efficiencyType stores each efficiency component
 message EfficiencyType{
@@ -266,14 +268,14 @@ message RecipeStyleType{
   string style_letter = 5;
   string style_guide = 6;
 
-  enum StyleCategories {
-    NULL = 0;
+  enum StyleCategories{
+    NULL_STYLECATEGORIES = 0;
     // beer
     BEER = 1;
     // cider
     CIDER = 2;
     // kombucha
-    OMBUCHA = 3;
+    KOMBUCHA = 3;
     // mead
     MEAD = 4;
     // soda
@@ -290,17 +292,19 @@ message IBUEstimateType{
   IBUMethodType method = 1;
 
   enum IBUMethodType {
-    NULL = 0;
+    NULL_IBUMETHODTYPE = 0;
     // Rager
-    Rager = 1;
+    RAGER = 1;
     // Tinseth
-    Tinseth = 2;
+    TINSETH = 2;
     // Garetz
-    Garetz = 3;
+    GARETZ = 3;
     // Other
-    Other = 4;
+    OTHER = 4;
   }
 }
+
+
 
 message IngredientsType{
   // miscellaneous_additions collects all the miscellaneous items for use in a recipe
@@ -334,40 +338,40 @@ message MiscellaneousAdditionType{
 message MassType{
   double value = 1;
   MassUnitType unit = 2;
+}
 
-  enum MassUnitType{
-    NULL = 0;
-    // mg
-    MG = 1;
-    // g
-    G = 2;
-    // kg
-    KG = 3;
-    // lb
-    LB = 4;
-    // oz
-    OZ = 5;
-  }
+enum MassUnitType{
+  NULL_MASSUNITTYPE = 0;
+  // mg
+  MG = 1;
+  // g
+  G = 2;
+  // kg
+  KG = 3;
+  // lb
+  LB = 4;
+  // oz
+  OZ = 5;
 }
 
 // UnitType is used where unitless amounts are required, such as 1 apple, or 1 yeast packet
 message UnitType {
   double value = 1;
   UnitUnitType unit = 2;
+}
 
-  enum UnitUnitType {
-    NULL = 0;
-    // 1
-    ONE = 1;
-    // unit
-    UNIT = 2;
-    // each
-    EACH = 3;
-    // dimensionless
-    DIMENSIONLESS = 4;
-    // pkg
-    PKG = 5;
-  }
+enum UnitUnitType {
+  NULL_UNITUNITTYPE = 0;
+  // 1
+  ONE = 1;
+  // unit
+  UNIT = 2;
+  // each
+  EACH = 3;
+  // dimensionless
+  DIMENSIONLESS = 4;
+  // pkg
+  PKG = 5;
 }
 
 // CultureAdditionType collects the attributes of each culture ingredient for use in a recipe
@@ -451,18 +455,18 @@ message TimingType{
   // Used to indicate what step this ingredient timing addition is referencing. EG A value of 2 for add_to_fermentation would mean to add during the second fermentation step.
   int32 step = 6;
   UseType use = 7;
+}
 
-  enum UseType{
-    NULL = 0;
-    // add to mash
-    ADD_TO_MASH = 1;
-    // add to boil
-    ADD_TO_BOIL = 2;
-    // add to fermentation
-    ADD_TO_FERMENTATION = 3;
-    // add to package
-    ADD_TO_PACKAGE = 4;
-  }
+enum UseType{
+  NULL_USETYPE = 0;
+  // add to mash
+  ADD_TO_MASH = 1;
+  // add to boil
+  ADD_TO_BOIL = 2;
+  // add to fermentation
+  ADD_TO_FERMENTATION = 3;
+  // add to package
+  ADD_TO_PACKAGE = 4;
 }
 
 // WaterAdditionType collects the attributes of each water addition for use in a recipe
@@ -488,16 +492,16 @@ message WaterAdditionType{
 message ConcentrationType{
   double value = 1;
   ConcentrationUnitType unit = 2;
+}
 
-  enum ConcentrationUnitType{
-    NULL = 0;
-    // ppm
-    PPM = 1;
-    // ppb
-    PPB = 2;
-    // mg/l
-    MGL = 3;
-  }
+enum ConcentrationUnitType{
+  NULL_CONCENTRATIONUNITTYPE = 0;
+  // ppm
+  PPM = 1;
+  // ppb
+  PPB = 2;
+  // mg/l
+  MGL = 3;
 }
 
 // FermentableAdditionType collects the attributes of each fermentable ingredient for use in a recipe fermentable bill
@@ -566,6 +570,8 @@ message MiscellaneousType {
   string product_id = 6;
   MiscellaneousBaseType type = 7;
   MiscellaneousInventoryType inventory = 8;
+
+
 }
 
 enum MiscellaneousBaseType{
@@ -596,29 +602,30 @@ message MiscellaneousInventoryType{
 
 // StyleType provide information for Style categorization
 message StyleType{
-  string aroma = 1;
-  string ingredients = 2;
-  int32 category_number = 3;
-  string notes = 4;
-  string flavor = 5;
-  string mouthfeel = 6;
-  GravityRangeType final_gravity = 7;
-  string style_guide = 8;
-  ColorRangeType color = 9;
-  GravityRangeType original_gravity = 10;
-  string examples = 11;
-  string name = 12;
-  CarbonationRangeType carbonation = 13;
-  PercentRangeType alcohol_by_volume = 14;
-  BitternessRangeType international_bitterness_units = 15;
-  string appearance = 16;
-  string category = 17;
-  string style_letter = 18;
-  StyleCategories type = 19;
-  string overall_impression = 20;
+  string id = 1;
+  string aroma = 2;
+  string ingredients = 3;
+  int32 category_number = 4;
+  string notes = 5;
+  string flavor = 6;
+  string mouthfeel = 7;
+  GravityRangeType final_gravity = 8;
+  string style_guide = 9;
+  ColorRangeType color = 10;
+  GravityRangeType original_gravity = 11;
+  string examples = 12;
+  string name = 13;
+  CarbonationRangeType carbonation = 14;
+  PercentRangeType alcohol_by_volume = 15;
+  BitternessRangeType international_bitterness_units = 16;
+  string appearance = 17;
+  string category = 18;
+  string style_letter = 19;
+  StyleCategories type = 20;
+  string overall_impression = 21;
 
   enum StyleCategories{
-    NULL = 0;
+    NULL_STYLECATEGORIES = 0;
     // beer
     BEER = 1;
     // cider
@@ -627,14 +634,17 @@ message StyleType{
     KOMBUCHA = 3;
     // mead
     MEAD = 4;
-    // other
-    OTHER = 5;
     // soda
-    SODA = 6;
+    SODA = 5;
     // wine
-    WINE = 7;
+    WINE = 6;
+    // other
+    OTHER = 7;
   }
 }
+
+
+
 message BitternessRangeType{
   BitternessType minimum = 1;
   BitternessType maximum = 2;
@@ -696,16 +706,16 @@ message ColorRangeType{
 message ColorType{
   double value = 1;
   ColorUnitType unit = 2;
+}
 
-  enum ColorUnitType {
-    NULL = 0;
-    // EBC
-    EBC = 1;
-    // Lovi
-    LOVI = 2;
-    // SRM
-    SRM = 3;
-  }
+enum ColorUnitType {
+  NULL_COLORUNITTYPE = 0;
+  // EBC
+  EBC = 1;
+  // Lovi
+  LOVI = 2;
+  // SRM
+  SRM = 3;
 }
 
 message CarbonationRangeType{
@@ -716,12 +726,12 @@ message CarbonationRangeType{
 message CarbonationType {
   double value = 1;
   CarbonationUnitType unit = 2;
+}
 
-  enum CarbonationUnitType {
-    NULL = 0;
-    // vols
-    VOLS = 1;
-  }
+enum CarbonationUnitType {
+  NULL_CARBONATIONUNITTYPE = 0;
+  // vols
+  VOLS = 1;
 }
 
 // FermentationProcedureType defines the procedure for performing fermentation
@@ -776,14 +786,14 @@ message BoilStepType{
   AcidityType end_ph = 10;
   string name = 11;
   TemperatureType start_temperature = 12;
+}
 
-  enum BoilStepTypeChillingType{
-    NULL = 0;
-    // batch
-    BATCH = 1;
-    // inline
-    INLINE = 2;
-  }
+enum BoilStepTypeChillingType{
+  NULL_BOILSTEPTYPECHILLINGTYPE = 0;
+  // batch
+  BATCH = 1;
+  // inline
+  INLINE = 2;
 }
 
 // FermentableType collects the attributes of a fermentable ingredient to store as record information
@@ -863,14 +873,14 @@ message FermentableInventoryType{
 message DiastaticPowerType{
   double value = 1;
   DiastaticPowerUnitType unit = 2;
+}
 
-  enum DiastaticPowerUnitType{
-    NULL = 0;
-    // Lintner
-    lintner = 1;
-    // WK
-    WK = 2;
-  }
+enum DiastaticPowerUnitType{
+  NULL_DIASTATICPOWERUNITTYPE = 0;
+  // Lintner
+  lintner = 1;
+  // WK
+  WK = 2;
 }
 
 // CultureInformation collects the attributes of a microbial culture
@@ -899,24 +909,25 @@ message CultureInformation{
   // A POF+ culture is capable of producing phenols, which is a common distinctive property of saison, and brett yeasts.
   bool pof = 16;
   Zymocide zymocide = 17;
+}
 
-  enum QualitativeRangeType{
-    NULL_QualitativeRangeType = 0;
-    // very low
-    VERY_LOW = 1;
-    // low
-    LOW = 2;
-    // medium low
-    MEDIUM_LOW = 3;
-    // medium
-    MEDIUM = 4;
-    // medium high
-    MEDIUM_HIGH = 5;
-    // high
-    HIGH = 6;
-    // very high
-    VERY_HIGH = 7;
-  }
+
+enum QualitativeRangeType{
+  NULL_QUALITATIVERANGETYPE = 0;
+  // very low
+  VERY_LOW = 1;
+  // low
+  LOW = 2;
+  // medium low
+  MEDIUM_LOW = 3;
+  // medium
+  MEDIUM = 4;
+  // medium high
+  MEDIUM_HIGH = 5;
+  // high
+  HIGH = 6;
+  // very high
+  VERY_HIGH = 7;
 }
 
 message TemperatureRangeType{
@@ -1001,16 +1012,16 @@ message EquipmentItemType{
 message SpecificHeatType{
   double value = 1;
   SpecificHeatUnitType unit = 2;
+}
 
-  enum SpecificHeatUnitType{
-    NULL = 0;
-    // Cal/(g C)
-    CALGC = 1;
-    // J/(kg K)
-    JKGK = 2;
-    // BTU/(lb F)
-    BTULBF = 3;
-  }
+enum SpecificHeatUnitType{
+  NULL_SPECIFICHEATUNITTYPE = 0;
+  // Cal/(g C)
+  CALGC = 1;
+  // J/(kg K)
+  JKGK = 2;
+  // BTU/(lb F)
+  BTULBF = 3;
 }
 
 // Describes the procedure for packaging your beverage
@@ -1042,7 +1053,7 @@ message PackagingVesselType {
   TemperatureType end_temperature = 15;
 
   enum PackagingVesselTypeType{
-    NULL = 0;
+    NULL_PACKAGINGVESSELTYPETYPE = 0;
     // keg
     KEG = 1;
     // bottle
@@ -1055,8 +1066,9 @@ message PackagingVesselType {
     FIRKIN = 5;
     // other
     OTHER = 6;
-  }
+  }  
 }
+
 
 // VarietyInformation collects the attributes of a hop variety to store as record information
 message VarietyInformation{
