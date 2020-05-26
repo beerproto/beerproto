@@ -508,7 +508,7 @@ enum ConcentrationUnitType{
 message FermentableAdditionType{
   string id = 1;
   FermentableBaseType type = 2;
-  string Origin = 3;
+  string origin = 3;
   GrainGroup grain_group = 4;
   YieldType yield = 5;
   ColorType color = 6;
