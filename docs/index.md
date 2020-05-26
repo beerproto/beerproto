@@ -447,7 +447,7 @@ FermentableAdditionType collects the attributes of each fermentable ingredient f
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
 | type | [FermentableBaseType](#beerproto.FermentableBaseType) |  |  |
-| Origin | [string](#string) |  |  |
+| origin | [string](#string) |  |  |
 | grain_group | [GrainGroup](#beerproto.GrainGroup) |  |  |
 | yield | [YieldType](#beerproto.YieldType) |  |  |
 | color | [ColorType](#beerproto.ColorType) |  |  |
