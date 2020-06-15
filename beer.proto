@@ -538,19 +538,20 @@ message YieldType{
 
 // HopAdditionType collects the attributes of each hop ingredient for use in a recipe hop bil
 message HopAdditionType{
-  PercentType beta_acid = 1;
-  string producer = 2;
-  string origin = 3;
-  string year = 4;
-  HopVarietyBaseForm form = 5;
+  string id = 1;
+  PercentType beta_acid = 2;
+  string producer = 3;
+  string origin = 4;
+  string year = 5;
+  HopVarietyBaseForm form = 6;
   // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step
-  TimingType timing = 6;
-  string name = 7;
-  string product_id = 8;
-  PercentType alpha_acid = 9;
+  TimingType timing = 7;
+  string name = 8;
+  string product_id = 9;
+  PercentType alpha_acid = 10;
   oneof amount  {
-    MassType mass = 10;
-    VolumeType volume = 11;
+    MassType mass = 11;
+    VolumeType volume = 12;
   }
 }
 
