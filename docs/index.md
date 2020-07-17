@@ -596,6 +596,7 @@ HopAdditionType collects the attributes of each hop ingredient for use in a reci
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | beta_acid | [PercentType](#beerproto.PercentType) |  |  |
 | producer | [string](#string) |  |  |
 | origin | [string](#string) |  |  |
