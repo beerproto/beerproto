@@ -112,8 +112,21 @@ message AcidityType{
 }
 
 enum AcidityUnitType{
-    NULL_AcidityUnitType = 0;
+    NULL_ACIDITYUNITTYPE = 0;
     PH = 1;
+}
+
+message ViscosityType{
+  double value = 1;
+  ViscosityUnitType unit = 2;
+}
+
+enum ViscosityUnitType {
+  NULL_VISCOSITYUNITTYPE = 0;
+  // cP
+  CP = 1;
+  // mPa-s
+  MPAS = 2;
 }
 
 message VolumeType{
@@ -522,6 +535,7 @@ message FermentableAdditionType{
     MassType mass = 11;
     VolumeType volume = 12;
   }
+
 }
 
 // The potential yield of the fermentable ingredient, supporting SG, or percentage. eg 1.037 or 80% are valid yield types
@@ -822,7 +836,28 @@ message FermentableType{
   FermentableInventoryType inventory = 16;
   // The Kolbach Index, also known as soluble to total ratio of nitrogen or protein, is used to indcate the degree of malt modification. A value above 35% is desired for simple single infusion mashing, undermodified malt may require multiple step mashes or decoction.
   double kolbach_index = 17;
-  string notes = 18;
+  // Used to indicate the 'crystallized' percentage of starches for crystal malts.
+  PercentType glassy = 18;
+  // The percentage of grain that masses through sieves with gaps of 7/64 and 6/64, desired values of 80% or higher which indicate plump kernels.
+  PercentType plump = 19;
+  PercentType half = 20;
+  // The opposite of glassy, a mealy kernel is one that is not glassy. Base malt should be at least 90%, single step mashes generally require 95% or higher.
+  PercentType mealy = 21;
+  // The Percentage of grain that makes it through a thin mesh screen, typically 5/64 inch. Values less than 3% are desired.
+  PercentType thru = 22;
+  // Friability is the measure of a malts ability to crumble during the crush, and is used as an indicator for easy gelatinization of the grain and starches, as well as modification of the malt. Value of 85% of higher indicates a well modified malt and is suitable for single step mashes. Lower values may require a step mash.
+  PercentType friability = 23;
+  // The pH of the resultant wort for 1 lb of grain mashed in 1 gallon of distilled water. Used in many water chemistry / mash pH prediction software.
+  AcidityType di_ph = 24;
+  // The measure of wort viscosity, typically associated with the breakdown of beta-glucans. The higher the viscosity, the greater the need for a glucan rest and the less suitable for a fly sparge.
+  ViscosityType viscosity = 25;
+  // The amount of DMS precursors, namely S-methyl methionine (SMM) and dimethyl sulfoxide (DMSO) in the malt which convert to dimethyl sulfide (DMS).
+  ConcentrationType dms_p = 26;
+  // Free Amino Nitrogen (FAN) is a critical yeast nutrient. Typical values for base malt is 170. Fermentability - Used in Extracts to indicate a baseline typical attenuation for a typical medium attenuation yeast.
+  ConcentrationType fan = 27;
+  // Values of 180 or more may suggest a glucan rest and avoiding fly sparging.
+  ConcentrationType beta_glucan = 28;
+  string notes = 29;
 }
 
 enum FermentableBaseType{
