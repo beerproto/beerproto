@@ -56,6 +56,7 @@
     - [TimingType](#beerproto.TimingType)
     - [UnitType](#beerproto.UnitType)
     - [VarietyInformation](#beerproto.VarietyInformation)
+    - [ViscosityType](#beerproto.ViscosityType)
     - [VolumeType](#beerproto.VolumeType)
     - [WaterAdditionType](#beerproto.WaterAdditionType)
     - [WaterBase](#beerproto.WaterBase)
@@ -93,6 +94,7 @@
     - [UnitUnitType](#beerproto.UnitUnitType)
     - [UseType](#beerproto.UseType)
     - [VarietyInformation.VarietyInformationType](#beerproto.VarietyInformation.VarietyInformationType)
+    - [ViscosityUnitType](#beerproto.ViscosityUnitType)
     - [VolumeType.VolumeUnitType](#beerproto.VolumeType.VolumeUnitType)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -504,6 +506,17 @@ FermentableType collects the attributes of a fermentable ingredient to store as 
 | origin | [string](#string) |  |  |
 | inventory | [FermentableInventoryType](#beerproto.FermentableInventoryType) |  |  |
 | kolbach_index | [double](#double) |  | The Kolbach Index, also known as soluble to total ratio of nitrogen or protein, is used to indcate the degree of malt modification. A value above 35% is desired for simple single infusion mashing, undermodified malt may require multiple step mashes or decoction. |
+| glassy | [PercentType](#beerproto.PercentType) |  | Used to indicate the &#39;crystallized&#39; percentage of starches for crystal malts. |
+| plump | [PercentType](#beerproto.PercentType) |  | The percentage of grain that masses through sieves with gaps of 7/64 and 6/64, desired values of 80% or higher which indicate plump kernels. |
+| half | [PercentType](#beerproto.PercentType) |  |  |
+| mealy | [PercentType](#beerproto.PercentType) |  | The opposite of glassy, a mealy kernel is one that is not glassy. Base malt should be at least 90%, single step mashes generally require 95% or higher. |
+| thru | [PercentType](#beerproto.PercentType) |  | The Percentage of grain that makes it through a thin mesh screen, typically 5/64 inch. Values less than 3% are desired. |
+| friability | [PercentType](#beerproto.PercentType) |  | Friability is the measure of a malts ability to crumble during the crush, and is used as an indicator for easy gelatinization of the grain and starches, as well as modification of the malt. Value of 85% of higher indicates a well modified malt and is suitable for single step mashes. Lower values may require a step mash. |
+| di_ph | [AcidityType](#beerproto.AcidityType) |  | The pH of the resultant wort for 1 lb of grain mashed in 1 gallon of distilled water. Used in many water chemistry / mash pH prediction software. |
+| viscosity | [ViscosityType](#beerproto.ViscosityType) |  | The measure of wort viscosity, typically associated with the breakdown of beta-glucans. The higher the viscosity, the greater the need for a glucan rest and the less suitable for a fly sparge. |
+| dms_p | [ConcentrationType](#beerproto.ConcentrationType) |  | The amount of DMS precursors, namely S-methyl methionine (SMM) and dimethyl sulfoxide (DMSO) in the malt which convert to dimethyl sulfide (DMS). |
+| fan | [ConcentrationType](#beerproto.ConcentrationType) |  | Free Amino Nitrogen (FAN) is a critical yeast nutrient. Typical values for base malt is 170. Fermentability - Used in Extracts to indicate a baseline typical attenuation for a typical medium attenuation yeast. |
+| beta_glucan | [ConcentrationType](#beerproto.ConcentrationType) |  | Values of 180 or more may suggest a glucan rest and avoiding fly sparging. |
 | notes | [string](#string) |  |  |
 
 
@@ -1182,6 +1195,22 @@ VarietyInformation collects the attributes of a hop variety to store as record i
 
 
 
+<a name="beerproto.ViscosityType"></a>
+
+### ViscosityType
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [double](#double) |  |  |
+| unit | [ViscosityUnitType](#beerproto.ViscosityUnitType) |  |  |
+
+
+
+
+
+
 <a name="beerproto.VolumeType"></a>
 
 ### VolumeType
@@ -1303,7 +1332,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL_AcidityUnitType | 0 |  |
+| NULL_ACIDITYUNITTYPE | 0 |  |
 | PH | 1 |  |
 
 
@@ -1790,6 +1819,19 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | BITTERING_FLAVOR | 5 | bittering/flavor |
 | AROMA_FLAVOR | 6 | aroma/flavor |
 | AROMA_BITTERING_FLAVOR | 7 | aroma/bittering/flavor |
+
+
+
+<a name="beerproto.ViscosityUnitType"></a>
+
+### ViscosityUnitType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NULL_VISCOSITYUNITTYPE | 0 |  |
+| CP | 1 | cP |
+| MPAS | 2 | mPa-s |
 
 
 
