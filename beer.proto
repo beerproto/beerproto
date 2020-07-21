@@ -915,7 +915,7 @@ enum DiastaticPowerUnitType{
   NULL_DIASTATICPOWERUNITTYPE = 0;
   // Lintner
   LINTNER = 1;
-  // WK
+  // Windisch–Kolbach
   WK = 2;
 }
 
