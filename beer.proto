@@ -914,7 +914,7 @@ message DiastaticPowerType{
 enum DiastaticPowerUnitType{
   NULL_DIASTATICPOWERUNITTYPE = 0;
   // Lintner
-  lintner = 1;
+  LINTNER = 1;
   // WK
   WK = 2;
 }
