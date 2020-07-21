@@ -1451,7 +1451,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | ---- | ------ | ----------- |
 | NULL_DIASTATICPOWERUNITTYPE | 0 |  |
 | LINTNER | 1 | Lintner |
-| WK | 2 | WK |
+| WK | 2 | Windisch–Kolbach |
 
 
 
