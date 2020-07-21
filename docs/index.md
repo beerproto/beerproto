@@ -1480,7 +1480,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL_FermentableBaseType | 0 |  |
+| NULL_FERMENTABLEBASETYPE | 0 |  |
 | DRY_EXTRACT | 1 | dry extract |
 | EXTRACT | 2 | extract |
 | GRAIN | 3 | grain |
@@ -1488,7 +1488,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | FRUIT | 5 | fruit |
 | JUICE | 6 | juice |
 | HONEY | 7 | honey |
-| OTHER_FermentableBaseType | 8 | other |
+| OTHER_FERMENTABLEBASETYPE | 8 | other |
 
 
 
@@ -1499,7 +1499,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL_GrainGroup | 0 |  |
+| NULL_GRAINGROUP | 0 |  |
 | BASE | 1 | base |
 | CARAMEL | 2 | caramel |
 | FLAKED | 3 | flaked |
@@ -1517,7 +1517,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL_GravityUnitType | 0 |  |
+| NULL_GRAVITYUNITTYPE | 0 |  |
 | SG | 1 | sg |
 | PLATO | 2 | plato |
 | BRIX | 3 | brix |
@@ -1531,8 +1531,8 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL_HopVarietyBaseForm | 0 |  |
-| EXTRACT_HopVarietyBaseForm | 1 | extract |
+| NULL_HOPVARIETYBASEFORM | 0 |  |
+| EXTRACT_HOPVARIETYBASEFORM | 1 | extract |
 | LEAF | 2 | leaf |
 | LEAFWET | 3 | leaf (wet) |
 | PELLET | 4 | pellet |
