@@ -1128,7 +1128,7 @@ message VarietyInformation{
 
 
   enum VarietyInformationType{
-    NULL_VarietyInformationType = 0;
+    NULL_VARIETYINFORMATIONTYPE = 0;
     // aroma
     AROMA = 1;
     // bittering
