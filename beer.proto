@@ -703,7 +703,7 @@ message GravityType{
 }
 
 enum GravityUnitType{
-    NULL_GravityUnitType = 0;
+    NULL_GRAVITYUNITTYPE = 0;
     // sg
     SG = 1;
     // plato
@@ -861,7 +861,7 @@ message FermentableType{
 }
 
 enum FermentableBaseType{
-  NULL_FermentableBaseType = 0;
+  NULL_FERMENTABLEBASETYPE = 0;
   // dry extract
   DRY_EXTRACT = 1;
   // extract
@@ -877,11 +877,11 @@ enum FermentableBaseType{
   // honey
   HONEY = 7;
   // other
-  OTHER_FermentableBaseType = 8;
+  OTHER_FERMENTABLEBASETYPE = 8;
 }
 
 enum GrainGroup{
-  NULL_GrainGroup = 0;
+  NULL_GRAINGROUP = 0;
   // base
   BASE = 1;
   // caramel
@@ -1147,9 +1147,9 @@ message VarietyInformation{
 }
 
 enum HopVarietyBaseForm{
-  NULL_HopVarietyBaseForm = 0;
+  NULL_HOPVARIETYBASEFORM = 0;
   // extract
-  EXTRACT_HopVarietyBaseForm = 1;
+  EXTRACT_HOPVARIETYBASEFORM = 1;
   // leaf
   LEAF = 2;
   // leaf (wet)
