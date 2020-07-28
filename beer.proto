@@ -410,7 +410,7 @@ message CultureAdditionType{
 }
 
 enum CultureBaseForm{
-  NULL_CultureBaseForm = 0;
+  NULL_CULTUREBASEFORM = 0;
   // liquid
   LIQUID = 1;
   // dry
@@ -424,7 +424,7 @@ enum CultureBaseForm{
 }
 
 enum CultureBaseType{
-  NULL_CultureBaseType = 0;
+  NULL_CULTUREBASETYPE = 0;
   // ale
   ALE = 1;
   // bacteria
@@ -979,7 +979,7 @@ message TemperatureType{
 }
 
 enum TemperatureUnitType {
-    NULL_TemperatureUnitType = 0;
+    NULL_TEMPERATUREUNITTYPE = 0;
     C = 1;
     F = 2;
   }
@@ -1002,8 +1002,9 @@ message CultureInventoryType{
 
 // Provides necessary information for brewing equipment set
 message EquipmentType{
-  string name = 1;
-  repeated EquipmentItemType equipment_items = 2;
+  string id = 1;
+  string name = 2;
+  repeated EquipmentItemType equipment_items = 3;
 }
 
 // EquipmentType provides necessary information for individual brewing equipment
