@@ -16,7 +16,7 @@ jobs:
         uses: docker://pseudomuto/protoc-gen-doc
         with:
           entrypoint: protoc
-          args: -I /github/workspace/ --doc_opt=/github/workspace/templates/markdown.tmpl,markdown,index.md --doc_out=/github/workspace/docs beer.proto
+          args: -I /github/workspace/ --doc_opt=markdown,index.md --doc_out=/github/workspace/templates/markdown.tmpl:/github/workspace/docs beer.proto
       - name: Git Commit on Workflow
         uses: matheusalbino/git-commit@v1.0.1
         with:
