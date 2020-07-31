@@ -1,3 +1,3 @@
 # BeerProto
 
-[Specification](https://beerproto.github.io/beerproto/)
+This repository contains the beer.proto file.
