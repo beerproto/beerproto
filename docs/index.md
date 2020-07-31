@@ -431,6 +431,7 @@ Provides necessary information for brewing equipment set
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | equipment_items | [EquipmentItemType](#beerproto.EquipmentItemType) | repeated |  |
 
@@ -1409,7 +1410,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL_CultureBaseForm | 0 |  |
+| NULL_CULTUREBASEFORM | 0 |  |
 | LIQUID | 1 | liquid |
 | DRY | 2 | dry |
 | SLANT | 3 | slant |
@@ -1425,7 +1426,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL_CultureBaseType | 0 |  |
+| NULL_CULTUREBASETYPE | 0 |  |
 | ALE | 1 | ale |
 | BACTERIA | 2 | bacteria |
 | BRETT | 3 | brett |
@@ -1751,7 +1752,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NULL_TemperatureUnitType | 0 |  |
+| NULL_TEMPERATUREUNITTYPE | 0 |  |
 | C | 1 |  |
 | F | 2 |  |
 
