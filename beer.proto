@@ -853,11 +853,13 @@ message FermentableType{
   ViscosityType viscosity = 25;
   // The amount of DMS precursors, namely S-methyl methionine (SMM) and dimethyl sulfoxide (DMSO) in the malt which convert to dimethyl sulfide (DMS).
   ConcentrationType dms_p = 26;
-  // Free Amino Nitrogen (FAN) is a critical yeast nutrient. Typical values for base malt is 170. Fermentability - Used in Extracts to indicate a baseline typical attenuation for a typical medium attenuation yeast.
+  // Free Amino Nitrogen (FAN) is a critical yeast nutrient. Typical values for base malt is 170.
   ConcentrationType fan = 27;
+  // Fermentability - Used in Extracts to indicate a baseline typical attenuation for a typical medium attenuation yeast.
+  ConcentrationType fermentability = 28;
   // Values of 180 or more may suggest a glucan rest and avoiding fly sparging.
-  ConcentrationType beta_glucan = 28;
-  string notes = 29;
+  ConcentrationType beta_glucan = 29;
+  string notes = 30;
 }
 
 enum FermentableBaseType{
