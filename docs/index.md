@@ -1,4 +1,5 @@
-# Protocol Documentation
+# BeerProto Specification
+
 <a name="top"></a>
 
 ## Table of Contents
@@ -337,7 +338,7 @@ CultureInformation collects the attributes of a microbial culture
 | flocculation | [QualitativeRangeType](#beerproto.QualitativeRangeType) |  | Floculation refers to the ability of yeast to aggregate to form large flocs which drop out of suspension. |
 | attenuation_range | [PercentRangeType](#beerproto.PercentRangeType) |  |  |
 | max_reuse | [int32](#int32) |  | Maximum number of times to reuse a culture before a new lab source is recommended. |
-| pof | [bool](#bool) |  | A POF&#43; culture is capable of producing phenols, which is a common distinctive property of saison, and brett yeasts. |
+| pof | [bool](#bool) |  | A POF+ culture is capable of producing phenols, which is a common distinctive property of saison, and brett yeasts. |
 | zymocide | [Zymocide](#beerproto.Zymocide) |  |  |
 
 
@@ -507,7 +508,7 @@ FermentableType collects the attributes of a fermentable ingredient to store as 
 | origin | [string](#string) |  |  |
 | inventory | [FermentableInventoryType](#beerproto.FermentableInventoryType) |  |  |
 | kolbach_index | [double](#double) |  | The Kolbach Index, also known as soluble to total ratio of nitrogen or protein, is used to indcate the degree of malt modification. A value above 35% is desired for simple single infusion mashing, undermodified malt may require multiple step mashes or decoction. |
-| glassy | [PercentType](#beerproto.PercentType) |  | Used to indicate the &#39;crystallized&#39; percentage of starches for crystal malts. |
+| glassy | [PercentType](#beerproto.PercentType) |  | Used to indicate the 'crystallized' percentage of starches for crystal malts. |
 | plump | [PercentType](#beerproto.PercentType) |  | The percentage of grain that masses through sieves with gaps of 7/64 and 6/64, desired values of 80% or higher which indicate plump kernels. |
 | half | [PercentType](#beerproto.PercentType) |  |  |
 | mealy | [PercentType](#beerproto.PercentType) |  | The opposite of glassy, a mealy kernel is one that is not glassy. Base malt should be at least 90%, single step mashes generally require 95% or higher. |
@@ -1323,7 +1324,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 
 
 
- 
+ <!-- end messages -->
 
 
 <a name="beerproto.AcidityUnitType"></a>
@@ -1861,11 +1862,11 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | IBBL | 15 | ibbl |
 
 
- 
+ <!-- end enums -->
 
- 
+ <!-- end HasExtensions -->
 
- 
+ <!-- end services -->
 
 
 
@@ -1888,4 +1889,3 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | <a name="bool" /> bool |  | bool | boolean | boolean | bool | bool | boolean | TrueClass/FalseClass |
 | <a name="string" /> string | A string must always contain UTF-8 encoded or 7-bit ASCII text. | string | String | str/unicode | string | string | string | String (UTF-8) |
 | <a name="bytes" /> bytes | May contain any arbitrary sequence of bytes. | string | ByteString | str | []byte | ByteString | string | String (ASCII-8BIT) |
-
