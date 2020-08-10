@@ -713,8 +713,8 @@ MashStepType - a per step representation occurring during the mash
 | end_temperature | [TemperatureType](#beerproto.TemperatureType) |  |  |
 | description | [string](#string) |  |  |
 | infuse_temperature | [TemperatureType](#beerproto.TemperatureType) |  | Temperature of the water for an infusion step |
-| start_pH | [AcidityType](#beerproto.AcidityType) |  |  |
-| end_pH | [AcidityType](#beerproto.AcidityType) |  |  |
+| start_ph | [AcidityType](#beerproto.AcidityType) |  |  |
+| end_ph | [AcidityType](#beerproto.AcidityType) |  |  |
 | name | [string](#string) |  |  |
 | type | [MashStepType.MashStepTypeType](#beerproto.MashStepType.MashStepTypeType) |  |  |
 | amount | [VolumeType](#beerproto.VolumeType) |  |  |
@@ -975,7 +975,7 @@ RecipeType composes the information stored in a recipe
 | style | [RecipeStyleType](#beerproto.RecipeStyleType) |  |  |
 | ibu_estimate | [IBUEstimateType](#beerproto.IBUEstimateType) |  | Used to differentiate which IBU formula is being used in a recipe. If formula is modified in any way, eg to support whirlpool/flameout additions etc etc, please use `Other` for transparency |
 | color_estimate | [ColorType](#beerproto.ColorType) |  | The color of the finished beer, using SRM or EBC |
-| beer_pH | [AcidityType](#beerproto.AcidityType) |  | The final beer pH at the end of fermentation |
+| beer_ph | [AcidityType](#beerproto.AcidityType) |  | The final beer pH at the end of fermentation |
 | name | [string](#string) |  |  |
 | type | [RecipeType.RecipeTypeType](#beerproto.RecipeType.RecipeTypeType) |  |  |
 | coauthor | [string](#string) |  |  |
