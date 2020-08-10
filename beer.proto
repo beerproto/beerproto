@@ -67,8 +67,8 @@ message MashStepType{
   string description = 5;
   // Temperature of the water for an infusion step
   TemperatureType infuse_temperature = 6;
-  AcidityType start_pH = 7;
-  AcidityType end_pH = 8;
+  AcidityType start_ph = 7;
+  AcidityType end_ph = 8;
   string name = 9;
   MashStepTypeType type = 10;
   VolumeType amount = 11;
@@ -204,7 +204,7 @@ message RecipeType {
   // The color of the finished beer, using SRM or EBC
   ColorType color_estimate = 5;
   // The final beer pH at the end of fermentation
-  AcidityType beer_pH = 6;
+  AcidityType beer_ph = 6;
   string name = 7;
   RecipeTypeType type = 8;
   string coauthor = 9;
