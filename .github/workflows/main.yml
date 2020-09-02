@@ -13,12 +13,9 @@ jobs:
       - name: HTTP Post
         uses: fjogeleit/http-request-action@v1.4.1
         with:
-          # Request URL
           url: https://api.github.com/repos/beerproto/beerproto.go/actions/workflows/main.yml/dispatche
-          # Request Method
           method: POST
-          # Content Type
-          contentType: application/json
+          contentType: text/plain
           # Request Body as JSON String
           data: '{"ref": "master"}'
           bearerToken: 'e196456c4e5dce48a5431c8a377c1c0c5b1a7b45'  
