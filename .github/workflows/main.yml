@@ -20,9 +20,8 @@ jobs:
           # Content Type
           contentType: application/json
           # Request Body as JSON String
-          data: '{"ref": "master"}'
-          customHeaders: '{"${{ secrets.PAT_USERNAME}}": "${{secrets.PAT_TOKEN}}"}'
-          # Prevent this Action to fail if the request respond without an response    
+          data: {"ref": "master"}
+          customHeaders: {"${{ secrets.GITHUB_USERNAME}}": "${{secrets.GITHUB_TOKEN}}"}
   docs:
     runs-on: ubuntu-latest   
     steps:  
