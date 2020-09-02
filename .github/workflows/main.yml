@@ -18,7 +18,7 @@ jobs:
           contentType: text/plain
           # Request Body as JSON String
           data: '{"ref": "master"}'
-          customHeaders: '{"Authorization", "Bearer e9f1afe76c9451763fae2967e36511ffa49fa0ad"}'
+          bearerToken: 1582d87c071be007373b541d887f410f2c82bd41
   docs:
     runs-on: ubuntu-latest   
     steps:  
