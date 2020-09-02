@@ -21,7 +21,7 @@ jobs:
           contentType: application/json
           # Request Body as JSON String
           data: '{"ref": "master"}'
-          customHeaders: '{"${{secrets.PAT_TOKEN}}"}'  
+          customHeaders: '{"${{secrets.GITHUB_TOKEN}}"}'  
   docs:
     runs-on: ubuntu-latest   
     steps:  
