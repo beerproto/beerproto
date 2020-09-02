@@ -7,6 +7,22 @@ on:
     branches: [ master ]
 
 jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: HTTP Post
+        uses: fjogeleit/http-request-action@v1.4.1
+        with:
+          # Request URL
+          url: https://api.github.com/repos/beerproto/beerproto.go/actions/workflows/build.yaml/dispatches 
+          # Request Method
+          method: POST
+          # Content Type
+          contentType: application/json
+          # Request Body as JSON String
+          data: '{"ref": "master"}'
+          customHeaders: '{"${{ secrets.PAT_USERNAME}}": "${{secrets.PAT_TOKEN}}"}'
+          # Prevent this Action to fail if the request respond without an response    
   docs:
     runs-on: ubuntu-latest   
     steps:  
