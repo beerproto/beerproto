@@ -18,7 +18,7 @@ jobs:
           contentType: text/plain
           # Request Body as JSON String
           data: '{"ref": "master"}'
-          bearerToken: 'e196456c4e5dce48a5431c8a377c1c0c5b1a7b45'  
+          bearerToken: 'Bearer e196456c4e5dce48a5431c8a377c1c0c5b1a7b45'  
   docs:
     runs-on: ubuntu-latest   
     steps:  
