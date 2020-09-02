@@ -18,7 +18,7 @@ jobs:
           contentType: text/plain
           # Request Body as JSON String
           data: '{"ref": "master"}'
-          bearerToken: 1582d87c071be007373b541d887f410f2c82bd41
+          bearerToken: ${{ secrets.DISPATCHES }}
   docs:
     runs-on: ubuntu-latest   
     steps:  
