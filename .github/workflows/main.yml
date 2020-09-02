@@ -19,6 +19,10 @@ jobs:
           # Request Body as JSON String
           data: '{"ref": "master"}'
           customHeaders: '{"Authorization" : "Bearer ${{ secrets.DISPATCHES }}"}'
+      - name: Github Action for curl
+        uses: wei/curl@v1.1.1
+        with:
+          args: POST 'https://api.github.com/repos/beerproto/beerproto.go/actions/workflows/main.yml/dispatches' --header 'Authorization: Bearer ${{ secrets.DISPATCHES }}' --header 'Content-Type: text/plain' --data-raw '{"ref":"master"}'  
   docs:
     runs-on: ubuntu-latest   
     steps:  
