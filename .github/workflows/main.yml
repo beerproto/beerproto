@@ -20,8 +20,8 @@ jobs:
           # Content Type
           contentType: application/json
           # Request Body as JSON String
-          data: {"ref": "master"}
-          customHeaders: {"${{ secrets.GITHUB_USERNAME}}": "${{secrets.GITHUB_TOKEN}}"}
+          data: '{"ref": "master"}'
+          customHeaders: '{"${{ secrets.GITHUB_USERNAME}}": "${{secrets.GITHUB_TOKEN}}"}'
   docs:
     runs-on: ubuntu-latest   
     steps:  
