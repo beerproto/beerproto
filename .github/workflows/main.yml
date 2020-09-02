@@ -26,6 +26,7 @@ jobs:
           method: post
           data: '{"ref": "master"}'
           headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.DISPATCHES }}"}'
+          verbose: true
 
   docs:
     runs-on: ubuntu-latest   
