@@ -10,15 +10,6 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
-#       - name: HTTP Post
-#         uses: fjogeleit/http-request-action@v1.4.1
-#         with:
-#           url: https://api.github.com/repos/beerproto/beerproto.go/actions/workflows/main.yml/dispatches
-#           method: POST
-#           contentType: text/plain
-#           # Request Body as JSON String
-#           data: '{"ref": "master"}'
-#           customHeaders: '{"Authorization" : "Bearer ${{ secrets.DISPATCHES }}"}'
       - name: test
         uses: CamiloGarciaLaRotta/watermelon-http-client@v1
         with:
