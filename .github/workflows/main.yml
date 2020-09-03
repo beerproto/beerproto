@@ -10,15 +10,13 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
-      - name: test
+      - name: beerproto_go
         uses: CamiloGarciaLaRotta/watermelon-http-client@v1
         with:
           url: 'https://api.github.com/repos/beerproto/beerproto_go/actions/workflows/main.yml/dispatches'
           method: post
           data: '{"ref": "master"}'
           headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.DISPATCHES }}"}'
-          verbose: true
-
   docs:
     runs-on: ubuntu-latest   
     steps:  
