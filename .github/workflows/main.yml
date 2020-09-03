@@ -13,7 +13,7 @@ jobs:
 #       - name: HTTP Post
 #         uses: fjogeleit/http-request-action@v1.4.1
 #         with:
-#           url: https://api.github.com/repos/beerproto/beerproto.go/actions/workflows/main.yml/dispatche
+#           url: https://api.github.com/repos/beerproto/beerproto.go/actions/workflows/main.yml/dispatches
 #           method: POST
 #           contentType: text/plain
 #           # Request Body as JSON String
@@ -22,7 +22,7 @@ jobs:
       - name: test
         uses: CamiloGarciaLaRotta/watermelon-http-client@v1
         with:
-          url: 'https://api.github.com/repos/beerproto/beerproto.go/actions/workflows/main.yml/dispatche'
+          url: 'https://api.github.com/repos/beerproto/beerproto.go/actions/workflows/main.yml/dispatches'
           method: post
           data: '{"ref": "master"}'
           headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.DISPATCHES }}"}'
