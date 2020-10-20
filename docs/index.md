@@ -1625,6 +1625,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | TANK | 4 | tank |
 | FIRKIN | 5 | firkin |
 | OTHER | 6 | other |
+| CAN | 7 | can |
 
 
 
