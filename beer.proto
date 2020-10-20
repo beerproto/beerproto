@@ -1106,6 +1106,8 @@ message PackagingVesselType {
     FIRKIN = 5;
     // other
     OTHER = 6;
+    // can
+    CAN = 7;
   }  
 }
 
