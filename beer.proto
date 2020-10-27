@@ -586,8 +586,6 @@ message MiscellaneousType {
   string product_id = 6;
   MiscellaneousBaseType type = 7;
   MiscellaneousInventoryType inventory = 8;
-
-
 }
 
 enum MiscellaneousBaseType{
@@ -857,7 +855,7 @@ message FermentableType{
   // Free Amino Nitrogen (FAN) is a critical yeast nutrient. Typical values for base malt is 170.
   ConcentrationType fan = 27;
   // Fermentability - Used in Extracts to indicate a baseline typical attenuation for a typical medium attenuation yeast.
-  ConcentrationType fermentability = 28;
+  PercentType fermentability = 28;
   // Values of 180 or more may suggest a glucan rest and avoiding fly sparging.
   ConcentrationType beta_glucan = 29;
   string notes = 30;
