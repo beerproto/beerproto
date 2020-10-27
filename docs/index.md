@@ -518,7 +518,7 @@ FermentableType collects the attributes of a fermentable ingredient to store as 
 | viscosity | [ViscosityType](#beerproto.ViscosityType) |  | The measure of wort viscosity, typically associated with the breakdown of beta-glucans. The higher the viscosity, the greater the need for a glucan rest and the less suitable for a fly sparge. |
 | dms_p | [ConcentrationType](#beerproto.ConcentrationType) |  | The amount of DMS precursors, namely S-methyl methionine (SMM) and dimethyl sulfoxide (DMSO) in the malt which convert to dimethyl sulfide (DMS). |
 | fan | [ConcentrationType](#beerproto.ConcentrationType) |  | Free Amino Nitrogen (FAN) is a critical yeast nutrient. Typical values for base malt is 170. |
-| fermentability | [ConcentrationType](#beerproto.ConcentrationType) |  | Fermentability - Used in Extracts to indicate a baseline typical attenuation for a typical medium attenuation yeast. |
+| fermentability | [PercentType](#beerproto.PercentType) |  | Fermentability - Used in Extracts to indicate a baseline typical attenuation for a typical medium attenuation yeast. |
 | beta_glucan | [ConcentrationType](#beerproto.ConcentrationType) |  | Values of 180 or more may suggest a glucan rest and avoiding fly sparging. |
 | notes | [string](#string) |  |  |
 
