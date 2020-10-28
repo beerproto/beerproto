@@ -671,7 +671,7 @@ message BitternessType{
   enum BitternessUnitType{
     NULL = 0;
     // IBUs
-    IBUs = 1;
+    IBUS = 1;
   }
 }
 message PercentRangeType{
