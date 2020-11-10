@@ -657,8 +657,6 @@ message StyleType{
   }
 }
 
-
-
 message BitternessRangeType{
   BitternessType minimum = 1;
   BitternessType maximum = 2;
@@ -674,6 +672,7 @@ message BitternessType{
     IBUS = 1;
   }
 }
+
 message PercentRangeType{
   PercentType minimum = 1;
   PercentType maximum = 2;
@@ -1218,4 +1217,9 @@ message WaterBase{
   ConcentrationType nitrate = 14;
   // Sodium is naturally present in many water sources. Domestic water softeners can increase the sodium concentration.
   ConcentrationType sodium = 15;
+}
+
+message DiastaticPowerRangeType{
+  DiastaticPowerType minimum = 1;
+  DiastaticPowerType maximum = 2;
 }
