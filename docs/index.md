@@ -18,6 +18,7 @@
     - [CultureAdditionType](#beerproto.CultureAdditionType)
     - [CultureInformation](#beerproto.CultureInformation)
     - [CultureInventoryType](#beerproto.CultureInventoryType)
+    - [DiastaticPowerRangeType](#beerproto.DiastaticPowerRangeType)
     - [DiastaticPowerType](#beerproto.DiastaticPowerType)
     - [EfficiencyType](#beerproto.EfficiencyType)
     - [EquipmentItemType](#beerproto.EquipmentItemType)
@@ -358,6 +359,22 @@ CultureInformation collects the attributes of a microbial culture
 | dry | [MassType](#beerproto.MassType) |  |  |
 | slant | [VolumeType](#beerproto.VolumeType) |  |  |
 | culture | [VolumeType](#beerproto.VolumeType) |  |  |
+
+
+
+
+
+
+<a name="beerproto.DiastaticPowerRangeType"></a>
+
+### DiastaticPowerRangeType
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| minimum | [DiastaticPowerType](#beerproto.DiastaticPowerType) |  |  |
+| maximum | [DiastaticPowerType](#beerproto.DiastaticPowerType) |  |  |
 
 
 
