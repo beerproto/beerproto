@@ -49,6 +49,7 @@
     - [RecipeStyleType](#beerproto.RecipeStyleType)
     - [RecipeType](#beerproto.RecipeType)
     - [SpecificHeatType](#beerproto.SpecificHeatType)
+    - [SpecificVolumeRangeType](#beerproto.SpecificVolumeRangeType)
     - [SpecificVolumeType](#beerproto.SpecificVolumeType)
     - [StyleType](#beerproto.StyleType)
     - [TasteType](#beerproto.TasteType)
@@ -1028,6 +1029,22 @@ RecipeType composes the information stored in a recipe
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
 | unit | [SpecificHeatUnitType](#beerproto.SpecificHeatUnitType) |  |  |
+
+
+
+
+
+
+<a name="beerproto.SpecificVolumeRangeType"></a>
+
+### SpecificVolumeRangeType
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| minimum | [SpecificVolumeType](#beerproto.SpecificVolumeType) |  |  |
+| maximum | [SpecificVolumeType](#beerproto.SpecificVolumeType) |  |  |
 
 
 
