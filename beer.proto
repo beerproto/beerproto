@@ -1223,3 +1223,8 @@ message DiastaticPowerRangeType{
   DiastaticPowerType minimum = 1;
   DiastaticPowerType maximum = 2;
 }
+
+message SpecificVolumeRangeType{
+  SpecificVolumeType minimum = 1;
+  SpecificVolumeType maximum = 2;
+}
