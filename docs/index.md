@@ -5,6 +5,7 @@
 ## Table of Contents
 
 - [beer.proto](#beer.proto)
+    - [AcidityRangeType](#beerproto.AcidityRangeType)
     - [AcidityType](#beerproto.AcidityType)
     - [BitternessRangeType](#beerproto.BitternessRangeType)
     - [BitternessType](#beerproto.BitternessType)
@@ -113,6 +114,22 @@ BeerProto
 Another beer format, written in protocol buffer.
 
 Copyright (c) 2020 Ross Merrigan
+
+
+<a name="beerproto.AcidityRangeType"></a>
+
+### AcidityRangeType
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| minimum | [AcidityType](#beerproto.AcidityType) |  |  |
+| maximum | [AcidityType](#beerproto.AcidityType) |  |  |
+
+
+
+
 
 
 <a name="beerproto.AcidityType"></a>
