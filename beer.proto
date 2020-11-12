@@ -1228,3 +1228,8 @@ message SpecificVolumeRangeType{
   SpecificVolumeType minimum = 1;
   SpecificVolumeType maximum = 2;
 }
+
+message AcidityRangeType{
+  AcidityType minimum = 1;
+  AcidityType maximum = 2;
+}
