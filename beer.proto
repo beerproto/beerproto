@@ -1005,6 +1005,7 @@ message EquipmentType{
   string id = 1;
   string name = 2;
   repeated EquipmentItemType equipment_items = 3;
+  PercentType brewhouse_efficiency = 4;
 }
 
 // EquipmentType provides necessary information for individual brewing equipment
@@ -1027,7 +1028,7 @@ message EquipmentItemType{
   MassType weight = 11;
   VolumeType loss = 12;
   PercentType efficiency = 13;
-  
+
   enum EquipmentBaseForm{
     NULL = 0;
     // HLT
