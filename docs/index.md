@@ -453,6 +453,7 @@ EquipmentType provides necessary information for individual brewing equipment
 | maximum_volume | [VolumeType](#beerproto.VolumeType) |  |  |
 | weight | [MassType](#beerproto.MassType) |  | The weight of the piece of equipment, especially important for when the mashtun is not preheated. |
 | loss | [VolumeType](#beerproto.VolumeType) |  |  |
+| efficiency | [PercentType](#beerproto.PercentType) |  |  |
 
 
 
