@@ -759,7 +759,7 @@ message FermentationProcedureType{
 // FermentationStepType - a per step representation of a fermentation action
 message FermentationStepType{
   string id = 1;
-  string Name = 2;
+  string name = 2;
   TemperatureType end_temperature = 3;
   TimeType step_time = 4;
   // Free rise is used to indicate a fermentation step where the exothermic fermentation is allowed to raise the temperature without restriction This is either True or false.
