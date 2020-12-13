@@ -471,6 +471,7 @@ Provides necessary information for brewing equipment set
 | id | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | equipment_items | [EquipmentItemType](#beerproto.EquipmentItemType) | repeated |  |
+| brewhouse_efficiency | [PercentType](#beerproto.PercentType) |  |  |
 
 
 
