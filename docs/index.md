@@ -592,7 +592,7 @@ FermentationStepType - a per step representation of a fermentation action
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
-| Name | [string](#string) |  |  |
+| name | [string](#string) |  |  |
 | end_temperature | [TemperatureType](#beerproto.TemperatureType) |  |  |
 | step_time | [TimeType](#beerproto.TimeType) |  |  |
 | free_rise | [bool](#bool) |  | Free rise is used to indicate a fermentation step where the exothermic fermentation is allowed to raise the temperature without restriction This is either True or false. |
