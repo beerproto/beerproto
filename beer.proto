@@ -88,6 +88,12 @@ message MashStepType{
     SPARGE = 7;
   }
 }
+
+message TimeRangeType{
+  TimeType minimum = 1;
+  TimeType maximum = 2;
+}
+
 message TimeType{
   int64 value = 1;
   TimeUnitType unit = 2;
@@ -115,6 +121,11 @@ message AcidityType{
 enum AcidityUnitType{
     NULL_ACIDITYUNITTYPE = 0;
     PH = 1;
+}
+
+message ViscosityRangeType{
+  ViscosityType minimum = 1;
+  ViscosityType maximum = 2;
 }
 
 message ViscosityType{
@@ -501,6 +512,11 @@ message WaterAdditionType{
   ConcentrationType calcium = 14;
   ConcentrationType carbonate = 15;
   ConcentrationType sodium = 16;
+}
+
+message ConcentrationRangeType{
+  ConcentrationType minimum = 1;
+  ConcentrationType maximum = 2;
 }
 
 message ConcentrationType{
