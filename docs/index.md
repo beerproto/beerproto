@@ -15,6 +15,7 @@
     - [CarbonationType](#beerproto.CarbonationType)
     - [ColorRangeType](#beerproto.ColorRangeType)
     - [ColorType](#beerproto.ColorType)
+    - [ConcentrationRangeType](#beerproto.ConcentrationRangeType)
     - [ConcentrationType](#beerproto.ConcentrationType)
     - [CultureAdditionType](#beerproto.CultureAdditionType)
     - [CultureInformation](#beerproto.CultureInformation)
@@ -56,10 +57,12 @@
     - [TasteType](#beerproto.TasteType)
     - [TemperatureRangeType](#beerproto.TemperatureRangeType)
     - [TemperatureType](#beerproto.TemperatureType)
+    - [TimeRangeType](#beerproto.TimeRangeType)
     - [TimeType](#beerproto.TimeType)
     - [TimingType](#beerproto.TimingType)
     - [UnitType](#beerproto.UnitType)
     - [VarietyInformation](#beerproto.VarietyInformation)
+    - [ViscosityRangeType](#beerproto.ViscosityRangeType)
     - [ViscosityType](#beerproto.ViscosityType)
     - [VolumeType](#beerproto.VolumeType)
     - [WaterAdditionType](#beerproto.WaterAdditionType)
@@ -285,6 +288,22 @@ ColorType supports both grain color properties, such as Lovibond, and wort color
 | ----- | ---- | ----- | ----------- |
 | value | [double](#double) |  |  |
 | unit | [ColorUnitType](#beerproto.ColorUnitType) |  |  |
+
+
+
+
+
+
+<a name="beerproto.ConcentrationRangeType"></a>
+
+### ConcentrationRangeType
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| minimum | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
+| maximum | [ConcentrationType](#beerproto.ConcentrationType) |  |  |
 
 
 
@@ -1169,6 +1188,22 @@ StyleType provide information for Style categorization
 
 
 
+<a name="beerproto.TimeRangeType"></a>
+
+### TimeRangeType
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| minimum | [TimeType](#beerproto.TimeType) |  |  |
+| maximum | [TimeType](#beerproto.TimeType) |  |  |
+
+
+
+
+
+
 <a name="beerproto.TimeType"></a>
 
 ### TimeType
@@ -1245,6 +1280,22 @@ VarietyInformation collects the attributes of a hop variety to store as record i
 | form | [HopVarietyBaseForm](#beerproto.HopVarietyBaseForm) |  |  |
 | producer | [string](#string) |  |  |
 | notes | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="beerproto.ViscosityRangeType"></a>
+
+### ViscosityRangeType
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| minimum | [ViscosityType](#beerproto.ViscosityType) |  |  |
+| maximum | [ViscosityType](#beerproto.ViscosityType) |  |  |
 
 
 
