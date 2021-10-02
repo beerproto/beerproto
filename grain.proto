@@ -35,10 +35,10 @@ message GrainType{
   beerproto.GravityRangeType potential = 9;
   // Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable.
   beerproto.DiastaticPowerRangeType diastatic_power = 10;
-  beerproto.PercentType protein = 11;
-  beerproto.PercentType soluble_protein = 12;
-  beerproto.PercentType total_nitrogen = 13;
-  beerproto.PercentType soluble_nitrogen = 14;
+  beerproto.PercentRangeType protein = 11;
+  beerproto.PercentRangeType soluble_protein = 12;
+  beerproto.PercentRangeType total_nitrogen = 13;
+  beerproto.PercentRangeType soluble_nitrogen = 14;
   beerproto.PercentType maximum = 15;
   // Friability is the measure of a malts ability to crumble during the crush, and is used as an indicator for easy gelatinization of the grain and starches, as well as modification of the malt. Value of 85% of higher indicates a well modified malt and is suitable for single step mashes. Lower values may require a step mash.
   beerproto.PercentRangeType friability = 16;
