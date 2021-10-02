@@ -1506,6 +1506,7 @@ Zymocide, also known as killer yeast properties, is common among wine yeast. The
 | PPM | 1 | ppm |
 | PPB | 2 | ppb |
 | MGL | 3 | mg/l |
+| MG100L | 4 | mg/100g |
 
 
 
