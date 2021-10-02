@@ -70,6 +70,6 @@ message GrainType{
     // ION
     ION = 3;
   }
-  StandardType standard = 27;
-  string notes = 28;
+  StandardType standard = 28;
+  string notes = 29;
 }
