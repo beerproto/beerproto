@@ -532,6 +532,8 @@ enum ConcentrationUnitType{
   PPB = 2;
   // mg/l
   MGL = 3;
+  // mg/100g
+  MG100L = 4;
 }
 
 // FermentableAdditionType collects the attributes of each fermentable ingredient for use in a recipe fermentable bill

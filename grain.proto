@@ -46,7 +46,7 @@ message GrainType{
   // Values of 180 or more may suggest a glucan rest and avoiding fly sparging.
   beerproto.ConcentrationRangeType beta_glucan = 18;
   // Free Amino Nitrogen (FAN) is a critical yeast nutrient. Typical values for base malt is 170.
-  beerproto.PercentRangeType fan = 19;
+  beerproto.ConcentrationRangeType fan = 19;
   // Where diastatic power gives the total amount of all enzymes, alpha amylase, also known as dextrinizing units, refers to only the total amount of alpa amylase in the malted grain. A value of 25-50 is desirable for base malt.
   beerproto.TimeType alpha_amylase = 20;
   beerproto.TimeRangeType saccharification = 21;
