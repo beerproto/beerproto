@@ -18,6 +18,10 @@ option java_multiple_files = true;
 option objc_class_prefix = "BPF";
 option go_package = "github.com/beerproto/beerproto_go/fermentables/";
 
+message GrainsType{
+  repeated GrainType grains = 1;
+}
+
 message GrainType{
   string id = 1;
   string name = 2;
