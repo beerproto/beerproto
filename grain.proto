@@ -57,7 +57,7 @@ message GrainType{
   // The measure of wort viscosity, typically associated with the breakdown of beta-glucans. The higher the viscosity, the greater the need for a glucan rest and the less suitable for a fly sparge.
   beerproto.ViscosityRangeType viscosity = 22;
    // The amount of DMS precursors, namely S-methyl methionine (SMM) and dimethyl sulfoxide (DMSO) in the malt which convert to dimethyl sulfide (DMS).
-  beerproto.ConcentrationType dms_p = 23;
+  beerproto.ConcentrationRangeType dms_p = 23;
   // The Kolbach Index, also known as soluble to total ratio of nitrogen or protein, is used to indcate the degree of malt modification. A value above 35% is desired for simple single infusion mashing, undermodified malt may require multiple step mashes or decoction.
   beerproto.PercentRangeType kolbach_index = 24;
   // The pH of the resultant wort for 1 lb of grain mashed in 1 gallon of distilled water. Used in many water chemistry / mash pH prediction software.
