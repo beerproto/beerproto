@@ -7,9 +7,9 @@
  */
 syntax = "proto3";
 
-import "beer.proto";
+import "beerproto/v1/beer.proto";
 
-package fermentables;
+package grain.v1;
 
 option csharp_namespace = "BeerProto.Fermentables.Protobuf";
 option cc_enable_arenas = true;
@@ -26,53 +26,53 @@ message GrainType{
   string id = 1;
   string name = 2;
   string producer = 3;
-  beerproto.PercentRangeType moisture = 4;
+  beerproto.v1.PercentRangeType moisture = 4;
   // Percentage yield compared to succrose of a fine grind. eg 80%
-  beerproto.PercentRangeType fine_grind = 5;
+  beerproto.v1.PercentRangeType fine_grind = 5;
   // Percentage yield compared to succrose of a coarse grind. eg 78%
-  beerproto.PercentRangeType coarse_grind = 6;
+  beerproto.v1.PercentRangeType coarse_grind = 6;
   // The difference between fine and coarse grind, a difference more than 2 percent can indicate a protein or step mash may be desirable. eg 2%
-  beerproto.PercentRangeType fine_coarse_difference = 7;
+  beerproto.v1.PercentRangeType fine_coarse_difference = 7;
   // The potential yield as a percent
-  beerproto.PercentRangeType yield = 8;
+  beerproto.v1.PercentRangeType yield = 8;
   // The potential yield of the fermentable ingredient for 1 lb of grain mashed in 1 gallon of water. eg 1.037
-  beerproto.GravityRangeType potential = 9;
+  beerproto.v1.GravityRangeType potential = 9;
   // Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable.
-  beerproto.DiastaticPowerRangeType diastatic_power = 10;
-  beerproto.PercentRangeType protein = 11;
-  beerproto.PercentRangeType soluble_protein = 12;
-  beerproto.PercentRangeType total_nitrogen = 13;
-  beerproto.ConcentrationRangeType soluble_nitrogen = 14;
-  beerproto.PercentType maximum = 15;
+  beerproto.v1.DiastaticPowerRangeType diastatic_power = 10;
+  beerproto.v1.PercentRangeType protein = 11;
+  beerproto.v1.PercentRangeType soluble_protein = 12;
+  beerproto.v1.PercentRangeType total_nitrogen = 13;
+  beerproto.v1.ConcentrationRangeType soluble_nitrogen = 14;
+  beerproto.v1.PercentType maximum = 15;
   // Friability is the measure of a malts ability to crumble during the crush, and is used as an indicator for easy gelatinization of the grain and starches, as well as modification of the malt. Value of 85% of higher indicates a well modified malt and is suitable for single step mashes. Lower values may require a step mash.
-  beerproto.PercentRangeType friability = 16;
-  beerproto.ColorRangeType color = 17;
+  beerproto.v1.PercentRangeType friability = 16;
+  beerproto.v1.ColorRangeType color = 17;
   // Values of 180 or more may suggest a glucan rest and avoiding fly sparging.
-  beerproto.ConcentrationRangeType beta_glucan = 18;
+  beerproto.v1.ConcentrationRangeType beta_glucan = 18;
   // Free Amino Nitrogen (FAN) is a critical yeast nutrient. Typical values for base malt is 170.
-  beerproto.ConcentrationRangeType fan = 19;
+  beerproto.v1.ConcentrationRangeType fan = 19;
   // Where diastatic power gives the total amount of all enzymes, alpha amylase, also known as dextrinizing units, refers to only the total amount of alpa amylase in the malted grain. A value of 25-50 is desirable for base malt.
-  beerproto.TimeType alpha_amylase = 20;
-  beerproto.TimeRangeType saccharification = 21;
+  beerproto.v1.TimeType alpha_amylase = 20;
+  beerproto.v1.TimeRangeType saccharification = 21;
   // The measure of wort viscosity, typically associated with the breakdown of beta-glucans. The higher the viscosity, the greater the need for a glucan rest and the less suitable for a fly sparge.
-  beerproto.ViscosityRangeType viscosity = 22;
+  beerproto.v1.ViscosityRangeType viscosity = 22;
    // The amount of DMS precursors, namely S-methyl methionine (SMM) and dimethyl sulfoxide (DMSO) in the malt which convert to dimethyl sulfide (DMS).
-  beerproto.ConcentrationRangeType dms_p = 23;
+  beerproto.v1.ConcentrationRangeType dms_p = 23;
   // The Kolbach Index, also known as soluble to total ratio of nitrogen or protein, is used to indcate the degree of malt modification. A value above 35% is desired for simple single infusion mashing, undermodified malt may require multiple step mashes or decoction.
-  beerproto.PercentRangeType kolbach_index = 24;
+  beerproto.v1.PercentRangeType kolbach_index = 24;
   // The pH of the resultant wort for 1 lb of grain mashed in 1 gallon of distilled water. Used in many water chemistry / mash pH prediction software.
-  beerproto.AcidityType di_ph = 25;
-  beerproto.GrainGroup grain_group = 26;
+  beerproto.v1.AcidityType di_ph = 25;
+  beerproto.v1.GrainGroup grain_group = 26;
   string country = 27;
 
   enum StandardType{
-    NULL_StandardType = 0;
+    STANDARD_TYPE_UNSPECIFIED = 0;
     // American Society of Brewing Chemists
-    ASBC = 1;
+    STANDARD_TYPE_ASBC = 1;
     // European Brewery Convention
-    EBC = 2;
+    STANDARD_TYPE_EBC = 2;
     // ION
-    ION = 3;
+    STANDARD_TYPE_ION = 3;
   }
   StandardType standard = 28;
   string notes = 29;
