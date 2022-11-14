@@ -34,18 +34,16 @@ message Recipe {
   double version = 8;
   // Records for any ingredient that contributes to the gravity of the beer
   repeated FermentableType fermentables = 9;
-  // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step
-  TimingType timing_object = 10;
   // Records detailing the wide array of unique cultures
-  repeated CultureInformation cultures = 11;
+  repeated CultureInformation cultures = 10;
   // Provides necessary information for brewing equipment
-  repeated EquipmentType equipments = 12;
+  repeated EquipmentType equipments = 11;
   // A collection of steps providing process information for common packaging procedures
-  repeated PackagingProcedureType packaging = 13;
+  repeated PackagingProcedureType packaging = 12;
   // Records detailing the many properties of unique hop varieties
-  repeated VarietyInformation hop_varieties = 14;
+  repeated VarietyInformation hop_varieties = 13;
   // Records for water profiles used in brewing
-  repeated WaterBase profiles = 15;
+  repeated WaterBase profiles = 14;
 }
 
 // This defines the procedure for performing unique mashing processes
@@ -211,7 +209,7 @@ message RecipeType {
   // Used to store each efficiency component, including conversion, and brewhouse
   EfficiencyType efficiency = 2;
   RecipeStyleType style = 3;
-  // Used to differentiate which IBU formula is being used in a recipe. If formula is modified in any way, eg to support whirlpool/flameout additions etc etc, please use `Other` for transparency
+  // Used to differentiate the which IBU formula is being used in a recipe. If the formula is modified in any way, e.g. to support whirlpool/flameout additions, then please use `Other` for transparency
   IBUEstimateType ibu_estimate = 4;
   // The color of the finished beer, using SRM or EBC
   ColorType color_estimate = 5;
@@ -475,7 +473,7 @@ message TimingType{
   bool continuous = 3;
   // Used to indicate when an addition is added based on a desired specific gravity. E.G. Add dry hop at when SG is 1.018.
   GravityType specific_gravity = 4;
-  // Used to indicate when an addition is added based on a desired specific gravity. eg Add brett when pH is 3.4.
+  // Used to indicate when an addition is added based on a desired specific pH. eg Add brett when pH is 3.4.
   AcidityType ph = 5;
   // Used to indicate what step this ingredient timing addition is referencing. EG A value of 2 for add_to_fermentation would mean to add during the second fermentation step.
   int32 step = 6;
@@ -569,7 +567,7 @@ message YieldType{
   GravityType potential = 4;
 }
 
-// HopAdditionType collects the attributes of each hop ingredient for use in a recipe hop bil
+// HopAdditionType collects the attributes of each hop ingredient for use in a recipe hop bill.
 message HopAdditionType{
   string id = 1;
   PercentType beta_acid = 2;
@@ -577,7 +575,7 @@ message HopAdditionType{
   string origin = 4;
   string year = 5;
   HopVarietyBaseForm form = 6;
-  // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step
+  // The timing object fully describes the timing of an addition with options for a basis on time, gravity, or pH at any process step
   TimingType timing = 7;
   string name = 8;
   string product_id = 9;
@@ -763,6 +761,8 @@ enum CarbonationUnitType {
   NULL_CARBONATIONUNITTYPE = 0;
   // vols
   VOLS = 1;
+  // g/l
+  GL = 2;
 }
 
 // FermentationProcedureType defines the procedure for performing fermentation
@@ -789,6 +789,8 @@ message FermentationStepType{
   TemperatureType start_temperature = 10;
   AcidityType  end_ph = 11;
   string vessel = 12;
+  // Vessel pressure indicates the pressure applied within the fermentation vessel.
+  PercentType vessel_pressure = 13;
 }
 
 // BoilProcedureType defines the procedure for performing a boil. A boil procedure with no steps is the same as a standard single step boil
@@ -851,7 +853,7 @@ message FermentableType{
   string origin = 15;
   FermentableInventoryType inventory = 16;
   // The Kolbach Index, also known as soluble to total ratio of nitrogen or protein, is used to indcate the degree of malt modification. A value above 35% is desired for simple single infusion mashing, undermodified malt may require multiple step mashes or decoction.
-  double kolbach_index = 17;
+  PercentType kolbach_index = 17;
   // Used to indicate the 'crystallized' percentage of starches for crystal malts.
   PercentType glassy = 18;
   // The percentage of grain that masses through sieves with gaps of 7/64 and 6/64, desired values of 80% or higher which indicate plump kernels.
@@ -1126,6 +1128,8 @@ message PackagingVesselType {
     // can
     CAN = 7;
   }  
+
+  repeated PackagingGraphicType graphics = 16;
 }
 
 
@@ -1252,4 +1256,60 @@ message SpecificVolumeRangeType{
 message AcidityRangeType{
   AcidityType minimum = 1;
   AcidityType maximum = 2;
+}
+
+// Representation of a graphic to be placed on a vessel.
+message PackagingGraphicType {
+  enum PositionType {
+    NULL_POSITION = 0;
+    BODY_FRONT = 1;
+    BODY_BACK = 2;
+    BODY_WRAP_AROUND = 3;
+    NECK_FRONT = 4;
+    NECK_BACK = 5;
+    NECK_WRAP_AROUND = 6;
+    CAP = 7;
+    CARRIER = 8;
+  }
+
+  PositionType position = 1;
+
+   enum GraphicType {
+    NULL_GRAPHIC = 0;
+    SVG = 1;
+    SVGZ = 2;
+    AI = 3;
+    CDR = 4;
+    CDX = 5;
+    ODG = 6;
+    EPS = 7;
+    PDF = 8;
+    PNG = 9;
+    JPG = 10;
+    GIF = 11;
+  }
+
+  // File type
+  GraphicType type = 2;
+
+  // Base64 encoded file.
+  string base64_data = 3;
+
+  // URLS to hosted version of image.
+  repeated string urls = 4;
+
+  // Dots per inch.
+  int32 dpi = 5;
+
+  int64 width = 6;
+  int64 height = 7;
+
+  enum UnitsType {
+    NULL_Units = 0;
+    MM = 1;
+    IN = 2;
+  }
+
+  // The unit type which are used for measurements.
+  UnitsType units = 8;
 }
