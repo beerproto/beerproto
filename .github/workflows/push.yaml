@@ -3,12 +3,6 @@ on:
   push:
     branches:
       - master
-  workflow_dispatch:
-
-  # Allows external webhook trigger
-  repository_dispatch:
-    types:
-      - webhook
 
 jobs:
   build:
@@ -25,14 +19,14 @@ jobs:
         with:
           input: "beerprotoapis"
           buf_token: ${{ secrets.BUF_TOKEN }}
-  # dispatch:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #     - name: beerproto_go
-  #       uses: CamiloGarciaLaRotta/watermelon-http-client@v1
-  #       with:
-  #         url: "https://api.github.com/repos/beerproto/beerproto_go/actions/workflows/main.yml/dispatches"
-  #         method: post
-  #         data: '{"ref": "master"}'
-  #         headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.DISPATCHES }}"}'
+  dispatch:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: beerproto_go
+        uses: CamiloGarciaLaRotta/watermelon-http-client@v1
+        with:
+          url: "https://api.github.com/repos/beerproto/beerproto_go/actions/workflows/main.yml/dispatches"
+          method: post
+          data: '{"ref": "master"}'
+          headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_GO }}"}'
