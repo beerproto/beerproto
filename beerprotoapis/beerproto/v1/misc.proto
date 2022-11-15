@@ -12,7 +12,6 @@ package beerproto.v1;
 import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/timing.proto";
 
-
 // MiscellaneousType collects the attributes of an ingredient to store as record information
 message MiscellaneousType {
   string id = 1;

@@ -7,7 +7,9 @@
  */
 syntax = "proto3";
 
-import "beerproto/v1/beer.proto";
+import "beerproto/v1/measureable_units.proto";
+import "beerproto/v1/fermentable.proto";
+
 
 package grain.v1;
 

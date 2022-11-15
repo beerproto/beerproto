@@ -9,8 +9,6 @@ syntax = "proto3";
 
 package beerproto.v1;
 
-
-
 message VolumeType{
   double value = 1;
   VolumeUnit unit = 2;
