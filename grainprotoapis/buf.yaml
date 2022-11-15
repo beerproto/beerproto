@@ -1,4 +1,7 @@
 version: v1
+name: buf.build/rossmerr/grainprotoapis
+deps:
+  - buf.build/rossmerr/beerprotoapis
 breaking:
   use:
     - FILE
