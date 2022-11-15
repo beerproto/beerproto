@@ -1,0 +1,37 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/measureable_units.proto";
+
+// BoilStepType - a per step representation of a boil process, can be used to support preboil steps, non-boiling pasteurization steps, boiling, whirlpool steps, and chilling
+message BoilStepType{
+  string id = 1;
+  GravityType end_gravity = 2;
+  BoilStepTypeChillingType chilling_type = 3;
+  string description = 4;
+  TemperatureType end_temperature = 5;
+  // The amount of time that passes before this step begins. eg moving from a boiling step (step 1) to a whirlpool step (step 2) may take 5 minutes. Step 2 would have a ramp time of 5 minutes, hop isomerization and bitterness calculations will need to account for this accordingly.
+  TimeType ramp_time = 6;
+  TimeType step_time = 7;
+  GravityType start_gravity = 8;
+  AcidityType start_ph = 9;
+  AcidityType end_ph = 10;
+  string name = 11;
+  TemperatureType start_temperature = 12;
+}
+
+enum BoilStepTypeChillingType{
+  BOIL_STEP_TYPE_CHILLING_TYPE_UNSPECIFIED = 0;
+  // batch
+  BOIL_STEP_TYPE_CHILLING_TYPE_BATCH = 1;
+  // inline
+  BOIL_STEP_TYPE_CHILLING_TYPE_INLINE = 2;
+}

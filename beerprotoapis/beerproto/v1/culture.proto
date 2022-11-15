@@ -1,0 +1,143 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/measureable_units.proto";
+import "beerproto/v1/timing.proto";
+
+// CultureInformation collects the attributes of a microbial culture
+message CultureInformation{
+  string id = 1;
+  CultureBaseForm form = 2;
+  string producer = 3;
+  // The recommended temperature range of fermentation by the culture producer.
+  TemperatureRangeType temperature_range = 4;
+  string notes = 5;
+  // Recommended styles for a particular culture.
+  string best_for = 6;
+  CultureInventoryType inventory = 7;
+  string product_id = 8;
+  string name = 9;
+  // The recommended limit of abv by the culture producer before attenuation stops.
+  PercentType alcohol_tolerance = 10;
+  // A glucoamylase positive culture is capable of producing glucoamylase, the enzyme produced through expression of the diastatic gene, which allows yeast to attenuate dextrins and starches leading to a very low FG. This is positive in some saison/brett yeasts as well as the new gulo hybrid by Omega yeast labs.
+  bool glucoamylase = 11;
+  CultureBaseType type = 12;
+  // Floculation refers to the ability of yeast to aggregate to form large flocs which drop out of suspension.
+  QualitativeRangeUnit flocculation = 13;
+  PercentRangeType attenuation_range = 14;
+  // Maximum number of times to reuse a culture before a new lab source is recommended.
+  int32 max_reuse = 15;
+  // A POF+ culture is capable of producing phenols, which is a common distinctive property of saison, and brett yeasts.
+  bool pof = 16;
+  Zymocide zymocide = 17;
+}
+
+
+enum QualitativeRangeUnit{
+  QUALITATIVE_RANGE_UNIT_UNSPECIFIED = 0;
+  // very low
+  QUALITATIVE_RANGE_UNIT_VERY_LOW = 1;
+  // low
+  QUALITATIVE_RANGE_UNIT_LOW = 2;
+  // medium low
+  QUALITATIVE_RANGE_UNIT_MEDIUM_LOW = 3;
+  // medium
+  QUALITATIVE_RANGE_UNIT_MEDIUM = 4;
+  // medium high
+  QUALITATIVE_RANGE_UNIT_MEDIUM_HIGH = 5;
+  // high
+  QUALITATIVE_RANGE_UNIT_HIGH = 6;
+  // very high
+  QUALITATIVE_RANGE_UNIT_VERY_HIGH = 7;
+}
+
+
+// CultureAdditionType collects the attributes of each culture ingredient for use in a recipe
+message CultureAdditionType{
+  string id = 1;
+  CultureBaseForm form = 2;
+  string product_id = 3;
+  string name = 4;
+  int32 cell_count_billions = 5;
+  int32 times_cultured = 6;
+  string producer = 7;
+  CultureBaseType type = 8;
+  // The expected, or measured apparent attenuation for a given culture in a given recipe. In comparison to attenuation range, this is a single value.
+  PercentType attenuation = 9;
+  // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step.
+  TimingType timing = 10;
+
+  oneof amount  {
+    MassType mass = 11;
+    UnitType unit = 12;
+    VolumeType volume = 13;
+  }
+}
+
+enum CultureBaseForm{
+  CULTURE_BASE_FORM_UNSPECIFIED = 0;
+  // liquid
+  CULTURE_BASE_FORM_LIQUID = 1;
+  // dry
+  CULTURE_BASE_FORM_DRY = 2;
+  // slant
+  CULTURE_BASE_FORM_SLANT = 3;
+  // culture
+  CULTURE_BASE_FORM_CULTURE = 4;
+  // dregs
+  CULTURE_BASE_FORM_DREGS = 5;
+}
+
+enum CultureBaseType{
+  CULTURE_BASE_TYPE_UNSPECIFIED = 0;
+  // ale
+  CULTURE_BASE_TYPE_ALE = 1;
+  // bacteria
+  CULTURE_BASE_TYPE_BACTERIA = 2;
+  // brett
+  CULTURE_BASE_TYPE_BRETT = 3;
+  // champagne
+  CULTURE_BASE_TYPE_CHAMPAGNE = 4;
+  // kveik
+  CULTURE_BASE_TYPE_KVEIK = 5;
+  // lacto
+  CULTURE_BASE_TYPE_LACTO = 6;
+  // lager
+  CULTURE_BASE_TYPE_LAGER = 7;
+  // malolactic
+  CULTURE_BASE_TYPE_MALOLACTIC = 8;
+  // mixed-culture
+  CULTURE_BASE_TYPE_MIXED_CULTURE = 9;
+  // other
+  CULTURE_BASE_TYPE_OTHER = 10;
+  // pedio
+  CULTURE_BASE_TYPE_PEDIO = 11;
+  // spontaneous
+  CULTURE_BASE_TYPE_SPONTANEOUS = 12;
+  // wine
+  CULTURE_BASE_TYPE_WINE = 13;
+}
+
+message CultureInventoryType{
+  VolumeType liquid = 1;
+  MassType dry = 2;
+  VolumeType slant = 3;
+  VolumeType culture = 4;
+}
+
+// Zymocide, also known as killer yeast properties, is common among wine yeast. There are also some ale and brett yeasts that are immune to some zymocidic properties, these are known as killer neutral
+message Zymocide{
+  bool no1 = 1;
+  bool no2 = 2;
+  bool no28 = 3;
+  bool klus = 4;
+  bool neutral = 5;
+}

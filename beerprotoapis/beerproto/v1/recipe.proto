@@ -1,0 +1,122 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/measureable_units.proto";
+import "beerproto/v1/fermentation.proto";
+import "beerproto/v1/style.proto";
+import "beerproto/v1/hop.proto";
+import "beerproto/v1/packaging.proto";
+import "beerproto/v1/boil.proto";
+import "beerproto/v1/misc.proto";
+import "beerproto/v1/culture.proto";
+import "beerproto/v1/mash.proto";
+import "beerproto/v1/water.proto";
+import "beerproto/v1/fermentable.proto";
+
+// RecipeType composes the information stored in a recipe
+message RecipeType {
+  string id = 1;
+  // Used to store each efficiency component, including conversion, and brewhouse
+  EfficiencyType efficiency = 2;
+  RecipeStyleType style = 3;
+  // Used to differentiate the which IBU formula is being used in a recipe. If the formula is modified in any way, e.g. to support whirlpool/flameout additions, then please use `Other` for transparency
+  IBUEstimateType ibu_estimate = 4;
+  // The color of the finished beer, using SRM or EBC
+  ColorType color_estimate = 5;
+  // The final beer pH at the end of fermentation
+  AcidityType beer_ph = 6;
+  string name = 7;
+  RecipeUnit type = 8;
+  string coauthor = 9;
+  // The gravity of wort when transffered to the fermenter
+  GravityType original_gravity = 10;
+  // The gravity of beer at the end of fermentation
+  GravityType final_gravity = 11;
+  // The final carbonation of the beer when packaged or served
+  double  carbonation = 12;
+  // FermentationProcedureType defines the procedure for performing fermentation
+  FermentationProcedureType fermentation = 13;
+  string author = 14;
+  // A collection of all ingredients used for the recipe
+  IngredientsType ingredients = 15;
+  // This defines the procedure for performing unique mashing processes
+  MashProcedureType mash = 16;
+  // Describes the procedure for packaging your beverage
+  PackagingProcedureType packaging = 17;
+  // Defines the procedure for performing a boil. A boil procedure with no steps is the same as a standard single step boil
+  BoilProcedureType boil = 18;
+  // Used to store subjective tasting notes, and rating
+  TasteType taste = 19;
+  double calories_per_pint = 20;
+  string created = 21;
+  // The volume into the fermenter
+  VolumeType batch_size = 22;
+  string notes = 23;
+  PercentType alcohol_by_volume = 24;
+  // The total apparent attenuation of the finished beer after fermentation
+  PercentType apparent_attenuation = 25;
+
+  enum RecipeUnit {
+    RECIPE_UNIT_UNSPECIFIED = 0;
+    // cider
+    RECIPE_UNIT_CIDER = 1;
+    // kombucha
+    RECIPE_UNIT_KOMBUCHA = 2;
+    // soda
+    RECIPE_UNIT_SODA = 3;
+    // other
+    RECIPE_UNIT_OTHER = 4;
+    // mead
+    RECIPE_UNIT_MEAD = 5;
+    // wine
+    RECIPE_UNIT_WINE = 6;
+    // extract
+    RECIPE_UNIT_EXTRACT = 7;
+    // partial mash
+    RECIPE_UNIT_PARTIAL_MASH = 8;
+    // all grain
+    RECIPE_UNIT_ALL_GRAIN = 9;
+  }
+}
+
+
+// The efficiencyType stores each efficiency component
+message EfficiencyType{
+  // The percentage of sugar from the grain yield that is extracted and converted during the mash
+  PercentType conversion = 1;
+  // The percentage of sugar that makes it from the mash tun to the kettle
+  PercentType lauter = 2;
+  // The percentage of sugar that makes it from the grain to the kettle
+  PercentType mash = 3;
+  // The percentage of sugar that makes it from the grain to the fermenter
+  PercentType brewhouse = 4;
+}
+
+
+message IngredientsType{
+  // miscellaneous_additions collects all the miscellaneous items for use in a recipe
+  repeated MiscellaneousAdditionType miscellaneous_additions = 1;
+  // culture_additions collects all the culture items for use in a recipe
+  repeated CultureAdditionType culture_additions = 2;
+  // water_additions collects all the water items for use in a recipe
+  repeated WaterAdditionType water_additions = 3;
+  // fermentable_additions collects all the fermentable ingredients for use in a recipe
+  repeated FermentableAdditionType fermentable_additions = 4;
+  // hop_additions collects all the hops for use in a recipe
+  repeated HopAdditionType hop_additions = 5;
+}
+
+
+message TasteType{
+  string notes = 1;
+  double rating = 2;
+}
+

@@ -1,0 +1,23 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/measureable_units.proto";
+import "beerproto/v1/mash_step.proto";
+
+// This defines the procedure for performing unique mashing processes
+message MashProcedureType {
+  string id = 1;
+  // Initial grain temperature prior to the start of the mash
+  TemperatureType grain_temperature = 2;
+  string notes = 3;
+  repeated MashStepType mash_steps = 4;
+  string name = 5;
+}

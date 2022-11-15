@@ -1,0 +1,71 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/measureable_units.proto";
+import "beerproto/v1/timing.proto";
+
+
+// MiscellaneousType collects the attributes of an ingredient to store as record information
+message MiscellaneousType {
+  string id = 1;
+  // Used to describe the purpose of the miscellaneous ingredient, e.g. whirlfloc is used for clarity.
+  string use_for = 2;
+  string notes = 3;
+  string name = 4;
+  string producer = 5;
+  string product_id = 6;
+  MiscellaneousBaseType type = 7;
+  MiscellaneousInventoryType inventory = 8;
+}
+
+enum MiscellaneousBaseType{
+  MISCELLANEOUS_BASE_TYPE_UNSPECIFIED = 0;
+  // spice
+  MISCELLANEOUS_BASE_TYPE_SPICE = 1;
+  // fining
+  MISCELLANEOUS_BASE_TYPE_FINING = 2;
+  // water agent
+  MISCELLANEOUS_BASE_TYPE_WATER_AGENT = 3;
+  // herb
+  MISCELLANEOUS_BASE_TYPE_HERB = 4;
+  // flavor
+  MISCELLANEOUS_BASE_TYPE_FLAVOR = 5;
+  // wood
+  MISCELLANEOUS_BASE_TYPE_WOOD = 6;
+  // other
+  MISCELLANEOUS_BASE_TYPE_OTHER = 7;
+}
+
+
+// MiscellaneousAdditionType collects the attributes of each miscellaneous ingredient for use in a recipe
+message MiscellaneousAdditionType{
+  string id =1;
+  string name = 2;
+  string producer = 3;
+  // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step.
+  TimingType timing = 4;
+  string product_id = 5;
+  MiscellaneousBaseType type = 6;
+
+  oneof amount  {
+    MassType mass = 7;
+    UnitType unit = 8;
+    VolumeType volume = 9;
+  }
+}
+
+message MiscellaneousInventoryType{
+  oneof amount  {
+    MassType mass = 1;
+    UnitType unit = 2;
+    VolumeType volume = 3;
+  }
+}

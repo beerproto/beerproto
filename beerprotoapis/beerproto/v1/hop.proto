@@ -1,0 +1,137 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/measureable_units.proto";
+import "beerproto/v1/timing.proto";
+
+// VarietyInformation collects the attributes of a hop variety to store as record information
+message VarietyInformation{
+  string id = 1;
+  HopInventoryType inventory = 2;
+  VarietyInformationType type = 3;
+  // Oil Content information object.
+  OilContentType oil_content = 4;
+  //  Defined as the percentage of hop alpha lost in 6 months of storage.
+  PercentType  percent_lost = 5;
+  string product_id = 6;
+  PercentType alpha_acid = 7;
+  PercentType beta_acid = 8;
+  string name = 9;
+  string origin = 10;
+  string substitutes = 11;
+  string year = 12;
+  HopVarietyBaseForm form = 13;
+  string producer = 14;
+  string notes = 15;
+
+
+  enum VarietyInformationType{
+    VARIETY_INFORMATION_TYPE_UNSPECIFIED = 0;
+    // aroma
+    VARIETY_INFORMATION_TYPE_AROMA = 1;
+    // bittering
+    VARIETY_INFORMATION_TYPE_BITTERING = 2;
+    // flavor
+    VARIETY_INFORMATION_TYPE_FLAVOR = 3;
+    // aroma/bittering
+    VARIETY_INFORMATION_TYPE_AROMA_BITTERING = 4;
+    // bittering/flavor
+    VARIETY_INFORMATION_TYPE_BITTERING_FLAVOR = 5;
+    // aroma/flavor
+    VARIETY_INFORMATION_TYPE_AROMA_FLAVOR = 6;
+    // aroma/bittering/flavor
+    VARIETY_INFORMATION_TYPE_AROMA_BITTERING_FLAVOR = 7;
+  }
+}
+
+
+
+enum HopVarietyBaseForm{
+  HOP_VARIETY_BASE_FORM_UNSPECIFIED = 0;
+  // extract
+  HOP_VARIETY_BASE_FORM_EXTRACT = 1;
+  // leaf
+  HOP_VARIETY_BASE_FORM_LEAF = 2;
+  // leaf (wet)
+  HOP_VARIETY_BASE_FORM_LEAFWET = 3;
+  // pellet
+  HOP_VARIETY_BASE_FORM_PELLET = 4;
+  // powder
+  HOP_VARIETY_BASE_FORM_POWDER = 5;
+  // plug
+  HOP_VARIETY_BASE_FORM_PLUG = 6;
+}
+
+
+// HopAdditionType collects the attributes of each hop ingredient for use in a recipe hop bill.
+message HopAdditionType{
+  string id = 1;
+  PercentType beta_acid = 2;
+  string producer = 3;
+  string origin = 4;
+  string year = 5;
+  HopVarietyBaseForm form = 6;
+  // The timing object fully describes the timing of an addition with options for a basis on time, gravity, or pH at any process step
+  TimingType timing = 7;
+  string name = 8;
+  string product_id = 9;
+  PercentType alpha_acid = 10;
+  oneof amount  {
+    MassType mass = 11;
+    VolumeType volume = 12;
+  }
+}
+
+
+// Used to differentiate which IBU formula is being used in a recipe. If formula is modified in any way, eg to support whirlpool/flameout additions etc etc, please use `Other` for transparency
+message IBUEstimateType{
+  IBUMethodUnit method = 1;
+
+  enum IBUMethodUnit {
+    IBU_METHOD_UNIT_UNSPECIFIED = 0;
+    // Rager
+    IBU_METHOD_UNIT_RAGER = 1;
+    // Tinseth
+    IBU_METHOD_UNIT_TINSETH = 2;
+    // Garetz
+    IBU_METHOD_UNIT_GARETZ = 3;
+    // Other
+    IBU_METHOD_UNIT_OTHER = 4;
+  }
+}
+
+
+// oil_content collects all information of a hop variety pertaining to oil content, polyphenols, and thiols. Each individual compound is expressed as a percent of the total oil measurement
+message OilContentType{
+  PercentType polyphenols = 1;
+  // The total amount of oil, including hydrocarbons, esters, and terpene alcohols in units of ml of oil per 100g of hop mass.
+  double total_oil_ml_per_100g = 2;
+  PercentType farnesene = 3;
+  PercentType limonene = 4;
+  PercentType nerol = 5;
+  PercentType geraniol = 6;
+  PercentType b_pinene = 7;
+  PercentType linalool = 8;
+  PercentType caryophyllene = 9;
+  PercentType cohumulone = 10;
+  PercentType xanthohumol = 11;
+  PercentType humulene = 12;
+  PercentType myrcene = 13;
+  PercentType pinene = 14;
+}
+
+
+message HopInventoryType{
+  oneof amount  {
+    MassType mass = 1;
+    VolumeType volume = 2;
+  }
+}

@@ -1,0 +1,23 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/measureable_units.proto";
+import "beerproto/v1/packaging_vessel.proto";
+
+// Describes the procedure for packaging your beverage
+message PackagingProcedureType {
+  string id = 1;
+  string name = 2;
+  VolumeType packaged_volume = 3;
+  string description = 4;
+  string notes = 5;
+  repeated PackagingVesselType packaging_vessels = 6;
+}

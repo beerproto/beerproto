@@ -1,0 +1,25 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/boil_step.proto";
+import "beerproto/v1/measureable_units.proto";
+
+
+// BoilProcedureType defines the procedure for performing a boil. A boil procedure with no steps is the same as a standard single step boil
+message BoilProcedureType {
+  string id = 1;
+  VolumeType pre_boil_size = 2;
+  TimeType boil_time = 3;
+  repeated BoilStepType boil_steps = 4;
+  string name = 5;
+  string description = 6;
+  string notes = 7;
+}

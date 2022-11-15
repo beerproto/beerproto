@@ -1,0 +1,42 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/measureable_units.proto";
+
+
+// The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step
+message TimingType{
+  // What time during a process step is added, eg a value of 2 days for a dry hop addition would be added 2 days into the fermentation step.
+  TimeType time = 1;
+  // How long an ingredient addition remains, this was referred to as time in the BeerXML standard. E.G. A 40 minute hop boil additions means to boil for 40 minutes, and a 2 day duration for a dry hop means to remove it after 2 days.
+  TimeType duration = 2;
+  // A continuous addition is spread out evenly and added during the entire process step, eg 60 minute IPA by dogfish head takes all ofthe hop additions and adds them throughout the entire boil.
+  bool continuous = 3;
+  // Used to indicate when an addition is added based on a desired specific gravity. E.G. Add dry hop at when SG is 1.018.
+  GravityType specific_gravity = 4;
+  // Used to indicate when an addition is added based on a desired specific pH. eg Add brett when pH is 3.4.
+  AcidityType ph = 5;
+  // Used to indicate what step this ingredient timing addition is referencing. EG A value of 2 for add_to_fermentation would mean to add during the second fermentation step.
+  int32 step = 6;
+  UseType use = 7;
+}
+
+enum UseType{
+  USE_TYPE_UNSPECIFIED = 0;
+  // add to mash
+  USE_TYPE_ADD_TO_MASH = 1;
+  // add to boil
+  USE_TYPE_ADD_TO_BOIL = 2;
+  // add to fermentation
+  USE_TYPE_ADD_TO_FERMENTATION = 3;
+  // add to package
+  USE_TYPE_ADD_TO_PACKAGE = 4;
+}

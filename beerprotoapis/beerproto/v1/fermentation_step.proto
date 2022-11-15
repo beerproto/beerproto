@@ -1,0 +1,32 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/measureable_units.proto";
+
+
+// FermentationStepType - a per step representation of a fermentation action
+message FermentationStepType{
+  string id = 1;
+  string name = 2;
+  TemperatureType end_temperature = 3;
+  TimeType step_time = 4;
+  // Free rise is used to indicate a fermentation step where the exothermic fermentation is allowed to raise the temperature without restriction This is either True or false.
+  bool free_rise = 5;
+  GravityType start_gravity = 6;
+  GravityType end_gravity = 7;
+  AcidityType start_ph = 8;
+  string description = 9;
+  TemperatureType start_temperature = 10;
+  AcidityType  end_ph = 11;
+  string vessel = 12;
+  // Vessel pressure indicates the pressure applied within the fermentation vessel.
+  PercentType vessel_pressure = 13;
+}

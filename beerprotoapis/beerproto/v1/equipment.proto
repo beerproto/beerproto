@@ -1,0 +1,61 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/measureable_units.proto";
+
+// EquipmentType provides necessary information for individual brewing equipment
+message EquipmentItemType{
+  string id = 1;
+  string notes = 2;
+  // The volume boiled off during 1 hour, measured before and after at room temperature.
+  VolumeType boil_rate_per_hour = 3;
+  string type = 4;
+  EquipmentBaseForm form = 5;
+  // The volume that leaves the kettle, especially important for non-immersion chillers that cool the wort as it leaves the kettle.
+  VolumeType drain_rate_per_minute = 6;
+  // The specific heat of the piece of equipment, expressed in Cal/(g*C), especially important for when the mashtun is not preheated.
+  SpecificHeatType specific_heat = 7;
+  // The apparent volume absorbed by grain, typical values are 0.125 qt/lb (1.04 L/kg) for a mashtun, 0.08 gal/lb (0.66 L/kg) for BIAB.
+  SpecificVolumeType grain_absorption_rate = 8;
+  string name = 9;
+  VolumeType maximum_volume = 10;
+  // The weight of the piece of equipment, especially important for when the mashtun is not preheated.
+  MassType weight = 11;
+  VolumeType loss = 12;
+  PercentType efficiency = 13;
+
+  enum EquipmentBaseForm{
+    EQUIPMENT_BASE_FORM_UNSPECIFIED = 0;
+    // HLT
+    EQUIPMENT_BASE_FORM_HLT = 1;
+    // Mash Tun
+    EQUIPMENT_BASE_FORM_MASH_TUN = 2;
+    // Lauter Tun
+    EQUIPMENT_BASE_FORM_LAUTER_TUN = 3;
+    // Brew Kettle
+    EQUIPMENT_BASE_FORM_BREW_KETTLE = 4;
+    // Fermenter
+    EQUIPMENT_BASE_FORM_FERMENTER = 5;
+    // Aging Vessel
+    EQUIPMENT_BASE_FORM_AGING_VESSEL = 6;
+    // Packaging Vessel
+    EQUIPMENT_BASE_FORM_PACKAGING_VESSEL = 7;
+  }
+}
+
+
+// Provides necessary information for brewing equipment set
+message EquipmentType{
+  string id = 1;
+  string name = 2;
+  repeated EquipmentItemType equipment_items = 3;
+  PercentType brewhouse_efficiency = 4;
+}

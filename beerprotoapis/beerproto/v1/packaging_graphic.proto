@@ -1,0 +1,66 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+// Representation of a graphic to be placed on a vessel.
+message PackagingGraphicType {
+  enum PositionUnit {
+    POSITION_UNIT_UNSPECIFIED = 0;
+    POSITION_UNIT_BODY_FRONT = 1;
+    POSITION_UNIT_BODY_BACK = 2;
+    POSITION_UNIT_BODY_WRAP_AROUND = 3;
+    POSITION_UNIT_NECK_FRONT = 4;
+    POSITION_UNIT_NECK_BACK = 5;
+    POSITION_UNIT_NECK_WRAP_AROUND = 6;
+    POSITION_UNIT_CAP = 7;
+    POSITION_UNIT_CARRIER = 8;
+  }
+
+  PositionUnit position = 1;
+
+   enum GraphicType {
+    GRAPHIC_TYPE_UNSPECIFIED = 0;
+    GRAPHIC_TYPE_SVG = 1;
+    GRAPHIC_TYPE_SVGZ = 2;
+    GRAPHIC_TYPE_AI = 3;
+    GRAPHIC_TYPE_CDR = 4;
+    GRAPHIC_TYPE_CDX = 5;
+    GRAPHIC_TYPE_ODG = 6;
+    GRAPHIC_TYPE_EPS = 7;
+    GRAPHIC_TYPE_PDF = 8;
+    GRAPHIC_TYPE_PNG = 9;
+    GRAPHIC_TYPE_JPG = 10;
+    GRAPHIC_TYPE_GIF = 11;
+  }
+
+  // File type
+  GraphicType type = 2;
+
+  // Base64 encoded file.
+  string base64_data = 3;
+
+  // URLS to hosted version of image.
+  repeated string urls = 4;
+
+  // Dots per inch.
+  int32 dpi = 5;
+
+  int64 width = 6;
+  int64 height = 7;
+
+  enum UnitsType {
+    UNITS_TYPE_UNSPECIFIED = 0;
+    UNITS_TYPE_MM = 1;
+    UNITS_TYPE_IN = 2;
+  }
+
+  // The unit type which are used for measurements.
+  UnitsType units = 8;
+}

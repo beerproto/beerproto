@@ -1,4 +1,10 @@
 version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com
+    override:
+      buf.build/rossmerr/beerprotoapis: github.com/beerproto/
 plugins:
   - name: go
     out: gen/proto/go
