@@ -16,4 +16,5 @@ jobs:
           against: "https://github.com/beerproto/beerproto.git#branch=master,ref=HEAD~1"
       - uses: bufbuild/buf-push-action@v1
         with:
+          input: "beerprotoapis"
           buf_token: ${{ secrets.BUF_TOKEN }}
