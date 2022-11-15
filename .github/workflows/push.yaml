@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: bufbuild/buf-setup-action@v1
       - uses: bufbuild/buf-lint-action@v1
-        # - uses: bufbuild/buf-breaking-action@v1
+      - uses: bufbuild/buf-breaking-action@v1
         with:
           # The 'main' branch of the GitHub repository that defines the module.
           against: "https://github.com/beerproto/beerproto.git#branch=master,ref=HEAD~1"
@@ -18,3 +18,14 @@ jobs:
         with:
           input: "beerprotoapis"
           buf_token: ${{ secrets.BUF_TOKEN }}
+  dispatch:
+    runs-on: ubuntu-latest
+    needs: docs
+    steps:
+      - name: beerproto_go
+        uses: CamiloGarciaLaRotta/watermelon-http-client@v1
+        with:
+          url: "https://api.github.com/repos/beerproto/beerproto_go/actions/workflows/main.yml/dispatches"
+          method: post
+          data: '{"ref": "master"}'
+          headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.DISPATCHES }}"}'
