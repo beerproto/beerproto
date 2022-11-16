@@ -12,6 +12,7 @@ package beerproto.v1;
 message VolumeType{
   double value = 1;
   VolumeUnit unit = 2;
+}
 
   enum VolumeUnit{
     VOLUME_UNIT_UNSPECIFIED = 0;
@@ -46,8 +47,6 @@ message VolumeType{
     // ibbl
     VOLUME_UNIT_IBBL = 15;
   }
-}
-
 
 message MassType{
   double value = 1;
@@ -110,8 +109,9 @@ enum AcidityUnit{
 message TimeType{
   int64 value = 1;
   TimeUnit unit = 2;
+}
 
-  enum TimeUnit {
+ enum TimeUnit {
     TIME_UNIT_UNSPECIFIED = 0;
     // sec
     TIME_UNIT_SEC = 1;
@@ -124,8 +124,6 @@ message TimeType{
     // week
     TIME_UNIT_WEEK = 5;
   }
-}
-
 
 // ColorType supports both grain color properties, such as Lovibond, and wort color properties such as SRM and EBC
 message ColorType{
@@ -161,14 +159,13 @@ enum CarbonationUnit {
 message BitternessType{
   double value = 1;
   BitternessUnit unit = 2;
-
-  enum BitternessUnit{
-    BITTERNESS_UNIT_UNSPECIFIED = 0;
-    // IBUs
-    BITTERNESS_UNIT_IBUS = 1;
-  }
 }
 
+enum BitternessUnit{
+  BITTERNESS_UNIT_UNSPECIFIED = 0;
+  // IBUs
+  BITTERNESS_UNIT_IBUS = 1;
+}
 
 // Gravity refers to the both the measurements of percent of sugar content, ie plato and brix, as well as relative density ie specific gravity
 message GravityType {
@@ -224,28 +221,27 @@ enum ConcentrationUnit{
 message SpecificVolumeType{
   double value = 1;
   SpecificVolumeUnit unit = 2;
-
-  enum SpecificVolumeUnit{
-    SPECIFIC_VOLUME_UNIT_UNSPECIFIED = 0;
-    // qt/lb
-    SPECIFIC_VOLUME_UNIT_QTLB = 1;
-    // gal/lb
-    SPECIFIC_VOLUME_UNIT_GALLB = 2;
-    // gal/oz
-    SPECIFIC_VOLUME_UNIT_GALOZ = 3;
-    // l/g
-    SPECIFIC_VOLUME_UNIT_LG = 4;
-    // l/kg
-    SPECIFIC_VOLUME_UNIT_LKG = 5;
-    // floz/oz
-    SPECIFIC_VOLUME_UNIT_FLOZOZ = 6;
-    // m^3/kg
-    SPECIFIC_VOLUME_UNIT_M3KG = 7;
-    // ft^3/lb
-    SPECIFIC_VOLUME_UNIT_FT3LB = 8;
-  }
 }
 
+enum SpecificVolumeUnit{
+  SPECIFIC_VOLUME_UNIT_UNSPECIFIED = 0;
+  // qt/lb
+  SPECIFIC_VOLUME_UNIT_QTLB = 1;
+  // gal/lb
+  SPECIFIC_VOLUME_UNIT_GALLB = 2;
+  // gal/oz
+  SPECIFIC_VOLUME_UNIT_GALOZ = 3;
+  // l/g
+  SPECIFIC_VOLUME_UNIT_LG = 4;
+  // l/kg
+  SPECIFIC_VOLUME_UNIT_LKG = 5;
+  // floz/oz
+  SPECIFIC_VOLUME_UNIT_FLOZOZ = 6;
+  // m^3/kg
+  SPECIFIC_VOLUME_UNIT_M3KG = 7;
+  // ft^3/lb
+  SPECIFIC_VOLUME_UNIT_FT3LB = 8;
+}
 
 // UnitType is used where unitless amounts are required, such as 1 apple, or 1 yeast packet
 message UnitType {
@@ -267,16 +263,15 @@ enum UnitUnit {
   UNIT_UNIT_PKG = 5;
 }
 
-
 message PercentType{
   double value = 1;
   PercentUnit unit = 2;
+}
 
-  enum PercentUnit{
-    PERCENT_UNIT_UNSPECIFIED = 0;
-    // %
-    PERCENT_UNIT_PERCENT_SIGN = 1;
-  }
+enum PercentUnit{
+  PERCENT_UNIT_UNSPECIFIED = 0;
+  // %
+  PERCENT_UNIT_PERCENT_SIGN = 1;
 }
 
 message ViscosityType{
@@ -316,7 +311,6 @@ message GravityRangeType{
   GravityType minimum = 1;
   GravityType maximum = 2;
 }
-
 
 message PercentRangeType{
   PercentType minimum = 1;
