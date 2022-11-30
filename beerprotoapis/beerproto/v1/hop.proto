@@ -31,28 +31,25 @@ message VarietyInformation{
   HopVarietyBaseForm form = 13;
   string producer = 14;
   string notes = 15;
-
-
-  enum VarietyInformationType{
-    VARIETY_INFORMATION_TYPE_UNSPECIFIED = 0;
-    // aroma
-    VARIETY_INFORMATION_TYPE_AROMA = 1;
-    // bittering
-    VARIETY_INFORMATION_TYPE_BITTERING = 2;
-    // flavor
-    VARIETY_INFORMATION_TYPE_FLAVOR = 3;
-    // aroma/bittering
-    VARIETY_INFORMATION_TYPE_AROMA_BITTERING = 4;
-    // bittering/flavor
-    VARIETY_INFORMATION_TYPE_BITTERING_FLAVOR = 5;
-    // aroma/flavor
-    VARIETY_INFORMATION_TYPE_AROMA_FLAVOR = 6;
-    // aroma/bittering/flavor
-    VARIETY_INFORMATION_TYPE_AROMA_BITTERING_FLAVOR = 7;
-  }
 }
 
-
+enum VarietyInformationType{
+  VARIETY_INFORMATION_TYPE_UNSPECIFIED = 0;
+  // aroma
+  VARIETY_INFORMATION_TYPE_AROMA = 1;
+  // bittering
+  VARIETY_INFORMATION_TYPE_BITTERING = 2;
+  // flavor
+  VARIETY_INFORMATION_TYPE_FLAVOR = 3;
+  // aroma/bittering
+  VARIETY_INFORMATION_TYPE_AROMA_BITTERING = 4;
+  // bittering/flavor
+  VARIETY_INFORMATION_TYPE_BITTERING_FLAVOR = 5;
+  // aroma/flavor
+  VARIETY_INFORMATION_TYPE_AROMA_FLAVOR = 6;
+  // aroma/bittering/flavor
+  VARIETY_INFORMATION_TYPE_AROMA_BITTERING_FLAVOR = 7;
+}
 
 enum HopVarietyBaseForm{
   HOP_VARIETY_BASE_FORM_UNSPECIFIED = 0;
@@ -94,20 +91,19 @@ message HopAdditionType{
 // Used to differentiate which IBU formula is being used in a recipe. If formula is modified in any way, eg to support whirlpool/flameout additions etc etc, please use `Other` for transparency
 message IBUEstimateType{
   IBUMethodUnit method = 1;
-
-  enum IBUMethodUnit {
-    IBU_METHOD_UNIT_UNSPECIFIED = 0;
-    // Rager
-    IBU_METHOD_UNIT_RAGER = 1;
-    // Tinseth
-    IBU_METHOD_UNIT_TINSETH = 2;
-    // Garetz
-    IBU_METHOD_UNIT_GARETZ = 3;
-    // Other
-    IBU_METHOD_UNIT_OTHER = 4;
-  }
 }
 
+enum IBUMethodUnit {
+  IBU_METHOD_UNIT_UNSPECIFIED = 0;
+  // Rager
+  IBU_METHOD_UNIT_RAGER = 1;
+  // Tinseth
+  IBU_METHOD_UNIT_TINSETH = 2;
+  // Garetz
+  IBU_METHOD_UNIT_GARETZ = 3;
+  // Other
+  IBU_METHOD_UNIT_OTHER = 4;
+}
 
 // oil_content collects all information of a hop variety pertaining to oil content, polyphenols, and thiols. Each individual compound is expressed as a percent of the total oil measurement
 message OilContentType{
