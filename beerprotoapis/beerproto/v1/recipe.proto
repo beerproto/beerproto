@@ -63,6 +63,7 @@ message RecipeType {
   PercentType alcohol_by_volume = 24;
   // The total apparent attenuation of the finished beer after fermentation
   PercentType apparent_attenuation = 25;
+}
 
   enum RecipeUnit {
     RECIPE_UNIT_UNSPECIFIED = 0;
@@ -85,8 +86,6 @@ message RecipeType {
     // all grain
     RECIPE_UNIT_ALL_GRAIN = 9;
   }
-}
-
 
 // The efficiencyType stores each efficiency component
 message EfficiencyType{
