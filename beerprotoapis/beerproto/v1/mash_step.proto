@@ -30,6 +30,7 @@ message MashStepType{
   TemperatureType step_temperature = 12;
   // Also known as the mash thickness. eg 1.75 qt/lb or 3.65 L/kg
   SpecificVolumeType water_grain_ratio = 13;
+}
 
   enum MashStepUnit{
     MASH_STEP_UNIT_UNSPECIFIED = 0;
@@ -41,4 +42,3 @@ message MashStepType{
     MASH_STEP_UNIT_DRAIN_MASH_TUN = 6;
     MASH_STEP_UNIT_SPARGE = 7;
   }
-}
