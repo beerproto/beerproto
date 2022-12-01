@@ -12,7 +12,6 @@ package beerproto.v1;
 import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/packaging_graphic.proto";
 
-
 // PackagingVesselType - a per vessel representation of a packaging process
 message PackagingVesselType {
   string id = 1;
@@ -29,25 +28,24 @@ message PackagingVesselType {
   double carbonation = 12;
   TemperatureType start_temperature = 13;
   AcidityType end_ph = 14;
-  TemperatureType end_temperature = 15;
-
-  enum PackagingVesselUnit{
-    PACKAGING_VESSEL_UNIT_UNSPECIFIED = 0;
-    // keg
-    PACKAGING_VESSEL_UNIT_KEG = 1;
-    // bottle
-    PACKAGING_VESSEL_UNIT_BOTTLE = 2;
-    // cask
-    PACKAGING_VESSEL_UNIT_CASK = 3;
-    // tank
-    PACKAGING_VESSEL_UNIT_TANK = 4;
-    // firkin
-    PACKAGING_VESSEL_UNIT_FIRKIN = 5;
-    // other
-    PACKAGING_VESSEL_UNIT_OTHER = 6;
-    // can
-    PACKAGING_VESSEL_UNIT_CAN = 7;
-  }  
-
+  TemperatureType end_temperature = 15; 
   repeated PackagingGraphicType graphics = 16;
 }
+
+enum PackagingVesselUnit{
+  PACKAGING_VESSEL_UNIT_UNSPECIFIED = 0;
+  // keg
+  PACKAGING_VESSEL_UNIT_KEG = 1;
+  // bottle
+  PACKAGING_VESSEL_UNIT_BOTTLE = 2;
+  // cask
+  PACKAGING_VESSEL_UNIT_CASK = 3;
+  // tank
+  PACKAGING_VESSEL_UNIT_TANK = 4;
+  // firkin
+  PACKAGING_VESSEL_UNIT_FIRKIN = 5;
+  // other
+  PACKAGING_VESSEL_UNIT_OTHER = 6;
+  // can
+  PACKAGING_VESSEL_UNIT_CAN = 7;
+} 
