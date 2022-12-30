@@ -32,25 +32,26 @@ message EquipmentItemType{
   VolumeType loss = 12;
   PercentType efficiency = 13;
 
-  enum EquipmentBaseForm{
-    EQUIPMENT_BASE_FORM_UNSPECIFIED = 0;
-    // HLT
-    EQUIPMENT_BASE_FORM_HLT = 1;
-    // Mash Tun
-    EQUIPMENT_BASE_FORM_MASH_TUN = 2;
-    // Lauter Tun
-    EQUIPMENT_BASE_FORM_LAUTER_TUN = 3;
-    // Brew Kettle
-    EQUIPMENT_BASE_FORM_BREW_KETTLE = 4;
-    // Fermenter
-    EQUIPMENT_BASE_FORM_FERMENTER = 5;
-    // Aging Vessel
-    EQUIPMENT_BASE_FORM_AGING_VESSEL = 6;
-    // Packaging Vessel
-    EQUIPMENT_BASE_FORM_PACKAGING_VESSEL = 7;
-  }
+
 }
 
+enum EquipmentBaseForm{
+  EQUIPMENT_BASE_FORM_UNSPECIFIED = 0;
+  // HLT
+  EQUIPMENT_BASE_FORM_HLT = 1;
+  // Mash Tun
+  EQUIPMENT_BASE_FORM_MASH_TUN = 2;
+  // Lauter Tun
+  EQUIPMENT_BASE_FORM_LAUTER_TUN = 3;
+  // Brew Kettle
+  EQUIPMENT_BASE_FORM_BREW_KETTLE = 4;
+  // Fermenter
+  EQUIPMENT_BASE_FORM_FERMENTER = 5;
+  // Aging Vessel
+  EQUIPMENT_BASE_FORM_AGING_VESSEL = 6;
+  // Packaging Vessel
+  EQUIPMENT_BASE_FORM_PACKAGING_VESSEL = 7;
+}
 
 // Provides necessary information for brewing equipment set
 message EquipmentType{
