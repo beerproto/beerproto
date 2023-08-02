@@ -11,9 +11,26 @@ package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
 
+enum StyleCategories {
+  STYLE_CATEGORIES_UNSPECIFIED = 0;
+  // beer
+  STYLE_CATEGORIES_BEER = 1;
+  // cider
+  STYLE_CATEGORIES_CIDER = 2;
+  // kombucha
+  STYLE_CATEGORIES_KOMBUCHA = 3;
+  // mead
+  STYLE_CATEGORIES_MEAD = 4;
+  // soda
+  STYLE_CATEGORIES_SODA = 5;
+  // wine
+  STYLE_CATEGORIES_WINE = 6;
+  // other
+  STYLE_CATEGORIES_OTHER = 7;
+}
 
 // StyleType provide information for Style categorization
-message StyleType{
+message StyleType {
   string id = 1;
   string aroma = 2;
   string ingredients = 3;
@@ -35,51 +52,14 @@ message StyleType{
   string style_letter = 19;
   StyleCategories type = 20;
   string overall_impression = 21;
-
-  enum StyleCategories{
-    STYLE_CATEGORIES_UNSPECIFIED = 0;
-    // beer
-    STYLE_CATEGORIES_BEER = 1;
-    // cider
-    STYLE_CATEGORIES_CIDER = 2;
-    // kombucha
-    STYLE_CATEGORIES_KOMBUCHA = 3;
-    // mead
-    STYLE_CATEGORIES_MEAD = 4;
-    // soda
-    STYLE_CATEGORIES_SODA = 5;
-    // wine
-    STYLE_CATEGORIES_WINE = 6;
-    // other
-    STYLE_CATEGORIES_OTHER = 7;
-  }
 }
 
-
 // RecipeStyleType defines style information stored in a recipe record
-message RecipeStyleType{
+message RecipeStyleType {
   StyleCategories type = 1;
   string name = 2;
   string category = 3;
   int32 category_number = 4;
   string style_letter = 5;
   string style_guide = 6;
-
-  enum StyleCategories{
-    STYLE_CATEGORIES_UNSPECIFIED = 0;
-    // beer
-    STYLE_CATEGORIES_BEER = 1;
-    // cider
-    STYLE_CATEGORIES_CIDER = 2;
-    // kombucha
-    STYLE_CATEGORIES_KOMBUCHA = 3;
-    // mead
-    STYLE_CATEGORIES_MEAD = 4;
-    // soda
-    STYLE_CATEGORIES_SODA = 5;
-    // wine
-    STYLE_CATEGORIES_WINE = 6;
-    // other
-    STYLE_CATEGORIES_OTHER = 7;
-  }
 }
