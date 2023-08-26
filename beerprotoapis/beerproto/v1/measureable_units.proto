@@ -7,6 +7,12 @@
  */
 syntax = "proto3";
 
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.EnumValueOptions {
+  optional string string_name = 123456789;
+}
+
 package beerproto.v1;
 
 message VolumeType{
@@ -15,37 +21,69 @@ message VolumeType{
 }
 
   enum VolumeUnit{
-    VOLUME_UNIT_UNSPECIFIED = 0;
+    VOLUME_UNIT_UNSPECIFIED = 0 [
+      (string_name) = "UNSPECIFIED"
+    ];
     // ml
-    VOLUME_UNIT_ML = 1;
+    VOLUME_UNIT_ML = 1[
+      (string_name) = "ML"
+    ];
     // l
-    VOLUME_UNIT_L = 2;
+    VOLUME_UNIT_L = 2 [
+      (string_name) = "L"
+    ];
     // tsp
-    VOLUME_UNIT_TSP = 3;
+    VOLUME_UNIT_TSP = 3 [
+      (string_name) = "TSP"
+    ];
     // tbsp
-    VOLUME_UNIT_TBSP = 4;
+    VOLUME_UNIT_TBSP = 4[
+      (string_name) = "TBSP"
+    ];
     // floz
-    VOLUME_UNIT_FLOZ = 5;
+    VOLUME_UNIT_FLOZ = 5[
+      (string_name) = "FLOZ"
+    ];
     // cup
-    VOLUME_UNIT_CUP = 6;
+    VOLUME_UNIT_CUP = 6[
+      (string_name) = "Cup"
+    ];
     // pt
-    VOLUME_UNIT_PT = 7;
+    VOLUME_UNIT_PT = 7[
+      (string_name) = "PT"
+    ];
     // qt
-    VOLUME_UNIT_QT = 8;
+    VOLUME_UNIT_QT = 8[
+      (string_name) = "QT"
+    ];
     // gal
-    VOLUME_UNIT_GAL = 9;
+    VOLUME_UNIT_GAL = 9[
+      (string_name) = "Galon"
+    ];
     // bbl
-    VOLUME_UNIT_BBL = 10;
+    VOLUME_UNIT_BBL = 10 [
+      (string_name) = "BBL"
+    ];
     // ifloz
-    VOLUME_UNIT_IFOZ = 11;
+    VOLUME_UNIT_IFOZ = 11[
+      (string_name) = "IFOZ"
+    ];
     // ipt
-    VOLUME_UNIT_IPT = 12;
+    VOLUME_UNIT_IPT = 12[
+      (string_name) = "IPT"
+    ];
     // iqt
-    VOLUME_UNIT_IQT = 13;
+    VOLUME_UNIT_IQT = 13[
+      (string_name) = "IQT"
+    ];
     // igal
-    VOLUME_UNIT_IGAL = 14;
+    VOLUME_UNIT_IGAL = 14[
+      (string_name) = "IGAL"
+    ];
     // ibbl
-    VOLUME_UNIT_IBBL = 15;
+    VOLUME_UNIT_IBBL = 15[
+      (string_name) = "IBBL"
+    ];
   }
 
 message MassType{
