@@ -11,8 +11,7 @@ import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.EnumValueOptions {
   optional string string_name = 123456789;
-  optional string string_name_full = 123456788;
-
+  optional string display_name = 123456788;
 }
 
 package beerproto.v1;
@@ -24,67 +23,84 @@ message VolumeType{
 
   enum VolumeUnit{
     VOLUME_UNIT_UNSPECIFIED = 0 [
-      (string_name) = "UNSPECIFIED"
+      (string_name) = "UNSPECIFIED",
+      (display_name) = "UNSPECIFIED"
     ];
     // ml
     VOLUME_UNIT_ML = 1[
-      (string_name) = "ml"
+      (string_name) = "ml",
+      (display_name) = "mL"
+
     ];
     // l
     VOLUME_UNIT_L = 2 [
-      (string_name) = "l"
+      (string_name) = "l",
+      (display_name) = "L"
     ];
     // tsp
     VOLUME_UNIT_TSP = 3 [
-      (string_name) = "tsp"
+      (string_name) = "tsp",
+      (display_name) = "tsp"
     ];
     // tbsp
     VOLUME_UNIT_TBSP = 4[
-      (string_name) = "tbsp"
+      (string_name) = "tbsp",
+      (display_name) = "Tbsp"
     ];
     // floz
     VOLUME_UNIT_FLOZ = 5[
-      (string_name) = "floz"
+      (string_name) = "floz",
+      (display_name) = "fl oz"
     ];
     // cup
     VOLUME_UNIT_CUP = 6[
-      (string_name) = "cup"
+      (string_name) = "cup",
+      (display_name) = "cup"
     ];
     // pt
     VOLUME_UNIT_PT = 7[
-      (string_name) = "pt"
+      (string_name) = "pt",
+      (display_name) = "pt"
     ];
     // qt
     VOLUME_UNIT_QT = 8[
-      (string_name) = "qt"
+      (string_name) = "qt",
+      (display_name) = "qt"
     ];
     // gal
     VOLUME_UNIT_GAL = 9[
-      (string_name) = "gal"
+      (string_name) = "gal",
+      (display_name) = "gal"
     ];
     // bbl
     VOLUME_UNIT_BBL = 10 [
-      (string_name) = "bbl"
+      (string_name) = "bbl",
+      (display_name) = "bbl"
     ];
     // ifloz
     VOLUME_UNIT_IFOZ = 11[
-      (string_name) = "ifox"
+      (string_name) = "ifox",
+      (display_name) = "imp fl oz"
     ];
     // ipt
     VOLUME_UNIT_IPT = 12[
-      (string_name) = "ipt"
+      (string_name) = "ipt",
+      (display_name) = "imp pt"
     ];
     // iqt
     VOLUME_UNIT_IQT = 13[
-      (string_name) = "iqt"
+      (string_name) = "iqt",
+      (display_name) = "imp qt"
     ];
     // igal
     VOLUME_UNIT_IGAL = 14[
-      (string_name) = "igal"
+      (string_name) = "igal",
+      (display_name) = "imp gal"
     ];
     // ibbl
     VOLUME_UNIT_IBBL = 15[
-      (string_name) = "ibbl"
+      (string_name) = "ibbl",
+      (display_name) = "imp bbl"
     ];
   }
 
@@ -95,27 +111,33 @@ message MassType{
 
 enum MassUnit{
   MASS_UNIT_UNSPECIFIED = 0 [
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // mg
   MASS_UNIT_MG = 1 [
-    (string_name) = "mg"
+    (string_name) = "mg",
+    (display_name) = "mg"
   ];
   // g
   MASS_UNIT_G = 2 [
-    (string_name) = "g"
+    (string_name) = "g",
+    (display_name) = "g"
   ];
   // kg
   MASS_UNIT_KG = 3 [
-    (string_name) = "kg"
+    (string_name) = "kg",
+    (display_name) = "kg"
   ];
   // lb
   MASS_UNIT_LB = 4 [
-    (string_name) = "lb"
+    (string_name) = "lb",
+    (display_name) = "lb"
   ];
   // oz
   MASS_UNIT_OZ = 5 [
-    (string_name) = "oz"
+    (string_name) = "oz",
+    (display_name) = "oz"
   ];
 }
 
@@ -128,15 +150,18 @@ message DiastaticPowerType{
 
 enum DiastaticPowerUnit{
   DIASTATIC_POWER_UNIT_UNSPECIFIED = 0[
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // Lintner
   DIASTATIC_POWER_UNIT_LINTNER = 1[
-    (string_name) = "Linter"
+    (string_name) = "Linter",
+    (display_name) = "Linter"
   ];
   // Windisch–Kolbach
   DIASTATIC_POWER_UNIT_WK = 2[
-    (string_name) = "Windisch–Kolbach"
+    (string_name) = "WK",
+    (display_name) = "Windisch–Kolbach"
   ];
 }
 
@@ -148,13 +173,16 @@ message TemperatureType{
 
 enum TemperatureUnit {
     TEMPERATURE_UNIT_UNSPECIFIED = 0[
-      (string_name) = "UNSPECIFIED"
+      (string_name) = "UNSPECIFIED",
+      (display_name) = "UNSPECIFIED"
     ];
     TEMPERATURE_UNIT_C = 1[
-      (string_name) = "C"
+      (string_name) = "C",
+      (display_name) = "C"
     ];
     TEMPERATURE_UNIT_F = 2[
-      (string_name) = "F"
+      (string_name) = "F",
+      (display_name) = "F"
     ];
 }
 
@@ -166,10 +194,12 @@ message AcidityType{
 
 enum AcidityUnit{
     ACIDITY_UNIT_UNSPECIFIED = 0[
-      (string_name) = "UNSPECIFIED"
+      (string_name) = "UNSPECIFIED",
+      (display_name) = "UNSPECIFIED"
     ];
     ACIDITY_UNIT_PH = 1[
-      (string_name) = "PH"
+      (string_name) = "pH",
+      (display_name) = "pH"
     ];
 }
 
@@ -181,27 +211,33 @@ message TimeType{
 
  enum TimeUnit {
     TIME_UNIT_UNSPECIFIED = 0[
-      (string_name) = "UNSPECIFIED"
+      (string_name) = "UNSPECIFIED",
+      (display_name) = "UNSPECIFIED"
     ];
     // sec
     TIME_UNIT_SEC = 1[
-      (string_name) = "sec"
+      (string_name) = "sec",
+      (display_name) = "Second"
     ];
     // min
     TIME_UNIT_MIN = 2[
-      (string_name) = "min"
+      (string_name) = "min",
+      (display_name) = "Minute"
     ];
     // hr
     TIME_UNIT_HR = 3[
-      (string_name) = "hr"
+      (string_name) = "hr",
+      (display_name) = "Hour"
     ];
     // day
     TIME_UNIT_DAY = 4[
-      (string_name) = "day"
+      (string_name) = "day",
+      (display_name) = "Day"
     ];
     // week
     TIME_UNIT_WEEK = 5[
-      (string_name) = "week"
+      (string_name) = "week",
+      (display_name) = "Week"
     ];
   }
 
@@ -213,19 +249,23 @@ message ColorType{
 
 enum ColorUnit {
   COLOR_UNIT_UNSPECIFIED = 0[
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // EBC
   COLOR_UNIT_EBC = 1[
-    (string_name) = "EBC"
+    (string_name) = "EBC",
+    (display_name) = "EBC"
   ];
   // Lovi
   COLOR_UNIT_LOVI = 2[
-    (string_name) = "Lovi"
+    (string_name) = "Lovi",
+    (display_name) = "Lovi"
   ];
   // SRM
   COLOR_UNIT_SRM = 3[
-    (string_name) = "SRM"
+    (string_name) = "SRM",
+    (display_name) = "SRM"
   ];
 }
 
@@ -237,15 +277,18 @@ message CarbonationType {
 
 enum CarbonationUnit {
   CARBONATION_UNIT_UNSPECIFIED = 0[
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // vols
   CARBONATION_UNIT_VOLS = 1[
-    (string_name) = "vols"
+    (string_name) = "vols",
+    (display_name) = "vols"
   ];
   // g/l
   CARBONATION_UNIT_GL = 2[
-    (string_name) = "g/l"
+    (string_name) = "g/l",
+    (display_name) = "g/l"
   ];
 }
 
@@ -257,11 +300,13 @@ message BitternessType{
 
 enum BitternessUnit{
   BITTERNESS_UNIT_UNSPECIFIED = 0[
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // IBUs
   BITTERNESS_UNIT_IBUS = 1[
-    (string_name) = "IBUs"
+    (string_name) = "IBUs",
+    (display_name) = "IBUs"
   ];
 }
 
@@ -273,19 +318,23 @@ message GravityType {
 
 enum GravityUnit {
     GRAVITY_UNIT_UNSPECIFIED = 0[
-      (string_name) = "UNSPECIFIED"
+      (string_name) = "UNSPECIFIED",
+      (display_name) = "UNSPECIFIED"
     ];
     // sg
     GRAVITY_UNIT_SG = 1[
-      (string_name) = "sg"
+      (string_name) = "sg",
+      (display_name) = "SG"
     ];
     // plato
     GRAVITY_UNIT_PLATO = 2[
-      (string_name) = "plato"
+      (string_name) = "plato",
+      (display_name) = "Plato"
     ];
     // brix
     GRAVITY_UNIT_BRIX = 3[
-      (string_name) = "brix"
+      (string_name) = "brix",
+      (display_name) = "BRIX"
     ];
 }
 
@@ -297,19 +346,23 @@ message SpecificHeatType{
 
 enum SpecificHeatUnit{
   SPECIFIC_HEAT_UNIT_UNSPECIFIED = 0[
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // Cal/(g C)
   SPECIFIC_HEAT_UNIT_CALGC = 1[
-    (string_name) = "Cal/(g C)"
+    (string_name) = "Cal/(g C)",
+    (display_name) = "Cal/(g C)"
   ];
   // J/(kg K)
   SPECIFIC_HEAT_UNIT_JKGK = 2[
-    (string_name) = "J/(kg K)"
+    (string_name) = "J/(kg K)",
+    (display_name) = "J/(kg K)"
   ];
   // BTU/(lb F)
   SPECIFIC_HEAT_UNIT_BTULBF = 3[
-    (string_name) = "BTU/(lb F)"
+    (string_name) = "BTU/(lb F)",
+    (display_name) = "BTU/(lb F)"
   ];
 }
 
@@ -321,23 +374,28 @@ message ConcentrationType{
 
 enum ConcentrationUnit{
   CONCENTRATION_UNIT_UNSPECIFIED = 0[
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // ppm
   CONCENTRATION_UNIT_PPM = 1[
-    (string_name) = "ppm"
+    (string_name) = "ppm",
+    (display_name) = "ppm"
   ];
   // ppb
   CONCENTRATION_UNIT_PPB = 2[
-    (string_name) = "ppb"
+    (string_name) = "ppb",
+    (display_name) = "ppb"
   ];
   // mg/l
   CONCENTRATION_UNIT_MGL = 3[
-    (string_name) = "mg/l"
+    (string_name) = "mg/l",
+    (display_name) = "mg/l"
   ];
   // mg/100g
   CONCENTRATION_UNIT_MG100L = 4[
-    (string_name) = "mg/100g"
+    (string_name) = "mg/100g",
+    (display_name) = "mg/100g"
   ];
 }
 
@@ -349,39 +407,48 @@ message SpecificVolumeType{
 
 enum SpecificVolumeUnit{
   SPECIFIC_VOLUME_UNIT_UNSPECIFIED = 0[
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // qt/lb
   SPECIFIC_VOLUME_UNIT_QTLB = 1[
-    (string_name) = "qt/lb"
+    (string_name) = "qt/lb",
+    (display_name) = "qt/lb"
   ];
   // gal/lb
   SPECIFIC_VOLUME_UNIT_GALLB = 2[
-    (string_name) = "gal/lb"
+    (string_name) = "gal/lb",
+    (display_name) = "gal/lb"
   ];
   // gal/oz
   SPECIFIC_VOLUME_UNIT_GALOZ = 3[
-    (string_name) = "gal/oz"
+    (string_name) = "gal/oz",
+    (display_name) = "gal/oz"
   ];
   // l/g
   SPECIFIC_VOLUME_UNIT_LG = 4[
-    (string_name) = "l/g"
+    (string_name) = "l/g",
+    (display_name) = "l/g"
   ];
   // l/kg
   SPECIFIC_VOLUME_UNIT_LKG = 5[
-    (string_name) = "l/kg"
+    (string_name) = "l/kg",
+    (display_name) = "l/kg"
   ];
   // floz/oz
   SPECIFIC_VOLUME_UNIT_FLOZOZ = 6[
-    (string_name) = "floz/oz"
+    (string_name) = "floz/oz",
+    (display_name) = "floz/oz"
   ];
   // m^3/kg
   SPECIFIC_VOLUME_UNIT_M3KG = 7[
-    (string_name) = "m^3/kg"
+    (string_name) = "m^3/kg",
+    (display_name) = "m^3/kg"
   ];
   // ft^3/lb
   SPECIFIC_VOLUME_UNIT_FT3LB = 8[
-    (string_name) = "ft^3/lb"
+    (string_name) = "ft^3/lb",
+    (display_name) = "ft^3/lb"
   ];
 }
 
@@ -393,27 +460,33 @@ message UnitType {
 
 enum UnitUnit {
   UNIT_UNIT_UNSPECIFIED = 0[
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // 1
   UNIT_UNIT_ONE = 1[
-    (string_name) = "1"
+    (string_name) = "1",
+    (display_name) = "One"
   ];
   // unit
   UNIT_UNIT_UNIT = 2[
-    (string_name) = "unit"
+    (string_name) = "unit",
+    (display_name) = "Unit"
   ];
   // each
   UNIT_UNIT_EACH = 3[
-    (string_name) = "each"
+    (string_name) = "each",
+    (display_name) = "Each"
   ];
   // dimensionless
   UNIT_UNIT_DIMENSIONLESS = 4[
-    (string_name) = "dimensionless"
+    (string_name) = "dimensionless",
+    (display_name) = "Dimensionless"
   ];
   // pkg
   UNIT_UNIT_PKG = 5[
-    (string_name) = "pkg"
+    (string_name) = "pkg",
+    (display_name) = "Package"
   ];
 }
 
@@ -424,11 +497,13 @@ message PercentType{
 
 enum PercentUnit{
   PERCENT_UNIT_UNSPECIFIED = 0[
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // %
   PERCENT_UNIT_PERCENT_SIGN = 1[
-    (string_name) = "%"
+    (string_name) = "%",
+    (display_name) = "%"
   ];
 }
 
@@ -439,15 +514,18 @@ message ViscosityType{
 
 enum ViscosityUnit {
   VISCOSITY_UNIT_UNSPECIFIED = 0[
-    (string_name) = "UNSPECIFIED"
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED"
   ];
   // cP
   VISCOSITY_UNIT_CP = 1[
-    (string_name) = "cP"
+    (string_name) = "cP",
+    (display_name) = "cP"
   ];
   // mPa-s
   VISCOSITY_UNIT_MPAS = 2[
-    (string_name) = "mPa-s"
+    (string_name) = "mPa-s",
+    (display_name) = "mPa-s"
   ];
 }
 
