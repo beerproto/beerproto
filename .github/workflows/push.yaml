@@ -39,5 +39,5 @@ jobs:
         with:
           url: "https://api.github.com/repos/beerproto/beerproto_dart/actions/workflows/main.yml/dispatches"
           method: post
-          data: '{"ref": "master"}'
+          data: '{"ref": "main"}'
           headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_DART }}"}'
