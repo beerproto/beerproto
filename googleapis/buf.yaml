@@ -1,0 +1,8 @@
+version: v1
+name: buf.build/rossmerr/googleapis
+breaking:
+  use:
+    - FILE
+lint:
+  ignore:
+    - google/
