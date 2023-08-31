@@ -123,8 +123,7 @@ enum VolumeUnit{
           target: VOLUME_UNIT_IBBL,
           operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 0.0000061102568971969
-        },
-        ,
+        },        
         {
           target: VOLUME_UNIT_BBL,
           operator: ARITHMETIC_OPERATORS_DIVISION,
