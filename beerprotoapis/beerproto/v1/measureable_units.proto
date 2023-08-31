@@ -7,102 +7,133 @@
  */
 syntax = "proto3";
 
+package beerproto.v1;
+
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.EnumValueOptions {
   optional string string_name = 123456789;
   optional string display_name = 123456788;
+  optional ConversionVolumeUnit conversion_volume_unit = 123456787;
 }
 
-package beerproto.v1;
+enum ArithmeticOperators {
+  ARITHMETIC_OPERATORS_UNSPECIFIED = 0;
+  ARITHMETIC_OPERATORS_ADDITION = 1;
+  ARITHMETIC_OPERATORS_SUBTRACTION = 2;
+  ARITHMETIC_OPERATORS_MULTIPLICATION = 3;
+  ARITHMETIC_OPERATORS_DIVISION = 4;
+}
+
+message ConversionVolumeUnit {
+  message ConversionVolumeUnitRate{
+    VolumeUnit target = 1;
+    ArithmeticOperators operator = 2;
+    double value = 3;
+   }
+
+  repeated ConversionVolumeUnitRate rates = 1;
+}
+
 
 message VolumeType{
   double value = 1;
   VolumeUnit unit = 2;
 }
 
-  enum VolumeUnit{
-    VOLUME_UNIT_UNSPECIFIED = 0 [
-      (string_name) = "UNSPECIFIED",
-      (display_name) = "UNSPECIFIED"
-    ];
-    // ml
-    VOLUME_UNIT_ML = 1[
-      (string_name) = "ml",
-      (display_name) = "mL"
+enum VolumeUnit{
+  VOLUME_UNIT_UNSPECIFIED = 0 [
+    (string_name) = "UNSPECIFIED",
+    (display_name) = "UNSPECIFIED",
+    (conversion_volume_unit) = {
+      rates: [
+        {
+          target: VOLUME_UNIT_ML,
+          operator: ARITHMETIC_OPERATORS_UNSPECIFIED,
+          value: 0
+        }
+      ]
+    }
+  ];
+  // ml
+  VOLUME_UNIT_ML = 1[
+    (string_name) = "ml",
+    (display_name) = "mL"
 
-    ];
-    // l
-    VOLUME_UNIT_L = 2 [
-      (string_name) = "l",
-      (display_name) = "L"
-    ];
-    // tsp
-    VOLUME_UNIT_TSP = 3 [
-      (string_name) = "tsp",
-      (display_name) = "tsp"
-    ];
-    // tbsp
-    VOLUME_UNIT_TBSP = 4[
-      (string_name) = "tbsp",
-      (display_name) = "Tbsp"
-    ];
-    // floz
-    VOLUME_UNIT_FLOZ = 5[
-      (string_name) = "floz",
-      (display_name) = "fl oz"
-    ];
-    // cup
-    VOLUME_UNIT_CUP = 6[
-      (string_name) = "cup",
-      (display_name) = "cup"
-    ];
-    // pt
-    VOLUME_UNIT_PT = 7[
-      (string_name) = "pt",
-      (display_name) = "pt"
-    ];
-    // qt
-    VOLUME_UNIT_QT = 8[
-      (string_name) = "qt",
-      (display_name) = "qt"
-    ];
-    // gal
-    VOLUME_UNIT_GAL = 9[
-      (string_name) = "gal",
-      (display_name) = "gal"
-    ];
-    // bbl
-    VOLUME_UNIT_BBL = 10 [
-      (string_name) = "bbl",
-      (display_name) = "bbl"
-    ];
-    // ifloz
-    VOLUME_UNIT_IFOZ = 11[
-      (string_name) = "ifox",
-      (display_name) = "imp fl oz"
-    ];
-    // ipt
-    VOLUME_UNIT_IPT = 12[
-      (string_name) = "ipt",
-      (display_name) = "imp pt"
-    ];
-    // iqt
-    VOLUME_UNIT_IQT = 13[
-      (string_name) = "iqt",
-      (display_name) = "imp qt"
-    ];
-    // igal
-    VOLUME_UNIT_IGAL = 14[
-      (string_name) = "igal",
-      (display_name) = "imp gal"
-    ];
-    // ibbl
-    VOLUME_UNIT_IBBL = 15[
-      (string_name) = "ibbl",
-      (display_name) = "imp bbl"
-    ];
-  }
+  ];
+  // l
+  VOLUME_UNIT_L = 2 [
+    (string_name) = "l",
+    (display_name) = "L"
+  ];
+  // tsp
+  VOLUME_UNIT_TSP = 3 [
+    (string_name) = "tsp",
+    (display_name) = "tsp"
+  ];
+  // tbsp
+  VOLUME_UNIT_TBSP = 4[
+    (string_name) = "tbsp",
+    (display_name) = "Tbsp"
+  ];
+  // floz
+  VOLUME_UNIT_FLOZ = 5[
+    (string_name) = "floz",
+    (display_name) = "fl oz"
+  ];
+  // cup
+  VOLUME_UNIT_CUP = 6[
+    (string_name) = "cup",
+    (display_name) = "cup"
+  ];
+  // pt
+  VOLUME_UNIT_PT = 7[
+    (string_name) = "pt",
+    (display_name) = "pt"
+  ];
+  // qt
+  VOLUME_UNIT_QT = 8[
+    (string_name) = "qt",
+    (display_name) = "qt"
+  ];
+  // gal
+  VOLUME_UNIT_GAL = 9[
+    (string_name) = "gal",
+    (display_name) = "gal"
+  ];
+  // bbl
+  VOLUME_UNIT_BBL = 10 [
+    (string_name) = "bbl",
+    (display_name) = "bbl"
+  ];
+  // ifloz
+  VOLUME_UNIT_IFOZ = 11[
+    (string_name) = "ifox",
+    (display_name) = "imp fl oz"
+  ];
+  // ipt
+  VOLUME_UNIT_IPT = 12[
+    (string_name) = "ipt",
+    (display_name) = "imp pt"
+  ];
+  // iqt
+  VOLUME_UNIT_IQT = 13[
+    (string_name) = "iqt",
+    (display_name) = "imp qt"
+  ];
+  // igal
+  VOLUME_UNIT_IGAL = 14[
+    (string_name) = "igal",
+    (display_name) = "imp gal"
+  ];
+  // ibbl
+  VOLUME_UNIT_IBBL = 15[
+    (string_name) = "ibbl",
+    (display_name) = "imp bbl"
+  ];
+}
+
+
 
 message MassType{
   double value = 1;
