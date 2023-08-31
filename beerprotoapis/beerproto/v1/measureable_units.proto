@@ -60,73 +60,73 @@ enum VolumeUnit{
     (conversion_volume_unit) = {
       rates: [
         {
-          target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_UNSPECIFIED,
-          value: 0
-        },
-        {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 1000
         },
         {
           target: VOLUME_UNIT_TSP,
           operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
-          value: 4.92892159375
+          value:   0.20288413621106
         },
         {
           target: VOLUME_UNIT_TBSP,
           operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
-          value: 14.78676478125
+          value: 0.067628045403686
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 29.574
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 240
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 473
         },
         {
+          target: VOLUME_UNIT_QT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 946
+        },
+        {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 3785
         },
         {
           target: VOLUME_UNIT_IFOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 28.413
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 568
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 1137
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 4546
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
           value: 0.0000061102568971969
         },        
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
           value: 0.0000085216791083274
         }
       ]
