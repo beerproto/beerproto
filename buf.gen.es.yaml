@@ -1,0 +1,7 @@
+version: v1
+managed:
+  enabled: true
+plugins:
+  - name: es
+    out: gen/proto/es
+# npm install --save-dev @bufbuild/protoc-gen-es

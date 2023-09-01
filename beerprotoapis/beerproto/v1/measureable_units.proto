@@ -60,24 +60,29 @@ enum VolumeUnit{
     (conversion_volume_unit) = {
       rates: [
         {
+          target: VOLUME_UNIT_ML,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 0
+        },
+        {
           target: VOLUME_UNIT_L,
           operator: ARITHMETIC_OPERATORS_DIVISION,
           value: 1000
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
-          value:   0.20288413621106
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value:   4.92892
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
-          value: 0.067628045403686
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 14.7868
         },
         {
           target: VOLUME_UNIT_FLOZ,
           operator: ARITHMETIC_OPERATORS_DIVISION,
-          value: 29.574
+          value: 29.5735
         },
         {
           target: VOLUME_UNIT_CUP,
@@ -87,37 +92,37 @@ enum VolumeUnit{
         {
           target: VOLUME_UNIT_PT,
           operator: ARITHMETIC_OPERATORS_DIVISION,
-          value: 473
+          value: 473.176
         },
         {
           target: VOLUME_UNIT_QT,
           operator: ARITHMETIC_OPERATORS_DIVISION,
-          value: 946
+          value: 946.353
         },
         {
           target: VOLUME_UNIT_GAL,
           operator: ARITHMETIC_OPERATORS_DIVISION,
-          value: 3785
+          value: 3785.41
         },
         {
           target: VOLUME_UNIT_IFOZ,
           operator: ARITHMETIC_OPERATORS_DIVISION,
-          value: 28.413
+          value: 28.4131
         },
         {
           target: VOLUME_UNIT_IPT,
           operator: ARITHMETIC_OPERATORS_DIVISION,
-          value: 568
+          value: 568.261
         },
         {
           target: VOLUME_UNIT_IQT,
           operator: ARITHMETIC_OPERATORS_DIVISION,
-          value: 1137
+          value: 1136.52
         },
         {
           target: VOLUME_UNIT_IGAL,
           operator: ARITHMETIC_OPERATORS_DIVISION,
-          value: 4546
+          value: 4546.09
         },
         {
           target: VOLUME_UNIT_IBBL,
@@ -135,17 +140,254 @@ enum VolumeUnit{
   // l
   VOLUME_UNIT_L = 2 [
     (string_name) = "l",
-    (display_name) = "L"
+    (display_name) = "L",
+    (conversion_volume_unit) = {
+      rates: [
+        {
+          target: VOLUME_UNIT_ML,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 1000
+        },        
+        {
+          target: VOLUME_UNIT_L,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0
+        },
+        {
+          target: VOLUME_UNIT_TSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 202.884
+        },
+        {
+          target: VOLUME_UNIT_TBSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 67.628045403686
+        },
+        {
+          target: VOLUME_UNIT_FLOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 33.814
+        },
+        {
+          target: VOLUME_UNIT_CUP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 3.51951
+        },
+        {
+          target: VOLUME_UNIT_PT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 2.11338
+        },
+        {
+          target: VOLUME_UNIT_QT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 1.05669
+        },
+        {
+          target: VOLUME_UNIT_GAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 3.78541
+        },
+        {
+          target: VOLUME_UNIT_IFOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 35.1951
+        },
+        {
+          target: VOLUME_UNIT_IPT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 1.75975
+        },
+        {
+          target: VOLUME_UNIT_IQT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 1.13652
+        },
+        {
+          target: VOLUME_UNIT_IGAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 4.54609
+        },
+        {
+          target: VOLUME_UNIT_IBBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.0061102568971969
+        },        
+        {
+          target: VOLUME_UNIT_BBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.0000085216791083274
+        }
+      ]
+    }
   ];
   // tsp
   VOLUME_UNIT_TSP = 3 [
     (string_name) = "tsp",
-    (display_name) = "tsp"
+    (display_name) = "tsp",
+    (conversion_volume_unit) = {
+      rates: [
+        {
+          target: VOLUME_UNIT_ML,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 4.92892
+        },        
+        {
+          target: VOLUME_UNIT_L,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 202.884
+        },
+        {
+          target: VOLUME_UNIT_TSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0
+        },
+        {
+          target: VOLUME_UNIT_TBSP,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 3
+        },
+        {
+          target: VOLUME_UNIT_FLOZ,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 6
+        },
+        {
+          target: VOLUME_UNIT_CUP,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 48.6922
+        },
+        {
+          target: VOLUME_UNIT_PT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 96
+        },
+        {
+          target: VOLUME_UNIT_QT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 192
+        },
+        {
+          target: VOLUME_UNIT_GAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 768
+        },
+        {
+          target: VOLUME_UNIT_IFOZ,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 5.76456
+        },
+        {
+          target: VOLUME_UNIT_IPT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 115.291
+        },
+        {
+          target: VOLUME_UNIT_IQT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 230.582
+        },
+        {
+          target: VOLUME_UNIT_IGAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 922.33
+        },
+        {
+          target: VOLUME_UNIT_IBBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.000030116977163954
+        },        
+        {
+          target: VOLUME_UNIT_BBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.000042002688172043
+        }
+      ]
+    }
   ];
   // tbsp
   VOLUME_UNIT_TBSP = 4[
     (string_name) = "tbsp",
-    (display_name) = "Tbsp"
+    (display_name) = "Tbsp",
+    (conversion_volume_unit) = {
+      rates: [
+        {
+          target: VOLUME_UNIT_ML,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 14.7868
+        },        
+        {
+          target: VOLUME_UNIT_L,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 67.628
+        },
+        {
+          target: VOLUME_UNIT_TSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 3
+        },
+        {
+          target: VOLUME_UNIT_TBSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0
+        },
+        {
+          target: VOLUME_UNIT_FLOZ,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 2
+        },
+        {
+          target: VOLUME_UNIT_CUP,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 16.2307
+        },
+        {
+          target: VOLUME_UNIT_PT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 32
+        },
+        {
+          target: VOLUME_UNIT_QT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 64
+        },
+        {
+          target: VOLUME_UNIT_GAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 256
+        },
+        {
+          target: VOLUME_UNIT_IFOZ,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 1.92152
+        },
+        {
+          target: VOLUME_UNIT_IPT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 38.4304
+        },
+        {
+          target: VOLUME_UNIT_IQT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 76.8608
+        },
+        {
+          target: VOLUME_UNIT_IGAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 307.443
+        },
+        {
+          target: VOLUME_UNIT_IBBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.000090350931491861
+        },        
+        {
+          target: VOLUME_UNIT_BBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.00012600806451613
+        }
+      ]
+    }
   ];
   // floz
   VOLUME_UNIT_FLOZ = 5[
