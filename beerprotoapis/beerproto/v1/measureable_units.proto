@@ -893,27 +893,422 @@ enum VolumeUnit {
   // ifloz
   VOLUME_UNIT_IFLOZ = 11 [
     (string_name) = "ifloz",
-    (display_name) = "imp fl oz"
+    (display_name) = "imp fl oz",
+    (conversion_volume_unit) = {
+      rates: [
+        {
+          target: VOLUME_UNIT_ML,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 28.4131
+        },
+        {
+          target: VOLUME_UNIT_L,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 35.1951
+        },
+        {
+          target: VOLUME_UNIT_TSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 5.76456
+        },
+        {
+          target: VOLUME_UNIT_TBSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 1.92152
+        },
+        {
+          target: VOLUME_UNIT_FLOZ,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 1.04084
+        },
+        {
+          target: VOLUME_UNIT_CUP,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 8.44682
+        },
+        {
+          target: VOLUME_UNIT_PT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 16.6535
+        },
+        {
+          target: VOLUME_UNIT_QT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 33.307
+        },
+        {
+          target: VOLUME_UNIT_GAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 133.228
+        },
+        {
+          target: VOLUME_UNIT_IFOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 133.228
+        },
+        {
+          target: VOLUME_UNIT_IPT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 6.66139
+        },
+        {
+          target: VOLUME_UNIT_IQT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 3.3307
+        },
+        {
+          target: VOLUME_UNIT_IGAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 1.20095
+        },
+        {
+          target: VOLUME_UNIT_IBBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.00017361111111111
+        },
+        {
+          target: VOLUME_UNIT_BBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.00024212700110985
+        }
+      ]
+    }
   ];
   // ipt
   VOLUME_UNIT_IPT = 12 [
     (string_name) = "ipt",
-    (display_name) = "imp pt"
+    (display_name) = "imp pt",
+    (conversion_volume_unit) = {
+      rates: [
+        {
+          target: VOLUME_UNIT_ML,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 568.261
+        },
+        {
+          target: VOLUME_UNIT_L,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 1.75975
+        },
+        {
+          target: VOLUME_UNIT_TSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 115.291
+        },
+        {
+          target: VOLUME_UNIT_TBSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 38.4304
+        },
+        {
+          target: VOLUME_UNIT_FLOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 19.2152
+        },
+        {
+          target: VOLUME_UNIT_CUP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 2.36776
+        },
+        {
+          target: VOLUME_UNIT_PT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 1.20095
+        },
+        {
+          target: VOLUME_UNIT_QT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 1.66535
+        },
+        {
+          target: VOLUME_UNIT_GAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 6.66139
+        },
+        {
+          target: VOLUME_UNIT_IFOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 20
+        },
+        {
+          target: VOLUME_UNIT_IPT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0
+        },
+        {
+          target: VOLUME_UNIT_IQT,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 2
+        },
+        {
+          target: VOLUME_UNIT_IGAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 8
+        },
+        {
+          target: VOLUME_UNIT_IBBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.0000045211226851852
+        },
+        {
+          target: VOLUME_UNIT_BBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.004842540022197
+        }
+      ]
+    }
   ];
   // iqt
   VOLUME_UNIT_IQT = 13 [
     (string_name) = "iqt",
-    (display_name) = "imp qt"
+    (display_name) = "imp qt",
+    (conversion_volume_unit) = {
+      rates: [
+        {
+          target: VOLUME_UNIT_ML,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 1136.52
+        },
+        {
+          target: VOLUME_UNIT_L,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 1.13652
+        },
+        {
+          target: VOLUME_UNIT_TSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 76.8608
+        },
+        {
+          target: VOLUME_UNIT_TBSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 230.582
+        },
+        {
+          target: VOLUME_UNIT_FLOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 38.4304
+        },
+        {
+          target: VOLUME_UNIT_CUP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 4.73551
+        },
+        {
+          target: VOLUME_UNIT_PT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 2.4019
+        },
+        {
+          target: VOLUME_UNIT_QT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 1.20095
+        },
+        {
+          target: VOLUME_UNIT_GAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 3.3307
+        },
+        {
+          target: VOLUME_UNIT_IFOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 40
+        },
+        {
+          target: VOLUME_UNIT_IPT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 2
+        },
+        {
+          target: VOLUME_UNIT_IQT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0
+        },
+        {
+          target: VOLUME_UNIT_IGAL,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 4
+        },
+        {
+          target: VOLUME_UNIT_IBBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.0069444444444444
+        },
+        {
+          target: VOLUME_UNIT_BBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.009685080044394
+        }
+      ]
+    }
   ];
   // igal
   VOLUME_UNIT_IGAL = 14 [
     (string_name) = "igal",
-    (display_name) = "imp gal"
+    (display_name) = "imp gal",
+    (conversion_volume_unit) = {
+      rates: [
+        {
+          target: VOLUME_UNIT_ML,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 4546.09
+        },
+        {
+          target: VOLUME_UNIT_L,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 4.54609
+        },
+        {
+          target: VOLUME_UNIT_TSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 922.33
+        },
+        {
+          target: VOLUME_UNIT_TBSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 307.443
+        },
+        {
+          target: VOLUME_UNIT_FLOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 153.722
+        },
+        {
+          target: VOLUME_UNIT_CUP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 18.942
+        },
+        {
+          target: VOLUME_UNIT_PT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 9.6076
+        },
+        {
+          target: VOLUME_UNIT_QT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 4.8038
+        },
+        {
+          target: VOLUME_UNIT_GAL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 1.20095
+        },
+        {
+          target: VOLUME_UNIT_IFOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 160
+        },
+        {
+          target: VOLUME_UNIT_IPT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 8
+        },
+        {
+          target: VOLUME_UNIT_IQT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 4
+        },
+        {
+          target: VOLUME_UNIT_IGAL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0
+        },
+        {
+          target: VOLUME_UNIT_IBBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.027777777777778
+        },
+        {
+          target: VOLUME_UNIT_BBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0.038740320177576
+        }
+      ]
+    }
   ];
   // ibbl
   VOLUME_UNIT_IBBL = 15 [
     (string_name) = "ibbl",
-    (display_name) = "imp bbl"
+    (display_name) = "imp bbl",
+    (conversion_volume_unit) = {
+      rates: [
+        {
+          target: VOLUME_UNIT_ML,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 0.0000061102568971969
+        },
+        {
+          target: VOLUME_UNIT_L,
+          operator: ARITHMETIC_OPERATORS_DIVISION,
+          value: 0.0061102568971969
+        },
+        {
+          target: VOLUME_UNIT_TSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 922.32954278773
+        },
+        {
+          target: VOLUME_UNIT_TBSP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 307.44318092924
+        },
+        {
+          target: VOLUME_UNIT_FLOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 153.72159046462
+        },
+        {
+          target: VOLUME_UNIT_CUP,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 691.7471570908
+        },
+        {
+          target: VOLUME_UNIT_PT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 345.8735785454
+        },
+        {
+          target: VOLUME_UNIT_QT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 172.9367892727
+        },
+        {
+          target: VOLUME_UNIT_GAL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 43.234197318175
+        },
+        {
+          target: VOLUME_UNIT_IFOZ,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 5760
+        },
+        {
+          target: VOLUME_UNIT_IPT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 288
+        },
+        {
+          target: VOLUME_UNIT_IQT,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 144
+        },
+        {
+          target: VOLUME_UNIT_IGAL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 36
+        },
+        {
+          target: VOLUME_UNIT_IBBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 0
+        },
+        {
+          target: VOLUME_UNIT_BBL,
+          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          value: 1.3946515263927
+        }
+      ]
+    }
   ];
 }
 
