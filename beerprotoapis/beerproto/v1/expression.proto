@@ -1,0 +1,50 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+message UnaryExpression {
+  oneof value {
+    double double = 1;
+    float float = 2;
+    int32 int32 = 3;
+    int64 int64 = 4;
+    uint32 uint32 = 5;
+    uint64 uint64 = 6;
+    bool bool = 7;
+    string string = 8;
+    bytes bytes = 9;
+  }
+}
+
+message BinaryExpression {
+  BinaryArithmetic operator = 1;
+
+  oneof left {
+    BinaryExpression binary_left = 10;
+    UnaryExpression unary_left = 11;
+    ValueExpression value_left = 12;
+  }
+
+  oneof right {
+    BinaryExpression binary_right = 20;
+    UnaryExpression unary_right = 21;
+    ValueExpression value_right = 22;
+  }
+}
+
+enum BinaryArithmetic {
+  BINARY_ARITHMETIC_UNSPECIFIED = 0;
+  BINARY_ARITHMETIC_ADDITION = 1;
+  BINARY_ARITHMETIC_SUBTRACTION = 2;
+  BINARY_ARITHMETIC_MULTIPLICATION = 3;
+  BINARY_ARITHMETIC_DIVISION = 4;
+}
+
+message ValueExpression {}

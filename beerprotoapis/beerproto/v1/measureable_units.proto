@@ -9,6 +9,7 @@ syntax = "proto3";
 
 package beerproto.v1;
 
+import "beerproto/v1/expression.proto";
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.EnumValueOptions {
@@ -16,6 +17,7 @@ extend google.protobuf.EnumValueOptions {
   optional string display_name = 123456788;
   optional ConversionVolumeUnit conversion_volume_unit = 123456787;
   optional ConversionMassUnit conversion_mass_unit = 123456786;
+  optional ConversionDiastaticPowerUnit conversion_diastatic_power_unit = 123456785;
 }
 
 enum ArithmeticOperators {
@@ -1516,15 +1518,43 @@ message DiastaticPowerType {
   DiastaticPowerUnit unit = 2;
 }
 
+message ConversionDiastaticPowerUnit {
+  message ConversionDiastaticPowerUnitRate {
+    DiastaticPowerUnit target = 1;
+    BinaryExpression expression = 2;
+  }
+
+  repeated ConversionDiastaticPowerUnitRate rates = 1;
+}
+
 enum DiastaticPowerUnit {
   DIASTATIC_POWER_UNIT_UNSPECIFIED = 0 [
     (string_name) = "UNSPECIFIED",
-    (display_name) = "UNSPECIFIED"
+    (display_name) = "UNSPECIFIED",
+    (conversion_diastatic_power_unit) = {
+      rates: []
+    }
   ];
   // Lintner
   DIASTATIC_POWER_UNIT_LINTNER = 1 [
     (string_name) = "Linter",
-    (display_name) = "Linter"
+    (display_name) = "Linter",
+    (conversion_diastatic_power_unit) = {
+      rates: [
+        {
+          target: DIASTATIC_POWER_UNIT_WK,
+          expression: {
+            operator: BINARY_ARITHMETIC_MULTIPLICATION,
+            unary_left: {float: 3.5},
+            binary_right: {
+              operator: BINARY_ARITHMETIC_DIVISION,
+              value_left: {}
+              unary_right: {float: 17}
+            }
+          }
+        }
+      ]
+    }
   ];
   // Windisch–Kolbach
   DIASTATIC_POWER_UNIT_WK = 2 [
