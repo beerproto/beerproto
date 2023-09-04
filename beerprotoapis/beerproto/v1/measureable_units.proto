@@ -1545,13 +1545,13 @@ enum DiastaticPowerUnit {
           target: DIASTATIC_POWER_UNIT_WK,
           tree: {
             expression: {
-              operator: BINARY_ARITHMETIC_MULTIPLICATION,
-              unary_left: {double: 3.5},
-              binary_right: {
-                operator: BINARY_ARITHMETIC_DIVISION,
-                parameter_left: {parameter: "x"}
-                unary_right: {double: 17}
-              }
+              operator: BINARY_ARITHMETIC_SUBTRACTION,
+              binary_left: {
+                operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                unary_left: {double: 3.5}
+                parameter_right: {parameter: "x"}
+              },
+              unary_right: {double: 16},
             }
           }
         }
@@ -1561,7 +1561,25 @@ enum DiastaticPowerUnit {
   // Windisch–Kolbach
   DIASTATIC_POWER_UNIT_WK = 2 [
     (string_name) = "WK",
-    (display_name) = "Windisch–Kolbach"
+    (display_name) = "Windisch–Kolbach",
+    (conversion_diastatic_power_unit) = {
+      rates: [
+        {
+          target: DIASTATIC_POWER_UNIT_LINTNER,
+          tree: {
+            expression: {
+              operator: BINARY_ARITHMETIC_DIVISION,
+              binary_left: {
+                operator: BINARY_ARITHMETIC_ADDITION,
+                parameter_left: {parameter: "x"}
+                unary_right: {double: 16}
+              },
+              unary_right: {double: 3.5}
+            }
+          }
+        }
+      ]
+    }
   ];
 }
 
