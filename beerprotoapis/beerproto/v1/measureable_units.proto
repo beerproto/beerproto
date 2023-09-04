@@ -20,18 +20,10 @@ extend google.protobuf.EnumValueOptions {
   optional ConversionDiastaticPowerUnit conversion_diastatic_power_unit = 123456785;
 }
 
-enum ArithmeticOperators {
-  ARITHMETIC_OPERATORS_UNSPECIFIED = 0;
-  ARITHMETIC_OPERATORS_ADDITION = 1;
-  ARITHMETIC_OPERATORS_SUBTRACTION = 2;
-  ARITHMETIC_OPERATORS_MULTIPLICATION = 3;
-  ARITHMETIC_OPERATORS_DIVISION = 4;
-}
-
 message ConversionVolumeUnit {
   message ConversionVolumeUnitRate {
     VolumeUnit target = 1;
-    ArithmeticOperators operator = 2;
+    BinaryArithmetic operator = 2;
     double value = 3;
   }
 
@@ -61,77 +53,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 0
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1000
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 4.92892
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 14.7868
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 29.5735
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 240
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 473.176
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 946.353
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 3785.41
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 28.4131
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 568.261
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1136.52
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 4546.09
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0000061102568971969
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0000085216791083274
         }
       ]
@@ -145,77 +137,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1000
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 202.884
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 67.628045403686
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 33.814
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 3.51951
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 2.11338
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1.05669
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 3.78541
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 35.1951
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1.75975
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.13652
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 4.54609
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0061102568971969
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0000085216791083274
         }
       ]
@@ -229,77 +221,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 4.92892
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 202.884
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 3
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 6
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 48.6922
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 96
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 192
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 768
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 5.76456
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 115.291
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 230.582
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 922.33
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.000030116977163954
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.000042002688172043
         }
       ]
@@ -313,77 +305,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 14.7868
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 67.628
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 3
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 2
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 16.2307
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 32
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 64
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 256
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.92152
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 38.4304
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 76.8608
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 307.443
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.000090350931491861
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.00012600806451613
         }
       ]
@@ -397,77 +389,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 29.5735
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 33.814
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 6
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 2
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 8.11537
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 16
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 32
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 128
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1.04084
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 38.4304
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 38.4304
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 153.722
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.00018070186298372
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 3968
         }
       ]
@@ -481,77 +473,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 240
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 4.16667
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 48.6922
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 16.2307
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 8.11537
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.97157
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 3.94314
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 15.7725
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 8.44682
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 2.36776
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 4.73551
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 18.942
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0014456149038698
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0020161290322581
         }
       ]
@@ -565,77 +557,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 473.176
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 2.11338
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 96
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 32
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 16
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 2113.38
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 2
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 8
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 16.6535
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.20095
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 2.4019
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 9.6076
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0028912298077395
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0040322580645161
         }
       ]
@@ -649,77 +641,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 946.353
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.05669
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 192
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 64
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 32
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 3.94314
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 2
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 4
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 33.307
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1.66535
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.20095
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 4.8038
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0057824596154791
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0080645161290323
         }
       ]
@@ -733,77 +725,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 3785.41
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 3.78541
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 768
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 256
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 128
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 15.7725
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 8
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 4
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 133.228
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 6.66139
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 3.3307
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.20095
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.023129838461916
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.032258064516129
         }
       ]
@@ -817,77 +809,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 0.0000085216791083274
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 0.0085216791083274
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 23808
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 7936
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 3968
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 496
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 248
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 248
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 31
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 4130.0639557598
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 06.50319778799
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 103.25159889399
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 25.812899723499
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.71702499231941
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         }
       ]
@@ -901,77 +893,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 28.4131
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 35.1951
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 5.76456
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1.92152
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.04084
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 8.44682
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 16.6535
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 33.307
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 133.228
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 133.228
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 6.66139
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 3.3307
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.20095
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.00017361111111111
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.00024212700110985
         }
       ]
@@ -985,77 +977,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 568.261
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.75975
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 115.291
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 38.4304
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 19.2152
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 2.36776
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1.20095
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1.66535
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 6.66139
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 20
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 2
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 8
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0000045211226851852
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.004842540022197
         }
       ]
@@ -1069,77 +1061,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1136.52
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1.13652
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 76.8608
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 230.582
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 38.4304
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 4.73551
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 2.4019
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1.20095
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 3.3307
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 40
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 2
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 4
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.0069444444444444
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.009685080044394
         }
       ]
@@ -1153,77 +1145,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 4546.09
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 4.54609
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 922.33
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 307.443
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 153.722
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 18.942
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 9.6076
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 4.8038
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1.20095
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 160
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 8
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 4
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.027777777777778
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0.038740320177576
         }
       ]
@@ -1237,77 +1229,77 @@ enum VolumeUnit {
       rates: [
         {
           target: VOLUME_UNIT_ML,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 0.0000061102568971969
         },
         {
           target: VOLUME_UNIT_L,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 0.0061102568971969
         },
         {
           target: VOLUME_UNIT_TSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 922.32954278773
         },
         {
           target: VOLUME_UNIT_TBSP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 307.44318092924
         },
         {
           target: VOLUME_UNIT_FLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 153.72159046462
         },
         {
           target: VOLUME_UNIT_CUP,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 691.7471570908
         },
         {
           target: VOLUME_UNIT_PT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 345.8735785454
         },
         {
           target: VOLUME_UNIT_QT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 172.9367892727
         },
         {
           target: VOLUME_UNIT_GAL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 43.234197318175
         },
         {
           target: VOLUME_UNIT_IFLOZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 5760
         },
         {
           target: VOLUME_UNIT_IPT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 288
         },
         {
           target: VOLUME_UNIT_IQT,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 144
         },
         {
           target: VOLUME_UNIT_IGAL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 36
         },
         {
           target: VOLUME_UNIT_IBBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: VOLUME_UNIT_BBL,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1.3946515263927
         }
       ]
@@ -1323,7 +1315,7 @@ message MassType {
 message ConversionMassUnit {
   message ConversionMassUnitRate {
     MassUnit target = 1;
-    ArithmeticOperators operator = 2;
+    BinaryArithmetic operator = 2;
     double value = 3;
   }
 
@@ -1348,27 +1340,27 @@ enum MassUnit {
       rates: [
         {
           target: MASS_UNIT_MG,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: MASS_UNIT_G,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1000
         },
         {
           target: MASS_UNIT_KG,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1e+6
         },
         {
           target: MASS_UNIT_LB,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 453592
         },
         {
           target: MASS_UNIT_OZ,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 28349.5
         }
       ]
@@ -1382,27 +1374,27 @@ enum MassUnit {
       rates: [
         {
           target: MASS_UNIT_MG,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1000
         },
         {
           target: MASS_UNIT_G,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: MASS_UNIT_KG,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 1000
         },
         {
           target: MASS_UNIT_LB,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 453.592
         },
         {
           target: MASS_UNIT_OZ,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 28.3495
         }
       ]
@@ -1416,27 +1408,27 @@ enum MassUnit {
       rates: [
         {
           target: MASS_UNIT_MG,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1e-6
         },
         {
           target: MASS_UNIT_G,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 1000
         },
         {
           target: MASS_UNIT_KG,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: MASS_UNIT_LB,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 2.20462
         },
         {
           target: MASS_UNIT_OZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 35.274
         }
       ]
@@ -1450,27 +1442,27 @@ enum MassUnit {
       rates: [
         {
           target: MASS_UNIT_MG,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 453592
         },
         {
           target: MASS_UNIT_G,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 453.592
         },
         {
           target: MASS_UNIT_KG,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 2.20462
         },
         {
           target: MASS_UNIT_LB,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         },
         {
           target: MASS_UNIT_OZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 16
         }
       ]
@@ -1484,27 +1476,27 @@ enum MassUnit {
       rates: [
         {
           target: MASS_UNIT_MG,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 28349.5
         },
         {
           target: MASS_UNIT_G,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 28.3495
         },
         {
           target: MASS_UNIT_KG,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 35.274
         },
         {
           target: MASS_UNIT_LB,
-          operator: ARITHMETIC_OPERATORS_DIVISION,
+          operator: BINARY_ARITHMETIC_DIVISION,
           value: 16
         },
         {
           target: MASS_UNIT_OZ,
-          operator: ARITHMETIC_OPERATORS_MULTIPLICATION,
+          operator: BINARY_ARITHMETIC_MULTIPLICATION,
           value: 0
         }
       ]
