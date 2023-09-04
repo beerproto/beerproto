@@ -9,6 +9,10 @@ syntax = "proto3";
 
 package beerproto.v1;
 
+message ExpressionTree {
+  BinaryExpression expression = 1;
+}
+
 message UnaryExpression {
   double double = 1;
 }

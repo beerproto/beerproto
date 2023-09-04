@@ -1521,7 +1521,7 @@ message DiastaticPowerType {
 message ConversionDiastaticPowerUnit {
   message ConversionDiastaticPowerUnitRate {
     DiastaticPowerUnit target = 1;
-    BinaryExpression expression = 2;
+    ExpressionTree tree = 2;
   }
 
   repeated ConversionDiastaticPowerUnitRate rates = 1;
