@@ -1548,7 +1548,7 @@ enum DiastaticPowerUnit {
             unary_left: {double: 3.5},
             binary_right: {
               operator: BINARY_ARITHMETIC_DIVISION,
-              parameter_left: {}
+              parameter_left: {parameter: "x"}
               unary_right: {double: 17}
             }
           }

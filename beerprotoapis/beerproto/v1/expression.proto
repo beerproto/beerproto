@@ -37,4 +37,7 @@ enum BinaryArithmetic {
   BINARY_ARITHMETIC_DIVISION = 4;
 }
 
-message ParameterExpression {}
+message ParameterExpression {
+  string parameter = 1;
+  optional double double = 2;
+}
