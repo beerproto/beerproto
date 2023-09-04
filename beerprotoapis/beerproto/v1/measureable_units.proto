@@ -1545,11 +1545,11 @@ enum DiastaticPowerUnit {
           target: DIASTATIC_POWER_UNIT_WK,
           expression: {
             operator: BINARY_ARITHMETIC_MULTIPLICATION,
-            unary_left: {float: 3.5},
+            unary_left: {double: 3.5},
             binary_right: {
               operator: BINARY_ARITHMETIC_DIVISION,
-              value_left: {}
-              unary_right: {float: 17}
+              parameter_left: {}
+              unary_right: {double: 17}
             }
           }
         }
