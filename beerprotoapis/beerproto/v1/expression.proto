@@ -43,5 +43,4 @@ enum BinaryArithmetic {
 
 message ParameterExpression {
   string parameter = 1;
-  optional double double = 2;
 }

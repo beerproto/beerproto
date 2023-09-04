@@ -1543,13 +1543,15 @@ enum DiastaticPowerUnit {
       rates: [
         {
           target: DIASTATIC_POWER_UNIT_WK,
-          expression: {
-            operator: BINARY_ARITHMETIC_MULTIPLICATION,
-            unary_left: {double: 3.5},
-            binary_right: {
-              operator: BINARY_ARITHMETIC_DIVISION,
-              parameter_left: {parameter: "x"}
-              unary_right: {double: 17}
+          tree: {
+            expression: {
+              operator: BINARY_ARITHMETIC_MULTIPLICATION,
+              unary_left: {double: 3.5},
+              binary_right: {
+                operator: BINARY_ARITHMETIC_DIVISION,
+                parameter_left: {parameter: "x"}
+                unary_right: {double: 17}
+              }
             }
           }
         }
