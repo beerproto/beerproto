@@ -18,6 +18,7 @@ extend google.protobuf.EnumValueOptions {
   optional ConversionVolumeUnit conversion_volume_unit = 123456787;
   optional ConversionMassUnit conversion_mass_unit = 123456786;
   optional ConversionDiastaticPowerUnit conversion_diastatic_power_unit = 123456785;
+  optional ConversionTemperatureUnit conversion_temperature_unit = 123456784;
 }
 
 message ConversionVolumeUnit {
@@ -1580,18 +1581,74 @@ message TemperatureType {
   TemperatureUnit unit = 2;
 }
 
+message ConversionTemperatureUnit {
+  message ConversionTemperatureUnitRate {
+    TemperatureUnit target = 1;
+    ExpressionTree tree = 2;
+  }
+
+  repeated ConversionTemperatureUnitRate rates = 1;
+}
+
 enum TemperatureUnit {
   TEMPERATURE_UNIT_UNSPECIFIED = 0 [
     (string_name) = "UNSPECIFIED",
-    (display_name) = "UNSPECIFIED"
+    (display_name) = "UNSPECIFIED",
+    (conversion_temperature_unit) = {
+      rates: []
+    }
   ];
   TEMPERATURE_UNIT_C = 1 [
     (string_name) = "C",
-    (display_name) = "C"
+    (display_name) = "C",
+    (conversion_temperature_unit) = {
+      rates: [
+        {
+          target: TEMPERATURE_UNIT_F,
+          tree: {
+            expression: {
+              operator: BINARY_ARITHMETIC_ADDITION,
+              binary_left: {
+                operator: BINARY_ARITHMETIC_DIVISION,
+                binary_left: {
+                  operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                  parameter_left: {parameter: "x"}
+                  unary_right: {double: 9}
+                },
+                unary_right: {double: 5}
+              },
+              unary_right: {double: 32}
+            }
+          }
+        }
+      ]
+    }
   ];
   TEMPERATURE_UNIT_F = 2 [
     (string_name) = "F",
-    (display_name) = "F"
+    (display_name) = "F",
+    (conversion_temperature_unit) = {
+      rates: [
+        {
+          target: TEMPERATURE_UNIT_C,
+          tree: {
+            expression: {
+              operator: BINARY_ARITHMETIC_DIVISION,
+              binary_left: {
+                operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                binary_left: {
+                  operator: BINARY_ARITHMETIC_SUBTRACTION,
+                  parameter_left: {parameter: "x"}
+                  unary_right: {double: 32}
+                },
+                unary_right: {double: 5}
+              },
+              unary_right: {double: 9}
+            }
+          }
+        }
+      ]
+    }
   ];
 }
 
