@@ -20,6 +20,7 @@ extend google.protobuf.EnumValueOptions {
   optional ConversionDiastaticPowerUnit conversion_diastatic_power_unit = 123456785;
   optional ConversionTemperatureUnit conversion_temperature_unit = 123456784;
   optional ConversionColorUnit conversion_color_unit = 123456782;
+  optional ConversionGravityUnit conversion_gravity_unit = 123456781;
 }
 
 message ConversionVolumeUnit {
@@ -1887,15 +1888,69 @@ message GravityType {
   GravityUnit unit = 2;
 }
 
+message ConversionGravityUnit {
+  message ConversionGravityUnitRate {
+    GravityUnit target = 1;
+    ExpressionTree tree = 2;
+  }
+
+  repeated ConversionGravityUnitRate rates = 1;
+}
+
 enum GravityUnit {
   GRAVITY_UNIT_UNSPECIFIED = 0 [
     (string_name) = "UNSPECIFIED",
-    (display_name) = "UNSPECIFIED"
+    (display_name) = "UNSPECIFIED",
+    (conversion_gravity_unit) = {
+      rates: []
+    }
   ];
   // sg
   GRAVITY_UNIT_SG = 1 [
     (string_name) = "sg",
-    (display_name) = "SG"
+    (display_name) = "SG",
+    (conversion_gravity_unit) = {
+      rates: [
+        {
+          target: GRAVITY_UNIT_PLATO,
+          tree: {
+            expression: {
+              operator: BINARY_ARITHMETIC_SUBTRACTION,
+              binary_left: {
+                operator: BINARY_ARITHMETIC_ADDITION,
+                binary_left: {
+                  operator: BINARY_ARITHMETIC_SUBTRACTION,
+                  binary_left: {
+                    operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                    unary_left: {double: 135.997}
+                    binary_right: {
+                      operator: BINARY_ARITHMETIC_POWER,
+                      parameter_left: {parameter: "x"}
+                      unary_right: {double: 3}
+                    },
+                  },
+                  binary_right: {
+                    operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                    unary_left: {double: 630.272}
+                    binary_right: {
+                      operator: BINARY_ARITHMETIC_POWER,
+                      parameter_left: {parameter: "x"}
+                      unary_right: {double: 2}
+                    },
+                  }
+                },
+                binary_right: {
+                  operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                  unary_left: {double: 1111.14},
+                  parameter_right: {parameter: "x"}
+                }
+              },
+              unary_right: {double: 616.868}
+            }
+          }
+        }
+      ]
+    }
   ];
   // plato
   GRAVITY_UNIT_PLATO = 2 [
