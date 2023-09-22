@@ -13,7 +13,9 @@ import "beerproto/v1/expression.proto";
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.EnumValueOptions {
+  // Beer JSON name, case sensitive
   optional string string_name = 123456789;
+  // International System of Units name
   optional string display_name = 123456788;
   optional ConversionVolumeUnit conversion_volume_unit = 123456787;
   optional ConversionMassUnit conversion_mass_unit = 123456786;
@@ -22,6 +24,7 @@ extend google.protobuf.EnumValueOptions {
   optional ConversionColorUnit conversion_color_unit = 123456782;
   optional ConversionGravityUnit conversion_gravity_unit = 123456781;
   optional ConversionSpecificVolumeUnit conversion_specific_volume_unit = 123456780;
+  // Full name with no abbreviation
   optional string full_name = 123456779;
 }
 
@@ -54,6 +57,7 @@ enum VolumeUnit {
   VOLUME_UNIT_ML = 1 [
     (string_name) = "ml",
     (display_name) = "mL",
+    (full_name) = "Milliliter",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -138,6 +142,7 @@ enum VolumeUnit {
   VOLUME_UNIT_L = 2 [
     (string_name) = "l",
     (display_name) = "L",
+    (full_name) = "Liter",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -222,6 +227,7 @@ enum VolumeUnit {
   VOLUME_UNIT_TSP = 3 [
     (string_name) = "tsp",
     (display_name) = "tsp",
+    (full_name) = "Teaspoon",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -306,6 +312,7 @@ enum VolumeUnit {
   VOLUME_UNIT_TBSP = 4 [
     (string_name) = "tbsp",
     (display_name) = "Tbsp",
+    (full_name) = "Tablespoon",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -390,6 +397,7 @@ enum VolumeUnit {
   VOLUME_UNIT_FLOZ = 5 [
     (string_name) = "floz",
     (display_name) = "fl oz",
+    (full_name) = "Fluid ounce",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -474,6 +482,7 @@ enum VolumeUnit {
   VOLUME_UNIT_CUP = 6 [
     (string_name) = "cup",
     (display_name) = "cup",
+    (full_name) = "US Cup",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -558,6 +567,7 @@ enum VolumeUnit {
   VOLUME_UNIT_PT = 7 [
     (string_name) = "pt",
     (display_name) = "pt",
+    (full_name) = "US Pint",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -642,6 +652,7 @@ enum VolumeUnit {
   VOLUME_UNIT_QT = 8 [
     (string_name) = "qt",
     (display_name) = "qt",
+    (full_name) = "US Liquid Quart",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -726,6 +737,7 @@ enum VolumeUnit {
   VOLUME_UNIT_GAL = 9 [
     (string_name) = "gal",
     (display_name) = "gal",
+    (full_name) = "US Liquid Gallon",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -810,6 +822,7 @@ enum VolumeUnit {
   VOLUME_UNIT_BBL = 10 [
     (string_name) = "bbl",
     (display_name) = "bbl",
+    (full_name) = "Beer Barrel",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -894,6 +907,7 @@ enum VolumeUnit {
   VOLUME_UNIT_IFLOZ = 11 [
     (string_name) = "ifloz",
     (display_name) = "imp fl oz",
+    (full_name) = "Fluid Ounce",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -978,6 +992,7 @@ enum VolumeUnit {
   VOLUME_UNIT_IPT = 12 [
     (string_name) = "ipt",
     (display_name) = "imp pt",
+    (full_name) = "Imperial Pint",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -1062,6 +1077,7 @@ enum VolumeUnit {
   VOLUME_UNIT_IQT = 13 [
     (string_name) = "iqt",
     (display_name) = "imp qt",
+    (full_name) = "Imperial quart",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -1146,6 +1162,7 @@ enum VolumeUnit {
   VOLUME_UNIT_IGAL = 14 [
     (string_name) = "igal",
     (display_name) = "imp gal",
+    (full_name) = "Imperial gallon",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -1230,6 +1247,7 @@ enum VolumeUnit {
   VOLUME_UNIT_IBBL = 15 [
     (string_name) = "ibbl",
     (display_name) = "imp bbl",
+    (full_name) = "Imperial Beer Barrel",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -2629,12 +2647,14 @@ enum ViscosityUnit {
   // cP
   VISCOSITY_UNIT_CP = 1 [
     (string_name) = "cP",
-    (display_name) = "cP"
+    (display_name) = "cP",
+    (full_name) = "centipoise"
   ];
   // mPa-s
   VISCOSITY_UNIT_MPAS = 2 [
     (string_name) = "mPa-s",
-    (display_name) = "mPa-s"
+    (display_name) = "mPa-s",
+    (full_name) = "millipascal-second"
   ];
 }
 
