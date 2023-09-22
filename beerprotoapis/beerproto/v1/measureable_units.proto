@@ -21,6 +21,7 @@ extend google.protobuf.EnumValueOptions {
   optional ConversionTemperatureUnit conversion_temperature_unit = 123456784;
   optional ConversionColorUnit conversion_color_unit = 123456782;
   optional ConversionGravityUnit conversion_gravity_unit = 123456781;
+  optional ConversionSpecificVolumeUnit conversion_specific_volume_unit = 123456780;
 }
 
 message ConversionVolumeUnit {
@@ -1948,6 +1949,36 @@ enum GravityUnit {
               unary_right: {double: 616.868}
             }
           }
+        },
+        {
+          target: GRAVITY_UNIT_BRIX,
+          tree: {
+            expression: {
+              operator: BINARY_ARITHMETIC_SUBTRACTION,
+              binary_left: {
+                operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                binary_left: {
+                  operator: BINARY_ARITHMETIC_ADDITION,
+                  binary_left: {
+                    operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                    binary_left: {
+                      operator: BINARY_ARITHMETIC_SUBTRACTION,
+                      binary_left: {
+                        operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                        unary_left: {double: 182.4601}
+                        parameter_right: {parameter: "x"}
+                      },
+                      unary_right: {double: 775.6821}
+                    },
+                    parameter_right: {parameter: "x"}
+                  },
+                  unary_right: {double: 1262.7794},
+                },
+                parameter_right: {parameter: "x"}
+              },
+              unary_right: {double: 669.5622},
+            }
+          }
         }
       ]
     }
@@ -1955,12 +1986,92 @@ enum GravityUnit {
   // plato
   GRAVITY_UNIT_PLATO = 2 [
     (string_name) = "plato",
-    (display_name) = "Plato"
+    (display_name) = "Plato",
+    (conversion_gravity_unit) = {
+      rates: [
+        {
+          target: GRAVITY_UNIT_SG,
+          tree: {
+            expression: {
+              operator: BINARY_ARITHMETIC_ADDITION,
+              binary_left: {
+                operator: BINARY_ARITHMETIC_DIVISION,
+                parameter_left: {parameter: "x"},
+                binary_right: {
+                  operator: BINARY_ARITHMETIC_SUBTRACTION,
+                  unary_left: {double: 258.6}
+                  binary_right: {
+                    operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                    binary_left: {
+                      operator: BINARY_ARITHMETIC_DIVISION,
+                      parameter_left: {parameter: "x"}
+                      unary_right: {double: 258.2}
+                    },
+                    unary_right: {double: 227.1}
+                  }
+                }
+              },
+              unary_right: {double: 1}
+            }
+          }
+        },
+        {
+          target: GRAVITY_UNIT_BRIX,
+          tree: {
+            expression: {
+              operator: BINARY_ARITHMETIC_DIVISION,
+              unary_left: {double: 0.962}
+              parameter_right: {parameter: "x"}
+            }
+          }
+        }
+      ]
+    }
   ];
   // brix
   GRAVITY_UNIT_BRIX = 3 [
     (string_name) = "brix",
-    (display_name) = "BRIX"
+    (display_name) = "BRIX",
+    (conversion_gravity_unit) = {
+      rates: [
+        {
+          target: GRAVITY_UNIT_PLATO,
+          tree: {
+            expression: {
+              operator: BINARY_ARITHMETIC_MULTIPLICATION,
+              unary_left: {double: 0.962}
+              parameter_right: {parameter: "x"}
+            }
+          }
+        },
+        {
+          target: GRAVITY_UNIT_SG,
+          tree: {
+            expression: {
+              operator: BINARY_ARITHMETIC_ADDITION,
+              binary_left: {
+                operator: BINARY_ARITHMETIC_DIVISION,
+                parameter_left: {parameter: "x"},
+                binary_right: {
+                  operator: BINARY_ARITHMETIC_SUBTRACTION,
+                  unary_left: {double: 258.6}
+                  binary_right: {
+                    operator: BINARY_ARITHMETIC_MULTIPLICATION,
+                    binary_left: {
+                      operator: BINARY_ARITHMETIC_DIVISION,
+                      parameter_left: {parameter: "x"}
+                      unary_right: {double: 258.2}
+                    },
+                    unary_right: {double: 227.1}
+                  }
+                }
+              },
+              unary_right: {double: 1}
+            }
+          }
+        }
+      ]
+    }
   ];
 }
 
@@ -2023,6 +2134,16 @@ enum ConcentrationUnit {
   ];
 }
 
+message ConversionSpecificVolumeUnit {
+  message ConversionSpecificVolumeUnitRate {
+    VolumeUnit target = 1;
+    BinaryArithmetic operator = 2;
+    double value = 3;
+  }
+
+  repeated ConversionSpecificVolumeUnitRate rates = 1;
+}
+
 message SpecificVolumeType {
   double value = 1;
   SpecificVolumeUnit unit = 2;
@@ -2031,7 +2152,10 @@ message SpecificVolumeType {
 enum SpecificVolumeUnit {
   SPECIFIC_VOLUME_UNIT_UNSPECIFIED = 0 [
     (string_name) = "UNSPECIFIED",
-    (display_name) = "UNSPECIFIED"
+    (display_name) = "UNSPECIFIED",
+    (conversion_specific_volume_unit) = {
+      rates: []
+    }
   ];
   // qt/lb
   SPECIFIC_VOLUME_UNIT_QTLB = 1 [
