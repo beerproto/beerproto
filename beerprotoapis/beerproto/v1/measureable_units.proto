@@ -22,6 +22,7 @@ extend google.protobuf.EnumValueOptions {
   optional ConversionColorUnit conversion_color_unit = 123456782;
   optional ConversionGravityUnit conversion_gravity_unit = 123456781;
   optional ConversionSpecificVolumeUnit conversion_specific_volume_unit = 123456780;
+  optional string full_name = 123456779;
 }
 
 message ConversionVolumeUnit {
@@ -2136,7 +2137,7 @@ enum ConcentrationUnit {
 
 message ConversionSpecificVolumeUnit {
   message ConversionSpecificVolumeUnitRate {
-    VolumeUnit target = 1;
+    SpecificVolumeUnit target = 1;
     BinaryArithmetic operator = 2;
     double value = 3;
   }
@@ -2153,6 +2154,7 @@ enum SpecificVolumeUnit {
   SPECIFIC_VOLUME_UNIT_UNSPECIFIED = 0 [
     (string_name) = "UNSPECIFIED",
     (display_name) = "UNSPECIFIED",
+    (full_name) = "UNSPECIFIED",
     (conversion_specific_volume_unit) = {
       rates: []
     }
@@ -2161,6 +2163,7 @@ enum SpecificVolumeUnit {
   SPECIFIC_VOLUME_UNIT_QTLB = 1 [
     (string_name) = "qt/lb",
     (display_name) = "qt/lb",
+    (full_name) = "US liquid quart / Pound",
     (conversion_specific_volume_unit) = {
       rates: [
         {
@@ -2191,7 +2194,7 @@ enum SpecificVolumeUnit {
         {
           target: SPECIFIC_VOLUME_UNIT_FLOZOZ,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 0
+          value: 2
         },
         {
           target: SPECIFIC_VOLUME_UNIT_M3KG,
@@ -2210,6 +2213,7 @@ enum SpecificVolumeUnit {
   SPECIFIC_VOLUME_UNIT_GALLB = 2 [
     (string_name) = "gal/lb",
     (display_name) = "gal/lb",
+    (full_name) = "US liquid gallon / Pound",
     (conversion_specific_volume_unit) = {
       rates: [
         {
@@ -2240,7 +2244,7 @@ enum SpecificVolumeUnit {
         {
           target: SPECIFIC_VOLUME_UNIT_FLOZOZ,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 0
+          value: 8
         },
         {
           target: SPECIFIC_VOLUME_UNIT_M3KG,
@@ -2259,6 +2263,7 @@ enum SpecificVolumeUnit {
   SPECIFIC_VOLUME_UNIT_GALOZ = 3 [
     (string_name) = "gal/oz",
     (display_name) = "gal/oz",
+    (full_name) = "US liquid gallon / Ounce",
     (conversion_specific_volume_unit) = {
       rates: [
         {
@@ -2289,7 +2294,7 @@ enum SpecificVolumeUnit {
         {
           target: SPECIFIC_VOLUME_UNIT_FLOZOZ,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 0
+          value: 128
         },
         {
           target: SPECIFIC_VOLUME_UNIT_M3KG,
@@ -2308,6 +2313,7 @@ enum SpecificVolumeUnit {
   SPECIFIC_VOLUME_UNIT_LG = 4 [
     (string_name) = "l/g",
     (display_name) = "l/g",
+    (full_name) = "Liter / Gram",
     (conversion_specific_volume_unit) = {
       rates: [
         {
@@ -2338,12 +2344,12 @@ enum SpecificVolumeUnit {
         {
           target: SPECIFIC_VOLUME_UNIT_FLOZOZ,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 1000
+          value: 958.611
         },
         {
           target: SPECIFIC_VOLUME_UNIT_M3KG,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 0
+          value: 1
         },
         {
           target: SPECIFIC_VOLUME_UNIT_FT3LB,
@@ -2357,6 +2363,7 @@ enum SpecificVolumeUnit {
   SPECIFIC_VOLUME_UNIT_LKG = 5 [
     (string_name) = "l/kg",
     (display_name) = "l/kg",
+    (full_name) = "Liter / Kilogram",
     (conversion_specific_volume_unit) = {
       rates: [
         {
@@ -2386,8 +2393,8 @@ enum SpecificVolumeUnit {
         },
         {
           target: SPECIFIC_VOLUME_UNIT_FLOZOZ,
-          operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 0
+          operator: BINARY_ARITHMETIC_DIVISION,
+          value: 1.04318
         },
         {
           target: SPECIFIC_VOLUME_UNIT_M3KG,
@@ -2406,6 +2413,7 @@ enum SpecificVolumeUnit {
   SPECIFIC_VOLUME_UNIT_FLOZOZ = 6 [
     (string_name) = "floz/oz",
     (display_name) = "floz/oz",
+    (full_name) = "Fluid ounce / Ounce",
     (conversion_specific_volume_unit) = {
       rates: [
         {
@@ -2455,6 +2463,7 @@ enum SpecificVolumeUnit {
   SPECIFIC_VOLUME_UNIT_M3KG = 7 [
     (string_name) = "m^3/kg",
     (display_name) = "m^3/kg",
+    (full_name) = "Cubic meter / Kilogram",
     (conversion_specific_volume_unit) = {
       rates: [
         {
@@ -2475,7 +2484,7 @@ enum SpecificVolumeUnit {
         {
           target: SPECIFIC_VOLUME_UNIT_LG,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 0
+          value: 1
         },
         {
           target: SPECIFIC_VOLUME_UNIT_LKG,
@@ -2485,7 +2494,7 @@ enum SpecificVolumeUnit {
         {
           target: SPECIFIC_VOLUME_UNIT_FLOZOZ,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 1000
+          value: 958.611
         },
         {
           target: SPECIFIC_VOLUME_UNIT_M3KG,
@@ -2504,6 +2513,7 @@ enum SpecificVolumeUnit {
   SPECIFIC_VOLUME_UNIT_FT3LB = 8 [
     (string_name) = "ft^3/lb",
     (display_name) = "ft^3/lb",
+    (full_name) = "Cubic foot / Pound",
     (conversion_specific_volume_unit) = {
       rates: [
         {
@@ -2534,7 +2544,7 @@ enum SpecificVolumeUnit {
         {
           target: SPECIFIC_VOLUME_UNIT_FLOZOZ,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 0
+          value: 59.8442
         },
         {
           target: SPECIFIC_VOLUME_UNIT_M3KG,
