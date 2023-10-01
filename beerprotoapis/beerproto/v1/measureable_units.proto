@@ -498,17 +498,17 @@ enum VolumeUnit {
         {
           target: VOLUME_UNIT_TSP,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 48.6922
+          value: 48
         },
         {
           target: VOLUME_UNIT_TBSP,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 16.2307
+          value: 16
         },
         {
           target: VOLUME_UNIT_FLOZ,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 8.11537
+          value: 8
         },
         {
           target: VOLUME_UNIT_CUP,
@@ -518,37 +518,37 @@ enum VolumeUnit {
         {
           target: VOLUME_UNIT_PT,
           operator: BINARY_ARITHMETIC_DIVISION,
-          value: 1.97157
+          value: 2
         },
         {
           target: VOLUME_UNIT_QT,
           operator: BINARY_ARITHMETIC_DIVISION,
-          value: 3.94314
+          value: 4
         },
         {
           target: VOLUME_UNIT_GAL,
           operator: BINARY_ARITHMETIC_DIVISION,
-          value: 15.7725
+          value: 16
         },
         {
           target: VOLUME_UNIT_IFLOZ,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 8.44682
+          value: 8
         },
         {
           target: VOLUME_UNIT_IPT,
           operator: BINARY_ARITHMETIC_DIVISION,
-          value: 2.36776
+          value: 2.4019
         },
         {
           target: VOLUME_UNIT_IQT,
           operator: BINARY_ARITHMETIC_DIVISION,
-          value: 4.73551
+          value: 4.8038
         },
         {
           target: VOLUME_UNIT_IGAL,
           operator: BINARY_ARITHMETIC_DIVISION,
-          value: 18.942
+          value: 19.2152
         },
         {
           target: VOLUME_UNIT_IBBL,
