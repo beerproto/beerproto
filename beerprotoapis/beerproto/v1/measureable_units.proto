@@ -1093,12 +1093,12 @@ enum VolumeUnit {
         {
           target: VOLUME_UNIT_TSP,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 76.8608
+          value: 230.582
         },
         {
           target: VOLUME_UNIT_TBSP,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 230.582
+          value: 76.8608
         },
         {
           target: VOLUME_UNIT_FLOZ,
