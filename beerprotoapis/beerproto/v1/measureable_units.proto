@@ -1273,7 +1273,7 @@ enum VolumeUnit {
         {
           target: VOLUME_UNIT_FLOZ,
           operator: BINARY_ARITHMETIC_MULTIPLICATION,
-          value: 153.72159046462
+          value: 5533.9772567
         },
         {
           target: VOLUME_UNIT_CUP,
