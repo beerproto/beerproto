@@ -907,7 +907,7 @@ enum VolumeUnit {
   VOLUME_UNIT_IFLOZ = 11 [
     (string_name) = "ifloz",
     (display_name) = "imp fl oz",
-    (full_name) = "Fluid Ounce",
+    (full_name) = "Imperial Fluid Ounce",
     (conversion_volume_unit) = {
       rates: [
         {
@@ -933,7 +933,7 @@ enum VolumeUnit {
         {
           target: VOLUME_UNIT_FLOZ,
           operator: BINARY_ARITHMETIC_DIVISION,
-          value: 1.04084
+          value: 1.0408427
         },
         {
           target: VOLUME_UNIT_CUP,
