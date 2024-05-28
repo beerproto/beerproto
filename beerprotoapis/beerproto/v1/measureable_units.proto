@@ -24,8 +24,10 @@ extend google.protobuf.EnumValueOptions {
   optional ConversionColorUnit conversion_color_unit = 123456782;
   optional ConversionGravityUnit conversion_gravity_unit = 123456781;
   optional ConversionSpecificVolumeUnit conversion_specific_volume_unit = 123456780;
+  optional ConversionTimeUnit conversion_time_unit = 123456779;
+
   // Full name with no abbreviation
-  optional string full_name = 123456779;
+  optional string full_name = 123456778;
 }
 
 message ConversionVolumeUnit {
@@ -1693,6 +1695,16 @@ enum AcidityUnit {
 message TimeType {
   int64 value = 1;
   TimeUnit unit = 2;
+}
+
+message ConversionTimeUnit {
+  message ConversionTimeUnitRate {
+    TimeUnit target = 1;
+    BinaryArithmetic operator = 2;
+    double value = 3;
+  }
+
+  repeated ConversionTimeUnitRate rates = 1;
 }
 
 enum TimeUnit {
