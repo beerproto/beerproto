@@ -9,46 +9,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # - uses: bufbuild/buf-setup-action@v1.50.0
-      # - uses: bufbuild/buf-lint-action@v1
-      # # - uses: bufbuild/buf-breaking-action@v1
-      # #   with:
-      # #     # The 'main' branch of the GitHub repository that defines the module.
-      # #     against: "https://github.com/beerproto/beerproto.git#branch=master,ref=HEAD~1"
       - uses: bufbuild/buf-action@v1
         with:
           input: "beerprotoapis"
           buf_token: ${{ secrets.BUF_TOKEN }}
-  dispatch-go:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: beerproto_go
-        uses: CamiloGarciaLaRotta/watermelon-http-client@v1
-        with:
-          url: "https://api.github.com/repos/beerproto/beerproto_go/actions/workflows/main.yml/dispatches"
-          method: post
-          data: '{"ref": "master"}'
-          headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_GO }}"}'
-  dispatch-dart:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: beerproto_dart
-        uses: CamiloGarciaLaRotta/watermelon-http-client@v1
-        with:
-          url: "https://api.github.com/repos/beerproto/beerproto_dart/actions/workflows/main.yml/dispatches"
-          method: post
-          data: '{"ref": "main"}'
-          headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_DART }}"}'
-  dispatch-es:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: beerproto_dart
-        uses: CamiloGarciaLaRotta/watermelon-http-client@v1
-        with:
-          url: "https://api.github.com/repos/beerproto/beerproto_es/actions/workflows/main.yml/dispatches"
-          method: post
-          data: '{"ref": "main"}'
-          headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_ES }}"}'
+          lint: true
+         
+
+  # dispatch-go:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: beerproto_go
+  #       uses: CamiloGarciaLaRotta/watermelon-http-client@v1
+  #       with:
+  #         url: "https://api.github.com/repos/beerproto/beerproto_go/actions/workflows/main.yml/dispatches"
+  #         method: post
+  #         data: '{"ref": "master"}'
+  #         headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_GO }}"}'
+  # dispatch-dart:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: beerproto_dart
+  #       uses: CamiloGarciaLaRotta/watermelon-http-client@v1
+  #       with:
+  #         url: "https://api.github.com/repos/beerproto/beerproto_dart/actions/workflows/main.yml/dispatches"
+  #         method: post
+  #         data: '{"ref": "main"}'
+  #         headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_DART }}"}'
+  # dispatch-es:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: beerproto_dart
+  #       uses: CamiloGarciaLaRotta/watermelon-http-client@v1
+  #       with:
+  #         url: "https://api.github.com/repos/beerproto/beerproto_es/actions/workflows/main.yml/dispatches"
+  #         method: post
+  #         data: '{"ref": "main"}'
+  #         headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_ES }}"}'
