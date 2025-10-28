@@ -5,6 +5,11 @@ managed:
     - file_option: go_package_prefix
       value: "github.com/beerproto/beerproto_go;"
       module: buf.build/beerproto/beerproto          
+
 plugins:
-  - name: go
-    out: gen/proto/go
+  - local: protoc-gen-go
+    out: gen
+    opt: paths=source_relative
+  - local: protoc-gen-connect-go
+    out: gen
+    opt: paths=source_relative
