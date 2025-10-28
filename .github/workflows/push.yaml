@@ -18,3 +18,36 @@ jobs:
           push: true     
           push_create_visibility: public
          
+  dispatch-go:
+      runs-on: ubuntu-latest
+      needs: build
+      steps:
+        - name: beerproto_go
+          uses: CamiloGarciaLaRotta/watermelon-http-client@v1
+          with:
+            url: "https://api.github.com/repos/beerproto/beerproto_go/actions/workflows/main.yml/dispatches"
+            method: post
+            data: '{"ref": "master"}'
+            headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_GO }}"}'
+  dispatch-dart:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: beerproto_dart
+        uses: CamiloGarciaLaRotta/watermelon-http-client@v1
+        with:
+          url: "https://api.github.com/repos/beerproto/beerproto_dart/actions/workflows/main.yml/dispatches"
+          method: post
+          data: '{"ref": "main"}'
+          headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_DART }}"}'
+  dispatch-es:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: beerproto_dart
+        uses: CamiloGarciaLaRotta/watermelon-http-client@v1
+        with:
+          url: "https://api.github.com/repos/beerproto/beerproto_es/actions/workflows/main.yml/dispatches"
+          method: post
+          data: '{"ref": "main"}'
+          headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_ES }}"}'
