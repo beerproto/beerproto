@@ -14,6 +14,8 @@ jobs:
           input: "beerprotoapis"
           buf_token: ${{ secrets.BUF_TOKEN }}
           lint: true
+          breaking: false
+          push_create_visibility: public
          
 
   # dispatch-go:
