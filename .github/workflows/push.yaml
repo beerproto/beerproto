@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: bufbuild/buf-setup-action@v1
-      - uses: bufbuild/buf-lint-action@v1
-      # - uses: bufbuild/buf-breaking-action@v1
-      #   with:
-      #     # The 'main' branch of the GitHub repository that defines the module.
-      #     against: "https://github.com/beerproto/beerproto.git#branch=master,ref=HEAD~1"
-      - uses: bufbuild/buf-push-action@v1
+      # - uses: bufbuild/buf-setup-action@v1.50.0
+      # - uses: bufbuild/buf-lint-action@v1
+      # # - uses: bufbuild/buf-breaking-action@v1
+      # #   with:
+      # #     # The 'main' branch of the GitHub repository that defines the module.
+      # #     against: "https://github.com/beerproto/beerproto.git#branch=master,ref=HEAD~1"
+      - uses: bufbuild/buf-action@v1
         with:
           input: "beerprotoapis"
           buf_token: ${{ secrets.BUF_TOKEN }}
