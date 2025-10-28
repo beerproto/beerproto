@@ -1,10 +1,10 @@
 version: v2
 managed:
   enabled: true
-  go_package_prefix:
-    default: github.com
-    override:
-      buf.build/beerproto/beerproto: github.com/beerproto/beerproto_go
+  override:
+    - file_option: go_package_prefix
+      value: "github.com/beerproto/beerproto_go;"
+      module: buf.build/beerproto/beerproto          
 plugins:
   - name: go
     out: gen/proto/go
