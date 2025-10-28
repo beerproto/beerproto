@@ -10,6 +10,7 @@ syntax = "proto3";
 package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
+import "buf/validate/validate.proto";
 
 enum StyleCategories {
   STYLE_CATEGORIES_UNSPECIFIED = 0;
@@ -29,37 +30,47 @@ enum StyleCategories {
   STYLE_CATEGORIES_OTHER = 7;
 }
 
+message StyleBase {
+  string name = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
+  ];
+  string category = 2 [(buf.validate.field).required = true];
+  int32 category_number = 3;
+  string style_letter = 4;
+  string style_guide = 5 [(buf.validate.field).required = true];
+  StyleCategories type = 6 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum = {
+      not_in: [0]
+    }
+  ];
+}
+
 // StyleType provide information for Style categorization
 message StyleType {
-  string id = 1;
-  string aroma = 2;
-  string ingredients = 3;
-  int32 category_number = 4;
+  StyleBase base = 1 [(buf.validate.field).required = true];
+  string id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  string aroma = 3;
+  string ingredients = 4;
   string notes = 5;
   string flavor = 6;
   string mouthfeel = 7;
   GravityRangeType final_gravity = 8;
-  string style_guide = 9;
-  ColorRangeType color = 10;
-  GravityRangeType original_gravity = 11;
-  string examples = 12;
-  string name = 13;
-  CarbonationRangeType carbonation = 14;
-  PercentRangeType alcohol_by_volume = 15;
-  BitternessRangeType international_bitterness_units = 16;
-  string appearance = 17;
-  string category = 18;
-  string style_letter = 19;
-  StyleCategories type = 20;
-  string overall_impression = 21;
+  ColorRangeType color = 9;
+  GravityRangeType original_gravity = 10;
+  string examples = 11;
+  CarbonationRangeType carbonation = 12;
+  PercentRangeType alcohol_by_volume = 13;
+  BitternessRangeType international_bitterness_units = 14;
+  string appearance = 15;
+  string overall_impression = 16;
 }
 
 // RecipeStyleType defines style information stored in a recipe record
 message RecipeStyleType {
-  StyleCategories type = 1;
-  string name = 2;
-  string category = 3;
-  int32 category_number = 4;
-  string style_letter = 5;
-  string style_guide = 6;
+  StyleBase base = 1 [(buf.validate.field).required = true];
 }

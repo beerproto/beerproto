@@ -11,37 +11,60 @@ package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/timing.proto";
+import "buf/validate/validate.proto";
 
-// CultureInformation collects the attributes of a microbial culture
-message CultureInformation{
-  string id = 1;
-  CultureBaseForm form = 2;
-  string producer = 3;
-  // The recommended temperature range of fermentation by the culture producer.
-  TemperatureRangeType temperature_range = 4;
-  string notes = 5;
-  // Recommended styles for a particular culture.
-  string best_for = 6;
-  CultureInventoryType inventory = 7;
-  string product_id = 8;
-  string name = 9;
-  // The recommended limit of abv by the culture producer before attenuation stops.
-  PercentType alcohol_tolerance = 10;
-  // A glucoamylase positive culture is capable of producing glucoamylase, the enzyme produced through expression of the diastatic gene, which allows yeast to attenuate dextrins and starches leading to a very low FG. This is positive in some saison/brett yeasts as well as the new gulo hybrid by Omega yeast labs.
-  bool glucoamylase = 11;
-  CultureBaseType type = 12;
-  // Floculation refers to the ability of yeast to aggregate to form large flocs which drop out of suspension.
-  QualitativeRangeUnit flocculation = 13;
-  PercentRangeType attenuation_range = 14;
-  // Maximum number of times to reuse a culture before a new lab source is recommended.
-  int32 max_reuse = 15;
-  // A POF+ culture is capable of producing phenols, which is a common distinctive property of saison, and brett yeasts.
-  bool pof = 16;
-  Zymocide zymocide = 17;
+// CultureBase Provides unique properties to identify individual records of a culture.
+message CultureBase {
+  string name = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
+  ];
+  CultureBaseType type = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum = {
+      not_in: [0]
+    }
+  ];
+  CultureBaseForm form = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum = {
+      not_in: [0]
+    }
+  ];
+  string producer = 4;
+  string product_id = 5;
 }
 
+// CultureInformation collects the attributes of a microbial culture
+message CultureInformation {
+  CultureBase base = 1 [(buf.validate.field).required = true];
+  string id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  // The recommended temperature range of fermentation by the culture producer.
+  TemperatureRangeType temperature_range = 3;
+  string notes = 4;
+  // Recommended styles for a particular culture.
+  string best_for = 5;
+  CultureInventoryType inventory = 6;
+  string name = 7;
+  // The recommended limit of abv by the culture producer before attenuation stops.
+  PercentType alcohol_tolerance = 8;
+  // A glucoamylase positive culture is capable of producing glucoamylase, the enzyme produced through expression of the diastatic gene, which allows yeast to attenuate dextrins and starches leading to a very low FG. This is positive in some saison/brett yeasts as well as the new gulo hybrid by Omega yeast labs.
+  bool glucoamylase = 9;
+  CultureBaseType type = 10;
+  // Floculation refers to the ability of yeast to aggregate to form large flocs which drop out of suspension.
+  QualitativeRangeUnit flocculation = 11;
+  PercentRangeType attenuation_range = 12;
+  // Maximum number of times to reuse a culture before a new lab source is recommended.
+  int32 max_reuse = 13;
+  // A POF+ culture is capable of producing phenols, which is a common distinctive property of saison, and brett yeasts.
+  bool pof = 14;
+  Zymocide zymocide = 15;
+}
 
-enum QualitativeRangeUnit{
+enum QualitativeRangeUnit {
   QUALITATIVE_RANGE_UNIT_UNSPECIFIED = 0;
   // very low
   QUALITATIVE_RANGE_UNIT_VERY_LOW = 1;
@@ -59,30 +82,30 @@ enum QualitativeRangeUnit{
   QUALITATIVE_RANGE_UNIT_VERY_HIGH = 7;
 }
 
-
 // CultureAdditionType collects the attributes of each culture ingredient for use in a recipe
-message CultureAdditionType{
-  string id = 1;
-  CultureBaseForm form = 2;
-  string product_id = 3;
-  string name = 4;
-  int32 cell_count_billions = 5;
-  int32 times_cultured = 6;
-  string producer = 7;
-  CultureBaseType type = 8;
+message CultureAdditionType {
+  CultureBase base = 1 [(buf.validate.field).required = true];
+  string id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  int32 cell_count_billions = 3;
+  int32 times_cultured = 4;
+  CultureBaseType type = 5;
   // The expected, or measured apparent attenuation for a given culture in a given recipe. In comparison to attenuation range, this is a single value.
-  PercentType attenuation = 9;
+  PercentType attenuation = 6;
   // The timing object fully describes the timing of an addition with options for basis on time, gravity, or pH at any process step.
-  TimingType timing = 10;
+  TimingType timing = 7;
 
-  oneof amount  {
-    MassType mass = 11;
-    UnitType unit = 12;
-    VolumeType volume = 13;
+  oneof amount {
+    option (buf.validate.oneof).required = true;
+    MassType mass = 8;
+    UnitType unit = 9;
+    VolumeType volume = 10;
   }
 }
 
-enum CultureBaseForm{
+enum CultureBaseForm {
   CULTURE_BASE_FORM_UNSPECIFIED = 0;
   // liquid
   CULTURE_BASE_FORM_LIQUID = 1;
@@ -96,7 +119,7 @@ enum CultureBaseForm{
   CULTURE_BASE_FORM_DREGS = 5;
 }
 
-enum CultureBaseType{
+enum CultureBaseType {
   CULTURE_BASE_TYPE_UNSPECIFIED = 0;
   // ale
   CULTURE_BASE_TYPE_ALE = 1;
@@ -126,7 +149,7 @@ enum CultureBaseType{
   CULTURE_BASE_TYPE_WINE = 13;
 }
 
-message CultureInventoryType{
+message CultureInventoryType {
   VolumeType liquid = 1;
   MassType dry = 2;
   VolumeType slant = 3;
@@ -134,7 +157,7 @@ message CultureInventoryType{
 }
 
 // Zymocide, also known as killer yeast properties, is common among wine yeast. There are also some ale and brett yeasts that are immune to some zymocidic properties, these are known as killer neutral
-message Zymocide{
+message Zymocide {
   bool no1 = 1;
   bool no2 = 2;
   bool no28 = 3;

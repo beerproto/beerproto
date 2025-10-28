@@ -9,15 +9,22 @@ syntax = "proto3";
 
 package beerproto.v1;
 
-import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/mash_step.proto";
+import "beerproto/v1/measureable_units.proto";
+import "buf/validate/validate.proto";
 
 // This defines the procedure for performing unique mashing processes
 message MashProcedureType {
-  string id = 1;
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
   // Initial grain temperature prior to the start of the mash
-  TemperatureType grain_temperature = 2;
+  TemperatureType grain_temperature = 2 [(buf.validate.field).required = true];
   string notes = 3;
-  repeated MashStepType mash_steps = 4;
-  string name = 5;
+  repeated MashStepType mash_steps = 4 [(buf.validate.field).repeated.min_items = 1];
+  string name = 5 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
+  ];
 }

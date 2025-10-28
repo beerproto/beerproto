@@ -9,22 +9,25 @@ syntax = "proto3";
 
 package beerproto.v1;
 
-import "beerproto/v1/mash.proto";
-import "beerproto/v1/recipe.proto";
-import "beerproto/v1/misc.proto";
-import "beerproto/v1/style.proto";
-import "beerproto/v1/fermentation.proto";
 import "beerproto/v1/boil.proto";
-import "beerproto/v1/fermentable.proto";
 import "beerproto/v1/culture.proto";
 import "beerproto/v1/equipment.proto";
-import "beerproto/v1/packaging.proto";
+import "beerproto/v1/fermentable.proto";
+import "beerproto/v1/fermentation.proto";
 import "beerproto/v1/hop.proto";
+import "beerproto/v1/mash.proto";
+import "beerproto/v1/misc.proto";
+import "beerproto/v1/packaging.proto";
+import "beerproto/v1/recipe.proto";
+import "beerproto/v1/style.proto";
 import "beerproto/v1/water.proto";
-
+import "buf/validate/validate.proto";
 
 message Recipe {
-  string id = 1;
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
   // A collection of steps providing process information for common mashing procedures
   repeated MashProcedureType mashes = 2;
   // Records containing a minimal collection of the description of ingredients, procedures and other required parameters necessary to recreate a batch of beer
@@ -38,7 +41,7 @@ message Recipe {
   // A collection of steps providing process information for common boil procedures
   repeated BoilProcedureType boil = 7;
   // Explicitly encode version within list of records
-  double version = 8;
+  double version = 8 [(buf.validate.field).required = true];
   // Records for any ingredient that contributes to the gravity of the beer
   repeated FermentableType fermentables = 9;
   // Records detailing the wide array of unique cultures

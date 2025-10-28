@@ -10,12 +10,19 @@ syntax = "proto3";
 package beerproto.v1;
 
 import "beerproto/v1/fermentation_step.proto";
+import "buf/validate/validate.proto";
 
 // FermentationProcedureType defines the procedure for performing fermentation
-message FermentationProcedureType{
-  string id = 1;
+message FermentationProcedureType {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
   string description = 2;
   string notes = 3;
-  repeated FermentationStepType fermentation_steps = 4;
-  string name = 5;
+  repeated FermentationStepType fermentation_steps = 4 [(buf.validate.field).repeated.min_items = 1];
+  string name = 5 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
+  ];
 }

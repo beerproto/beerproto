@@ -11,29 +11,41 @@ package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/timing.proto";
+import "buf/validate/validate.proto";
 
-// VarietyInformation collects the attributes of a hop variety to store as record information
-message VarietyInformation{
-  string id = 1;
-  HopInventoryType inventory = 2;
-  VarietyInformationType type = 3;
-  // Oil Content information object.
-  OilContentType oil_content = 4;
-  //  Defined as the percentage of hop alpha lost in 6 months of storage.
-  PercentType  percent_lost = 5;
-  string product_id = 6;
-  PercentType alpha_acid = 7;
+// HopVarietyBase provides unique properties to identify individual records of a hop variety.
+message HopVarietyBase {
+  string name = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
+  ];
+  string producer = 2;
+  string product_id = 3;
+  string origin = 4;
+  string year = 5;
+  HopVarietyBaseForm form = 6;
+  PercentType alpha_acid = 7 [(buf.validate.field).required = true];
   PercentType beta_acid = 8;
-  string name = 9;
-  string origin = 10;
-  string substitutes = 11;
-  string year = 12;
-  HopVarietyBaseForm form = 13;
-  string producer = 14;
-  string notes = 15;
 }
 
-enum VarietyInformationType{
+// VarietyInformation collects the attributes of a hop variety to store as record information
+message VarietyInformation {
+  HopVarietyBase base = 1 [(buf.validate.field).required = true];
+  string id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  HopInventoryType inventory = 3;
+  VarietyInformationType type = 4;
+  // Oil Content information object.
+  OilContentType oil_content = 5;
+  //  Defined as the percentage of hop alpha lost in 6 months of storage.
+  PercentType percent_lost = 6;
+  string substitutes = 7;
+  string notes = 8;
+}
+
+enum VarietyInformationType {
   VARIETY_INFORMATION_TYPE_UNSPECIFIED = 0;
   // aroma
   VARIETY_INFORMATION_TYPE_AROMA = 1;
@@ -51,7 +63,7 @@ enum VarietyInformationType{
   VARIETY_INFORMATION_TYPE_AROMA_BITTERING_FLAVOR = 7;
 }
 
-enum HopVarietyBaseForm{
+enum HopVarietyBaseForm {
   HOP_VARIETY_BASE_FORM_UNSPECIFIED = 0;
   // extract
   HOP_VARIETY_BASE_FORM_EXTRACT = 1;
@@ -67,29 +79,24 @@ enum HopVarietyBaseForm{
   HOP_VARIETY_BASE_FORM_PLUG = 6;
 }
 
-
 // HopAdditionType collects the attributes of each hop ingredient for use in a recipe hop bill.
-message HopAdditionType{
-  string id = 1;
-  PercentType beta_acid = 2;
-  string producer = 3;
-  string origin = 4;
-  string year = 5;
-  HopVarietyBaseForm form = 6;
+message HopAdditionType {
+  HopVarietyBase base = 1 [(buf.validate.field).required = true];
+  string id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
   // The timing object fully describes the timing of an addition with options for a basis on time, gravity, or pH at any process step
-  TimingType timing = 7;
-  string name = 8;
-  string product_id = 9;
-  PercentType alpha_acid = 10;
-  oneof amount  {
-    MassType mass = 11;
-    VolumeType volume = 12;
+  TimingType timing = 3 [(buf.validate.field).required = true];
+  oneof amount {
+    option (buf.validate.oneof).required = true;
+    MassType mass = 4;
+    VolumeType volume = 5;
   }
 }
 
-
 // Used to differentiate which IBU formula is being used in a recipe. If formula is modified in any way, eg to support whirlpool/flameout additions etc etc, please use `Other` for transparency
-message IBUEstimateType{
+message IBUEstimateType {
   IBUMethodUnit method = 1;
 }
 
@@ -106,7 +113,7 @@ enum IBUMethodUnit {
 }
 
 // oil_content collects all information of a hop variety pertaining to oil content, polyphenols, and thiols. Each individual compound is expressed as a percent of the total oil measurement
-message OilContentType{
+message OilContentType {
   PercentType polyphenols = 1;
   // The total amount of oil, including hydrocarbons, esters, and terpene alcohols in units of ml of oil per 100g of hop mass.
   double total_oil_ml_per_100g = 2;
@@ -124,9 +131,9 @@ message OilContentType{
   PercentType pinene = 14;
 }
 
-
-message HopInventoryType{
-  oneof amount  {
+message HopInventoryType {
+  oneof amount {
+    option (buf.validate.oneof).required = true;
     MassType mass = 1;
     VolumeType volume = 2;
   }

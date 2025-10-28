@@ -10,32 +10,47 @@ syntax = "proto3";
 package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
+import "buf/validate/validate.proto";
 
-// EquipmentType provides necessary information for individual brewing equipment
-message EquipmentItemType{
-  string id = 1;
-  string notes = 2;
-  // The volume boiled off during 1 hour, measured before and after at room temperature.
-  VolumeType boil_rate_per_hour = 3;
-  string type = 4;
-  EquipmentBaseForm form = 5;
-  // The volume that leaves the kettle, especially important for non-immersion chillers that cool the wort as it leaves the kettle.
-  VolumeType drain_rate_per_minute = 6;
-  // The specific heat of the piece of equipment, expressed in Cal/(g*C), especially important for when the mashtun is not preheated.
-  SpecificHeatType specific_heat = 7;
-  // The apparent volume absorbed by grain, typical values are 0.125 qt/lb (1.04 L/kg) for a mashtun, 0.08 gal/lb (0.66 L/kg) for BIAB.
-  SpecificVolumeType grain_absorption_rate = 8;
-  string name = 9;
-  VolumeType maximum_volume = 10;
-  // The weight of the piece of equipment, especially important for when the mashtun is not preheated.
-  MassType weight = 11;
-  VolumeType loss = 12;
-  PercentType efficiency = 13;
-
-
+// EquipmentBase The descriptive base type for brew day equipment. Provides unique properties to fully describe the recipe.
+message EquipmentBase {
+  string name = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
+  ];
+  string type = 2;
+  EquipmentBaseForm form = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum = {
+      not_in: [0]
+    }
+  ];
+  VolumeType maximum_volume = 4 [(buf.validate.field).required = true];
 }
 
-enum EquipmentBaseForm{
+// EquipmentType provides necessary information for individual brewing equipment
+message EquipmentItemType {
+  EquipmentBase base = 1 [(buf.validate.field).required = true];
+  string id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  string notes = 3;
+  // The volume boiled off during 1 hour, measured before and after at room temperature.
+  VolumeType boil_rate_per_hour = 4;
+  // The volume that leaves the kettle, especially important for non-immersion chillers that cool the wort as it leaves the kettle.
+  VolumeType drain_rate_per_minute = 5;
+  // The specific heat of the piece of equipment, expressed in Cal/(g*C), especially important for when the mashtun is not preheated.
+  SpecificHeatType specific_heat = 6;
+  // The apparent volume absorbed by grain, typical values are 0.125 qt/lb (1.04 L/kg) for a mashtun, 0.08 gal/lb (0.66 L/kg) for BIAB.
+  SpecificVolumeType grain_absorption_rate = 7;
+  // The weight of the piece of equipment, especially important for when the mashtun is not preheated.
+  MassType weight = 8;
+  VolumeType loss = 9 [(buf.validate.field).required = true];
+  PercentType efficiency = 10;
+}
+
+enum EquipmentBaseForm {
   EQUIPMENT_BASE_FORM_UNSPECIFIED = 0;
   // HLT
   EQUIPMENT_BASE_FORM_HLT = 1;
@@ -54,9 +69,15 @@ enum EquipmentBaseForm{
 }
 
 // Provides necessary information for brewing equipment set
-message EquipmentType{
-  string id = 1;
-  string name = 2;
-  repeated EquipmentItemType equipment_items = 3;
+message EquipmentType {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  string name = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
+  ];
+  repeated EquipmentItemType equipment_items = 3 [(buf.validate.field).repeated.min_items = 1];
   PercentType brewhouse_efficiency = 4;
 }

@@ -10,12 +10,15 @@ syntax = "proto3";
 package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
-
+import "buf/validate/validate.proto";
 
 // MashStepType - a per step representation occurring during the mash
-message MashStepType{
-  string id = 1;
-  TimeType step_time = 2;
+message MashStepType {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  TimeType step_time = 2 [(buf.validate.field).required = true];
   // The amount of time  that passes before this step begins. eg moving from a mash step (step 1) of 148F, to a new temperature step of 156F (step 2) may take 8 minutes to heat the mash. Step 2 would have a ramp time of 8 minutes
   TimeType ramp_time = 3;
   TemperatureType end_temperature = 4;
@@ -24,15 +27,23 @@ message MashStepType{
   TemperatureType infuse_temperature = 6;
   AcidityType start_ph = 7;
   AcidityType end_ph = 8;
-  string name = 9;
-  MashStepUnit type = 10;
+  string name = 9 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
+  ];
+  MashStepUnit type = 10 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum = {
+      not_in: [0]
+    }
+  ];
   VolumeType amount = 11;
-  TemperatureType step_temperature = 12;
+  TemperatureType step_temperature = 12 [(buf.validate.field).required = true];
   // Also known as the mash thickness. eg 1.75 qt/lb or 3.65 L/kg
   SpecificVolumeType water_grain_ratio = 13;
 }
 
-enum MashStepUnit{
+enum MashStepUnit {
   MASH_STEP_UNIT_UNSPECIFIED = 0;
   MASH_STEP_UNIT_INFUSION = 1;
   MASH_STEP_UNIT_TEMPERATURE = 2;

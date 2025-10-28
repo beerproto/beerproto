@@ -10,10 +10,14 @@ syntax = "proto3";
 package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
+import "buf/validate/validate.proto";
 
 // BoilStepType - a per step representation of a boil process, can be used to support preboil steps, non-boiling pasteurization steps, boiling, whirlpool steps, and chilling
-message BoilStepType{
-  string id = 1;
+message BoilStepType {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
   GravityType end_gravity = 2;
   BoilStepTypeChillingType chilling_type = 3;
   string description = 4;
@@ -28,7 +32,7 @@ message BoilStepType{
   TemperatureType start_temperature = 12;
 }
 
-enum BoilStepTypeChillingType{
+enum BoilStepTypeChillingType {
   BOIL_STEP_TYPE_CHILLING_TYPE_UNSPECIFIED = 0;
   // batch
   BOIL_STEP_TYPE_CHILLING_TYPE_BATCH = 1;

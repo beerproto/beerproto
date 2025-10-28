@@ -10,52 +10,54 @@ syntax = "proto3";
 package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
-
+import "buf/validate/validate.proto";
 
 // WaterBase provides unique properties to identify individual records of  brewing water
-message WaterBase{
-  string id = 1;
+message WaterBase {
   // Calcium occurs naturally in most water sources and is the principle cause of hardness.
-  ConcentrationType calcium = 2;
+  ConcentrationType calcium = 2 [(buf.validate.field).required = true];
   // Nitrite occurs naturally at low levels in some waters but is removed by treatment. It is sometime produced as a by-product when chloramine is used as a disinfectant.
   ConcentrationType nitrite = 3;
   // Occurs naturally in water sources and is derived through contact with rocks
-  ConcentrationType chloride = 4;
-  string name = 5;
+  ConcentrationType chloride = 4 [(buf.validate.field).required = true];
+  string name = 5 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
+  ];
   ConcentrationType potassium = 6;
   ConcentrationType carbonate = 7;
   // Iron occurs naturally in some water. High levels are treated to reduce the iron content. A number of water mains are made of iron. Brown discolouration complaints are associated with corroding iron mains. Iron is not harmful to health.
   ConcentrationType iron = 8;
   // Fluoride salts typically have distinctive bitter tastes, and are odorless.
   ConcentrationType flouride = 9;
-  ConcentrationType sulfate = 10;
+  ConcentrationType sulfate = 10 [(buf.validate.field).required = true];
   // At levels of 10-30mg/l it is an important yeast nutrient, but above 30mg/l it can cause a sour/bitter taste to the beer.
-  ConcentrationType magnesium = 11;
+  ConcentrationType magnesium = 11 [(buf.validate.field).required = true];
   string producer = 12;
-  ConcentrationType bicarbonate = 13;
+  ConcentrationType bicarbonate = 13 [(buf.validate.field).required = true];
   // Nitrate occurs naturally in most source waters but concentrations can be increased as a result of fertiliser use. Where necessary concentrations in drinking water can be reduced by diluting with sources where nitrate levels are low or through specific treatment.
   ConcentrationType nitrate = 14;
   // Sodium is naturally present in many water sources. Domestic water softeners can increase the sodium concentration.
-  ConcentrationType sodium = 15;
+  ConcentrationType sodium = 15 [(buf.validate.field).required = true];
 }
 
+// WaterAdditionType collects the attributes of each water addition for use in a recipe
+message WaterType {
+  WaterBase base = 1 [(buf.validate.field).required = true];
+  string id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  string notes = 3;
+  AcidityType ph = 4;
+}
 
 // WaterAdditionType collects the attributes of each water addition for use in a recipe
-message WaterAdditionType{
-  string id = 1;
-  ConcentrationType flouride = 2;
-  ConcentrationType sulfate = 3;
-  string producer = 4;
-  ConcentrationType nitrate = 5;
-  ConcentrationType nitrite = 6;
-  ConcentrationType chloride = 7;
-  VolumeType amount = 8;
-  string name = 89;
-  ConcentrationType potassium = 10;
-  ConcentrationType magnesium = 11;
-  ConcentrationType iron = 12;
-  ConcentrationType bicarbonate = 13;
-  ConcentrationType calcium = 14;
-  ConcentrationType carbonate = 15;
-  ConcentrationType sodium = 16;
+message WaterAdditionType {
+  WaterBase base = 1 [(buf.validate.field).required = true];
+  string id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  VolumeType amount = 3;
 }

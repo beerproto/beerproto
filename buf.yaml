@@ -1,0 +1,36 @@
+version: v2
+modules:
+  - path: googleapis
+    name: buf.build/beerproto/mybeer-proto
+    lint:
+      except:
+        - FIELD_NOT_REQUIRED
+        - PACKAGE_NO_IMPORT_CYCLE
+      ignore:
+        - googleapis/google
+      disallow_comment_ignores: true
+    breaking:
+      use:
+        - FILE
+      except:
+        - EXTENSION_NO_DELETE
+        - FIELD_SAME_DEFAULT
+  - path: beerprotoapis
+    name: buf.build/beerproto/beerproto
+    lint:
+      except:
+        - FIELD_NOT_REQUIRED
+        - PACKAGE_NO_IMPORT_CYCLE
+      rpc_allow_same_request_response: true
+      rpc_allow_google_protobuf_empty_requests: true
+      rpc_allow_google_protobuf_empty_responses: true
+      disallow_comment_ignores: true
+    breaking:
+      use:
+        - FILE
+      except:
+        - EXTENSION_NO_DELETE
+        - FIELD_SAME_DEFAULT
+deps:
+  - buf.build/bufbuild/protovalidate
+

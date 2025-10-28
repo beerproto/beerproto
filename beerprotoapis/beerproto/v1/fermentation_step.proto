@@ -10,12 +10,18 @@ syntax = "proto3";
 package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
-
+import "buf/validate/validate.proto";
 
 // FermentationStepType - a per step representation of a fermentation action
-message FermentationStepType{
-  string id = 1;
-  string name = 2;
+message FermentationStepType {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  string name = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
+  ];
   TemperatureType end_temperature = 3;
   TimeType step_time = 4;
   // Free rise is used to indicate a fermentation step where the exothermic fermentation is allowed to raise the temperature without restriction This is either True or false.
@@ -25,7 +31,7 @@ message FermentationStepType{
   AcidityType start_ph = 8;
   string description = 9;
   TemperatureType start_temperature = 10;
-  AcidityType  end_ph = 11;
+  AcidityType end_ph = 11;
   string vessel = 12;
   // Vessel pressure indicates the pressure applied within the fermentation vessel.
   PercentType vessel_pressure = 13;
