@@ -12,7 +12,7 @@ jobs:
       - uses: bufbuild/buf-action@v1
         with:
           input: "beerprotoapis"
-          buf_token: ${{ secrets.BUF_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
           lint: true
           breaking: false
           push_create_visibility: public
