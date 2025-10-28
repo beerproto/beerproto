@@ -1,19 +1,5 @@
 version: v2
 modules:
-  - path: googleapis
-    lint:
-      except:
-        - FIELD_NOT_REQUIRED
-        - PACKAGE_NO_IMPORT_CYCLE
-      ignore:
-        - googleapis/google
-      disallow_comment_ignores: true
-    breaking:
-      use:
-        - FILE
-      except:
-        - EXTENSION_NO_DELETE
-        - FIELD_SAME_DEFAULT
   - path: beerprotoapis
     name: buf.build/beerproto/beerproto
     lint:
@@ -32,4 +18,3 @@ modules:
         - FIELD_SAME_DEFAULT
 deps:
   - buf.build/bufbuild/protovalidate
-
