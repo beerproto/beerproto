@@ -9,3 +9,7 @@ To generate a copy of BeerProto in your language use the following command chang
 ```bash
 buf generate beerprotoapis --template=buf.gen.go.yaml
 ```
+
+```bash
+buf generate beerprotoapis --template=buf.gen.dart.yaml
+```
