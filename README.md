@@ -11,5 +11,5 @@ buf generate beerprotoapis --template=buf.gen.go.yaml
 ```
 
 ```bash
-buf generate beerprotoapis --template=buf.gen.dart.yaml
+buf generate beerprotoapis --template=buf.gen.dashboard.yaml
 ```
