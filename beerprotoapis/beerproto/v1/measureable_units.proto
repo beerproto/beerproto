@@ -337,3 +337,29 @@ message ConcentrationRangeType {
   ConcentrationType minimum = 1;
   ConcentrationType maximum = 2;
 }
+
+enum RateUnit {
+  RATE_UNIT_UNSPECIFIED = 0;
+
+  // Volume-based rates
+  RATE_UNIT_L_PER_HOUR = 1;
+  RATE_UNIT_L_PER_MINUTE = 2;
+  RATE_UNIT_GAL_PER_HOUR = 3;
+
+  // Percent-based rates (useful for boil-off)
+  RATE_UNIT_PERCENT_PER_HOUR = 4;
+
+  // Mass absorption (common in brewing calculations)
+  RATE_UNIT_L_PER_KG = 5;
+  RATE_UNIT_GAL_PER_LB = 6;
+
+  // Temperature change rates (useful for step mashes)
+  RATE_UNIT_C_PER_MINUTE = 7;
+  RATE_UNIT_F_PER_MINUTE = 8;
+}
+
+
+message RateType {
+  double value = 1;
+  RateUnit unit = 2;
+}
