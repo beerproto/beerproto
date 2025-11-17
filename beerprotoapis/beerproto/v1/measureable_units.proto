@@ -358,7 +358,7 @@ enum RateUnit {
   RATE_UNIT_F_PER_MINUTE = 8;
 }
 
-
+// use for things like evaporation rate, grain absorption rate, lauter flow rate, etc.
 message RateType {
   double value = 1;
   RateUnit unit = 2;
