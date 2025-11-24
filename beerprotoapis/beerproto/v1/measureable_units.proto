@@ -276,6 +276,9 @@ enum ViscosityUnit {
   VISCOSITY_UNIT_CP = 1;
   // mPa-s
   VISCOSITY_UNIT_MPAS = 2;
+
+  // P
+   VISCOSITY_UNIT_POISE = 3;
 }
 
 message CarbonationRangeType {
