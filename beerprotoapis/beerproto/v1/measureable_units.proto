@@ -374,3 +374,15 @@ enum CarbonationMethod {
   CARBONATION_METHOD_PRIMING_SUGAR = 2;
   CARBONATION_METHOD_NATURAL_CONDITIONING = 3;
 }
+
+enum PressureUnit {
+  PRESSURE_UNIT_UNSPECIFIED = 0;
+  PRESSURE_UNIT_BAR = 1;
+  PRESSURE_UNIT_PSI = 2;
+  PRESSURE_UNIT_KPA = 3;
+}
+
+message PressureType {
+  double value = 1;
+  PressureUnit unit = 2;
+}
