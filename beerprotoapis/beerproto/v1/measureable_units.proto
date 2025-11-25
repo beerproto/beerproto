@@ -366,3 +366,11 @@ message RateType {
   double value = 1;
   RateUnit unit = 2;
 }
+
+
+enum CarbonationMethod {
+  CARBONATION_METHOD_UNSPECIFIED = 0;
+  CARBONATION_METHOD_FORCE_CO2   = 1;
+  CARBONATION_METHOD_PRIMING_SUGAR = 2;
+  CARBONATION_METHOD_NATURAL_CONDITIONING = 3;
+}

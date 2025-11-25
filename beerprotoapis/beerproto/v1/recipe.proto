@@ -53,7 +53,7 @@ message RecipeType {
   // The gravity of beer at the end of fermentation
   GravityType final_gravity = 11;
   // The final carbonation of the beer when packaged or served
-  double carbonation = 12;
+  CarbonationType carbonation = 12;
   // FermentationProcedureType defines the procedure for performing fermentation
   FermentationProcedureType fermentation = 13;
   string author = 14 [(buf.validate.field).required = true];

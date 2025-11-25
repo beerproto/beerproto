@@ -32,11 +32,13 @@ message PackagingVesselType {
   double vessel_quantity = 9;
   string description = 10;
   AcidityType start_ph = 11;
-  double carbonation = 12;
+  CarbonationType carbonation = 12;
   TemperatureType start_temperature = 13;
   AcidityType end_ph = 14;
   TemperatureType end_temperature = 15;
   repeated PackagingGraphicType graphics = 16;
+
+  CarbonationMethod carbonation_method = 17;
 }
 
 enum PackagingVesselUnit {
