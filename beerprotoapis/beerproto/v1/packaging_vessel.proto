@@ -13,32 +13,18 @@ import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/packaging_graphic.proto";
 import "buf/validate/validate.proto";
 
-// PackagingVesselType - a per vessel representation of a packaging process
-message PackagingVesselType {
-  string id = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.uuid = true
-  ];
-  PackagingVesselUnit type = 2;
-  GravityType start_gravity = 3;
-  string name = 4 [
+message PackagingVesselBase {
+  string name = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.min_len = 3
-  ];
-  string package_date = 5;
-  TimeType step_time = 6;
-  GravityType end_gravity = 7;
-  VolumeType vessel_volume = 8;
-  int32 vessel_quantity = 9;
-  string description = 10;
-  AcidityType start_ph = 11;
-  CarbonationType carbonation = 12;
-  TemperatureType start_temperature = 13;
-  AcidityType end_ph = 14;
-  TemperatureType end_temperature = 15;
-  repeated PackagingGraphicType graphics = 16;
+  ];  
+  PackagingVesselUnit type = 2;
 
-  CarbonationMethod carbonation_method = 17;
+  VolumeType vessel_volume = 3;
+  int32 vessel_quantity = 4;
+  string description = 5;
+  repeated PackagingGraphicType graphics = 6;
+
 }
 
 enum PackagingVesselUnit {
@@ -59,3 +45,55 @@ enum PackagingVesselUnit {
   PACKAGING_VESSEL_UNIT_CAN = 7;
 }
  
+// PackagingVesselType - a per vessel representation of a packaging process
+message PackagingVesselType {
+  PackagingVesselBase base = 1;
+  string id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message PackagingVesselStepType {
+  PackagingVesselBase base = 1;
+  // Unique within the recipe
+  string id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+
+
+  string package_date = 3;
+
+  // Process step duration at packaging
+  TimeType step_time = 4;
+
+  GravityType start_gravity = 5;
+  GravityType end_gravity = 6;
+
+  AcidityType start_ph = 7;
+  AcidityType end_ph = 8;
+
+  TemperatureType start_temperature = 9;
+  TemperatureType end_temperature = 10;
+
+  // What carbonation method is used for THIS recipe/vessel
+  CarbonationMethod carbonation_method = 11;
+
+  // Target carbonation for this vessel (vols or g/L)
+  CarbonationType target_carbonation = 12;
+
+  // Computed / logged residual carbonation before packaging (optional)
+  CarbonationType residual_carbonation = 13;
+
+  // How much extra we're adding (target - residual)
+  CarbonationType additional_carbonation = 14;
+
+  // Force-carb specific
+  PressureType force_carb_pressure = 15;
+  TimeType force_carb_duration = 16;
+
+  // Priming specific
+  MassType priming_sugar = 17;
+  string priming_sugar_type = 18; // or an enum later
+}

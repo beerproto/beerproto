@@ -26,5 +26,5 @@ message PackagingProcedureType {
   VolumeType packaged_volume = 3;
   string description = 4;
   string notes = 5;
-  repeated PackagingVesselType packaging_vessels = 6;
+  repeated PackagingVesselStepType packaging_vessels = 6;
 }
