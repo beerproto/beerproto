@@ -29,7 +29,7 @@ message PackagingVesselType {
   TimeType step_time = 6;
   GravityType end_gravity = 7;
   VolumeType vessel_volume = 8;
-  double vessel_quantity = 9;
+  int32 vessel_quantity = 9;
   string description = 10;
   AcidityType start_ph = 11;
   CarbonationType carbonation = 12;
