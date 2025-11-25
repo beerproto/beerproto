@@ -377,9 +377,10 @@ enum CarbonationMethod {
 
 enum PressureUnit {
   PRESSURE_UNIT_UNSPECIFIED = 0;
-  PRESSURE_UNIT_BAR = 1;
-  PRESSURE_UNIT_PSI = 2;
-  PRESSURE_UNIT_KPA = 3;
+  PRESSURE_UNIT_PASCAL = 1;
+  PRESSURE_UNIT_BAR = 2;
+  PRESSURE_UNIT_PSI = 3;
+  PRESSURE_UNIT_KPA = 4;
 }
 
 message PressureType {
