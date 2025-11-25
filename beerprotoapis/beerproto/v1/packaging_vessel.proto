@@ -52,16 +52,6 @@ message PackagingVesselType {
     (buf.validate.field).required = true,
     (buf.validate.field).string.uuid = true
   ];
-}
-
-message PackagingVesselStepType {
-  PackagingVesselBase base = 1;
-  // Unique within the recipe
-  string id = 2 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.uuid = true
-  ];
-
 
   string package_date = 3;
 
