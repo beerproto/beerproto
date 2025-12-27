@@ -82,89 +82,105 @@ message PackagingVesselType {
   // Optional notes (cask finings, venting, etc.)
   string notes = 12;
 
-  oneof carbonation_step {
-    ForceCarbonationStepType force_carbonation = 13;
-    PrimingStepType          priming           = 14;
-    SpundingStepType         spunding = 15;
-    NaturalConditioningStepType  natural_conditioning = 16;
-  }
+  // oneof carbonation_step {
+  //   ForceCarbonationStepType force_carbonation = 13;
+  //   PrimingStepType          priming           = 14;
+  //   SpundingStepType         spunding = 15;
+  //   NaturalConditioningStepType  natural_conditioning = 16;
+  // }
+
+    CarbonationStep carbonation_step  = 13;
+
 }
 
-
-
-message ForceCarbonationStepType {
-  // Pressure at which we hold the vessel (e.g. 1.0–2.5 bar)
-  PressureType pressure = 1;
-
-  // Duration at that pressure (e.g. 2 days)
-  TimeType duration = 2;
-
-  // Optional: temperature explicitly used for force carb
-  // (if omitted, you can fall back to start_temperature on the step)
-  TemperatureType temperature = 3;
-}
-
-message PrimingStepType {
-  // What kind of sugar (dextrose, sucrose, DME, etc.)
-  PrimingSugarType priming_sugar = 1;
-
-  // Optional: volume of beer this priming addition is intended for
-  // (useful if you ever do partial batch priming)
-  VolumeType beer_volume = 2;
-}
-
-
-enum PrimingSugarKind {
-  PRIMING_SUGAR_KIND_UNSPECIFIED = 0;
-  PRIMING_SUGAR_KIND_SUCROSE = 1;
-  PRIMING_SUGAR_KIND_DEXTROSE = 2;
-  PRIMING_SUGAR_KIND_DME = 3;
-  PRIMING_SUGAR_KIND_HONEY = 4;
-  PRIMING_SUGAR_KIND_CANDI = 5;
-  PRIMING_SUGAR_KIND_SYRUP = 6;
-  PRIMING_SUGAR_KIND_OTHER = 7;
-}
-
-message PrimingSugarType {
-  // General category of priming sugar (dextrose, sucrose, DME, honey, etc.)
-  PrimingSugarKind kind = 1;
-
-  // Optional free-text name (e.g. "DME Light", "Grade A Clover Honey")
-  string name = 2;
-
-  // Amount of sugar added to the vessel
-  MassType mass = 3;
-
-  // Optional color (useful for DME, syrups, dark sugars)
-  ColorType color = 4;
-
-  // Optional fermentability as a percentage (0–100)
-  // e.g. 100% for dextrose, ~75% for DME, ~95% for honey
-  PercentType fermentability = 5;
-}
-
-// Spunding – closing the fermenter or keg early to trap naturally
-// produced CO₂ using fermentation pressure.
-message SpundingStepType {
-  // The pressure at which the spunding valve / PRV is set
-  // (gauge pressure, e.g. 1.0–1.2 bar for typical lager spunding).
-  PressureType pressure = 1;
-
-  // Optional: gravity at which you started spunding
-  // (often "I closed it at ~1.020").
-  GravityType start_gravity = 2;
-
-  // Optional: any spunding-specific notes
-  // (you can still use PackagingVesselStepType.notes for general stuff).
-  string notes = 3;
-
-  // Optional: estimated carbonation contributed by spunding phase only.
-  CarbonationType additional_carbonation = 4;
+enum CarbonationStep {
+  CARBONATION_STEP_UNSPECIFIED = 0;
+  // forceCarbonation
+  CARBONATION_STEP_FORCE_CARBONATION = 1;
+  // priming
+  CARBONATION_STEP_PRIMING = 2;
+  // spunding
+  CARBONATION_STEP_SPUNDING = 3;
+  // naturalConditioning
+  CARBONATION_STEP_NATURAL_CONDITIONING = 4;
 
 }
 
 
 
-message NaturalConditioningStepType {
+// message ForceCarbonationStepType {
+//   // Pressure at which we hold the vessel (e.g. 1.0–2.5 bar)
+//   PressureType pressure = 1;
 
-}
+//   // Duration at that pressure (e.g. 2 days)
+//   TimeType duration = 2;
+
+//   // Optional: temperature explicitly used for force carb
+//   // (if omitted, you can fall back to start_temperature on the step)
+//   TemperatureType temperature = 3;
+// }
+
+// message PrimingStepType {
+//   // What kind of sugar (dextrose, sucrose, DME, etc.)
+//   PrimingSugarType priming_sugar = 1;
+
+//   // Optional: volume of beer this priming addition is intended for
+//   // (useful if you ever do partial batch priming)
+//   VolumeType beer_volume = 2;
+// }
+
+
+// enum PrimingSugarKind {
+//   PRIMING_SUGAR_KIND_UNSPECIFIED = 0;
+//   PRIMING_SUGAR_KIND_SUCROSE = 1;
+//   PRIMING_SUGAR_KIND_DEXTROSE = 2;
+//   PRIMING_SUGAR_KIND_DME = 3;
+//   PRIMING_SUGAR_KIND_HONEY = 4;
+//   PRIMING_SUGAR_KIND_CANDI = 5;
+//   PRIMING_SUGAR_KIND_SYRUP = 6;
+//   PRIMING_SUGAR_KIND_OTHER = 7;
+// }
+
+// message PrimingSugarType {
+//   // General category of priming sugar (dextrose, sucrose, DME, honey, etc.)
+//   PrimingSugarKind kind = 1;
+
+//   // Optional free-text name (e.g. "DME Light", "Grade A Clover Honey")
+//   string name = 2;
+
+//   // Amount of sugar added to the vessel
+//   MassType mass = 3;
+
+//   // Optional color (useful for DME, syrups, dark sugars)
+//   ColorType color = 4;
+
+//   // Optional fermentability as a percentage (0–100)
+//   // e.g. 100% for dextrose, ~75% for DME, ~95% for honey
+//   PercentType fermentability = 5;
+// }
+
+// // Spunding – closing the fermenter or keg early to trap naturally
+// // produced CO₂ using fermentation pressure.
+// message SpundingStepType {
+//   // The pressure at which the spunding valve / PRV is set
+//   // (gauge pressure, e.g. 1.0–1.2 bar for typical lager spunding).
+//   PressureType pressure = 1;
+
+//   // Optional: gravity at which you started spunding
+//   // (often "I closed it at ~1.020").
+//   GravityType start_gravity = 2;
+
+//   // Optional: any spunding-specific notes
+//   // (you can still use PackagingVesselStepType.notes for general stuff).
+//   string notes = 3;
+
+//   // Optional: estimated carbonation contributed by spunding phase only.
+//   CarbonationType additional_carbonation = 4;
+
+// }
+
+
+
+// message NaturalConditioningStepType {
+
+// }
