@@ -47,7 +47,7 @@ message FermentableType {
   // The percentage of protein. Higher values may indicate a possibility of haze, or lautering issues.
   PercentType protein = 5;
   // Where diastatic power gives the total amount of all enzymes, alpha amylase, also known as dextrinizing units, refers to only the total amount of alpa amylase in the malted grain. A value of 25-50 is desirable for base malt.
-  double alpha_amylase = 11;
+  EnzymeActivityType alpha_amylase = 11;
   // Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable.
   DiastaticPowerType diastatic_power = 14;
   PercentType moisture = 15;

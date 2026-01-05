@@ -120,33 +120,35 @@ enum CultureBaseForm {
 
 enum CultureBaseType {
   CULTURE_BASE_TYPE_UNSPECIFIED = 0;
-  // ale
+
+  // Yeast
   CULTURE_BASE_TYPE_ALE = 1;
-  // bacteria
-  CULTURE_BASE_TYPE_BACTERIA = 2;
-  // brett
-  CULTURE_BASE_TYPE_BRETT = 3;
-  // champagne
-  CULTURE_BASE_TYPE_CHAMPAGNE = 4;
-  // kveik
-  CULTURE_BASE_TYPE_KVEIK = 5;
-  // lacto
-  CULTURE_BASE_TYPE_LACTO = 6;
-  // lager
   CULTURE_BASE_TYPE_LAGER = 7;
-  // malolactic
-  CULTURE_BASE_TYPE_MALOLACTIC = 8;
-  // mixed-culture
-  CULTURE_BASE_TYPE_MIXED_CULTURE = 9;
-  // other
-  CULTURE_BASE_TYPE_OTHER = 10;
-  // pedio
-  CULTURE_BASE_TYPE_PEDIO = 11;
-  // spontaneous
-  CULTURE_BASE_TYPE_SPONTANEOUS = 12;
-  // wine
+  CULTURE_BASE_TYPE_KVEIK = 5;
+  CULTURE_BASE_TYPE_BRETT = 3;
+  CULTURE_BASE_TYPE_CHAMPAGNE = 4;
   CULTURE_BASE_TYPE_WINE = 13;
+  CULTURE_BASE_TYPE_NON_SACCHAROMYCES = 14;
+
+  // Bacteria
+  CULTURE_BASE_TYPE_LACTO = 6;
+  CULTURE_BASE_TYPE_PEDIO = 11;
+  CULTURE_BASE_TYPE_MALOLACTIC = 8;
+  CULTURE_BASE_TYPE_ACETIC = 15;
+  CULTURE_BASE_TYPE_BACTERIA = 2;
+
+  // Mixed / process-driven
+  CULTURE_BASE_TYPE_MIXED_CULTURE = 9;
+  CULTURE_BASE_TYPE_SPONTANEOUS = 12;
+  CULTURE_BASE_TYPE_SCOBY = 17;
+
+  // Other biological agents
+  CULTURE_BASE_TYPE_MOLD = 16;
+
+  // Fallback
+  CULTURE_BASE_TYPE_OTHER = 10;
 }
+
 
 message CultureInventoryType {
   VolumeType liquid = 1;

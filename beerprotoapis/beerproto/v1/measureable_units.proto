@@ -9,6 +9,8 @@ syntax = "proto3";
 
 package beerproto.v1;
 
+import "buf/validate/validate.proto";
+
 message VolumeType {
   double value = 1;
   VolumeUnit unit = 2;
@@ -380,4 +382,46 @@ enum PressureUnit {
 message PressureType {
   double value = 1;
   PressureUnit unit = 2;
+}
+
+message EnzymeActivityType {
+  // Numeric activity value as reported by the lab
+  double value = 1 [
+  (buf.validate.field).double.gte = 0
+  ];
+
+  // Unit of enzyme activity
+  EnzymeActivityUnit unit = 2 [
+  (buf.validate.field).required = true
+  ];
+}
+
+/**
+* Enzyme activity units used in brewing and cereal chemistry.
+*
+* DU is the de-facto standard for alpha amylase in malt specs.
+*/
+enum EnzymeActivityUnit {
+  ENZYME_ACTIVITY_UNIT_UNSPECIFIED = 0;
+
+  // Dextrinizing Units (ASBC method, most common for alpha amylase)
+  ENZYME_ACTIVITY_UNIT_DU = 1;
+
+  // Windisch–Kolbach units (more common in European malt specs)
+  ENZYME_ACTIVITY_UNIT_WK = 2;
+
+  // SKB units (Sandstedt–Kneen–Blish, older standard)
+  ENZYME_ACTIVITY_UNIT_SKB = 3;
+}
+
+enum EnzymeType {
+  ENZYME_TYPE_UNSPECIFIED = 0;
+  ENZYME_TYPE_ALPHA_AMYLASE = 1;
+  ENZYME_TYPE_BETA_AMYLASE = 2;
+  ENZYME_TYPE_PROTEASE = 3;
+}
+
+message EnzymeActivity {
+  EnzymeType kind = 1;
+  EnzymeActivityType activity = 2;
 }
