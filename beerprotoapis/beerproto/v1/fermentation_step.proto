@@ -35,7 +35,4 @@ message FermentationStepType {
   string vessel = 12;
   // Vessel pressure indicates the pressure applied within the fermentation vessel.
   PercentType vessel_pressure = 13;
-
-  VolumeType top_up = 14;
-
 }

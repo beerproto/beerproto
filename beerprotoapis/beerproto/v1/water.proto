@@ -10,6 +10,7 @@ syntax = "proto3";
 package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
+import "beerproto/v1/timing.proto";
 import "buf/validate/validate.proto";
 
 // WaterBase provides unique properties to identify individual records of  brewing water
@@ -60,4 +61,6 @@ message WaterAdditionType {
     (buf.validate.field).string.uuid = true
   ];
   VolumeType amount = 3;
+  // The timing object fully describes the timing of an addition with options for a basis on time, gravity, or pH at any process step
+  TimingType timing = 4 [(buf.validate.field).required = true];
 }
