@@ -352,7 +352,8 @@ enum RateUnit {
   RATE_UNIT_GAL_PER_HOUR = 3;
   RATE_UNIT_GAL_PER_MINUTE = 9;
   RATE_UNIT_HL_PER_HOUR = 10;
-  RATE_UNIT_BBL_PER_HOUR = 11;
+  RATE_UNIT_BBL_PER_HOUR = 11;     // US beer barrel (31 US gal)
+  RATE_UNIT_UK_BBL_PER_HOUR = 12;  // UK brewers' barrel (36 imp gal)
 
   // Percent-based rates (useful for boil-off)
   RATE_UNIT_PERCENT_PER_HOUR = 4;
