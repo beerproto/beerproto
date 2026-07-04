@@ -40,3 +40,14 @@ jobs:
           method: post
           data: '{"ref": "main"}'
           headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_DART }}"}'
+  dispatch-python:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: beerproto_python
+        uses: CamiloGarciaLaRotta/watermelon-http-client@v1
+        with:
+          url: "https://api.github.com/repos/beerproto/beerproto_python/actions/workflows/main.yml/dispatches"
+          method: post
+          data: '{"ref": "main"}'
+          headers: '{"Content-Type": "text/plain", "Authorization" : "Bearer ${{ secrets.BEERPROTO_DART }}"}'          
