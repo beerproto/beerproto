@@ -69,6 +69,22 @@ enum MassUnit {
   MASS_UNIT_OZ = 5;
 }
 
+// CellCountType represents a count of viable microorganism (yeast/bacteria) cells, used in yeast pitch-rate calculations. Pitch-rate math is done in billions; cells and millions are provided for display scaling.
+message CellCountType {
+  double value = 1;
+  CellCountUnit unit = 2;
+}
+
+enum CellCountUnit {
+  CELL_COUNT_UNIT_UNSPECIFIED = 0;
+  // cells
+  CELL_COUNT_UNIT_CELLS = 1;
+  // M (million, x10^6)
+  CELL_COUNT_UNIT_MILLION = 2;
+  // B (billion, x10^9)
+  CELL_COUNT_UNIT_BILLION = 3;
+}
+
 // Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable for base malts
 message DiastaticPowerType {
   double value = 1;
