@@ -85,6 +85,18 @@ enum CellCountUnit {
   CELL_COUNT_UNIT_BILLION = 3;
 }
 
+// PitchRateType is a yeast pitch rate — cells pitched per unit wort volume per unit gravity. There is one unit in common brewing use (million cells / mL / °Plato), so it exists mainly for type-safety and consistent display rather than conversion.
+message PitchRateType {
+  double value = 1;
+  PitchRateUnit unit = 2;
+}
+
+enum PitchRateUnit {
+  PITCH_RATE_UNIT_UNSPECIFIED = 0;
+  // M cells / mL / °Plato
+  PITCH_RATE_UNIT_MILLION_CELLS_PER_ML_PER_PLATO = 1;
+}
+
 // Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable for base malts
 message DiastaticPowerType {
   double value = 1;
