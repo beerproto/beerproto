@@ -31,6 +31,8 @@ message FermentableBase {
   ];
   string producer = 7;
   string product_id = 8;
+  // Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable. Carried on the base so recipe additions can compute the grist's mass-weighted diastatic power.
+  DiastaticPowerType diastatic_power = 9;
 }
 
 // FermentableType collects the attributes of a fermentable ingredient to store as record information

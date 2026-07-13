@@ -39,4 +39,8 @@ enum UseType{
   USE_TYPE_ADD_TO_FERMENTATION = 3;
   // add to package
   USE_TYPE_ADD_TO_PACKAGE = 4;
+  // add at or after flameout, steeped below boiling (whirlpool / hopstand); isomerization continues at a reduced, temperature-dependent rate
+  USE_TYPE_ADD_TO_WHIRLPOOL = 5;
+  // add to the kettle before the boil begins (first wort hopping); ~10% higher measured utilization than an equivalent full-boil addition
+  USE_TYPE_ADD_TO_FIRST_WORT = 6;
 }
