@@ -33,6 +33,6 @@ message FermentationStepType {
   TemperatureType start_temperature = 10;
   AcidityType end_ph = 11;
   string vessel = 12;
-  // Vessel pressure indicates the pressure applied within the fermentation vessel.
-  PercentType vessel_pressure = 13;
+  // Vessel pressure indicates the pressure applied within the fermentation vessel (spunding / pressure fermentation setpoint).
+  PressureType vessel_pressure = 13;
 }

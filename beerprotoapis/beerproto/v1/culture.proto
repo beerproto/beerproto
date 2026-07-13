@@ -33,6 +33,8 @@ message CultureBase {
   ];
   string producer = 4;
   string product_id = 5;
+  // A glucoamylase positive culture attenuates dextrins and starches, leading to a very low FG. Carried on the base so a recipe's culture addition can drive the FG estimate toward near-complete attenuation.
+  bool glucoamylase = 6;
 }
 
 // CultureInformation collects the attributes of a microbial culture
