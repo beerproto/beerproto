@@ -25,4 +25,8 @@ message BoilProcedureType {
   string name = 5;
   string description = 6;
   string notes = 7;
+  // Whirlpool / hopstand temperature. Whirlpool hop isomerization is strongly
+  // temperature-dependent, so this drives the temperature-corrected whirlpool
+  // IBU. Unset falls back to a typical ~85 C stand.
+  TemperatureType whirlpool_temperature = 8;
 }
