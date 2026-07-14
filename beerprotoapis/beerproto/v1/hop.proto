@@ -26,6 +26,10 @@ message HopVarietyBase {
   HopVarietyBaseForm form = 6;
   PercentType alpha_acid = 7 [(buf.validate.field).required = true];
   PercentType beta_acid = 8;
+  //  Defined as the percentage of hop alpha lost in 6 months of storage.
+  //  Carried onto a recipe addition so IBU can be computed from age-adjusted
+  //  alpha rather than the fresh label value.
+  PercentType percent_lost = 9;
 }
 
 // VarietyInformation collects the attributes of a hop variety to store as record information
