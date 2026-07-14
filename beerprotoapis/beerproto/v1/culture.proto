@@ -157,6 +157,14 @@ message CultureInventoryType {
   MassType dry = 2;
   VolumeType slant = 3;
   VolumeType culture = 4;
+  // Yeast production / harvest date as an ISO-8601 date string (e.g.
+  // "2026-01-15"). Drives the stock's age-based viability estimate so freshness
+  // is visible while browsing inventory, not only at pitch time.
+  string manufacture_date = 5;
+  // Repitch generation for harvested/reused yeast: 0 = fresh from the
+  // manufacturer/lab, 1 = first repitch, etc. Compared against the library
+  // culture's max_reuse to warn when a slurry is past its recommended reuses.
+  int32 generation = 6;
 }
 
 // Zymocide, also known as killer yeast properties, is common among wine yeast. There are also some ale and brett yeasts that are immune to some zymocidic properties, these are known as killer neutral
