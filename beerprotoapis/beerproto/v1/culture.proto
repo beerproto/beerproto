@@ -11,6 +11,7 @@ package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/timing.proto";
+import "google/protobuf/timestamp.proto";
 import "buf/validate/validate.proto";
 
 // CultureBase Provides unique properties to identify individual records of a culture.
@@ -165,6 +166,12 @@ message CultureInventoryType {
   // manufacturer/lab, 1 = first repitch, etc. Compared against the library
   // culture's max_reuse to warn when a slurry is past its recommended reuses.
   int32 generation = 6;
+  // Best-before / use-by date of this stock. Unset when unknown.
+  google.protobuf.Timestamp best_before = 7;
+  // Liquid yeast on hand counted in packs/vials (as opposed to the `liquid`
+  // pool measured by volume). Recipes commonly dose liquid yeast by pack, so
+  // this lets a pack-count requirement be confirmed and deducted.
+  UnitType liquid_packs = 8;
 }
 
 // Zymocide, also known as killer yeast properties, is common among wine yeast. There are also some ale and brett yeasts that are immune to some zymocidic properties, these are known as killer neutral

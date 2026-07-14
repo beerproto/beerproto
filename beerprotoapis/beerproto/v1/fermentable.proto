@@ -11,6 +11,7 @@ package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/timing.proto";
+import "google/protobuf/timestamp.proto";
 import "buf/validate/validate.proto";
 
 // FermentableBase provides unique properties to identify individual records of fermentable ingredients.
@@ -118,6 +119,24 @@ message FermentableInventoryType {
     MassType mass = 1;
     VolumeType volume = 2;
   }
+  // Best-before / use-by date of this stock. Unset when unknown.
+  google.protobuf.Timestamp best_before = 3;
+  // The measured extract potential of *this lot* (points per lb per gallon,
+  // e.g. 1.037). When set, overrides the library nominal yield for OG so a
+  // sack that assays differently from the maltster's spec is accounted for.
+  GravityType lot_potential = 4;
+  // How this lot is milled — affects staling rate and mash efficiency.
+  GrainCrush crush = 5;
+  // Measured moisture content of this lot (percent). Informational.
+  PercentType moisture = 6;
+}
+
+enum GrainCrush {
+  GRAIN_CRUSH_UNSPECIFIED = 0;
+  GRAIN_CRUSH_UNCRUSHED = 1;
+  GRAIN_CRUSH_COARSE = 2;
+  GRAIN_CRUSH_MEDIUM = 3;
+  GRAIN_CRUSH_FINE = 4;
 }
 
 enum FermentableBaseType {

@@ -11,6 +11,7 @@ package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/timing.proto";
+import "google/protobuf/timestamp.proto";
 import "buf/validate/validate.proto";
 
 // HopVarietyBase provides unique properties to identify individual records of a hop variety.
@@ -141,4 +142,6 @@ message HopInventoryType {
     MassType mass = 1;
     VolumeType volume = 2;
   }
+  // Best-before / use-by date of this stock. Unset when unknown.
+  google.protobuf.Timestamp best_before = 3;
 }

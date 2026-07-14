@@ -11,6 +11,7 @@ package beerproto.v1;
 
 import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/timing.proto";
+import "google/protobuf/timestamp.proto";
 import "buf/validate/validate.proto";
 
 // MiscellaneousBase provides unique properties to identify individual records of ingredients that are neither hops, nor provide a contribution to the gravity of wort.
@@ -85,4 +86,6 @@ message MiscellaneousInventoryType {
     UnitType unit = 2;
     VolumeType volume = 3;
   }
+  // Best-before / use-by date of this stock. Unset when unknown.
+  google.protobuf.Timestamp best_before = 4;
 }
