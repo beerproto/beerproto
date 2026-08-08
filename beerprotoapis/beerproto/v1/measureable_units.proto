@@ -295,6 +295,41 @@ enum PercentUnit {
   PERCENT_UNIT_PERCENT_SIGN = 1;
 }
 
+// Molar mass — the mass of one mole of a substance. Used for the brewing salt
+// and acid chemistry, where ion contributions and neutralising power are
+// derived from formula masses rather than tabulated.
+message MolarType {
+  double value = 1;
+  MolarUnit unit = 2;
+}
+
+enum MolarUnit {
+  MOLAR_UNIT_UNSPECIFIED = 0;
+  // g/mol
+  MOLAR_UNIT_GMOL = 1;
+}
+
+// A dimensionless ratio expressed as parts per some power of ten.
+//
+// Distinct from ConcentrationType, which mixes true concentrations (mg/l,
+// mg/100g) in with ppm/ppb: this one is only ever a ratio, so it converts
+// cleanly between its own units by powers of a thousand and never needs to know
+// what is dissolved in what.
+message PartsPerType {
+  double value = 1;
+  PartsPerUnit unit = 2;
+}
+
+enum PartsPerUnit {
+  PARTS_PER_UNIT_UNSPECIFIED = 0;
+  // ppm — parts per million
+  PARTS_PER_UNIT_MILLION = 1;
+  // ppb — parts per billion
+  PARTS_PER_UNIT_BILLION = 2;
+  // ppt — parts per trillion
+  PARTS_PER_UNIT_TRILLION = 3;
+}
+
 message ViscosityType {
   double value = 1;
   ViscosityUnit unit = 2;
