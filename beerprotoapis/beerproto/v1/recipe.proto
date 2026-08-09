@@ -118,8 +118,10 @@ message IngredientsType {
   repeated CultureAdditionType culture_additions = 2;
   // water_additions collects all the water items for use in a recipe
   repeated WaterAdditionType water_additions = 3;
-  // fermentable_additions collects all the fermentable ingredients for use in a recipe
-  repeated FermentableAdditionType fermentable_additions = 4 [(buf.validate.field).repeated.min_items = 1];
+  // fermentable_additions collects all the fermentable ingredients for use in a recipe.
+  // Not required: RecipeUnit covers beverages with nothing to ferment from a
+  // grist — a seltzer is carbonated water and minerals, and nothing else.
+  repeated FermentableAdditionType fermentable_additions = 4;
   // hop_additions collects all the hops for use in a recipe
   repeated HopAdditionType hop_additions = 5;
 }
