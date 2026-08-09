@@ -330,6 +330,24 @@ enum PartsPerUnit {
   PARTS_PER_UNIT_TRILLION = 3;
 }
 
+// The acid or base a material absorbs per unit mass to move one pH unit — how
+// hard it resists a change in pH.
+//
+// Used for mash pH prediction, where each fermentable's buffering is what makes
+// a large grist need proportionally more acid than a small one to reach the
+// same pH. Only meaningful alongside a distilled-water pH, which fixes the
+// point the titration curve is measured from.
+message BufferingCapacityType {
+  double value = 1;
+  BufferingCapacityUnit unit = 2;
+}
+
+enum BufferingCapacityUnit {
+  BUFFERING_CAPACITY_UNIT_UNSPECIFIED = 0;
+  // mEq/(kg·pH) — milliequivalents of acid per kilogram per pH unit
+  BUFFERING_CAPACITY_UNIT_MEQ_KG_PH = 1;
+}
+
 message ViscosityType {
   double value = 1;
   ViscosityUnit unit = 2;

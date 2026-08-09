@@ -34,6 +34,10 @@ message FermentableBase {
   string product_id = 8;
   // Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable. Carried on the base so recipe additions can compute the grist's mass-weighted diastatic power.
   DiastaticPowerType diastatic_power = 9;
+  // The pH of the resultant wort for 1 lb of grain mashed in 1 gallon of distilled water. Carried on the base so recipe additions can predict mash pH without loading the full fermentable record.
+  AcidityType di_ph = 10;
+  // The acid this fermentable absorbs per kilogram to move one pH unit. Paired with di_ph to give the malt's titration behaviour: di_ph fixes where the curve sits, buffering_capacity how steeply it resists moving. Carried on the base so recipe additions can solve the grist's proton balance.
+  BufferingCapacityType buffering_capacity = 11;
 }
 
 // FermentableType collects the attributes of a fermentable ingredient to store as record information
@@ -81,6 +85,8 @@ message FermentableType {
   // Values of 180 or more may suggest a glucan rest and avoiding fly sparging.
   ConcentrationType beta_glucan = 30;
   string notes = 31;
+  // The acid this fermentable absorbs per kilogram to move one pH unit. Paired with di_ph to give the malt's titration behaviour. Maltsters rarely publish it, so consumers should fall back to a value keyed on grain_group when it is unset.
+  BufferingCapacityType buffering_capacity = 32;
 }
 
 // FermentableAdditionType collects the attributes of each fermentable ingredient for use in a recipe fermentable bill
