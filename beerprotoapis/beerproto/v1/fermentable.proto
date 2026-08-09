@@ -181,4 +181,6 @@ enum GrainGroup {
   GRAIN_GROUP_SMOKED = 6;
   // adjunct
   GRAIN_GROUP_ADJUNCT = 7;
+  // acidulated — malt soured with lactic acid, used to lower mash pH. Its own group because it sits nearly two pH units below every other speciality malt, so anything predicting mash pH from the group alone models it wildly sweet.
+  GRAIN_GROUP_ACIDULATED = 8;
 }
