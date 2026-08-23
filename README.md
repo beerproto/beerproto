@@ -65,6 +65,14 @@ and normalise into the canonical unit on import.
 `unit == UNSPECIFIED` and not `value == 0`, to test whether a measurement was
 supplied at all.
 
+**Normalise exactly once, on the way in.** Converting a value into the canonical
+unit is *not* idempotent: run it twice on a 12 oz mass and you get 340 g, then
+9,642 g. A canonical message and a self-describing one are indistinguishable —
+nothing in the message says which it is — so there is no safe "normalise
+defensively on every read". Normalise where a non-canonical value enters (an
+import, a form submission, a one-shot migration) and treat it as canonical
+everywhere after that.
+
 ### The canonical unit for each type
 
 `value` is always in the unit named here.
