@@ -11,6 +11,46 @@ package beerproto.v1;
 
 import "buf/validate/validate.proto";
 
+// ---------------------------------------------------------------------------
+// CANONICAL UNITS
+//
+// Every measurement below is a {value, unit} pair, and the two fields answer
+// different questions:
+//
+//   * `value` is ALWAYS stored in the type's canonical unit.
+//   * `unit`  carries the unit the measurement is intended to be PRESENTED in.
+//
+// `unit` is a presentation instruction, NOT a description of `value`.
+//
+// Example -- a brewer enters a 12 oz hop charge. One ounce avoirdupois is
+// exactly 28.349523125 g, so the message is:
+//
+//   MassType { value: 340.1942775, unit: MASS_UNIT_OZ }
+//
+// That is 340.1942775 GRAMS, to be shown to the user as "12 oz". It is not
+// 340.1942775 ounces. Changing `unit` to MASS_UNIT_KG changes nothing about the
+// quantity; the same grams now render as "0.34 kg".
+//
+// Consumers MUST NOT convert `value` using `unit` -- that double-converts and
+// silently corrupts the quantity. Use `value` directly for all arithmetic, and
+// read `unit` only when rendering.
+//
+// At an interop boundary -- BeerJSON, BeerXML, or any format whose {value, unit}
+// pairs are self-describing -- convert: write `value` expressed in `unit` on
+// export, and normalise into the canonical unit on import.
+//
+// Three types are EXCLUDED because they have no canonical unit: UnitType,
+// EnzymeActivityType and RateType. For those three, and only those three, `unit`
+// describes `value` in the ordinary self-describing way.
+//
+// See "Canonical units" in the repository README for the full convention.
+// ---------------------------------------------------------------------------
+
+// Canonical unit: VOLUME_UNIT_ML -- `value` is always in millilitres.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// See "Canonical units" in the repository README for the full convention.
 message VolumeType {
   double value = 1;
   VolumeUnit unit = 2;
@@ -50,6 +90,11 @@ enum VolumeUnit {
   VOLUME_UNIT_IBBL = 15;
 }
 
+// Canonical unit: MASS_UNIT_G -- `value` is always in grams.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// See "Canonical units" in the repository README for the full convention.
 message MassType {
   double value = 1;
   MassUnit unit = 2;
@@ -70,6 +115,12 @@ enum MassUnit {
 }
 
 // CellCountType represents a count of viable microorganism (yeast/bacteria) cells, used in yeast pitch-rate calculations. Pitch-rate math is done in billions; cells and millions are provided for display scaling.
+//
+// Canonical unit: CELL_COUNT_UNIT_BILLION -- `value` is always in billions of cells.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// See "Canonical units" in the repository README for the full convention.
 message CellCountType {
   double value = 1;
   CellCountUnit unit = 2;
@@ -86,6 +137,15 @@ enum CellCountUnit {
 }
 
 // PitchRateType is a yeast pitch rate — cells pitched per unit wort volume per unit gravity. There is one unit in common brewing use (million cells / mL / °Plato), so it exists mainly for type-safety and consistent display rather than conversion.
+//
+// Canonical unit: PITCH_RATE_UNIT_MILLION_CELLS_PER_ML_PER_PLATO -- `value` is always in million cells / ml / degPlato.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// The only real unit in the enum, so the canonical unit and the presentation
+// unit are necessarily the same.
+//
+// See "Canonical units" in the repository README for the full convention.
 message PitchRateType {
   double value = 1;
   PitchRateUnit unit = 2;
@@ -97,7 +157,21 @@ enum PitchRateUnit {
   PITCH_RATE_UNIT_MILLION_CELLS_PER_ML_PER_PLATO = 1;
 }
 
-// Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable for base malts
+// Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner (106.5 WK) is needed to self convert, while a value of 100 Lintner (334 WK) or more is desirable for base malts
+//
+// Canonical unit: DIASTATIC_POWER_UNIT_WK -- `value` is always in degrees Windisch-Kolbach.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// The two scales are related by an affine transform, not a scaling:
+//   degWK = (3.5 x degLintner) - 16      degLintner = (degWK + 16) / 3.5
+// Zero does not survive that conversion -- 0 degLintner is -16 degWK -- which
+// has two consequences. Canonical degWK values are NEGATIVE for any malt below
+// 4.57 degLintner, so `value > 0` must never be used as a presence or validity
+// test. And a missing diastatic power is not 0 degWK; test presence on the
+// enclosing message.
+//
+// See "Canonical units" in the repository README for the full convention.
 message DiastaticPowerType {
   double value = 1;
   DiastaticPowerUnit unit = 2;
@@ -111,6 +185,11 @@ enum DiastaticPowerUnit {
   DIASTATIC_POWER_UNIT_WK = 2;
 }
 
+// Canonical unit: TEMPERATURE_UNIT_C -- `value` is always in degrees Celsius.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// See "Canonical units" in the repository README for the full convention.
 message TemperatureType {
   double value = 1;
   TemperatureUnit unit = 2;
@@ -122,6 +201,16 @@ enum TemperatureUnit {
   TEMPERATURE_UNIT_F = 2;
 }
 
+// Canonical unit: ACIDITY_UNIT_PH -- `value` is always in pH.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// The only real unit in the enum, so the canonical unit and the presentation
+// unit are necessarily the same.
+//
+// pH is a logarithmic scale; it is never rescaled, only carried.
+//
+// See "Canonical units" in the repository README for the full convention.
 message AcidityType {
   double value = 1;
   AcidityUnit unit = 2;
@@ -132,6 +221,16 @@ enum AcidityUnit {
   ACIDITY_UNIT_PH = 1;
 }
 
+// Canonical unit: TIME_UNIT_SEC -- `value` is always in seconds.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// `value` is an int64, not a double -- the only measurement here that is.
+// Seconds is canonical precisely because of that: minutes would make any
+// sub-minute duration (a whirlpool rest, a short hop stand) unrepresentable,
+// and would silently round a 30 second step up to one minute.
+//
+// See "Canonical units" in the repository README for the full convention.
 message TimeType {
   int64 value = 1;
   TimeUnit unit = 2;
@@ -152,6 +251,17 @@ enum TimeUnit {
 }
 
 // ColorType supports both grain color properties, such as Lovibond, and wort color properties such as SRM and EBC
+//
+// Canonical unit: COLOR_UNIT_EBC -- `value` is always in EBC.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// EBC and SRM are linearly related and convert losslessly. Lovibond is not a
+// third scale to convert through: the Daniels relation
+// SRM = 1.3546 x degL - 0.76 is a curve fit of MCU-to-SRM data, not a unit
+// conversion, and must never be applied to an individual malt colour.
+//
+// See "Canonical units" in the repository README for the full convention.
 message ColorType {
   double value = 1;
   ColorUnit unit = 2;
@@ -167,6 +277,11 @@ enum ColorUnit {
   COLOR_UNIT_SRM = 3;
 }
 
+// Canonical unit: CARBONATION_UNIT_VOLS -- `value` is always in volumes of CO2.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// See "Canonical units" in the repository README for the full convention.
 message CarbonationType {
   double value = 1;
   CarbonationUnit unit = 2;
@@ -180,6 +295,14 @@ enum CarbonationUnit {
   CARBONATION_UNIT_GL = 2;
 }
 
+// Canonical unit: BITTERNESS_UNIT_IBUS -- `value` is always in IBU.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// The only real unit in the enum, so the canonical unit and the presentation
+// unit are necessarily the same.
+//
+// See "Canonical units" in the repository README for the full convention.
 message BitternessType {
   double value = 1;
   BitternessUnit unit = 2;
@@ -192,6 +315,18 @@ enum BitternessUnit {
 }
 
 // Gravity refers to the both the measurements of percent of sugar content, ie plato and brix, as well as relative density ie specific gravity
+//
+// Canonical unit: GRAVITY_UNIT_SG -- `value` is always in specific gravity.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// SG and Plato are related through a cubic, so the round trip is not
+// algebraically lossless. The error is well below hydrometer and refractometer
+// resolution, so SG is safe as the stored form -- but extract-basis maths
+// (attenuation, real extract) should convert to Plato explicitly and do its
+// arithmetic there.
+//
+// See "Canonical units" in the repository README for the full convention.
 message GravityType {
   double value = 1;
   GravityUnit unit = 2;
@@ -207,6 +342,11 @@ enum GravityUnit {
   GRAVITY_UNIT_BRIX = 3;
 }
 
+// Canonical unit: SPECIFIC_HEAT_UNIT_JKGK -- `value` is always in joules per kilogram-kelvin.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// See "Canonical units" in the repository README for the full convention.
 message SpecificHeatType {
   double value = 1;
   SpecificHeatUnit unit = 2;
@@ -222,6 +362,17 @@ enum SpecificHeatUnit {
   SPECIFIC_HEAT_UNIT_BTULBF = 3;
 }
 
+// Canonical unit: CONCENTRATION_UNIT_MGL -- `value` is always in milligrams per litre.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// For dilute aqueous solutions 1 mg/l is numerically 1 ppm, because a litre of
+// brewing liquor weighs a kilogram, so this and PartsPerType interchange
+// without arithmetic. The types stay distinct all the same: this one is a mass
+// per volume, PartsPerType is a pure ratio, and the equivalence stops holding
+// for anything not around 1 kg/l.
+//
+// See "Canonical units" in the repository README for the full convention.
 message ConcentrationType {
   double value = 1;
   ConcentrationUnit unit = 2;
@@ -239,6 +390,15 @@ enum ConcentrationUnit {
   CONCENTRATION_UNIT_MG100L = 4;
 }
 
+// Canonical unit: SPECIFIC_VOLUME_UNIT_LKG -- `value` is always in litres per kilogram.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// Not SPECIFIC_VOLUME_UNIT_M3KG: the SI unit puts a mash thickness of 2.5 l/kg
+// at 0.0025, and canonical units are chosen to keep typical values legible and
+// near-integral.
+//
+// See "Canonical units" in the repository README for the full convention.
 message SpecificVolumeType {
   double value = 1;
   SpecificVolumeUnit unit = 2;
@@ -265,6 +425,17 @@ enum SpecificVolumeUnit {
 }
 
 // UnitType is used where unitless amounts are required, such as 1 apple, or 1 yeast packet
+//
+// NO canonical unit -- excluded from the canonical convention.
+//
+// For this type `unit` DESCRIBES `value` in the ordinary self-describing way,
+// rather than naming a presentation unit.
+//
+// These units are discrete counts and no conversion between them exists or
+// can exist: a package is not a number of "each". Compare values only when
+// the units already match.
+//
+// See "Canonical units" in the repository README for the full convention.
 message UnitType {
   double value = 1;
   UnitUnit unit = 2;
@@ -284,6 +455,14 @@ enum UnitUnit {
   UNIT_UNIT_PKG = 5;
 }
 
+// Canonical unit: PERCENT_UNIT_PERCENT_SIGN -- `value` is always in percent.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// The only real unit in the enum, so the canonical unit and the presentation
+// unit are necessarily the same.
+//
+// See "Canonical units" in the repository README for the full convention.
 message PercentType {
   double value = 1;
   PercentUnit unit = 2;
@@ -298,6 +477,15 @@ enum PercentUnit {
 // Molar mass — the mass of one mole of a substance. Used for the brewing salt
 // and acid chemistry, where ion contributions and neutralising power are
 // derived from formula masses rather than tabulated.
+//
+// Canonical unit: MOLAR_UNIT_GMOL -- `value` is always in grams per mole.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// The only real unit in the enum, so the canonical unit and the presentation
+// unit are necessarily the same.
+//
+// See "Canonical units" in the repository README for the full convention.
 message MolarType {
   double value = 1;
   MolarUnit unit = 2;
@@ -315,6 +503,12 @@ enum MolarUnit {
 // mg/100g) in with ppm/ppb: this one is only ever a ratio, so it converts
 // cleanly between its own units by powers of a thousand and never needs to know
 // what is dissolved in what.
+//
+// Canonical unit: PARTS_PER_UNIT_MILLION -- `value` is always in parts per million.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// See "Canonical units" in the repository README for the full convention.
 message PartsPerType {
   double value = 1;
   PartsPerUnit unit = 2;
@@ -337,6 +531,15 @@ enum PartsPerUnit {
 // a large grist need proportionally more acid than a small one to reach the
 // same pH. Only meaningful alongside a distilled-water pH, which fixes the
 // point the titration curve is measured from.
+//
+// Canonical unit: BUFFERING_CAPACITY_UNIT_MEQ_KG_PH -- `value` is always in milliequivalents per kilogram per pH unit.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// The only real unit in the enum, so the canonical unit and the presentation
+// unit are necessarily the same.
+//
+// See "Canonical units" in the repository README for the full convention.
 message BufferingCapacityType {
   double value = 1;
   BufferingCapacityUnit unit = 2;
@@ -348,6 +551,13 @@ enum BufferingCapacityUnit {
   BUFFERING_CAPACITY_UNIT_MEQ_KG_PH = 1;
 }
 
+// Canonical unit: VISCOSITY_UNIT_MPAS -- `value` is always in millipascal-seconds.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// 1 cP = 1 mPa-s exactly, so the choice costs nothing.
+//
+// See "Canonical units" in the repository README for the full convention.
 message ViscosityType {
   double value = 1;
   ViscosityUnit unit = 2;
@@ -449,6 +659,18 @@ enum RateUnit {
 }
 
 // use for things like evaporation rate, grain absorption rate, lauter flow rate, etc.
+//
+// NO canonical unit -- excluded from the canonical convention.
+//
+// For this type `unit` DESCRIBES `value` in the ordinary self-describing way,
+// rather than naming a presentation unit.
+//
+// RateUnit spans four dimensions in one enum: volume flow (L_PER_HOUR,
+// BBL_PER_HOUR), percent rate (PERCENT_PER_HOUR), specific volume (L_PER_KG)
+// and temperature rate (C_PER_MINUTE). A single canonical unit is not
+// meaningful.
+//
+// See "Canonical units" in the repository README for the full convention.
 message RateType {
   double value = 1;
   RateUnit unit = 2;
@@ -464,11 +686,25 @@ enum PressureUnit {
   PRESSURE_UNIT_KPA = 4;
 }
 
+// Canonical unit: PRESSURE_UNIT_PASCAL -- `value` is always in pascals.
+// `unit` names the unit this measurement should be presented in and never
+// describes `value`.
+//
+// See "Canonical units" in the repository README for the full convention.
 message PressureType {
   double value = 1;
   PressureUnit unit = 2;
 }
 
+// NO canonical unit -- excluded from the canonical convention.
+//
+// For this type `unit` DESCRIBES `value` in the ordinary self-describing way,
+// rather than naming a presentation unit.
+//
+// DU, WK and SKB are three different laboratory assays, not three scalings
+// of one quantity. There is no defensible conversion factor between them.
+//
+// See "Canonical units" in the repository README for the full convention.
 message EnzymeActivityType {
   // Numeric activity value as reported by the lab
   double value = 1 [
