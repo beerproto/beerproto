@@ -43,6 +43,36 @@ message Batch {
   repeated Log                logs                      = 15;
   string                      notes                     = 16;
   double                      rating                    = 17;
+
+  // Which acidity target a wine is being made to. Empty for anything that is
+  // not wine.
+  WineStyleType               wine_style                = 18;
+}
+
+// The shape of wine being made, for the sake of the acidity it is aimed at.
+//
+// Titratable acidity is the one target where wines genuinely disagree with
+// each other: reds sit around 5-7 g/L as tartaric and whites 6-9, which is far
+// enough apart that a single band spanning both can only say a juice is out of
+// range for every wine, never that it is wrong for this one.
+//
+// Deliberately *not* a subdivision of StyleCategories, where a red/white split
+// would sit at the wrong level (that enum names beverage classes), would leave
+// existing WINE styles ambiguous, and would still say nothing about a recipe
+// with no style attached — which is most of them. It is recorded per batch
+// instead, beside WaterAdjustmentStrategyType, because it is the same kind of
+// thing: a choice about what this batch is aiming at rather than a fact about
+// what it is.
+//
+// UNSPECIFIED is a usable state, not a missing one: a winemaker who has not
+// said gets judged against a band spanning every arm below, which is what the
+// app did before this field existed.
+enum WineStyleType {
+  WINE_STYLE_TYPE_UNSPECIFIED = 0;
+  WINE_STYLE_TYPE_RED = 1;
+  WINE_STYLE_TYPE_WHITE = 2;
+  // Short skin contact, and an acidity aimed nearer a white than a red.
+  WINE_STYLE_TYPE_ROSE = 3;
 }
 
 enum BatchStatusType {
