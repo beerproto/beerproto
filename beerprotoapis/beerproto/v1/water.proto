@@ -64,3 +64,47 @@ message WaterAdditionType {
   // The timing object fully describes the timing of an addition with options for a basis on time, gravity, or pH at any process step
   TimingType timing = 4 [(buf.validate.field).required = true];
 }
+
+/**
+ * An acid used to cut mash alkalinity or pull mash pH down to target.
+ *
+ * The concentration is part of the identity because it is what determines the
+ * dose: 88% lactic and 10% phosphoric differ by more than tenfold in strength
+ * per millilitre, so "lactic acid" alone is not enough to weigh anything out.
+ * Neutralising power is NOT stored here — it is derived from each acid's molar
+ * mass, solution strength and density.
+ */
+enum AcidType {
+  ACID_TYPE_UNSPECIFIED = 0;
+  // 88% w/w lactic acid — the homebrew standard.
+  ACID_TYPE_LACTIC_88 = 1;
+  // 80% w/w lactic acid.
+  ACID_TYPE_LACTIC_80 = 2;
+  // 85% w/w phosphoric acid. Flavour-neutral at mash pH but very strong; easy
+  // to overshoot on a small mash.
+  ACID_TYPE_PHOSPHORIC_85 = 3;
+  // 10% w/w phosphoric acid — dilute enough to dose a homebrew mash accurately.
+  ACID_TYPE_PHOSPHORIC_10 = 4;
+  // Acidulated (sauer) malt. Dosed by mass into the grist rather than by volume
+  // into the liquor, so it is measured in grams, not millilitres.
+  ACID_TYPE_ACIDULATED_MALT = 5;
+}
+
+/**
+ * How an acid dose for the mash is sized. A formula choice rather than a unit:
+ * the two models disagree about how much acid a given pH move costs, and
+ * neither is wrong so much as differently cautious. Sits alongside
+ * IBUMethodUnit as a named method, so a figure derived one way can say so.
+ */
+enum MashPhModel {
+  MASH_PH_MODEL_UNSPECIFIED = 0;
+  // Sizes the dose against the grist's own titration curve, so a big grain
+  // bill costs more acid than a small one for the same move. A dose sized this
+  // way agrees with a mash pH prediction derived the same way.
+  MASH_PH_MODEL_BUFFERED = 1;
+  // Sizes the dose against the liquor's alkalinity alone, treating the acid as
+  // fully effective. Ignores the grist, so it asks for less — closer to the
+  // conservative figures most calculators quote, and a reasonable starting
+  // point for a brewer who would rather under-dose and correct.
+  MASH_PH_MODEL_ALKALINITY = 2;
+}

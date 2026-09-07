@@ -1,0 +1,293 @@
+/**
+ * BeerProto
+ *
+ * Another beer format, written in protocol buffer.
+ *
+ * Copyright (c) 2020 Ross Merrigan
+ */
+syntax = "proto3";
+
+package beerproto.v1;
+
+import "beerproto/v1/equipment.proto";
+import "beerproto/v1/measureable_units.proto";
+import "beerproto/v1/water.proto";
+import "google/protobuf/timestamp.proto";
+
+message Batch {
+  string                      id                        = 1;
+  // The recipe this batch was brewed from.
+  //
+  // Batch holds no RecipeType of its own, so this is the whole of its link to
+  // one, and what keeps a Batch meaningful on its own. How the recipe is then
+  // resolved — a live document, a snapshot frozen at brew time, a file
+  // alongside — is left to whatever stores the batch.
+  string                      recipe_id                 = 2;
+  string                      name                      = 3;
+  uint32                      batch                     = 4;
+  google.protobuf.Timestamp   date                      = 5;
+
+  BatchStatusType             status                    = 6;
+  uint32                      brew_step                 = 7;
+
+  EquipmentType  equipment                 = 8;
+  repeated Starter            starters                  = 9;
+  WaterAdjustmentStrategyType water_adjustment_strategy = 10;
+  repeated MashAcidAddition   mash_acid_additions       = 11;
+
+  FermentationProfile         fermentation_profile      = 12;
+  Measurements                measurements              = 13;
+  // What the recipe predicted, frozen at Brew. See Estimates.
+  Estimates                   estimates                 = 14;
+
+  repeated Log                logs                      = 15;
+  string                      notes                     = 16;
+  double                      rating                    = 17;
+}
+
+enum BatchStatusType {
+  BATCH_STATUS_TYPE_UNSPECIFIED = 0;
+  BATCH_STATUS_TYPE_PLANNING = 1;
+  BATCH_STATUS_TYPE_BREWING = 2;
+  BATCH_STATUS_TYPE_FERMENTING = 3;
+  BATCH_STATUS_TYPE_CONDITIONING = 4;
+  BATCH_STATUS_TYPE_COMPLETED = 5;
+  BATCH_STATUS_TYPE_ARCHIVED = 6;
+}
+
+enum WaterAdjustmentStrategyType {
+  WATER_ADJUSTMENT_STRATEGY_TYPE_UNSPECIFIED = 0;
+  WATER_ADJUSTMENT_STRATEGY_TYPE_SALTS = 1;
+  WATER_ADJUSTMENT_STRATEGY_TYPE_DILUTION = 2;
+  WATER_ADJUSTMENT_STRATEGY_TYPE_ACID = 3;
+}
+
+// An acid dose the brewer has committed to for this batch's mash.
+//
+// The planning panel derives a recommendation live from the recipe's grist and
+// the brewhouse's water; this is what the brewer confirmed from it, frozen at
+// that moment. A later edit to the grain bill or the water profile moves the
+// recommendation but must not rewrite what actually went into the tun.
+//
+// Recorded on the batch rather than the recipe because the dose depends on the
+// brewhouse — its source water, and which acid is on its shelf.
+message MashAcidAddition {
+  string id = 1;
+  AcidType acid = 2;
+  // Millilitres of solution, or grams of malt for an acid dosed by mass
+  // (acidulated malt). The acid says which — there is no separate unit here.
+  double amount = 3;
+  // The pH this dose was sized to reach.
+  AcidityType target_ph = 4;
+  // The pH it was sized from: the app's prediction, or a meter reading.
+  AcidityType from_ph = 5;
+  // Which of those two `from_ph` was — the difference matters, because a dose
+  // computed from a reading is worth more than one computed from a model.
+  MashAcidBasis basis = 6;
+  // The liquor volume the dose was sized against.
+  VolumeType volume = 7;
+  google.protobuf.Timestamp confirmed = 8;
+}
+
+enum MashAcidBasis {
+  MASH_ACID_BASIS_UNSPECIFIED = 0;
+  // Sized from the recipe's predicted mash pH, before the mash is in.
+  MASH_ACID_BASIS_ESTIMATE = 1;
+  // Sized from a meter reading taken on the mash itself.
+  MASH_ACID_BASIS_MEASUREMENT = 2;
+}
+
+// A yeast starter for one culture addition on a batch. Holds both the step-up
+// plan (steps) and the brew-day execution inputs (pitch_rate, yeast_date) plus
+// a frozen snapshot of the computed pitch result (pitch).
+message Starter {
+  string id = 1;
+  repeated StarterStep steps = 2;
+  // Binds this starter to a CultureAddition (CultureAdditionType.id).
+  string culture_id = 3;
+  // Target pitch rate in M cells / mL / °Plato.
+  PitchRateType pitch_rate = 4;
+  // Yeast manufacture / production date — drives liquid-yeast viability decay.
+  google.protobuf.Timestamp yeast_date = 5;
+  // As-brewed snapshot of the computed pitch-rate result.
+  CulturePitchRate pitch = 6;
+}
+
+message StarterStep {
+  string id = 1;
+  VolumeType starter_size = 2;
+  GravityType gravity = 3;
+  GrowthModel model = 4;
+}
+
+enum GrowthModel {
+  GROWTH_MODEL_UNSPECIFIED = 0;
+  // Braukaiser - Stir Plate
+  GROWTH_MODEL_BRAUKAISER = 1;
+  // C. White - No Agitation
+  GROWTH_MODEL_C_WHITE_NO_AGITATION = 2;
+  // C. White - Shaking
+  GROWTH_MODEL_C_WHITE_SHAKING = 3;
+}
+
+// Derived per-step growth result — computed from a StarterStep, not persisted.
+message StepRate {
+  MassType dme = 1;
+  double growth_rate = 2;
+  CellCountType ending_count = 3;
+  PitchRateType pitch_rate = 4;
+}
+
+message CulturePitchRate {
+  CellCountType target_pitch_rate_cells = 1;
+  CellCountType cells_available = 2;
+  CellCountType difference = 3;
+  PitchRateType pitch_rate_as_is = 4;
+  PercentType viability = 5;
+}
+
+// One dated, stage-tagged entry a person wrote against the batch.
+//
+// A log is the brewer's own record. Machine-generated time series belong in
+// BatchReading, which is stored separately precisely so it can be numerous.
+message Log {
+  string                    id    = 1;
+  google.protobuf.Timestamp date  = 2;
+  string                    notes = 3;
+  BatchStatusType           status = 4;
+  // Superseded by BatchReading.gravity / .temperature, which can also carry pH
+  // and pressure and can say where the number came from. Kept because existing
+  // batches hold their fermentation series here and the charts read it; not
+  // marked deprecated yet, so regenerating this schema does not light up every
+  // call site before there is somewhere else for them to go.
+  GravityType  gravity = 5;
+  TemperatureType temperature = 6;
+  // Set on the entries where the brewer actually sat down with a glass.
+  Taste                     taste = 7;
+}
+
+// A tasting recorded against a log entry.
+//
+// Hangs off Log rather than forming a list of its own because a tasting is a
+// dated, stage-tagged observation — exactly what Log already is. A parallel
+// list would restate the timestamp, the status and the notes, and then drift
+// out of agreement with them.
+//
+// This is what `Batch.rating` (12) and `beerproto.TasteType` cannot do: a
+// single scalar says how the beer turned out, and says nothing about whether
+// six weeks in the cellar helped, which is the question a conditioning or
+// lagering batch exists to answer.
+message Taste {
+  // Overall mark, on the same scale as beerproto.TasteType.rating so the two
+  // can be compared and the last tasting can settle the batch's own rating.
+  double rating = 1;
+  string notes = 2;
+  // Perceived intensities on the same scale as `rating`. All optional — a quick
+  // tasting sets rating and notes and leaves these alone. Deliberately a short
+  // list of axes a brewer can rank consistently against their own previous
+  // tastings, which is what makes a series of them worth plotting; this is not
+  // a style score and not a competition sheet.
+  double bitterness = 3;
+  double sweetness = 4;
+  double body = 5;
+  double aroma = 6;
+}
+
+message FermentationProfile {
+  google.protobuf.Timestamp fermentation_start = 1;
+  google.protobuf.Timestamp bottling_date      = 2;
+}
+
+// What was actually observed on this batch, as against what the recipe
+// predicted (Estimates, and the recipe's own stored figures).
+//
+// Observations only. A change to the plan — a substituted hop, a different
+// weight — is a design change, and belongs with the recipe rather than here.
+message Measurements {
+  // Volumes, roughly in process order.
+  //
+  // NOTE: two pairs here overlap and the difference is not written down
+  // anywhere. `boil_volume` and `pre_boil_volume` are separate labelled fields
+  // in the pre-boil group; `bottling_volume` is collected at conditioning and
+  // `packaging_volume` at completion. Both pairs are live, so neither can just
+  // be dropped, but which one a brewer should fill in is undocumented.
+  VolumeType      boil_volume             = 1;
+  VolumeType      pre_boil_volume         = 2;
+  VolumeType      post_boil_kettle_volume = 3;
+  VolumeType      batch_volume            = 4;
+  VolumeType      fermenter_volume        = 5;
+  VolumeType      fermenter_topup         = 6;
+  VolumeType      bottling_volume         = 7;
+  VolumeType      packaging_volume        = 8;
+  VolumeType      boil_off_per_hour       = 9;
+
+  // Gravities, in process order.
+  //
+  // `first_wort_gravity` is the first runnings, before any sparge is collected.
+  // Read together with pre_boil_gravity it separates conversion in the tun from
+  // how well the grain bed was rinsed — the measurement
+  // `conversion_efficiency` needs.
+  GravityType     first_wort_gravity      = 10;
+  GravityType     pre_boil_gravity        = 11;
+  GravityType     post_boil_gravity       = 12;
+  GravityType     original_gravity        = 13;
+  GravityType     final_gravity           = 14;
+
+  // All four halves of beerproto.EfficiencyType. Brewhouse plans every one of
+  // them, and this used to measure only mash and brewhouse, which made the
+  // other two impossible to check against the plan. Lauter is what other tools
+  // call kettle efficiency.
+  PercentType     conversion_efficiency   = 15;
+  PercentType     lauter_efficiency       = 16;
+  PercentType     mash_efficiency         = 17;
+  PercentType     brewhouse_efficiency    = 18;
+
+  PercentType     alcohol_by_volume       = 19;
+  PercentType     attenuation             = 20;
+  ColorType       color                   = 21;
+
+  // Measured bitterness — a lab assay, not a formula result. The recipe's IBU
+  // is a prediction and belongs to the recipe, and `adjusted_recipe` only ever
+  // holds design changes, so neither is a place to write down what came back
+  // from the lab. Expect it empty on most batches.
+  BitternessType  bitterness              = 22;
+
+  AcidityType     mash_ph                 = 23;
+  // Measured counterpart to RecipeType.beer_ph, which was a target with nothing
+  // to compare against.
+  AcidityType     beer_ph                 = 24;
+
+  // What the boil actually ran for, as against the brewhouse's planned
+  // boil_time. Drives the real boil-off rate.
+  TimeType        boil_time               = 25;
+  TemperatureType carbonation_temperature = 26;
+}
+
+// The few predicted figures a recipe has nowhere to put.
+//
+// Most of what a batch predicts is already on RecipeType, which stores
+// original_gravity, final_gravity, color_estimate, alcohol_by_volume,
+// apparent_attenuation, batch_size, the four efficiencies and the IBU method.
+// Restating those here would only create a second place for them to disagree.
+//
+// These five have nowhere else to go: there is no field for the IBU value
+// itself (only ibu_estimate.method), none for predicted mash pH, and none for
+// the pre-boil figures, which depend on the system the beer is brewed on and
+// so cannot belong to a recipe at all.
+//
+// Written once, when the batch is brewed, and never recomputed — which is the
+// whole point. Every figure here depends on a formula choice, and re-deriving
+// them later against different choices silently rewrites what the batch
+// predicted on the day, destroying the one comparison a batch record exists to
+// support.
+message Estimates {
+  VolumeType     pre_boil_volume  = 1;
+  GravityType    pre_boil_gravity = 2;
+  BitternessType bitterness       = 3;
+  AcidityType    mash_ph          = 4;
+  // Which model sized the mash pH prediction. Recorded with it because the two
+  // models disagree, and a frozen figure whose method is unknown is only
+  // half-frozen. The IBU method needs no counterpart here — RecipeType's
+  // ibu_estimate already carries it.
+  MashPhModel           mash_ph_model    = 5;
+}
