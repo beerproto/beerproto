@@ -3,7 +3,7 @@
  *
  * Another beer format, written in protocol buffer.
  *
- * Copyright (c) 2020 Ross Merrigan
+ * Copyright (c) 2020-2026 Ross Merrigan
  */
 syntax = "proto3";
 
