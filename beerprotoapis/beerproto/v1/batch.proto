@@ -261,6 +261,14 @@ message Measurements {
   // boil_time. Drives the real boil-off rate.
   TimeType        boil_time               = 25;
   TemperatureType carbonation_temperature = 26;
+
+  // Titratable acidity, off a titration rather than a meter.
+  //
+  // The counterpart to beer_ph for anything fermenting juice. pH decides
+  // whether sulfite can protect a cider; TA decides whether it is drinkable,
+  // and the two are not derivable from one another. Expect it empty on beer,
+  // where nothing is titrated.
+  TitratableAcidityType titratable_acidity = 27;
 }
 
 // The few predicted figures a recipe has nowhere to put.

@@ -94,6 +94,7 @@ everywhere after that.
 | `SpecificVolumeType` | litres per kilogram | `SPECIFIC_VOLUME_UNIT_LKG` |
 | `ViscosityType` | millipascal-seconds | `VISCOSITY_UNIT_MPAS` |
 | `CellCountType` | billions of cells | `CELL_COUNT_UNIT_BILLION` |
+| `TitratableAcidityType` | grams per litre as tartaric | `TITRATABLE_ACIDITY_UNIT_G_PER_L_TARTARIC` |
 
 These six have exactly one real unit in their enum, so canonical and presentation
 are necessarily the same:
