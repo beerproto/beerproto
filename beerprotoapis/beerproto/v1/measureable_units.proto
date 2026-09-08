@@ -88,6 +88,10 @@ enum VolumeUnit {
   VOLUME_UNIT_IGAL = 14;
   // ibbl
   VOLUME_UNIT_IBBL = 15;
+  // hl -- hectolitre (100 l). The unit commercial breweries quote batch and
+  // vessel sizes in, and the rung above the litre on the metric magnitude
+  // ladder.
+  VOLUME_UNIT_HL = 16;
 }
 
 // Canonical unit: MASS_UNIT_G -- `value` is always in grams.
@@ -112,6 +116,15 @@ enum MassUnit {
   MASS_UNIT_LB = 4;
   // oz
   MASS_UNIT_OZ = 5;
+  // t -- metric tonne (1000 kg), the rung above the kilogram on the metric
+  // magnitude ladder.
+  MASS_UNIT_TONNE = 6;
+  // ton -- US short ton (2000 lb), the rung above the pound for US customary.
+  MASS_UNIT_SHORT_TON = 7;
+  // long ton -- UK long ton (2240 lb), the rung above the pound for British
+  // imperial. Distinct from MASS_UNIT_SHORT_TON: the two differ by 12%, so a
+  // single "ton" would be ambiguous between the two customary systems.
+  MASS_UNIT_LONG_TON = 8;
 }
 
 // CellCountType represents a count of viable microorganism (yeast/bacteria) cells, used in yeast pitch-rate calculations. Pitch-rate math is done in billions; cells and millions are provided for display scaling.
