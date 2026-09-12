@@ -144,4 +144,21 @@ message HopInventoryType {
   }
   // Best-before / use-by date of this stock. Unset when unknown.
   google.protobuf.Timestamp best_before = 3;
+  // The measured alpha acid of *this stock* (percent), overriding the
+  // variety's label figure on HopVarietyBase.
+  //
+  // Alpha acid is assayed per lot, and it drives IBU — so two packs of one
+  // variety that assay differently make different beer, and a bitterness
+  // computed from the label figure describes a hop the brewery does not have.
+  // Unset means this stock assays as the variety says, which is the honest
+  // default for a pack that arrived without a spec sheet. A zero is treated
+  // the same way: no hop anyone brews with assays at no alpha.
+  //
+  // Mirrors FermentableInventoryType.lot_potential, which is the same idea for
+  // a sack of malt.
+  PercentType alpha_acid = 4;
+  // The measured alpha loss of *this stock* over six months of storage
+  // (percent), overriding the variety's figure. Falls back the same way as
+  // alpha_acid.
+  PercentType percent_lost = 5;
 }
