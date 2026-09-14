@@ -136,29 +136,53 @@ message OilContentType {
   PercentType pinene = 14;
 }
 
+// HopInventoryType is the stock of a hop variety held on hand, as the lots it
+// was received in.
+//
+// It carries no total. How much is on hand is the sum of the lots' amounts, and
+// the soonest best-before and the blended alpha are derived from the lots the
+// same way. Every lot of one variety is held in the same kind — by weight or by
+// volume — so the lots add up without conversion.
 message HopInventoryType {
+  // The individual receipts this stock is made of.
+  repeated HopLotType lots = 6;
+}
+
+// HopLotType is one physical receipt of hop stock: a vacuum pack, a single
+// order line.
+//
+// Alpha acid is assayed per lot and drives IBU, so two packs of one variety that
+// assay differently make different beer. Keeping them as separate lots is what
+// stops a bitterness figure being computed for a blended hop the brewery does
+// not have.
+message HopLotType {
+  // Stable identity, so a stock movement can name the lot it drew from.
+  string id = 1;
+  // The supplier's own lot or batch number, as printed on the pack. Free text:
+  // every hop merchant numbers differently.
+  string lot_code = 2;
+  // When this stock arrived.
+  google.protobuf.Timestamp received_on = 3;
+  string note = 4;
+  // How much of this lot is on hand.
   oneof amount {
     option (buf.validate.oneof).required = true;
-    MassType mass = 1;
-    VolumeType volume = 2;
+    MassType mass = 5;
+    VolumeType volume = 6;
   }
-  // Best-before / use-by date of this stock. Unset when unknown.
-  google.protobuf.Timestamp best_before = 3;
-  // The measured alpha acid of *this stock* (percent), overriding the
-  // variety's label figure on HopVarietyBase.
+  // Best-before / use-by date of this lot. Unset when unknown.
+  google.protobuf.Timestamp best_before = 7;
+  // The measured alpha acid of this lot (percent), overriding the variety's
+  // label figure on HopVarietyBase.
   //
-  // Alpha acid is assayed per lot, and it drives IBU — so two packs of one
-  // variety that assay differently make different beer, and a bitterness
-  // computed from the label figure describes a hop the brewery does not have.
-  // Unset means this stock assays as the variety says, which is the honest
-  // default for a pack that arrived without a spec sheet. A zero is treated
-  // the same way: no hop anyone brews with assays at no alpha.
+  // Unset means this lot assays as the variety says, which is the honest
+  // default for a pack that arrived without a spec sheet. A zero is treated the
+  // same way: no hop anyone brews with assays at no alpha.
   //
-  // Mirrors FermentableInventoryType.lot_potential, which is the same idea for
-  // a sack of malt.
-  PercentType alpha_acid = 4;
-  // The measured alpha loss of *this stock* over six months of storage
-  // (percent), overriding the variety's figure. Falls back the same way as
-  // alpha_acid.
-  PercentType percent_lost = 5;
+  // Mirrors FermentableLotType.lot_potential, which is the same idea for a sack
+  // of malt.
+  PercentType alpha_acid = 8;
+  // The measured alpha loss of this lot over six months of storage (percent),
+  // overriding the variety's figure. Falls back the same way as alpha_acid.
+  PercentType percent_lost = 9;
 }

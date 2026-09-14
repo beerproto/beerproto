@@ -119,22 +119,51 @@ message YieldType {
   GravityType potential = 4;
 }
 
+// FermentableInventoryType is the stock of a fermentable held on hand, as the
+// lots it was received in.
+//
+// It carries no total. How much is on hand is the sum of the lots' amounts, and
+// the soonest best-before and the blended assay are derived from the lots the
+// same way, so there is one figure to keep right rather than a total that can
+// drift from the stock it describes. Every lot of one fermentable is held in
+// the same kind — by weight or by volume — so the lots add up without
+// conversion.
 message FermentableInventoryType {
+  // The individual receipts this stock is made of.
+  repeated FermentableLotType lots = 7;
+}
+
+// FermentableLotType is one physical receipt of fermentable stock: a sack, a
+// single order line.
+//
+// Two sacks of one malt bought months apart are different stock — a different
+// best-before, and an extract potential, crush and moisture measured on that
+// sack — so each is its own lot rather than one blended figure.
+message FermentableLotType {
+  // Stable identity, so a stock movement can name the lot it drew from.
+  string id = 1;
+  // The supplier's own lot or batch number, as printed on the sack. Free text:
+  // every maltster numbers differently.
+  string lot_code = 2;
+  // When this stock arrived.
+  google.protobuf.Timestamp received_on = 3;
+  string note = 4;
+  // How much of this lot is on hand.
   oneof amount {
     option (buf.validate.oneof).required = true;
-    MassType mass = 1;
-    VolumeType volume = 2;
+    MassType mass = 5;
+    VolumeType volume = 6;
   }
-  // Best-before / use-by date of this stock. Unset when unknown.
-  google.protobuf.Timestamp best_before = 3;
-  // The measured extract potential of *this lot* (points per lb per gallon,
+  // Best-before / use-by date of this lot. Unset when unknown.
+  google.protobuf.Timestamp best_before = 7;
+  // The measured extract potential of this lot (points per lb per gallon,
   // e.g. 1.037). When set, overrides the library nominal yield for OG so a
   // sack that assays differently from the maltster's spec is accounted for.
-  GravityType lot_potential = 4;
+  GravityType lot_potential = 8;
   // How this lot is milled — affects staling rate and mash efficiency.
-  GrainCrush crush = 5;
+  GrainCrush crush = 9;
   // Measured moisture content of this lot (percent). Informational.
-  PercentType moisture = 6;
+  PercentType moisture = 10;
 }
 
 enum GrainCrush {

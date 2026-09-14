@@ -78,14 +78,35 @@ message MiscellaneousAdditionType {
   }
 }
 
+// MiscellaneousInventoryType is the stock of a miscellaneous ingredient held on
+// hand, as the lots it was received in.
+//
+// It carries no total. How much is on hand is the sum of the lots' amounts, and
+// the soonest best-before is derived from the lots the same way. Every lot of
+// one ingredient is held in the same kind — by weight, by volume or as a count
+// — so the lots add up without conversion.
 message MiscellaneousInventoryType {
+  // The individual receipts this stock is made of.
+  repeated MiscellaneousLotType lots = 5;
+}
+
+// MiscellaneousLotType is one physical receipt of a miscellaneous ingredient: a
+// tub, a bottle, a box of tablets.
+message MiscellaneousLotType {
+  // Stable identity, so a stock movement can name the lot it drew from.
+  string id = 1;
+  // The supplier's own lot or batch number, as printed on the pack. Free text.
+  string lot_code = 2;
+  // When this stock arrived.
+  google.protobuf.Timestamp received_on = 3;
+  string note = 4;
+  // How much of this lot is on hand.
   oneof amount {
     option (buf.validate.oneof).required = true;
-
-    MassType mass = 1;
-    UnitType unit = 2;
-    VolumeType volume = 3;
+    MassType mass = 5;
+    UnitType unit = 6;
+    VolumeType volume = 7;
   }
-  // Best-before / use-by date of this stock. Unset when unknown.
-  google.protobuf.Timestamp best_before = 4;
+  // Best-before / use-by date of this lot. Unset when unknown.
+  google.protobuf.Timestamp best_before = 8;
 }

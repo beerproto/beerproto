@@ -153,25 +153,57 @@ enum CultureBaseType {
 }
 
 
+// CultureInventoryType is the stock of a culture held on hand, as the lots it
+// was received or harvested in.
+//
+// It carries no total. How much is on hand is the sum of the lots' amounts, and
+// the soonest best-before is derived from the lots the same way. Every lot of
+// one culture is held in the same one of its pools, so the lots add up without
+// conversion.
 message CultureInventoryType {
-  VolumeType liquid = 1;
-  MassType dry = 2;
-  VolumeType slant = 3;
-  VolumeType culture = 4;
+  // The individual receipts this stock is made of.
+  repeated CultureLotType lots = 9;
+}
+
+// CultureLotType is one physical receipt of culture stock: a sachet, a vial, a
+// harvested slurry.
+//
+// Two harvests of one strain differ in their manufacture date and repitch
+// generation, which is what their viability is estimated from, so each is its
+// own lot.
+message CultureLotType {
+  // Stable identity, so a stock movement can name the lot it drew from.
+  string id = 1;
+  // The supplier's own lot or batch number, as printed on the pack. Free text.
+  string lot_code = 2;
+  // When this stock arrived.
+  google.protobuf.Timestamp received_on = 3;
+  string note = 4;
+  // The one pool this lot is held in, and how much of it is on hand. Liquid
+  // yeast, a slant and a culture are all volumes, so the pool is named rather
+  // than inferred from the kind of amount.
+  oneof amount {
+    option (buf.validate.oneof).required = true;
+    MassType dry = 5;
+    VolumeType liquid = 6;
+    // Liquid yeast counted in packs or vials rather than measured by volume.
+    // Recipes commonly dose liquid yeast by pack, so this lets a pack-count
+    // requirement be confirmed and deducted.
+    UnitType liquid_packs = 7;
+    VolumeType slant = 8;
+    // Harvested or propagated culture, such as a slurry.
+    VolumeType culture = 9;
+  }
   // Yeast production / harvest date as an ISO-8601 date string (e.g.
-  // "2026-01-15"). Drives the stock's age-based viability estimate so freshness
+  // "2026-01-15"). Drives the lot's age-based viability estimate so freshness
   // is visible while browsing inventory, not only at pitch time.
-  string manufacture_date = 5;
+  string manufacture_date = 10;
   // Repitch generation for harvested/reused yeast: 0 = fresh from the
   // manufacturer/lab, 1 = first repitch, etc. Compared against the library
   // culture's max_reuse to warn when a slurry is past its recommended reuses.
-  int32 generation = 6;
-  // Best-before / use-by date of this stock. Unset when unknown.
-  google.protobuf.Timestamp best_before = 7;
-  // Liquid yeast on hand counted in packs/vials (as opposed to the `liquid`
-  // pool measured by volume). Recipes commonly dose liquid yeast by pack, so
-  // this lets a pack-count requirement be confirmed and deducted.
-  UnitType liquid_packs = 8;
+  int32 generation = 11;
+  // Best-before / use-by date of this lot. Unset when unknown.
+  google.protobuf.Timestamp best_before = 12;
 }
 
 // Zymocide, also known as killer yeast properties, is common among wine yeast. There are also some ale and brett yeasts that are immune to some zymocidic properties, these are known as killer neutral
