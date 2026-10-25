@@ -12,6 +12,7 @@ package beerproto.v1;
 import "beerproto/v1/measureable_units.proto";
 import "beerproto/v1/packaging_graphic.proto";
 import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
 
 message PackagingVesselBase {
   string name = 1 [
@@ -72,6 +73,10 @@ message PackagingVesselType {
 
   string notes = 12;
   CarbonationStep carbonation_step  = 13;
+
+  // When this vessel's beer is best drunk by. Unset when the brewer gave no
+  // date. As each inventory lot's best_before.
+  google.protobuf.Timestamp best_before = 14;
 }
 
 enum CarbonationStep {
