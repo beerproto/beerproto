@@ -164,6 +164,10 @@ message FermentableLotType {
   GrainCrush crush = 9;
   // Measured moisture content of this lot (percent). Informational.
   PercentType moisture = 10;
+  // The measured colour of this lot, from its certificate of analysis. When
+  // set, overrides the library colour, as lot_potential does the yield, so a
+  // sack that kilned darker than the maltster's spec is accounted for.
+  ColorType color = 11;
 }
 
 enum GrainCrush {
