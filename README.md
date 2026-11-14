@@ -2,12 +2,25 @@
 
 This repository contains the beer.proto file.
 
-[Module documentation](https://buf.build/rossmerr/beerprotoapis/docs/main)
+[Module documentation](https://buf.build/beerproto/beerproto/docs/main)
 
-To generate a copy of BeerProto in your language use the following command changing the template to match your language.
+BeerProto is published, generated, for each language. A push to `master`
+pushes the module to the Buf Schema Registry, then asks each package's CI to
+regenerate from it and tag a release:
+
+| Language | Package |
+|---|---|
+| Go | [beerproto_go](https://github.com/beerproto/beerproto_go) |
+| Dart | [beerproto_dart](https://github.com/beerproto/beerproto_dart) |
+| Python | [beerproto-python](https://github.com/beerproto/beerproto-python) |
+
+Each package keeps its own `buf.gen.{language}.yaml`, beside the protobuf
+runtime its generated code must match, so a generator is bumped in that
+package and nowhere here. To generate a copy yourself, use that package's
+template:
 
 ```bash
-buf generate beerprotoapis --template=buf.gen.go.yaml
+buf generate beerprotoapis --template=path/to/beerproto_go/buf.gen.go.yaml
 ```
 
 ## Canonical units
