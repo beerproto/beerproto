@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
       - uses: bufbuild/buf-action@v1
         with:
           # The 'main' branch of the GitHub repository that defines the module.
