@@ -76,6 +76,11 @@ message MiscellaneousAdditionType {
     UnitType unit = 5;
     VolumeType volume = 6;
   }
+  // What one canonical unit of this addition cost -- per gram, millilitre or
+  // counted unit, whichever its amount is in. Set from the stock it was drawn
+  // from, so a brewed batch's cost is what was paid for that stock and does not
+  // move when prices change. Unset when unknown.
+  PriceType unit_price = 7;
 }
 
 // MiscellaneousInventoryType is the stock of a miscellaneous ingredient held on
@@ -109,4 +114,8 @@ message MiscellaneousLotType {
   }
   // Best-before / use-by date of this lot. Unset when unknown.
   google.protobuf.Timestamp best_before = 8;
+  // What one canonical unit of this lot cost -- per gram, millilitre or counted
+  // unit, whichever its amount is held in. Unset when the price was not
+  // recorded, which is not the same as free.
+  PriceType unit_price = 9;
 }

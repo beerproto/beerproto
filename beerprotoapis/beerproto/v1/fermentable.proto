@@ -105,6 +105,11 @@ message FermentableAdditionType {
     MassType mass = 4;
     VolumeType volume = 5;
   }
+  // What one canonical unit of this addition cost -- per gram, millilitre or
+  // counted unit, whichever its amount is in. Set from the stock it was drawn
+  // from, so a brewed batch's cost is what was paid for that stock and does not
+  // move when prices change. Unset when unknown.
+  PriceType unit_price = 6;
 }
 
 // The potential yield of the fermentable ingredient, supporting SG, or percentage. eg 1.037 or 80% are valid yield types
@@ -168,6 +173,10 @@ message FermentableLotType {
   // set, overrides the library colour, as lot_potential does the yield, so a
   // sack that kilned darker than the maltster's spec is accounted for.
   ColorType color = 11;
+  // What one canonical unit of this lot cost -- per gram, millilitre or counted
+  // unit, whichever its amount is held in. Unset when the price was not
+  // recorded, which is not the same as free.
+  PriceType unit_price = 12;
 }
 
 enum GrainCrush {

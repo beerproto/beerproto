@@ -802,3 +802,42 @@ message EnzymeActivity {
   EnzymeType kind = 1;
   EnzymeActivityType activity = 2;
 }
+
+enum PriceUnit {
+  PRICE_UNIT_UNSPECIFIED = 0;
+  // Mass
+  PRICE_UNIT_PER_G = 1;
+  PRICE_UNIT_PER_KG = 2;
+  PRICE_UNIT_PER_OZ = 3;
+  PRICE_UNIT_PER_LB = 4;
+  // Volume
+  PRICE_UNIT_PER_ML = 5;
+  PRICE_UNIT_PER_L = 6;
+  PRICE_UNIT_PER_US_GAL = 7;
+  PRICE_UNIT_PER_IMP_GAL = 8;
+  // Count -- one of whatever the priced stock's UnitType counts
+  PRICE_UNIT_PER_EACH = 9;
+}
+
+// The price of one canonical unit of the stock it sits beside: per gram for a
+// MassType, per millilitre for a VolumeType, per one counted unit for a
+// UnitType (whose own unit says what is counted -- a pack, an each).
+//
+// Canonical unit: PRICE_UNIT_PER_G, PRICE_UNIT_PER_ML or PRICE_UNIT_PER_EACH,
+// whichever matches the quantity priced -- `value` is always the price of ONE
+// gram, millilitre or counted unit, in `currency`'s major unit (pounds, not
+// pence). `unit` names the unit this price should be presented per and never
+// describes `value`: a malt at 2.50 GBP/kg is
+//
+//   PriceType { value: 0.0025, unit: PRICE_UNIT_PER_KG, currency: "GBP" }
+//
+// A price never converts between currencies; two prices add up only when their
+// `currency` matches.
+//
+// See "Canonical units" in the repository README for the full convention.
+message PriceType {
+  double value = 1;
+  PriceUnit unit = 2;
+  // ISO 4217 alphabetic code, e.g. "GBP", "EUR", "USD".
+  string currency = 3 [(buf.validate.field).string.pattern = "^([A-Z]{3})?$"];
+}

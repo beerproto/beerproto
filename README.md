@@ -108,6 +108,7 @@ everywhere after that.
 | `ViscosityType` | millipascal-seconds | `VISCOSITY_UNIT_MPAS` |
 | `CellCountType` | billions of cells | `CELL_COUNT_UNIT_BILLION` |
 | `TitratableAcidityType` | grams per litre as tartaric | `TITRATABLE_ACIDITY_UNIT_G_PER_L_TARTARIC` |
+| `PriceType` | `currency` per gram, millilitre or counted unit — whichever the priced amount is in | `PRICE_UNIT_PER_G` / `PRICE_UNIT_PER_ML` / `PRICE_UNIT_PER_EACH` |
 
 These six have exactly one real unit in their enum, so canonical and presentation
 are necessarily the same:

@@ -105,6 +105,11 @@ message CultureAdditionType {
     UnitType unit = 9;
     VolumeType volume = 10;
   }
+  // What one canonical unit of this addition cost -- per gram, millilitre or
+  // counted unit, whichever its amount is in. Set from the stock it was drawn
+  // from, so a brewed batch's cost is what was paid for that stock and does not
+  // move when prices change. Unset when unknown.
+  PriceType unit_price = 11;
 }
 
 enum CultureBaseForm {
@@ -204,6 +209,10 @@ message CultureLotType {
   int32 generation = 11;
   // Best-before / use-by date of this lot. Unset when unknown.
   google.protobuf.Timestamp best_before = 12;
+  // What one canonical unit of this lot cost -- per gram, millilitre or counted
+  // unit, whichever its amount is held in. Unset when the price was not
+  // recorded, which is not the same as free.
+  PriceType unit_price = 13;
 }
 
 // Zymocide, also known as killer yeast properties, is common among wine yeast. There are also some ale and brett yeasts that are immune to some zymocidic properties, these are known as killer neutral

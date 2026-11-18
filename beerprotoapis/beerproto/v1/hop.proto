@@ -98,6 +98,11 @@ message HopAdditionType {
     MassType mass = 4;
     VolumeType volume = 5;
   }
+  // What one canonical unit of this addition cost -- per gram, millilitre or
+  // counted unit, whichever its amount is in. Set from the stock it was drawn
+  // from, so a brewed batch's cost is what was paid for that stock and does not
+  // move when prices change. Unset when unknown.
+  PriceType unit_price = 6;
 }
 
 // Used to differentiate which IBU formula is being used in a recipe. If formula is modified in any way, eg to support whirlpool/flameout additions etc etc, please use `Other` for transparency
@@ -185,4 +190,8 @@ message HopLotType {
   // The measured alpha loss of this lot over six months of storage (percent),
   // overriding the variety's figure. Falls back the same way as alpha_acid.
   PercentType percent_lost = 9;
+  // What one canonical unit of this lot cost -- per gram, millilitre or counted
+  // unit, whichever its amount is held in. Unset when the price was not
+  // recorded, which is not the same as free.
+  PriceType unit_price = 10;
 }
